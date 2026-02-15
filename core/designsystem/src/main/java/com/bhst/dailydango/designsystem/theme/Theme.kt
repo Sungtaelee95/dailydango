@@ -12,6 +12,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import androidx.glance.GlanceTheme
 import androidx.glance.color.ColorProvider
 import androidx.glance.color.colorProviders
 
