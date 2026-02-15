@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -20,4 +21,16 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "dailydango"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(":app")
+
+include(":baselineprofile")
+
+include(":core:data")
+include(":core:ui")
+include(":core:designsystem")
+
+include(":feature:main")
+
