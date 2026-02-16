@@ -1,5 +1,7 @@
+import com.bhst.dailydango.app.filterProject
+
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.dailydango.android.application)
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.compose.compiler)
 }
@@ -7,6 +9,17 @@ plugins {
 android {
     namespace = "com.bhst.dailydango"
     compileSdk = 36
+
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+
+    defaultConfig {
+        applicationId = "com.bhst.dailydango"
+        versionCode = 1
+        versionName = "1.0.0"
+    }
 
     buildTypes {
         release {
@@ -21,13 +34,21 @@ android {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-    buildFeatures {
-        compose = true
-        buildConfig = true
-    }
+
 }
 
 dependencies {
+
+    rootProject.subprojects.filterProject {
+        if (it.name.contains("baselineprofile")) {
+            baselineProfile(it)
+        } else if (it.name.contains("testing")) {
+            testImplementation(it)
+        } else {
+            implementation(it)
+        }
+    }
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

@@ -3,6 +3,7 @@ package com.bhst.dailydango.designsystem.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -17,7 +18,7 @@ private val GmarketSansKr = FontFamily(
 )
 
 private val DailyDangoStyle = TextStyle(
-    fontFamily = GmarketSansKr
+    fontFamily = GmarketSansKr,
 )
 
 internal val Typography = DailyDangoTypography(
@@ -34,6 +35,11 @@ internal val Typography = DailyDangoTypography(
         fontWeight = FontWeight.Bold,
         fontSize = 22.sp
     ),
+    bold36 = DailyDangoStyle.copy(
+        fontWeight = FontWeight.Bold,
+        fontSize = 36.sp,
+    ),
+
     medium10 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 10.sp
@@ -66,6 +72,7 @@ internal val Typography = DailyDangoTypography(
         fontWeight = FontWeight.Medium,
         fontSize = 30.sp
     ),
+
     light9 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Light,
         fontSize = 9.sp
@@ -97,6 +104,7 @@ data class DailyDangoTypography(
     val bold14: TextStyle,
     val bold16: TextStyle,
     val bold22: TextStyle,
+    val bold36: TextStyle,
 
 
     val medium10: TextStyle,
@@ -121,6 +129,7 @@ val LocalTypography = staticCompositionLocalOf {
         bold14 = DailyDangoStyle,
         bold16 = DailyDangoStyle,
         bold22 = DailyDangoStyle,
+        bold36 = DailyDangoStyle,
 
         medium10 = DailyDangoStyle,
         medium11 = DailyDangoStyle,
