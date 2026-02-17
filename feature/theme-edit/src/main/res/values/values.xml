@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="theme_setting">테마 설정</string>
+    <string name="system_mode">시스템 설정</string>
+    <string name="system_mode_description">시스템에 설정된 테마를 사용합니다.</string>
+    <string name="light_mode">라이트 모드</string>
+    <string name="light_mode_description">항상 밝은 테마를 사용합니다.</string>
+    <string name="dark_mode">다크 모드</string>
+    <string name="dark_mode_description">항상 어두운 테마를 사용합니다.</string>
+</resources>

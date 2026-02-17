@@ -31,6 +31,10 @@ include(":baselineprofile")
 include(":core:data")
 include(":core:ui")
 include(":core:designsystem")
+include(":core:domain")
+include(":core:model")
 
 include(":feature:main")
-
+include(":feature:home-api")
+include(":feature:home")
+include(":feature:theme-edit")

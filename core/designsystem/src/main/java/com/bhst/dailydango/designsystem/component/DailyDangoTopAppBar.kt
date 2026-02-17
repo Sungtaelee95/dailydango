@@ -37,6 +37,7 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 enum class TopAppBarNavigationType {
     Home, // 메인 화면 (로고 왼쪽, 메뉴 오른쪽)
     Back, // 서브 화면 (뒤로가기 왼쪽, 로고 중앙)
+    None,
 }
 
 @Composable
@@ -78,6 +79,16 @@ fun DailyDangoTopAppBar(
                     modifier = Modifier
                         .align(Alignment.CenterStart)
                         .padding(start = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    DailyDangoTitleContent(logoRes, titleRes, contentColor)
+                }
+            }
+
+            if (navigationType == TopAppBarNavigationType.None) {
+                Row(
+                    modifier = Modifier
+                        .align(Alignment.CenterStart),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     DailyDangoTitleContent(logoRes, titleRes, contentColor)
@@ -142,6 +153,19 @@ private fun DailyDangoTitleContent(
 
 @Preview(showBackground = true)
 @Composable
+private fun DailyDangoTopAppBarNonePreview() {
+    DailyDangoTheme{
+        DailyDangoTopAppBar(
+            navigationType = TopAppBarNavigationType.None,
+            titleRes = R.string.dailydango,
+            logoRes = R.drawable.top_bar_logo
+        )
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
 private fun DailyDangoTopAppBarHomePreview() {
     DailyDangoTheme{
         DailyDangoTopAppBar(
@@ -150,7 +174,6 @@ private fun DailyDangoTopAppBarHomePreview() {
             logoRes = R.drawable.top_bar_logo
         )
     }
-
 }
 
 @Preview(showBackground = true)

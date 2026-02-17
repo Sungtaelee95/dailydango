@@ -16,8 +16,9 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.designsystem)
-    implementation(projects.core.ui)
+    implementation(projects.feature.homeApi)
+    implementation(projects.feature.home)
+    implementation(projects.feature.themeEdit)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -29,6 +30,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.navigation3.ui)
     testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
