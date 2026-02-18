@@ -18,3 +18,4 @@ local.properties
 build-logic/convention/build/
 build-logic/convention/.gradle/
 build-logic/convention/bin/
+build-logic/convention
