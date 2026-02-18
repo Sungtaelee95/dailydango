@@ -29,7 +29,6 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:model"))
 
-
     // --- Navigation 3 Dependencies ---
     // 기존 androidx.compose.navigation 제거 후 교체
     implementation(findLibrary("androidx.navigation3.runtime"))
@@ -51,6 +50,4 @@ dependencies {
 
     implementation(findLibrary("androidx.lifecycle.viewModelCompose"))
     implementation(findLibrary("androidx.lifecycle.runtimeCompose"))
-
-
 }

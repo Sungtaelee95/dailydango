@@ -18,7 +18,8 @@ android {
 dependencies {
     implementation(projects.feature.homeApi)
     implementation(projects.feature.home)
-    implementation(projects.feature.themeEdit)
+    implementation(projects.feature.hiraganaStudyApi)
+    implementation(projects.feature.hiraganaStudy)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -33,10 +33,11 @@
             <option value="$PROJECT_DIR$/core/model" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/hiragana-study" />
+            <option value="$PROJECT_DIR$/feature/hiragana-study-api" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/home-api" />
             <option value="$PROJECT_DIR$/feature/main" />
-            <option value="$PROJECT_DIR$/feature/theme-edit" />
           </set>
         </option>
       </GradleProjectSettings>
