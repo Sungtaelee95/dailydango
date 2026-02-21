@@ -2,4 +2,16 @@
 <resources>
     <string name="text_daily_goal_achieved">오늘의 목표 달성!</string>
     <string name="hint_search_word_or_grammar">단어 혹은 문법 검색</string>
+    <string name="hiragana_gatacana">히라가나, 가타카나</string>
+    <string name="study_do_it">를 공부해보세요!</string>
+    <string name="hiragana">히라가나</string>
+    <string name="gatakana">가타카나</string>
+    <string name="basic_expressions">기초표현</string>
+    <string name="level">실력</string>
+    <string name="for_study">익히기</string>
+    <string name="for_test">테스트 하기</string>
+    <string name="for_me">자신의 </string>
+    <string name="level_up"> 실력을 향상</string>
+    <string name="do_it"> 시켜 보세요.</string>
+
 </resources>

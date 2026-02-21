@@ -1,5 +1,6 @@
 package com.bhst.dailydango.home
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -52,15 +54,143 @@ fun HomeContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(8.dp)
+            .padding(8.dp),
     ) {
         DailyGoalContent(
             goalDays = 3
         )
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(
+            modifier = Modifier.height(20.dp)
+        )
         SearchContent(
             onClick = navigateToSearch
         )
+        Spacer(
+            modifier = Modifier.height(40.dp)
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+            Row {
+                Text(
+                    text = stringResource(R.string.hiragana_gatacana),
+                    style = DailyDangoTheme.typography.bold16
+                )
+                Text(
+                    text = stringResource(R.string.study_do_it),
+                    style = DailyDangoTheme.typography.medium16
+                )
+            }
+            Row(
+                modifier = Modifier.weight(1f),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+                JapaneseStudyContent(
+                    modifier = Modifier
+                        .weight(1f),
+                    onClick = navigateToHiraganaStudy,
+                    title = stringResource(R.string.hiragana),
+                    content = stringResource(R.string.for_study)
+                )
+                JapaneseStudyContent(
+                    modifier = Modifier
+                        .weight(1f),
+                    onClick = navigateToKatakanaStudy,
+                    title = stringResource(R.string.gatakana),
+                    content = stringResource(R.string.for_study),
+                    painter = painterResource(R.drawable.gatakana_study_img)
+                )
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.weight(1f),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+                JapaneseStudyContent(
+                    modifier = Modifier
+                        .weight(1f),
+                    onClick = navigateToGrammarStudy,
+                    title = stringResource(R.string.basic_expressions),
+                    content = stringResource(R.string.for_study),
+                    painter = painterResource(R.drawable.basic_expressions_img)
+                )
+                JapaneseStudyContent(
+                    modifier = Modifier
+                        .weight(1f),
+                    onClick = navigateToGrammarTest,
+                    title = stringResource(R.string.level),
+                    content = stringResource(R.string.for_test),
+                    painter = painterResource(R.drawable.level_test_img)
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(end = 12.dp),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(R.string.for_me),
+                    style = DailyDangoTheme.typography.medium16
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = stringResource(R.string.level_up),
+                    style = DailyDangoTheme.typography.bold16
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = stringResource(R.string.do_it),
+                    style = DailyDangoTheme.typography.medium16
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun JapaneseStudyContent(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    title: String,
+    content: String,
+    painter: Painter = painterResource(R.drawable.hiragana_study_img)
+) {
+    DailyDangoElevationCard(
+        modifier = modifier
+            .fillMaxSize(),
+        shape = 20.dp,
+        color = MaterialTheme.colorScheme.primary,
+        elevation = 8.dp,
+        onClick = onClick
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 12.dp, start = 8.dp, end = 8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = title,
+                style = DailyDangoTheme.typography.bold24
+            )
+            Text(
+                text = content,
+                style = DailyDangoTheme.typography.medium24
+            )
+            ImageCard(
+                modifier = Modifier.weight(1f),
+                painter = painter,
+                contentDescription = "",
+                onClick = onClick
+            )
+        }
+
     }
 }
 
