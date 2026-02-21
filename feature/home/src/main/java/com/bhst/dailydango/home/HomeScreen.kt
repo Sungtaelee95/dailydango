@@ -13,14 +13,12 @@ fun HomeScreen(
     navigateToKatakanaStudy: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
     navigateToGrammarTest: () -> Unit = {},
-    back: () -> Unit = {}
 ) {
     HomeContent(
         navigateToHiraganaStudy = navigateToHiraganaStudy,
         navigateToKatakanaStudy = navigateToKatakanaStudy,
         navigateToGrammarStudy = navigateToGrammarStudy,
         navigateToGrammarTest = navigateToGrammarTest,
-        back = back
     )
 }
 
@@ -30,12 +28,10 @@ fun HomeContent(
     navigateToKatakanaStudy: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
     navigateToGrammarTest: () -> Unit = {},
-    back: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = "Home Screen")
         Button(
             onClick = navigateToHiraganaStudy
         ) {

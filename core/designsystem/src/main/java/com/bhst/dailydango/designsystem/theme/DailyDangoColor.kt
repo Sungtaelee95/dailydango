@@ -16,5 +16,5 @@ object DailyDangoColor {
     @Stable val LightPink = Color(0xFFFFE0E0)
     @Stable val LightBlack = Color(0xFF6C6C6C)
     @Stable val Coral = Color(0xFFFF9696)
-    @Stable val black1 = Color(0xFF000000)
+    @Stable val Black1 = Color(0xFF000000)
 }

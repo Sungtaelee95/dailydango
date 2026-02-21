@@ -5,17 +5,17 @@ import androidx.navigation3.runtime.entryProvider
 import com.bhst.dailydango.entry.homeEntries
 import com.bhst.dailydango.hiragana_study.HiraganaStudyScreen
 import com.bhst.dailydango.hiragana_study_api.HiraganaStudyRoute
+import com.bhst.dailydango.route_api.Route
 
 fun dailyDangoEntryProvider(
-    navigateTo: (Any) -> Unit,
+    navigateTo: (Route) -> Unit,
     back: () -> Unit
-): (Any) -> NavEntry<Any> = entryProvider {
+): (Route) -> NavEntry<Route> = entryProvider {
     homeEntries(
         navigateToHiraganaStudy = { navigateTo(HiraganaStudyRoute) },
         navigateToKatakanaStudy = { },
         navigateToGrammarStudy = {},
         navigateToGrammarTest = { },
-        back = back
     )
     entry<HiraganaStudyRoute> {
         HiraganaStudyScreen()

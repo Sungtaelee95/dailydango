@@ -18,104 +18,19 @@ import androidx.glance.color.colorProviders
 
 // 🔵 다크 테마 컬러셈
 private val DarkColorScheme = darkColorScheme(
-    primary = DailyDangoColor.BrandBlue,
-    onPrimary = DailyDangoColor.White,
-    primaryContainer = DailyDangoColor.MidnightSlate,
-    onPrimaryContainer = DailyDangoColor.SoftAshWhite,
-    inversePrimary = DailyDangoColor.BrandBlue,
 
-    secondary = DailyDangoColor.Green,
-    onSecondary = DailyDangoColor.White,
-    secondaryContainer = DailyDangoColor.GrayBlue,
-    onSecondaryContainer = DailyDangoColor.White,
-    secondaryFixed = DailyDangoColor.ActiveBlue,
-    secondaryFixedDim = DailyDangoColor.NeutralBlue,
-    onSecondaryFixed = DailyDangoColor.VitalAmber,
-
-    tertiary = DailyDangoColor.VitalAmber,
-    tertiaryFixed = DailyDangoColor.StableActionBlue,
-    tertiaryFixedDim = DailyDangoColor.CautionOrange,
-    onTertiaryFixed = DailyDangoColor.AlertRed,
-    onTertiary = DailyDangoColor.Yellow01,
-    tertiaryContainer = DailyDangoColor.Yellow04,
-    onTertiaryContainer = DailyDangoColor.FrostedSkyBlue,
-
-    error = DailyDangoColor.Red02,
-    onError = DailyDangoColor.Red05,
-    errorContainer = DailyDangoColor.Red04,
-    onErrorContainer = DailyDangoColor.Red01,
-
-    surface = DailyDangoColor.SoftSlateNavy,
-    onSurface = DailyDangoColor.ClearSkyBlue,
-    surfaceVariant = DailyDangoColor.DimSlate,
-    onSurfaceVariant = DailyDangoColor.LightGray,
-
-    background = DailyDangoColor.CharcoalBlue,
-    onBackground = DailyDangoColor.White,
-    surfaceDim = DailyDangoColor.MutedAshGray,
-    surfaceContainerLowest = DailyDangoColor.Black,
-    surfaceContainerLow = DailyDangoColor.Graphite,
-    surfaceContainerHigh = DailyDangoColor.DuskGray,
-
-    inverseSurface = DailyDangoColor.LightWhite,
-    inverseOnSurface = DailyDangoColor.Black,
-
-    outline = DailyDangoColor.CoolCharcoal,
-    outlineVariant = DailyDangoColor.MutedSlate,
-
-    scrim = DailyDangoColor.Black,
 )
 
 
 // 🔵 라이트 테마 컬러셈
 private val LightColorScheme = lightColorScheme(
-    primary = DailyDangoColor.BrandBlue,
-    onPrimary = DailyDangoColor.White,
-    primaryContainer = DailyDangoColor.White,
-    onPrimaryContainer = DailyDangoColor.SoftBlack,
-    inversePrimary = DailyDangoColor.BrandBlue,
-
-    secondary = DailyDangoColor.Green,              // 보조색: 화이트
-    onSecondary = DailyDangoColor.Black,        // 화이트 위의 텍스트는 블루
-    secondaryContainer = DailyDangoColor.White,
-    onSecondaryContainer = DailyDangoColor.NneutralGray,
-    secondaryFixed = DailyDangoColor.ActiveBlue,
-    secondaryFixedDim = DailyDangoColor.NeutralBlue,
-    onSecondaryFixed = DailyDangoColor.SubtleSky,
-
-    tertiary = DailyDangoColor.VitalAmber,
-    onTertiary = DailyDangoColor.Black,
-    tertiaryContainer = DailyDangoColor.Yellow03A40,
-    onTertiaryContainer = DailyDangoColor.SkyBlue,
-    tertiaryFixed = DailyDangoColor.StableActionBlue,
-    tertiaryFixedDim = DailyDangoColor.CautionOrange,
-    onTertiaryFixed = DailyDangoColor.AlertRed,
-
-    error = DailyDangoColor.Red03,
-    onError = DailyDangoColor.White,
-    errorContainer = DailyDangoColor.Red01,
-    onErrorContainer = DailyDangoColor.Red06,
-
-    surface = DailyDangoColor.White,
-    onSurface = DailyDangoColor.BrightSkyBlue,
-    surfaceVariant = DailyDangoColor.BlueGray,
-    onSurfaceVariant = DailyDangoColor.DarkGray,
-
-    background = DailyDangoColor.PaleBlue,
-    onBackground = DailyDangoColor.Black,
-
-    surfaceDim = DailyDangoColor.MidGray,
-    surfaceContainerLowest = DailyDangoColor.PaleGray,
-    surfaceContainerLow = DailyDangoColor.PaleGray,
-    surfaceContainerHigh = DailyDangoColor.LightGray,
-
-    inverseSurface = DailyDangoColor.BrandBlueDark,
-    inverseOnSurface = DailyDangoColor.White,
-
-    outline = DailyDangoColor.CoolBlueGray,
-    outlineVariant = DailyDangoColor.LightGray,
-
-    scrim = DailyDangoColor.Black,
+    primary = DailyDangoColor.LightPink,
+    onPrimary = DailyDangoColor.Coral,
+    primaryContainer = DailyDangoColor.White2,
+    onPrimaryContainer = DailyDangoColor.Black2,
+    onSecondaryContainer = DailyDangoColor.Black1,
+    background = DailyDangoColor.BackLight,
+    onBackground = DailyDangoColor.Black1,
 )
 
 

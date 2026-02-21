@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data object HiraganaStudyRoute: Route {
     override fun getTopBar(): TopAppBarNavigationType {
-        return TopAppBarNavigationType.Home
+        return TopAppBarNavigationType.Back
     }
 }

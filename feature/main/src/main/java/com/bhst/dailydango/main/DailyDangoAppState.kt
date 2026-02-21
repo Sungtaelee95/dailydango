@@ -8,9 +8,9 @@ import com.bhst.dailydango.home_api.HomeRoute
 import com.bhst.dailydango.route_api.Route
 
 class DailyDangoAppState {
-    val backStack = mutableStateListOf<Any>(HomeRoute)
+    val backStack = mutableStateListOf<Route>(HomeRoute)
 
-    fun navigationTo(destination: Any) {
+    fun navigationTo(destination: Route) {
         backStack.add(destination)
     }
 

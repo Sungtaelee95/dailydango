@@ -3,13 +3,13 @@ package com.bhst.dailydango.entry
 import androidx.navigation3.runtime.EntryProviderScope
 import com.bhst.dailydango.home.HomeScreen
 import com.bhst.dailydango.home_api.HomeRoute
+import com.bhst.dailydango.route_api.Route
 
-fun EntryProviderScope<Any>.homeEntries(
+fun EntryProviderScope<Route>.homeEntries(
     navigateToHiraganaStudy: () -> Unit,
     navigateToKatakanaStudy: () -> Unit,
     navigateToGrammarStudy: () -> Unit,
     navigateToGrammarTest: () -> Unit,
-    back: () -> Unit,
 ) {
     entry<HomeRoute> {
         HomeScreen(
@@ -17,7 +17,6 @@ fun EntryProviderScope<Any>.homeEntries(
             navigateToKatakanaStudy = navigateToKatakanaStudy,
             navigateToGrammarStudy = navigateToGrammarStudy,
             navigateToGrammarTest = navigateToGrammarTest,
-            back = back
         )
     }
 }

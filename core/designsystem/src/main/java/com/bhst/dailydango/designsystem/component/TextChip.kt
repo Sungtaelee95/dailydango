@@ -57,18 +57,18 @@ private fun TextChipPreview() {
             TextChip(
                 "카테고리",
                 containerColor = Color.Transparent,
-                labelColor = DailyDangoColor.LightGray,
-                border = BorderStroke(1.dp, DailyDangoColor.LightGray),
+                labelColor = DailyDangoColor.Black,
+                border = BorderStroke(1.dp, DailyDangoColor.BackLight),
             )
             TextChip(
                 "Track 01",
-                containerColor = DailyDangoColor.Blue01,
+                containerColor = DailyDangoColor.Black,
                 labelColor = DailyDangoColor.White,
             )
             TextChip(
                 "16:45 발표",
-                containerColor = DailyDangoColor.Blue02A30,
-                labelColor = DailyDangoColor.Blue01,
+                containerColor = DailyDangoColor.Black,
+                labelColor = DailyDangoColor.BackLight,
             )
         }
     }

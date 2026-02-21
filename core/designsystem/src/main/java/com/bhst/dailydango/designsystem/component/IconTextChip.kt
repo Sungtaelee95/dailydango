@@ -65,8 +65,8 @@ private fun IconTextChipPreview() {
     MaterialTheme {
         IconTextChip(
             "북마크",
-            containerColor = DailyDangoColor.DarkGray,
-            labelColor = DailyDangoColor.LightGray,
+            containerColor = DailyDangoColor.BackDark,
+            labelColor = DailyDangoColor.Black,
             iconPainter = painterResource(id = R.drawable.abc_btn_radio_material),
             iconTint = Color.Green,
         )
