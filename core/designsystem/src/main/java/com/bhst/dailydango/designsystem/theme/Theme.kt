@@ -18,19 +18,27 @@ import androidx.glance.color.colorProviders
 
 // 🔵 다크 테마 컬러셈
 private val DarkColorScheme = darkColorScheme(
-
+    primary = DailyDangoColor.LightBlack,
+    onPrimary = DailyDangoColor.White2,
+    primaryContainer = DailyDangoColor.LightBlack,
+    onPrimaryContainer = DailyDangoColor.White2,
+    onSecondaryContainer = DailyDangoColor.LightBlack,
+    background = DailyDangoColor.Black3,
+    onBackground = DailyDangoColor.White2,
+    surfaceDim = DailyDangoColor.Black2
 )
 
 
 // 🔵 라이트 테마 컬러셈
 private val LightColorScheme = lightColorScheme(
     primary = DailyDangoColor.LightPink,
-    onPrimary = DailyDangoColor.Coral,
+    onPrimary = DailyDangoColor.Black1,
     primaryContainer = DailyDangoColor.White2,
     onPrimaryContainer = DailyDangoColor.Black2,
     onSecondaryContainer = DailyDangoColor.Black1,
     background = DailyDangoColor.BackLight,
     onBackground = DailyDangoColor.Black1,
+    surfaceDim = DailyDangoColor.Black2
 )
 
 

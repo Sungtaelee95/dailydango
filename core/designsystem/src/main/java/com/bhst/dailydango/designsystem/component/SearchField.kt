@@ -1,5 +1,6 @@
 package com.bhst.dailydango.designsystem.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,7 +23,8 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 fun NotOutLineSearchField(
     searchText: String = "",
     onValueChange: (String) -> Unit = {},
-    hint: Int = 0
+    enabled: Boolean = true,
+    hint: Int = 0,
 ) {
     // 이미지의 배경색과 비슷하게 설정 (테스트용)
     Box(
@@ -33,6 +35,8 @@ fun NotOutLineSearchField(
             value = searchText,
             onValueChange = onValueChange,
             modifier = Modifier.fillMaxWidth(),
+            textStyle = DailyDangoTheme.typography.light20,
+            enabled = enabled,
 
             // 1. 둥근 모서리 설정 (Pill shape)
             shape = RoundedCornerShape(16.dp),
@@ -42,7 +46,7 @@ fun NotOutLineSearchField(
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = "Search Icon",
-                    tint = MaterialTheme.colorScheme.outline // 아이콘 회색
+                    tint = MaterialTheme.colorScheme.onBackground
                 )
             },
 
@@ -50,23 +54,24 @@ fun NotOutLineSearchField(
             placeholder = {
                 Text(
                     text = stringResource(hint),
-                    color = MaterialTheme.colorScheme.outline // 텍스트 회색
+                    color = MaterialTheme.colorScheme.surfaceDim, // 텍스트 회색
+                    style = DailyDangoTheme.typography.light20
                 )
             },
 
             // 4. 색상 커스텀 (테두리, 배경, 커서 등)
             colors = OutlinedTextFieldDefaults.colors(
                 // 배경색을 흰색으로 고정
-                focusedContainerColor = MaterialTheme.colorScheme.onPrimary,
-                unfocusedContainerColor = MaterialTheme.colorScheme.onPrimary,
-                disabledContainerColor = MaterialTheme.colorScheme.onPrimary,
+                focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                disabledContainerColor = MaterialTheme.colorScheme.primaryContainer,
 
                 // 테두리 색상 (포커스 여부 상관없이 연한 회색 유지)
                 focusedBorderColor = Color.Transparent,
                 unfocusedBorderColor = Color.Transparent,
 
                 // 커서 색상
-                cursorColor = Color.Gray
+                cursorColor = MaterialTheme.colorScheme.onBackground
             ),
             singleLine = true
         )
@@ -97,7 +102,7 @@ fun ManufacturerSearchField(
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = "Search Icon",
-                    tint = MaterialTheme.colorScheme.outline // 아이콘 회색
+                    tint = MaterialTheme.colorScheme.onBackground
                 )
             },
 
@@ -105,23 +110,23 @@ fun ManufacturerSearchField(
             placeholder = {
                 Text(
                     text = stringResource(hint),
-                    color = MaterialTheme.colorScheme.outline // 텍스트 회색
+                    color = MaterialTheme.colorScheme.surfaceDim // 텍스트 회색
                 )
             },
 
             // 4. 색상 커스텀 (테두리, 배경, 커서 등)
             colors = OutlinedTextFieldDefaults.colors(
                 // 배경색을 흰색으로 고정
-                focusedContainerColor = MaterialTheme.colorScheme.onPrimary,
-                unfocusedContainerColor = MaterialTheme.colorScheme.onPrimary,
-                disabledContainerColor = MaterialTheme.colorScheme.onPrimary,
+                focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                disabledContainerColor = MaterialTheme.colorScheme.primaryContainer,
 
                 // 테두리 색상 (포커스 여부 상관없이 연한 회색 유지)
-                focusedBorderColor = MaterialTheme.colorScheme.outline,
-                unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                focusedBorderColor = MaterialTheme.colorScheme.primaryContainer,
+                unfocusedBorderColor = MaterialTheme.colorScheme.primaryContainer,
 
                 // 커서 색상
-                cursorColor = Color.Gray
+                cursorColor = MaterialTheme.colorScheme.onBackground
             ),
             singleLine = true
         )

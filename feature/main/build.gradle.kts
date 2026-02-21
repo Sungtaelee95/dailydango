@@ -20,6 +20,10 @@ dependencies {
     implementation(projects.feature.home)
     implementation(projects.feature.hiraganaStudyApi)
     implementation(projects.feature.hiraganaStudy)
+    implementation(projects.feature.menuApi)
+    implementation(projects.feature.menu)
+    implementation(projects.feature.searchApi)
+    implementation(projects.feature.search)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

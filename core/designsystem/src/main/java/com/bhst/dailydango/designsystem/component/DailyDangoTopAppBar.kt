@@ -140,7 +140,7 @@ private fun DailyDangoTitleContent(
             painter = painterResource(id = logoRes),
             contentDescription = null,
             modifier = Modifier
-                .size(56.dp) // 로고 크기 조절
+                .size(80.dp) // 로고 크기 조절
         )
         Spacer(modifier = Modifier.width(8.dp))
     }

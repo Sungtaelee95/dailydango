@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 
 @Composable
-fun SomunaCard(
+fun DailyDangoCard(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.surface,
     contentColor: Color = MaterialTheme.colorScheme.onSurface,
@@ -32,7 +32,7 @@ fun SomunaCard(
 }
 
 @Composable
-fun SomunaElevationCard(
+fun DailyDangoElevationCard(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
@@ -57,8 +57,8 @@ fun SomunaElevationCard(
 @Composable
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
-private fun SomunaCardPreview() {
+private fun DailyDangoCardPreview() {
     DailyDangoTheme {
-        SomunaCard(modifier = Modifier.size(320.dp, 160.dp), content = { })
+        DailyDangoCard(modifier = Modifier.size(320.dp, 160.dp), content = { })
     }
 }

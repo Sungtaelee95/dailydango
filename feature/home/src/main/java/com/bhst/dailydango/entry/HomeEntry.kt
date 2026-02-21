@@ -10,6 +10,7 @@ fun EntryProviderScope<Route>.homeEntries(
     navigateToKatakanaStudy: () -> Unit,
     navigateToGrammarStudy: () -> Unit,
     navigateToGrammarTest: () -> Unit,
+    navigateToSearch: () -> Unit
 ) {
     entry<HomeRoute> {
         HomeScreen(
@@ -17,6 +18,7 @@ fun EntryProviderScope<Route>.homeEntries(
             navigateToKatakanaStudy = navigateToKatakanaStudy,
             navigateToGrammarStudy = navigateToGrammarStudy,
             navigateToGrammarTest = navigateToGrammarTest,
+            navigateToSearch = navigateToSearch
         )
     }
 }
