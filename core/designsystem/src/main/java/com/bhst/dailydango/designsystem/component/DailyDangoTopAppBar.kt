@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.filled.Close
@@ -56,7 +58,7 @@ fun DailyDangoTopAppBar(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(64.dp) // 높이 명시적 지정 권장 (디자인에 맞춰 조절)
+                .wrapContentHeight() // 높이 명시적 지정 권장 (디자인에 맞춰 조절)
                 .background(containerColor)
                 .then(modifier)
         ) {
@@ -142,11 +144,21 @@ private fun DailyDangoTitleContent(
         )
         Spacer(modifier = Modifier.width(8.dp))
     }
-    Text(
-        text = stringResource(id = titleRes),
-        style = DailyDangoTheme.typography.bold36,
-        color = contentColor
-    )
+    Column {
+        Text(
+            text = stringResource(id = titleRes),
+            style = DailyDangoTheme.typography.bold36,
+            color = contentColor
+        )
+        Spacer(
+            modifier = Modifier.height(4.dp)
+        )
+        Text(
+            text = stringResource(id = R.string.daily_litle_japenes),
+            style = DailyDangoTheme.typography.light20
+        )
+    }
+
 }
 
 // --- Previews ---

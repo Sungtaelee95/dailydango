@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.NavKey
 import com.bhst.dailydango.home_api.HomeRoute
+import com.bhst.dailydango.route_api.Route
 
 class DailyDangoAppState {
     val backStack = mutableStateListOf<Any>(HomeRoute)
