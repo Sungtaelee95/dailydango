@@ -20,6 +20,8 @@ dependencies {
     implementation(projects.feature.home)
     implementation(projects.feature.hiraganaStudyApi)
     implementation(projects.feature.hiraganaStudy)
+    implementation(projects.feature.katakanaStudyApi)
+    implementation(projects.feature.katakanaStudy)
     implementation(projects.feature.menuApi)
     implementation(projects.feature.menu)
     implementation(projects.feature.searchApi)
