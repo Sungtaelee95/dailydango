@@ -93,18 +93,19 @@ fun HomeContent(
                     .height(180.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                horizontalArrangement = Arrangement.Center
             ) {
                 JapaneseStudyContent(
                     modifier = Modifier
-                        .size(180.dp),
+                        .weight(1f),
                     onClick = navigateToHiraganaStudy,
                     title = stringResource(R.string.hiragana),
                     content = stringResource(R.string.for_study)
                 )
+                Spacer(modifier = Modifier.width(20.dp))
                 JapaneseStudyContent(
                     modifier = Modifier
-                        .size(180.dp),
+                        .weight(1f),
                     onClick = navigateToKatakanaStudy,
                     title = stringResource(R.string.gatakana),
                     content = stringResource(R.string.for_study),
@@ -116,19 +117,20 @@ fun HomeContent(
                     .height(180.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                horizontalArrangement = Arrangement.Center
             ) {
                 JapaneseStudyContent(
                     modifier = Modifier
-                        .size(180.dp),
+                        .weight(1f),
                     onClick = navigateToGrammarStudy,
                     title = stringResource(R.string.basic_expressions),
                     content = stringResource(R.string.for_study),
                     painter = painterResource(R.drawable.basic_expressions_img)
                 )
+                Spacer(modifier = Modifier.width(20.dp))
                 JapaneseStudyContent(
                     modifier = Modifier
-                        .size(180.dp),
+                        .weight(1f),
                     onClick = navigateToGrammarTest,
                     title = stringResource(R.string.level),
                     content = stringResource(R.string.for_test),
