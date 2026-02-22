@@ -1,4 +1,4 @@
-package com.bhst.dailydango.menu.entry
+package com.bhst.dailydango.entry
 
 import androidx.navigation3.runtime.EntryProviderScope
 import com.bhst.dailydango.menu.MenuScreen

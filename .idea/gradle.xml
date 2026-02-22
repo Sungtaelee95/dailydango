@@ -34,12 +34,16 @@
             <option value="$PROJECT_DIR$/core/route-api" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/basic-expressions" />
+            <option value="$PROJECT_DIR$/feature/basic-expressions-api" />
             <option value="$PROJECT_DIR$/feature/hiragana-study" />
             <option value="$PROJECT_DIR$/feature/hiragana-study-api" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/home-api" />
             <option value="$PROJECT_DIR$/feature/katakana-study" />
             <option value="$PROJECT_DIR$/feature/katakana-study-api" />
+            <option value="$PROJECT_DIR$/feature/level-test" />
+            <option value="$PROJECT_DIR$/feature/level-test-api" />
             <option value="$PROJECT_DIR$/feature/main" />
             <option value="$PROJECT_DIR$/feature/menu" />
             <option value="$PROJECT_DIR$/feature/menu-api" />

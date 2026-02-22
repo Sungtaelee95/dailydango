@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -75,7 +74,7 @@ fun HomeTabContent(
         ) {
             Row {
                 Text(
-                    text = stringResource(R.string.hiragana_gatacana),
+                    text = stringResource(R.string.hiragana_katacana),
                     style = DailyDangoTheme.typography.bold16
                 )
                 Text(
@@ -103,7 +102,7 @@ fun HomeTabContent(
                         .width(300.dp)
                         .height(160.dp),
                     onClick = navigateToKatakanaStudy,
-                    title = stringResource(R.string.gatakana),
+                    title = stringResource(R.string.katakana),
                     content = stringResource(R.string.for_study),
                     painter = painterResource(R.drawable.gatakana_study_img)
                 )
