@@ -12,32 +12,27 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Devices.TABLET
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bhst.dailydango.app.feature.home.R
-import com.bhst.dailydango.designsystem.component.DailyDangoElevationCard
-import com.bhst.dailydango.designsystem.component.ImageCard
-import com.bhst.dailydango.designsystem.component.NotOutLineSearchField
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 
 @Composable
-fun HomeScreen(
+fun HomeTabScreen(
     navigateToHiraganaStudy: () -> Unit = {},
     navigateToKatakanaStudy: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
     navigateToGrammarTest: () -> Unit = {},
     navigateToSearch: () -> Unit = {}
 ) {
-    HomeContent(
+    HomeTabContent(
         navigateToHiraganaStudy = navigateToHiraganaStudy,
         navigateToKatakanaStudy = navigateToKatakanaStudy,
         navigateToGrammarStudy = navigateToGrammarStudy,
@@ -47,7 +42,7 @@ fun HomeScreen(
 }
 
 @Composable
-fun HomeContent(
+fun HomeTabContent(
     navigateToHiraganaStudy: () -> Unit = {},
     navigateToKatakanaStudy: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
@@ -58,7 +53,7 @@ fun HomeContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(12.dp)
+            .padding(top = 20.dp, start = 40.dp, end= 40.dp, bottom = 20.dp)
             .verticalScroll(scrollState),
     ) {
         DailyGoalContent(
@@ -90,21 +85,23 @@ fun HomeContent(
             }
             Row(
                 modifier = Modifier
-                    .height(180.dp)
+                    .height(160.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 JapaneseStudyContent(
                     modifier = Modifier
-                        .size(180.dp),
+                        .width(300.dp)
+                        .height(160.dp),
                     onClick = navigateToHiraganaStudy,
                     title = stringResource(R.string.hiragana),
                     content = stringResource(R.string.for_study)
                 )
                 JapaneseStudyContent(
                     modifier = Modifier
-                        .size(180.dp),
+                        .width(300.dp)
+                        .height(160.dp),
                     onClick = navigateToKatakanaStudy,
                     title = stringResource(R.string.gatakana),
                     content = stringResource(R.string.for_study),
@@ -113,14 +110,15 @@ fun HomeContent(
             }
             Row(
                 modifier = Modifier
-                    .height(180.dp)
+                    .height(160.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 JapaneseStudyContent(
                     modifier = Modifier
-                        .size(180.dp),
+                        .width(300.dp)
+                        .height(160.dp),
                     onClick = navigateToGrammarStudy,
                     title = stringResource(R.string.basic_expressions),
                     content = stringResource(R.string.for_study),
@@ -128,7 +126,8 @@ fun HomeContent(
                 )
                 JapaneseStudyContent(
                     modifier = Modifier
-                        .size(180.dp),
+                        .width(300.dp)
+                        .height(160.dp),
                     onClick = navigateToGrammarTest,
                     title = stringResource(R.string.level),
                     content = stringResource(R.string.for_test),
@@ -161,121 +160,10 @@ fun HomeContent(
     }
 }
 
+@Preview(showBackground = true, device = TABLET)
 @Composable
-fun JapaneseStudyContent(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit = {},
-    title: String,
-    content: String,
-    painter: Painter = painterResource(R.drawable.hiragana_study_img)
-) {
-    DailyDangoElevationCard(
-        modifier = modifier
-            .fillMaxSize(),
-        shape = 20.dp,
-        color = MaterialTheme.colorScheme.primary,
-        elevation = 8.dp,
-        onClick = onClick
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 12.dp, start = 8.dp, end = 8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = title,
-                style = DailyDangoTheme.typography.bold24
-            )
-            Text(
-                text = content,
-                style = DailyDangoTheme.typography.medium24
-            )
-            ImageCard(
-                modifier = Modifier.weight(1f),
-                painter = painter,
-                contentDescription = "",
-                onClick = onClick
-            )
-        }
-
-    }
-}
-
-@Composable
-fun SearchContent(
-    onClick: () -> Unit = {}
-) {
-    DailyDangoElevationCard(
-        modifier = Modifier
-            .fillMaxWidth(),
-        shape = 20.dp,
-        elevation = 8.dp,
-        onClick = onClick
-    ) {
-        NotOutLineSearchField(
-            hint = R.string.hint_search_word_or_grammar,
-            enabled = false
-        )
-    }
-
-}
-
-@Composable
-fun DailyGoalContent(
-    goalDays: Int = 3
-) {
-    DailyDangoElevationCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(64.dp)
-            .padding(top = 8.dp),
-        shape = 20.dp,
-        color = MaterialTheme.colorScheme.primary,
-        elevation = 8.dp
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(4.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            ImageCard(
-                modifier = Modifier
-                    .width(48.dp)
-                    .height(48.dp),
-                painter = painterResource(R.drawable.fire_img),
-                contentDescription = ""
-            )
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(R.string.text_daily_goal_achieved),
-                    textAlign = TextAlign.Center,
-                    style = DailyDangoTheme.typography.bold24,
-                    color = MaterialTheme.colorScheme.onBackground
-                )
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "${goalDays}일 연속",
-                    textAlign = TextAlign.Center,
-                    style = DailyDangoTheme.typography.medium20
-                )
-            }
-
-        }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun HomeContentPreview() {
+fun HomeTabContentPreview() {
     DailyDangoTheme {
-        HomeContent()
+        HomeTabContent()
     }
 }
