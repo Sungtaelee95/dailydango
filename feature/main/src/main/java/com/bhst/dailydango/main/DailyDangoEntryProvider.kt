@@ -2,6 +2,7 @@ package com.bhst.dailydango.main
 
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.entryProvider
+import com.bhst.dailydango.entry.hiraganaStudyEntries
 import com.bhst.dailydango.entry.homeEntries
 import com.bhst.dailydango.hiragana_study.HiraganaStudyScreen
 import com.bhst.dailydango.hiragana_study_api.HiraganaStudyRoute
@@ -23,7 +24,5 @@ fun dailyDangoEntryProvider(
     )
     menuEntry()
     searchEntry()
-    entry<HiraganaStudyRoute> {
-        HiraganaStudyScreen()
-    }
+    hiraganaStudyEntries()
 }

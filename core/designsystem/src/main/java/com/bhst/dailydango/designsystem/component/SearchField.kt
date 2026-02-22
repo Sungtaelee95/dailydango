@@ -54,7 +54,7 @@ fun NotOutLineSearchField(
             placeholder = {
                 Text(
                     text = stringResource(hint),
-                    color = MaterialTheme.colorScheme.surfaceDim, // 텍스트 회색
+                    color = MaterialTheme.colorScheme.onBackground, // 텍스트 회색
                     style = DailyDangoTheme.typography.light20
                 )
             },
@@ -110,7 +110,7 @@ fun ManufacturerSearchField(
             placeholder = {
                 Text(
                     text = stringResource(hint),
-                    color = MaterialTheme.colorScheme.surfaceDim // 텍스트 회색
+                    color = MaterialTheme.colorScheme.onBackground // 텍스트 회색
                 )
             },
 

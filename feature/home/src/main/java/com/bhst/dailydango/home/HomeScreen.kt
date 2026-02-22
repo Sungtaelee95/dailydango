@@ -188,11 +188,13 @@ fun JapaneseStudyContent(
         ) {
             Text(
                 text = title,
-                style = DailyDangoTheme.typography.bold24
+                style = DailyDangoTheme.typography.bold24,
+                color = MaterialTheme.colorScheme.onBackground
             )
             Text(
                 text = content,
-                style = DailyDangoTheme.typography.medium24
+                style = DailyDangoTheme.typography.medium24,
+                color = MaterialTheme.colorScheme.onBackground
             )
             ImageCard(
                 modifier = Modifier.weight(1f),

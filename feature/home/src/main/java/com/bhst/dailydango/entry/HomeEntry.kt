@@ -34,7 +34,7 @@ fun EntryProviderScope<Route>.homeEntries(
             }
             // 2. 가로 너비가 MEDIUM(보통 600dp) 이상일 때 -> 기기 가로 모드 / 폴더블폰
             windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND) -> {
-                HomeScreen(
+                HomeTabScreen(
                     navigateToHiraganaStudy = navigateToHiraganaStudy,
                     navigateToKatakanaStudy = navigateToKatakanaStudy,
                     navigateToGrammarStudy = navigateToGrammarStudy,
