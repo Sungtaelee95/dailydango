@@ -11,16 +11,28 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.bhst.dailydango.designsystem.component.DailyDangoTopAppBar
 import com.bhst.dailydango.designsystem.component.TopAppBarNavigationType
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
-import com.bhst.dailydango.home_api.HomeRoute
 import com.bhst.dailydango.menu_api.MenuRoute
+import com.bhst.dailydango.ui.GlobalLoadingDialog
+import com.bhst.dailydango.ui.MessageManager
+import com.bhst.dailydango.ui.GlobalMessageToast
+import com.bhst.dailydango.ui.LoadingDialogManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var loadingDialogManager: LoadingDialogManager
+
+    @Inject
+    lateinit var messageManager: MessageManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
@@ -53,8 +65,14 @@ class MainActivity : ComponentActivity() {
                             .padding(innerPadding),
                         backStack = appState.backStack,
                         onBack = { appState.onBack() },
-                        entryProvider = entryProvider
+                        entryProvider = entryProvider,
+                        entryDecorators = listOf(
+                            rememberSaveableStateHolderNavEntryDecorator(),
+                            rememberViewModelStoreNavEntryDecorator()
+                        )
                     )
+                    GlobalLoadingDialog(loadingDialogManager = loadingDialogManager)
+                    GlobalMessageToast(messageManager = messageManager)
                 }
             }
         }

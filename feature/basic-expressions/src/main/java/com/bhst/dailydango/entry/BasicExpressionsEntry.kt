@@ -3,7 +3,7 @@ package com.bhst.dailydango.entry
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
-import com.bhst.dailydango.basic_expressions.BasicExpressionsScreen
+import com.bhst.dailydango.basic_expressions.chapter_select.BasicExpressionsScreen
 import com.bhst.dailydango.basic_expressions_api.BasicExpressionsRoute
 import com.bhst.dailydango.route_api.Route
 

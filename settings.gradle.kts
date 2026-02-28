@@ -34,6 +34,7 @@ include(":core:designsystem")
 include(":core:domain")
 include(":core:model")
 include(":core:route-api")
+include(":core:ad_mob")
 
 include(":feature:main")
 include(":feature:home-api")
@@ -50,4 +51,4 @@ include(":feature:basic-expressions-api")
 include(":feature:basic-expressions")
 include(":feature:level-test-api")
 include(":feature:level-test")
-include(":core:ad_mob")
+

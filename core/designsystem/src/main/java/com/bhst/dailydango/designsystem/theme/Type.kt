@@ -31,6 +31,10 @@ internal val Typography = DailyDangoTypography(
         fontWeight = FontWeight.Bold,
         fontSize = 16.sp
     ),
+    bold20 = DailyDangoStyle.copy(
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp
+    ),
     bold22 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 22.sp
@@ -119,6 +123,7 @@ internal val Typography = DailyDangoTypography(
 data class DailyDangoTypography(
     val bold14: TextStyle,
     val bold16: TextStyle,
+    val bold20: TextStyle,
     val bold22: TextStyle,
     val bold24: TextStyle,
     val bold36: TextStyle,
@@ -148,6 +153,7 @@ val LocalTypography = staticCompositionLocalOf {
     DailyDangoTypography(
         bold14 = DailyDangoStyle,
         bold16 = DailyDangoStyle,
+        bold20 = DailyDangoStyle,
         bold22 = DailyDangoStyle,
         bold24 = DailyDangoStyle,
         bold36 = DailyDangoStyle,

@@ -15,6 +15,14 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.model)
+    implementation(projects.core.domain)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
