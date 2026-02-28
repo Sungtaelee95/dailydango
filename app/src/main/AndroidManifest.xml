@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App.Starting"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1024205290629457~9347224864"/>
         <activity
             android:name="com.bhst.dailydango.main.MainActivity"
             android:exported="true"

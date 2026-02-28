@@ -1,5 +1,6 @@
 package com.bhst.dailydango.home
 
+import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,15 +14,24 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices.TABLET
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bhst.dailydango.ad_mob.loadInterstitialAd
+import com.bhst.dailydango.ad_mob.showInterstitialAd
 import com.bhst.dailydango.app.feature.home.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
+import com.google.android.gms.ads.interstitial.InterstitialAd
 
 @Composable
 fun HomeTabScreen(
@@ -31,12 +41,32 @@ fun HomeTabScreen(
     navigateToGrammarTest: () -> Unit = {},
     navigateToSearch: () -> Unit = {}
 ) {
+    val context = LocalContext.current
+
+    // 로드된 전면 광고 객체를 담아둘 상태 변수
+    var interstitialAd by remember { mutableStateOf<InterstitialAd?>(null) }
+
+    // 화면이 켜지자마자 백그라운드에서 조용히 광고를 불러옵니다.
+    LaunchedEffect(Unit) {
+        loadInterstitialAd(context) { loadedAd ->
+            interstitialAd = loadedAd
+        }
+    }
     HomeTabContent(
-        navigateToHiraganaStudy = navigateToHiraganaStudy,
+        navigateToHiraganaStudy = {
+            showInterstitialAd(
+                context = context,
+                ad = interstitialAd,
+                onAdDismissed = {
+                    interstitialAd = null
+                    navigateToHiraganaStudy()
+                }
+            )
+        },
         navigateToKatakanaStudy = navigateToKatakanaStudy,
         navigateToGrammarStudy = navigateToGrammarStudy,
         navigateToGrammarTest = navigateToGrammarTest,
-        navigateToSearch = navigateToSearch
+        navigateToSearch = navigateToSearch,
     )
 }
 
@@ -46,13 +76,15 @@ fun HomeTabContent(
     navigateToKatakanaStudy: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
     navigateToGrammarTest: () -> Unit = {},
-    navigateToSearch: () -> Unit = {}
+    navigateToSearch: () -> Unit = {},
 ) {
     val scrollState = rememberScrollState()
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 20.dp, start = 40.dp, end= 40.dp, bottom = 20.dp)
+            .padding(top = 20.dp, start = 40.dp, end = 40.dp, bottom = 20.dp)
             .verticalScroll(scrollState),
     ) {
         DailyGoalContent(

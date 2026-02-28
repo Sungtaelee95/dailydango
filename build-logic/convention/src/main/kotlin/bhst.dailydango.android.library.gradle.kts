@@ -3,6 +3,7 @@ import com.bhst.dailydango.app.configureHiltAndroid
 import com.bhst.dailydango.app.configureKotest
 import com.bhst.dailydango.app.configureKotlinAndroid
 import com.bhst.dailydango.app.configureMock
+import java.util.Properties
 
 plugins {
     id("com.android.library")

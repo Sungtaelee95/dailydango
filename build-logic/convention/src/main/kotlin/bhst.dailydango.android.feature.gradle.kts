@@ -29,6 +29,7 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:model"))
     implementation(project(":core:route-api"))
+    implementation(project(":core:ad_mob"))
 
     // --- Navigation 3 Dependencies ---
     // 기존 androidx.compose.navigation 제거 후 교체
@@ -51,4 +52,7 @@ dependencies {
 
     implementation(findLibrary("androidx.lifecycle.viewModelCompose"))
     implementation(findLibrary("androidx.lifecycle.runtimeCompose"))
+
+    // 애드몹
+    implementation(findLibrary("play.services.ads"))
 }

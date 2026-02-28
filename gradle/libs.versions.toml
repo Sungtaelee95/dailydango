@@ -22,7 +22,6 @@ coilCompose = "2.7.0"
 credentials = "1.6.0-rc01"
 desugar_jdk_libs = "2.1.5"
 espressoCore = "3.5.1"
-firebaseBom = "34.9.0"
 glanceExperimentalTools = "0.2.2"
 # https://developer.android.com/jetpack/androidx/releases/profileinstaller
 googleid = "1.2.0"
@@ -30,6 +29,7 @@ junit = "1.1.5"
 materialIconsExtended = "1.7.8"
 oauth = "5.11.1"
 paymentSdkAndroid = "0.1.15"
+playServicesAds = "25.0.0"
 playServicesAuth = "21.5.0"
 profileinstaller = "1.4.1"
 # https://developer.android.com/jetpack/androidx/releases/benchmark
@@ -132,6 +132,9 @@ foundation = "1.10.3"
 firebaseFirestoreKtx = "26.0.2"
 firebaseAuthKtx = "24.0.1"
 
+googleServices = "4.4.4"
+firebaseBom = "34.9.0"
+
 androidx-core-splashscreen = "1.2.0"
 
 placeholder = "1.0.2"
@@ -155,6 +158,7 @@ lifecycleViewmodelNav3 = "2.10.0"
 kotlinSerialization = "2.2.21"
 kotlinxSerializationCore = "1.10.0"
 material3AdaptiveNav3 = "1.3.0-alpha08"
+playServicesAdsApi = "25.0.0"
 
 [libraries]
 
@@ -182,8 +186,11 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 desugar_jdk_libs-v212 = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 firebase-auth = { module = "com.google.firebase:firebase-auth" }
-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
-firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+firebase-storage = { group = "com.google.firebase", name = "firebase-storage" }
+# Firebase Analytics (BoM을 사용하므로 버전 명시 생략)
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 google-firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
 googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -224,6 +231,7 @@ hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-com
 oauth = { module = "com.navercorp.nid:oauth", version.ref = "oauth" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 payment-sdk-android = { module = "com.github.tosspayments:payment-sdk-android", version.ref = "paymentSdkAndroid" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
@@ -310,6 +318,7 @@ androidx-compose-foundation-foundation2 = { group = "androidx.compose.foundation
 androidx-camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "cameraCore" }
 androidx-compose-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
+play-services-ads-api = { group = "com.google.android.gms", name = "play-services-ads-api", version.ref = "playServicesAdsApi" }
 
 
 
@@ -328,6 +337,7 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
 roborazzi-plugin = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 
 # Plugins defined by this project
 dailydango-android-application = { id = "bhst.dailydango.android.application", version = "unspecified" }

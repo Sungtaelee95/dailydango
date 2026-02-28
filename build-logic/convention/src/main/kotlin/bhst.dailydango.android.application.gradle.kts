@@ -1,3 +1,4 @@
+import com.bhst.dailydango.app.configureFirebase
 import com.bhst.dailydango.app.configureHiltAndroid
 import com.bhst.dailydango.app.configureKotestAndroid
 import com.bhst.dailydango.app.configureKotlinAndroid
@@ -13,3 +14,4 @@ configureKotlinAndroid()
 configureHiltAndroid()
 configureKotestAndroid()
 configureRoborazzi()
+configureFirebase()

@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.bhst.dailydango" />
+                  <option name="mobileSdkAppId" value="1:760769712575:android:c511ee7e931ca61d62510a" />
+                  <option name="projectId" value="dailydango" />
+                  <option name="projectNumber" value="760769712575" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
