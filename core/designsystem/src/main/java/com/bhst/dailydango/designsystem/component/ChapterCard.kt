@@ -40,7 +40,8 @@ fun ChapterCard(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(12.dp),
+            .padding(12.dp)
+            .clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Surface(
@@ -69,8 +70,7 @@ fun ChapterCard(
             shadowElevation = 3.dp,
             modifier = Modifier
                 .weight(1f)
-                .height(72.dp)
-                .clickable { onClick() }
+                .height(100.dp)
         ) {
             Row(
                 modifier = Modifier
@@ -81,17 +81,19 @@ fun ChapterCard(
                 // 중앙 텍스트 (수직 정렬을 위해 Column 사용)
                 Column(
                     modifier = Modifier.weight(1f),
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                    horizontalAlignment = Alignment.Start,
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
                         text = chapter + stringResource(R.string.chapter),
                         style = DailyDangoTheme.typography.bold24,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         text = subTitle,
-                        style = DailyDangoTheme.typography.bold20
+                        style = DailyDangoTheme.typography.bold20,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 }
 
@@ -100,6 +102,7 @@ fun ChapterCard(
                     imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                     contentDescription = "Go to chapter",
                     modifier = Modifier.size(28.dp),
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
         }

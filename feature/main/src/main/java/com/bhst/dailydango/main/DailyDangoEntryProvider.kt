@@ -3,6 +3,7 @@ package com.bhst.dailydango.main
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.entryProvider
 import com.bhst.dailydango.basic_expressions_api.BasicExpressionsRoute
+import com.bhst.dailydango.basic_expressions_api.ChapterTipRoute
 import com.bhst.dailydango.entry.basicExpressionsEntries
 import com.bhst.dailydango.entry.hiraganaStudyEntries
 import com.bhst.dailydango.entry.homeEntries
@@ -31,6 +32,8 @@ fun dailyDangoEntryProvider(
     searchEntries()
     hiraganaStudyEntries()
     katakanaStudyEntries()
-    basicExpressionsEntries()
+    basicExpressionsEntries(
+        navigateToChapter = { chapter -> navigateTo(ChapterTipRoute(chapter)) }
+    )
     levelTestEntries()
 }

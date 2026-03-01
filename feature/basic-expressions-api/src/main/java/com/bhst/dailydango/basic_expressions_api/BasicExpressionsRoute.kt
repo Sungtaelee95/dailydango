@@ -10,3 +10,12 @@ data object BasicExpressionsRoute: Route {
         return TopAppBarNavigationType.Back
     }
 }
+
+@Serializable
+data class ChapterTipRoute(
+    val chapter: Int
+): Route {
+    override fun getTopBar(): TopAppBarNavigationType {
+        return TopAppBarNavigationType.Back
+    }
+}

@@ -62,3 +62,13 @@ private fun DailyDangoCardPreview() {
         DailyDangoCard(modifier = Modifier.size(320.dp, 160.dp), content = { })
     }
 }
+
+@Composable
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
+private fun DailyDangoElvCardPreview() {
+    DailyDangoTheme {
+        DailyDangoElevationCard(modifier = Modifier.size(320.dp, 160.dp), content = { })
+    }
+}
+

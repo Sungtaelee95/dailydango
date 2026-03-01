@@ -1,12 +1,12 @@
-package com.bhst.dailydango.basic_expressions.chapter_select
+package com.bhst.dailydango.basic_expressions.chapter_tip
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bhst.dailydango.app.feature.basic.expressions.R
-import com.bhst.dailydango.domain.usecase.chapter.ChapterUseCase
-import com.bhst.dailydango.model.chapter.Chapter
-import com.bhst.dailydango.model.result.ChapterResult
+import com.bhst.dailydango.domain.usecase.tip.ChapterTipUseCase
+import com.bhst.dailydango.model.result.TipResult
+import com.bhst.dailydango.model.tip.Tip
 import com.bhst.dailydango.ui.LoadingDialogManager
 import com.bhst.dailydango.ui.MessageManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,24 +17,25 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class BasicSelectChapterViewModel @Inject constructor(
-    private val chapterUseCase: ChapterUseCase,
+class ChapterTipViewModel @Inject constructor(
+    private val chapterTipUseCase: ChapterTipUseCase,
     private val loadingDialogManager: LoadingDialogManager,
     private val messageManager: MessageManager,
     @ApplicationContext private val context: Context
-): ViewModel() {
-    private val _uiState = MutableStateFlow<List<Chapter>>(emptyList())
-    val uiState: StateFlow<List<Chapter>> = _uiState
+) : ViewModel() {
+    private val _uiState = MutableStateFlow<List<Tip>>(emptyList())
+    val uiState: StateFlow<List<Tip>> = _uiState
 
-    fun getChapters() {
+    fun getChapterTip(chapter: Int) {
         viewModelScope.launch {
             loadingDialogManager.show()
-            when (val result = chapterUseCase()) {
-                is ChapterResult.Success -> {
-                    val chapters = result.data
-                    _uiState.emit(chapters.sortedBy { it.title })
+            when (val result = chapterTipUseCase(chapter = chapter)) {
+                is TipResult.Success -> {
+                    val tips = result.tipList
+                    _uiState.emit(tips.sortedBy { it.order })
                 }
-                is ChapterResult.Error -> {
+
+                is TipResult.Error -> {
                     messageManager.sendMessage(context.getString(R.string.server_error_message))
                 }
             }

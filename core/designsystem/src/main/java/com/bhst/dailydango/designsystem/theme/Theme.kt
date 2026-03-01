@@ -25,20 +25,22 @@ private val DarkColorScheme = darkColorScheme(
     onSecondaryContainer = DailyDangoColor.LightBlack,
     background = DailyDangoColor.Black3,
     onBackground = DailyDangoColor.White2,
-    surfaceDim = DailyDangoColor.Black2
+    surfaceDim = DailyDangoColor.Black2,
+    outline = DailyDangoColor.White2,
 )
 
 
 // 🔵 라이트 테마 컬러셈
 private val LightColorScheme = lightColorScheme(
     primary = DailyDangoColor.LightPink,
-    onPrimary = DailyDangoColor.Black1,
+    onPrimary = DailyDangoColor.Coral,
     primaryContainer = DailyDangoColor.White2,
     onPrimaryContainer = DailyDangoColor.Black2,
     onSecondaryContainer = DailyDangoColor.Black1,
     background = DailyDangoColor.BackLight,
     onBackground = DailyDangoColor.Black1,
-    surfaceDim = DailyDangoColor.Black2
+    surfaceDim = DailyDangoColor.Black2,
+    outline = DailyDangoColor.Coral,
 )
 
 

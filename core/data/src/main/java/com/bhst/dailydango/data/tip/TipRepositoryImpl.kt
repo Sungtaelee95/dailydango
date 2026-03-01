@@ -1,0 +1,44 @@
+package com.bhst.dailydango.data.tip
+
+import com.bhst.dailydango.domain.repository.tip.TipRepository
+import com.bhst.dailydango.model.error.FbError
+import com.bhst.dailydango.model.result.TipResult
+import com.bhst.dailydango.model.tip.TipDocument
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
+
+class TipRepositoryImpl @Inject constructor(
+    private val fb: FirebaseFirestore,
+) : TipRepository {
+    override suspend fun getChapterTips(chapter: Int): TipResult {
+        return try {
+            val documentName = "Chapter_$chapter"
+            val snapshot = fb.collection("tips").document(documentName).get().await()
+            val tips = snapshot.toObject(TipDocument::class.java)?.tipList ?: emptyList()
+            TipResult.Success(tips.sortedBy { it.order })
+        } catch (e: Exception) {
+            TipResult.Error(FbError.ServerError)
+        }
+    }
+
+    override suspend fun getHiraganaTips(): TipResult {
+        return try {
+            val snapshot = fb.collection("tips").document("Hiragana").get().await()
+            val tips = snapshot.toObject(TipDocument::class.java)?.tipList ?: emptyList()
+            TipResult.Success(tips.sortedBy { it.order })
+        } catch (e: Exception) {
+            TipResult.Error(FbError.ServerError)
+        }
+    }
+
+    override suspend fun getKatakanaTips(): TipResult {
+        return try {
+            val snapshot = fb.collection("tips").document("Katakana").get().await()
+            val tips = snapshot.toObject(TipDocument::class.java)?.tipList ?: emptyList()
+            TipResult.Success(tips.sortedBy { it.order })
+        } catch (e: Exception) {
+            TipResult.Error(FbError.ServerError)
+        }
+    }
+}
