@@ -45,7 +45,7 @@ fun ContentCard(
                 .background(
                     color = MaterialTheme.colorScheme.primaryContainer
                 ),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             ContentCardTop(
                 contentState = contentState,

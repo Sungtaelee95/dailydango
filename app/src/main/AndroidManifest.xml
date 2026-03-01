@@ -18,6 +18,7 @@
             android:value="ca-app-pub-1024205290629457~9347224864"/>
         <activity
             android:name="com.bhst.dailydango.main.MainActivity"
+            android:configChanges="uiMode|screenSize|orientation|screenLayout|keyboardHidden"
             android:exported="true"
             android:theme="@style/Theme.App.Starting"
             tools:replace="android:theme">
