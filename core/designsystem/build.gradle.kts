@@ -10,6 +10,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.model)
+
     implementation(libs.androidx.appcompat)
 
     implementation(libs.coil.compose)

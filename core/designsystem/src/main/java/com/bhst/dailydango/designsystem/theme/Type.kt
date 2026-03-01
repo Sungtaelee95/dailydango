@@ -117,6 +117,10 @@ internal val Typography = DailyDangoTypography(
         fontWeight = FontWeight.Light,
         fontSize = 23.sp
     ),
+    light24 = DailyDangoStyle.copy(
+        fontWeight = FontWeight.Light,
+        fontSize = 24.sp
+    ),
 )
 
 @Immutable
@@ -147,6 +151,7 @@ data class DailyDangoTypography(
     val light16: TextStyle,
     val light20: TextStyle,
     val light23: TextStyle,
+    val light24: TextStyle,
 )
 
 val LocalTypography = staticCompositionLocalOf {
@@ -176,5 +181,6 @@ val LocalTypography = staticCompositionLocalOf {
         light16 = DailyDangoStyle,
         light20 = DailyDangoStyle,
         light23 = DailyDangoStyle,
+        light24 = DailyDangoStyle
     )
 }

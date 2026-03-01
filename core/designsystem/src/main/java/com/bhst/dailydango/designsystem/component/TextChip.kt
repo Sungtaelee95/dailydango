@@ -32,17 +32,17 @@ fun TextChip(
         color = containerColor,
         contentColor = labelColor,
         border = border,
-        modifier = modifier
+        modifier = modifier,
     ) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .defaultMinSize(minHeight = 20.dp)
-                .padding(horizontal = 12.dp, vertical = 2.dp)
+                .padding(horizontal = 12.dp, vertical = 2.dp),
         ) {
             Text(
                 text = text,
-                style = DailyDangoTheme.typography.bold14,
+                style = DailyDangoTheme.typography.bold20,
                 textAlign = TextAlign.Center,
             )
         }

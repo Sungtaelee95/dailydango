@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.bhst.dailydango.app.feature.basic.expressions.R
 import com.bhst.dailydango.domain.usecase.sentence.SentenceUseCase
 import com.bhst.dailydango.model.content.Content
+import com.bhst.dailydango.model.content.ContentState
 import com.bhst.dailydango.model.result.SentenceContentResult
 import com.bhst.dailydango.ui.LoadingDialogManager
 import com.bhst.dailydango.ui.MessageManager
@@ -24,7 +25,7 @@ class SentenceStudyViewModel @Inject constructor(
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<List<Content>>(emptyList())
+    private val _uiState = MutableStateFlow<List<ContentState>>(emptyList())
     val uiState = _uiState.asStateFlow()
 
     fun getSentenceContent(chapter: Int) {
@@ -33,7 +34,7 @@ class SentenceStudyViewModel @Inject constructor(
             when (val result = sentenceUseCase(chapter = chapter)) {
                 is SentenceContentResult.Success -> {
                     val contents = result.contents
-                    _uiState.emit(contents)
+                    _uiState.emit(contents.map { ContentState.from(it) })
                 }
 
                 is SentenceContentResult.Error -> {
