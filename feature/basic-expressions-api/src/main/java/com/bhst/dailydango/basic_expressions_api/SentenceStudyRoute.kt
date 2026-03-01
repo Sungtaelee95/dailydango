@@ -5,7 +5,9 @@ import com.bhst.dailydango.route_api.Route
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object BasicExpressionsRoute : Route {
+data class SentenceStudyRoute(
+    val chapter: Int
+): Route {
     override fun getTopBar(): TopAppBarNavigationType {
         return TopAppBarNavigationType.Back
     }
