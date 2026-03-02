@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -56,7 +57,7 @@ fun ContentCard(
                 contentState = contentState,
                 isOpenChanged = isOpenChanged
             )
-            if (contentState.isOpen) {
+            if (!contentState.isOpen) {
                 ContentCardBottom(
                     contentState = contentState,
                     speakerClick = speakerClick
@@ -87,13 +88,15 @@ fun ContentCardBottom(
                 border = BorderStroke(
                     width = 1.dp,
                     color = MaterialTheme.colorScheme.onPrimary,
-                )
+                ),
+                modifier = Modifier.width(100.dp)
             )
+            Spacer(modifier = Modifier.width(12.dp))
             Text(
                 text = contentState.titleToKorean,
                 modifier = Modifier
                     .weight(1f),
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Start,
                 style = DailyDangoTheme.typography.light20
             )
         }
@@ -109,13 +112,15 @@ fun ContentCardBottom(
                     border = BorderStroke(
                         width = 1.dp,
                         color = MaterialTheme.colorScheme.onPrimary,
-                    )
+                    ),
+                    modifier = Modifier.width(100.dp)
                 )
+                Spacer(modifier = Modifier.width(12.dp))
                 Text(
                     text = contentState.tip,
                     modifier = Modifier
                         .weight(1f),
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Start,
                     style = DailyDangoTheme.typography.light20
                 )
             }
@@ -125,20 +130,22 @@ fun ContentCardBottom(
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
                     painter = painterResource(R.drawable.speaker_24px),
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(24.dp)
+                        .size(28.dp)
                         .clickable(
                             onClick = { speakerClick(contentState.exampleForJapanese1) }
                         )
                 )
+                Spacer(modifier = Modifier.width(20.dp))
                 Column(
                     modifier = Modifier
-                        .weight(1f)
+                        .weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Text(
                         text = contentState.exampleForJapanese1,
@@ -163,20 +170,22 @@ fun ContentCardBottom(
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
                     painter = painterResource(R.drawable.speaker_24px),
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(24.dp)
+                        .size(28.dp)
                         .clickable(
                             onClick = { speakerClick(contentState.exampleForJapanese2) }
                         )
                 )
+                Spacer(modifier = Modifier.width(20.dp))
                 Column(
                     modifier = Modifier
-                        .weight(1f)
+                        .weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Text(
                         text = contentState.exampleForJapanese2,
@@ -217,7 +226,7 @@ fun ContentCardMid(
                 painterResource(R.drawable.keyboard_arrow_down_24px)
             },
             modifier = Modifier
-                .size(24.dp)
+                .size(28.dp)
                 .clickable(
                     onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) }
                 ),
@@ -236,13 +245,14 @@ fun ContentCardTop(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 20.dp, end = 20.dp, top = 20.dp)
+                .padding(start = 20.dp, end = 20.dp, top = 20.dp),
+            verticalAlignment = Alignment.Top
         ) {
             ImageCard(
                 painter = painterResource(R.drawable.speaker_24px),
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(28.dp)
                     .clickable(
                         onClick = { speakerClick(contentState.japaneseTitle) }
                     )
@@ -255,17 +265,17 @@ fun ContentCardTop(
             ) {
                 Text(
                     text = contentState.titleHanja,
-                    style = DailyDangoTheme.typography.bold20,
+                    style = DailyDangoTheme.typography.bold24,
                     color = MaterialTheme.colorScheme.onPrimary
                 )
                 Text(
                     text = contentState.japaneseTitle,
-                    style = DailyDangoTheme.typography.light20,
+                    style = DailyDangoTheme.typography.light24,
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
-                    style = DailyDangoTheme.typography.light20,
+                    style = DailyDangoTheme.typography.light24,
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
@@ -277,7 +287,7 @@ fun ContentCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(28.dp)
                     .clickable(onClick = {
                         bookmarkClick(
                             contentState.copy(
@@ -291,13 +301,14 @@ fun ContentCardTop(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 20.dp, end = 20.dp, top = 20.dp)
+                .padding(start = 20.dp, end = 20.dp, top = 20.dp),
+            verticalAlignment = Alignment.Top
         ) {
             ImageCard(
                 painter = painterResource(R.drawable.speaker_24px),
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(28.dp)
                     .clickable(
                         onClick = { speakerClick(contentState.titleHanja) }
                     )
@@ -310,12 +321,12 @@ fun ContentCardTop(
             ) {
                 Text(
                     text = contentState.japaneseTitle,
-                    style = DailyDangoTheme.typography.bold20,
+                    style = DailyDangoTheme.typography.bold24,
                     color = MaterialTheme.colorScheme.onPrimary
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
-                    style = DailyDangoTheme.typography.light20,
+                    style = DailyDangoTheme.typography.light24,
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
@@ -327,7 +338,7 @@ fun ContentCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(28.dp)
                     .clickable(onClick = {
                         bookmarkClick(
                             contentState.copy(
