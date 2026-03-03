@@ -31,8 +31,7 @@ import com.bhst.dailydango.model.content.ContentState
 fun ContentCard(
     contentState: ContentState,
     speakerClick: (String) -> Unit = {},
-    isOpenChanged: (ContentState) -> Unit = {},
-    bookmarkClick: (ContentState) -> Unit = {}
+    updateSentenceContent: (ContentState) -> Unit = {},
 ) {
     Surface(
         shape = RoundedCornerShape(20.dp),
@@ -51,13 +50,13 @@ fun ContentCard(
             ContentCardTop(
                 contentState = contentState,
                 speakerClick = speakerClick,
-                bookmarkClick = bookmarkClick
+                bookmarkClick = updateSentenceContent
             )
             ContentCardMid(
                 contentState = contentState,
-                isOpenChanged = isOpenChanged
+                isOpenChanged = updateSentenceContent
             )
-            if (!contentState.isOpen) {
+            if (contentState.isOpen) {
                 ContentCardBottom(
                     contentState = contentState,
                     speakerClick = speakerClick
@@ -89,7 +88,7 @@ fun ContentCardBottom(
                     width = 1.dp,
                     color = MaterialTheme.colorScheme.onPrimary,
                 ),
-                modifier = Modifier.width(100.dp)
+                modifier = Modifier.width(84.dp)
             )
             Spacer(modifier = Modifier.width(12.dp))
             Text(
@@ -113,7 +112,7 @@ fun ContentCardBottom(
                         width = 1.dp,
                         color = MaterialTheme.colorScheme.onPrimary,
                     ),
-                    modifier = Modifier.width(100.dp)
+                    modifier = Modifier.width(84.dp)
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
@@ -136,10 +135,8 @@ fun ContentCardBottom(
                     painter = painterResource(R.drawable.speaker_24px),
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(28.dp)
-                        .clickable(
-                            onClick = { speakerClick(contentState.exampleForJapanese1) }
-                        )
+                        .size(28.dp),
+                    onClick ={ speakerClick(contentState.exampleForJapanese1) }
                 )
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(
@@ -176,10 +173,8 @@ fun ContentCardBottom(
                     painter = painterResource(R.drawable.speaker_24px),
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(28.dp)
-                        .clickable(
-                            onClick = { speakerClick(contentState.exampleForJapanese2) }
-                        )
+                        .size(28.dp),
+                    onClick = { speakerClick(contentState.exampleForJapanese2) }
                 )
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(
@@ -226,11 +221,9 @@ fun ContentCardMid(
                 painterResource(R.drawable.keyboard_arrow_down_24px)
             },
             modifier = Modifier
-                .size(28.dp)
-                .clickable(
-                    onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) }
-                ),
+                .size(28.dp),
             contentDescription = "Arrow",
+            onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) }
         )
     }
 }
@@ -252,10 +245,8 @@ fun ContentCardTop(
                 painter = painterResource(R.drawable.speaker_24px),
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(28.dp)
-                    .clickable(
-                        onClick = { speakerClick(contentState.japaneseTitle) }
-                    )
+                    .size(28.dp),
+                onClick = { speakerClick(contentState.japaneseTitle) }
             )
             Column(
                 modifier = Modifier
@@ -287,14 +278,8 @@ fun ContentCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(28.dp)
-                    .clickable(onClick = {
-                        bookmarkClick(
-                            contentState.copy(
-                                isBookmark = !contentState.isBookmark
-                            )
-                        )
-                    })
+                    .size(28.dp),
+                onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) }
             )
         }
     } else {
@@ -308,10 +293,8 @@ fun ContentCardTop(
                 painter = painterResource(R.drawable.speaker_24px),
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(28.dp)
-                    .clickable(
-                        onClick = { speakerClick(contentState.titleHanja) }
-                    )
+                    .size(28.dp),
+                onClick = { speakerClick(contentState.japaneseTitle) }
             )
             Column(
                 modifier = Modifier
@@ -338,14 +321,8 @@ fun ContentCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(28.dp)
-                    .clickable(onClick = {
-                        bookmarkClick(
-                            contentState.copy(
-                                isBookmark = !contentState.isBookmark
-                            )
-                        )
-                    })
+                    .size(28.dp),
+                onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) }
             )
         }
     }

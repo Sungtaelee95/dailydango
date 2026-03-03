@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -29,14 +30,23 @@ fun SentenceStudyScreen(
     LaunchedEffect(Unit) {
         viewModel.getSentenceContent(chapter)
     }
+    DisposableEffect(Unit) {
+        onDispose {
+            viewModel.soundPlayRelease()
+        }
+    }
     SentenceStudyContent(
-        contents = contents
+        contents = contents,
+        updateSentenceContent = viewModel::updateSentenceContent,
+        playAudio = viewModel::soundPlayForContent
     )
 }
 
 @Composable
 fun SentenceStudyContent(
-    contents: List<ContentState> = emptyList()
+    contents: List<ContentState> = emptyList(),
+    updateSentenceContent: (ContentState) -> Unit = {},
+    playAudio: (String) -> Unit = {}
 ) {
     LazyColumn(
         modifier = Modifier
@@ -44,11 +54,14 @@ fun SentenceStudyContent(
             .padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        itemsIndexed(contents) { index, content ->
+        itemsIndexed(contents, key = { _, content -> content.japaneseTitle }) { index, content ->
             if (index == 0) Spacer(modifier = Modifier.height(4.dp))
             ContentCard(
-                contentState = content
+                contentState = content,
+                updateSentenceContent = updateSentenceContent,
+                speakerClick = playAudio
             )
+            if (index == contents.lastIndex) Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }
