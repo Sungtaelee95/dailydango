@@ -35,6 +35,7 @@ import com.bhst.dailydango.model.tip.Tip
 fun ChapterTipScreen(
     chapter: Int,
     navigateToSentenceStudy: (Int) -> Unit = {},
+    navigateToWordStudy: (Int) -> Unit,
     viewModel: ChapterTipViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -44,7 +45,8 @@ fun ChapterTipScreen(
     ChapterTipContent(
         tips = uiState,
         chapter = chapter,
-        navigateToSentenceStudy = navigateToSentenceStudy
+        navigateToSentenceStudy = navigateToSentenceStudy,
+        navigateToWordStudy = navigateToWordStudy
     )
 }
 
@@ -53,6 +55,7 @@ fun ChapterTipContent(
     tips: List<Tip> = emptyList(),
     chapter: Int = 0,
     navigateToSentenceStudy: (Int) -> Unit = {},
+    navigateToWordStudy: (Int) -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -118,7 +121,7 @@ fun ChapterTipContent(
             }
             Spacer(modifier = Modifier.width(12.dp))
             Button(
-                onClick = {},
+                onClick = { navigateToWordStudy(chapter) },
                 shape = RoundedCornerShape(30.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.onPrimary

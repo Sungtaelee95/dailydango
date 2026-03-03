@@ -6,14 +6,17 @@ import androidx.window.core.layout.WindowSizeClass
 import com.bhst.dailydango.basic_expressions.chapter_select.BasicExpressionsScreen
 import com.bhst.dailydango.basic_expressions.chapter_tip.ChapterTipScreen
 import com.bhst.dailydango.basic_expressions.sentnece_study.SentenceStudyScreen
+import com.bhst.dailydango.basic_expressions.word_study.WordStudyScreen
 import com.bhst.dailydango.basic_expressions_api.BasicExpressionsRoute
 import com.bhst.dailydango.basic_expressions_api.ChapterTipRoute
 import com.bhst.dailydango.basic_expressions_api.SentenceStudyRoute
+import com.bhst.dailydango.basic_expressions_api.WordStudyRoute
 import com.bhst.dailydango.route_api.Route
 
 fun EntryProviderScope<Route>.basicExpressionsEntries(
     navigateToChapter: (Int) -> Unit,
-    navigateToSentenceStudy: (Int) -> Unit
+    navigateToSentenceStudy: (Int) -> Unit,
+    navigateToWordStudy: (Int) -> Unit
 ) {
     entry<BasicExpressionsRoute> {
         val adaptiveInfo = currentWindowAdaptiveInfo()
@@ -53,7 +56,8 @@ fun EntryProviderScope<Route>.basicExpressionsEntries(
             else -> {
                 ChapterTipScreen(
                     chapter = it.chapter,
-                    navigateToSentenceStudy = navigateToSentenceStudy
+                    navigateToSentenceStudy = navigateToSentenceStudy,
+                    navigateToWordStudy = navigateToWordStudy
                 )
             }
         }
@@ -75,6 +79,26 @@ fun EntryProviderScope<Route>.basicExpressionsEntries(
             // 3. 그 외 (600dp 미만) -> COMPACT (일반 스마트폰 세로 모드)
             else -> {
                 SentenceStudyScreen(chapter = it.chapter)
+            }
+        }
+    }
+
+    entry<WordStudyRoute> {
+        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val windowSizeClass = adaptiveInfo.windowSizeClass
+
+        // 🚀 최신 권장 방식: isWidthAtLeastBreakpoint() 사용
+        when {
+            // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드
+            windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND) -> {
+
+            }
+            // 2. 가로 너비가 MEDIUM(보통 600dp) 이상일 때 -> 기기 가로 모드 / 폴더블폰
+            windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND) -> {
+            }
+            // 3. 그 외 (600dp 미만) -> COMPACT (일반 스마트폰 세로 모드)
+            else -> {
+                WordStudyScreen(chapter = it.chapter)
             }
         }
     }

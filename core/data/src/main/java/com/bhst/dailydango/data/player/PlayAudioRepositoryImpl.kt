@@ -14,25 +14,18 @@ class PlayAudioRepositoryImpl @Inject constructor(
 ) : PlayAudioRepository {
     override suspend fun playAudio(fileName: String) {
         try {
-            Log.d("lstlst", "fileName: $fileName")
             val audioFileName = fileName.replace("?", "-") + ".mp3"
-            Log.d("lstlst", "audioFileName: $audioFileName")
             val storageRef = storage.reference.child(audioFileName)
             val uri = storageRef.downloadUrl.await()
             exoPlayer.stop()
             exoPlayer.clearMediaItems()
-
             val mediaItem = MediaItem.fromUri(uri)
             exoPlayer.setMediaItem(mediaItem)
-
-            // 준비 및 재생
-            Log.d("lstlst", "파일")
             exoPlayer.prepare()
             exoPlayer.play()
         } catch (e: Exception) {
             Log.e("lstlst", "오디오 재생 실패: ${e.message}")
         }
-
     }
 
     override suspend fun release() {

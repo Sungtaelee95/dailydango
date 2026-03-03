@@ -1,14 +1,13 @@
-package com.bhst.dailydango.basic_expressions.sentnece_study
+package com.bhst.dailydango.basic_expressions.word_study
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bhst.dailydango.app.feature.basic.expressions.R
 import com.bhst.dailydango.domain.usecase.player.AudioPlayUseCase
-import com.bhst.dailydango.domain.usecase.sentence.SentenceUseCase
+import com.bhst.dailydango.domain.usecase.word.WordUseCase
 import com.bhst.dailydango.model.content.ContentState
-import com.bhst.dailydango.model.result.SentenceContentResult
+import com.bhst.dailydango.model.result.WordContentResult
 import com.bhst.dailydango.ui.LoadingDialogManager
 import com.bhst.dailydango.ui.MessageManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,27 +19,26 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SentenceStudyViewModel @Inject constructor(
-    private val sentenceUseCase: SentenceUseCase,
+class WordStudyViewModel @Inject constructor(
+    private val wordUseCase: WordUseCase,
     private val loadingDialogManager: LoadingDialogManager,
     private val messageManager: MessageManager,
     private val audioPlayUseCase: AudioPlayUseCase,
     @ApplicationContext private val context: Context
-) : ViewModel() {
-
+): ViewModel() {
     private val _uiState = MutableStateFlow<List<ContentState>>(emptyList())
     val uiState = _uiState.asStateFlow()
 
-    fun getSentenceContent(chapter: Int) {
+    fun getWordContent(chapter: Int) {
         viewModelScope.launch {
             loadingDialogManager.show()
-            when (val result = sentenceUseCase(chapter = chapter)) {
-                is SentenceContentResult.Success -> {
+            when (val result = wordUseCase(chapter = chapter)) {
+                is WordContentResult.Success -> {
                     val contents = result.contents
                     _uiState.emit(contents.map { ContentState.from(it) })
                 }
 
-                is SentenceContentResult.Error -> {
+                is WordContentResult.Error -> {
                     messageManager.sendMessage(context.getString(R.string.server_error_message))
                 }
             }

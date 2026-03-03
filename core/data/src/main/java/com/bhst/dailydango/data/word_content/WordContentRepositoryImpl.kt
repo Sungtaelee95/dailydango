@@ -14,9 +14,9 @@ class WordContentRepositoryImpl @Inject constructor(
     override suspend fun getWordContent(chapter: Int): WordContentResult {
         return try {
             // 경로: chapters/{chapterNumber}/contents
-            val snapshot = fb.collection(COLLECTION_CONTENT_SENTENCE)
+            val snapshot = fb.collection(COLLECTION_CONTENT_WORD)
                 .document(chapter.toString())
-                .collection(SUB_COLLECTION_CONTENT_SENTENCE)
+                .collection(SUB_COLLECTION_CONTENT_WORD)
                 .get()
                 .await()
 
@@ -30,7 +30,7 @@ class WordContentRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        private const val COLLECTION_CONTENT_SENTENCE = "content_sentences"
-        private const val SUB_COLLECTION_CONTENT_SENTENCE = "content_sentence"
+        private const val COLLECTION_CONTENT_WORD = "content_words"
+        private const val SUB_COLLECTION_CONTENT_WORD = "content_word"
     }
 }
