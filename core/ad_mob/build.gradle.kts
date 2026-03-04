@@ -17,7 +17,7 @@ if (localPropertiesFile.exists()) {
 }
 
 // ✨ 2. 이 모듈에서만 BuildConfig 생성을 켭니다.
-android {
+extensions.configure<com.android.build.api.dsl.LibraryExtension> {
     buildFeatures {
         buildConfig = true
     }

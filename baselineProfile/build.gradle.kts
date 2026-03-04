@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.baselineprofile)
 }
 
-android {
+extensions.configure<com.android.build.api.dsl.TestExtension> {
     namespace = "com.bhst.dailydango.baselineprofile"
     compileSdk {
         version = release(36) {

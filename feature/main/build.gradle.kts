@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.dailydango.android.feature)
 }
 
-android {
+extensions.configure<com.android.build.api.dsl.LibraryExtension> {
 
     setNamespace("feature.main")
 
