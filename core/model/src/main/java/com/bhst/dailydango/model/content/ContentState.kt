@@ -1,5 +1,7 @@
 package com.bhst.dailydango.model.content
 
+import android.net.Uri
+
 data class ContentState(
     val id: String = "", // 문서 ID 자동 매핑
     val titleHanja: String = "",
@@ -16,7 +18,8 @@ data class ContentState(
     val explanationForKoreanSound2: String = "",
     val order: Int = 1, // 정렬을 위해 사용됩니다.
     val isOpen: Boolean = false,
-    val isBookmark: Boolean = false
+    val isBookmark: Boolean = false,
+    val contentUri: ContentUri = ContentUri()
 ) {
     companion object {
         fun from(content: Content): ContentState {
@@ -36,7 +39,7 @@ data class ContentState(
                 explanationForKoreanSound2 = content.explanationForKoreanSound2,
                 order = content.order,
                 isOpen = false,
-                isBookmark = false
+                isBookmark = false,
             )
         }
 

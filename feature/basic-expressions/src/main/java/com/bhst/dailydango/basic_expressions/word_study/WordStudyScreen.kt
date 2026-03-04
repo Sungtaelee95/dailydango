@@ -1,5 +1,6 @@
 package com.bhst.dailydango.basic_expressions.word_study
 
+import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
@@ -44,7 +45,7 @@ fun WordStudyScreen(
 fun WordStudyContent(
     contents: List<ContentState> = emptyList(),
     updateSentenceContent: (ContentState) -> Unit = {},
-    playAudio: (String) -> Unit = {}
+    playAudio: (Uri?) -> Unit = {}
 ) {
     LazyColumn(
         modifier = Modifier

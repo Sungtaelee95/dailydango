@@ -1,8 +1,8 @@
 package com.bhst.dailydango.designsystem.component
 
+import android.net.Uri
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,7 +30,7 @@ import com.bhst.dailydango.model.content.ContentState
 @Composable
 fun ContentCard(
     contentState: ContentState,
-    speakerClick: (String) -> Unit = {},
+    speakerClick: (Uri?) -> Unit = {},
     updateSentenceContent: (ContentState) -> Unit = {},
 ) {
     Surface(
@@ -69,7 +69,7 @@ fun ContentCard(
 @Composable
 fun ContentCardBottom(
     contentState: ContentState,
-    speakerClick: (String) -> Unit = {}
+    speakerClick: (Uri?) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -132,11 +132,13 @@ fun ContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = painterResource(R.drawable.speaker_24px),
+                    painter = if (contentState.contentUri.explanationSoundUri1 == null) painterResource(R.drawable.volume_off_24px) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(28.dp),
-                    onClick ={ speakerClick(contentState.exampleForJapanese1) }
+                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) }
                 )
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(
@@ -170,11 +172,13 @@ fun ContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = painterResource(R.drawable.speaker_24px),
+                    painter = if (contentState.contentUri.explanationSoundUri2 == null) painterResource(R.drawable.volume_off_24px) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(28.dp),
-                    onClick = { speakerClick(contentState.exampleForJapanese2) }
+                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) }
                 )
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(
@@ -231,7 +235,7 @@ fun ContentCardMid(
 @Composable
 fun ContentCardTop(
     contentState: ContentState,
-    speakerClick: (String) -> Unit = {},
+    speakerClick: (Uri?) -> Unit = {},
     bookmarkClick: (ContentState) -> Unit = {}
 ) {
     if (contentState.titleHanja.isNotEmpty()) {
@@ -242,11 +246,13 @@ fun ContentCardTop(
             verticalAlignment = Alignment.Top
         ) {
             ImageCard(
-                painter = painterResource(R.drawable.speaker_24px),
+                painter = if (contentState.contentUri.titleSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
+                    painterResource(R.drawable.speaker_24px)
+                },
                 contentDescription = "Speaker",
                 modifier = Modifier
                     .size(28.dp),
-                onClick = { speakerClick(contentState.japaneseTitle) }
+                onClick = { speakerClick(contentState.contentUri.titleSoundUri) }
             )
             Column(
                 modifier = Modifier
@@ -290,11 +296,13 @@ fun ContentCardTop(
             verticalAlignment = Alignment.Top
         ) {
             ImageCard(
-                painter = painterResource(R.drawable.speaker_24px),
+                painter = if (contentState.contentUri.titleSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
+                    painterResource(R.drawable.speaker_24px)
+                },
                 contentDescription = "Speaker",
                 modifier = Modifier
                     .size(28.dp),
-                onClick = { speakerClick(contentState.japaneseTitle) }
+                onClick = { speakerClick(contentState.contentUri.titleSoundUri) }
             )
             Column(
                 modifier = Modifier

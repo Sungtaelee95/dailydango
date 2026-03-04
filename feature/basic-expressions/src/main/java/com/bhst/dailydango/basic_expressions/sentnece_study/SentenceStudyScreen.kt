@@ -1,5 +1,6 @@
 package com.bhst.dailydango.basic_expressions.sentnece_study
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -46,7 +47,7 @@ fun SentenceStudyScreen(
 fun SentenceStudyContent(
     contents: List<ContentState> = emptyList(),
     updateSentenceContent: (ContentState) -> Unit = {},
-    playAudio: (String) -> Unit = {}
+    playAudio: (Uri?) -> Unit = {}
 ) {
     LazyColumn(
         modifier = Modifier

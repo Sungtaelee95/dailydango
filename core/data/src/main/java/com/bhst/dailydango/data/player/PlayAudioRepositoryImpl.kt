@@ -1,5 +1,6 @@
 package com.bhst.dailydango.data.player
 
+import android.net.Uri
 import android.util.Log
 import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
@@ -9,14 +10,10 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class PlayAudioRepositoryImpl @Inject constructor(
-    private val storage: FirebaseStorage,
     private val exoPlayer: ExoPlayer
 ) : PlayAudioRepository {
-    override suspend fun playAudio(fileName: String) {
+    override suspend fun playAudio(uri: Uri) {
         try {
-            val audioFileName = fileName.replace("?", "-") + ".mp3"
-            val storageRef = storage.reference.child(audioFileName)
-            val uri = storageRef.downloadUrl.await()
             exoPlayer.stop()
             exoPlayer.clearMediaItems()
             val mediaItem = MediaItem.fromUri(uri)
