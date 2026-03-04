@@ -1,6 +1,6 @@
 [versions]
 ## Android gradle plugin
-androidGradlePlugin = "8.13.2"
+androidGradlePlugin = "9.0.1"
 
 # https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md
 androidDesugarJdkLibs = "2.1.5"
@@ -19,27 +19,27 @@ androidxDatastore = "1.2.0"
 # https://developer.android.com/jetpack/androidx/releases/glance
 androidxGlance = "1.1.1"
 coilCompose = "2.7.0"
-credentials = "1.6.0-rc01"
+credentials = "1.6.0-rc02"
 desugar_jdk_libs = "2.1.5"
-espressoCore = "3.5.1"
+espressoCore = "3.7.0"
 glanceExperimentalTools = "0.2.2"
 # https://developer.android.com/jetpack/androidx/releases/profileinstaller
 googleid = "1.2.0"
-junit = "1.1.5"
+junit = "1.3.0"
 materialIconsExtended = "1.7.8"
-oauth = "5.11.1"
+oauth = "5.11.2"
 paymentSdkAndroid = "0.1.15"
 playServicesAds = "25.0.0"
-playServicesAuth = "21.5.0"
+playServicesAuth = "21.5.1"
 profileinstaller = "1.4.1"
 # https://developer.android.com/jetpack/androidx/releases/benchmark
 baselineprofile = "1.4.1"
 
 ## Compose
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
-androidxComposeBom = "2026.02.00"
+androidxComposeBom = "2026.02.01"
 # https://developer.android.com/jetpack/androidx/releases/navigation
-androidxComposeNavigation = "2.9.6"
+androidxComposeNavigation = "2.9.7"
 # https://developer.android.com/jetpack/androidx/releases/compose-material3
 androidxComposeMaterial3 = "1.4.0"
 
@@ -50,11 +50,11 @@ composeShimmer = "1.3.3"
 
 ## Kotlin Symbol Processing
 # https://github.com/google/ksp/
-ksp = "2.2.21-2.0.4"
+ksp = "2.3.4"
 
 ## Hilt
 # https://github.com/google/dagger/releases
-hilt = "2.57.2"
+hilt = "2.59.2"
 # https://developer.android.com/jetpack/androidx/releases/hilt
 hiltNavigationCompose = "1.3.0"
 
@@ -68,7 +68,7 @@ retrofit = "3.0.0"
 
 ## Kotlin
 # https://github.com/JetBrains/kotlin
-kotlin = "2.2.21"
+kotlin = "2.3.10"
 # https://github.com/Kotlin/kotlinx.serialization
 kotlinxSerializationJson = "1.10.0"
 # https://github.com/Kotlin/kotlinx-datetime/releases
@@ -92,7 +92,7 @@ ossLicensesPlugin = "0.10.10"
 # https://github.com/junit-team/junit4
 junit4 = "4.13.2"
 # https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine
-junitVintageEngine = "6.0.2"
+junitVintageEngine = "6.0.3"
 # https://developer.android.com/jetpack/androidx/releases/test-uiautomator
 uiAutomator = "2.3.0"
 androidxTestRunner = "1.7.0"
@@ -107,7 +107,7 @@ roborazzi = "1.59.0"
 # https://github.com/robolectric/robolectric/releases
 robolectric = "4.16.1"
 # https://kotest.io/
-kotest = "6.1.3"
+kotest = "6.1.4"
 # https://github.com/detekt/detekt
 detekt = "1.23.8"
 # https://github.com/twitter/compose-rules
@@ -115,25 +115,25 @@ detektTwitterComposeRule = "0.0.26"
 # https://mockk.io/
 mockk = "1.14.9"
 # https://github.com/mockito/mockito
-test-mockito = "5.21.0"
+test-mockito = "5.22.0"
 # https://github.com/mockito/mockito-kotlin
 test-mockito-kotlin = "6.2.3"
 # https://github.com/mannodermaus/android-junit5
 test-junit5-plugin = "2.0.1"
 # https://github.com/junit-team/junit5
-test-junit5 = "6.0.2"
+test-junit5 = "6.0.3"
 material = "1.13.0"
 lifecycleRuntimeKtx = "2.10.0"
 datastoreCore = "1.2.0"
 identityAndroidLegacy = "202411.1"
 v2All = "2.22.0"
-ui = "1.10.3"
-foundation = "1.10.3"
+ui = "1.10.4"
+foundation = "1.10.4"
 firebaseFirestoreKtx = "26.0.2"
 firebaseAuthKtx = "24.0.1"
 
 googleServices = "4.4.4"
-firebaseBom = "34.9.0"
+firebaseBom = "34.10.0"
 
 androidx-core-splashscreen = "1.2.0"
 
@@ -145,19 +145,19 @@ workRuntimeKtx = "2.11.1"
 lifecycleService = "2.10.0"
 lifecycleProcess = "2.10.0"
 lifecycleViewmodelKtx = "2.10.0"
-foundationVersion = "1.10.3"
-runtimeAnnotation = "1.10.3"
-androidxFoundation = "1.10.3"
-androidxFoundationVersion = "1.10.3"
+foundationVersion = "1.10.4"
+runtimeAnnotation = "1.10.4"
+androidxFoundation = "1.10.4"
+androidxFoundationVersion = "1.10.4"
 cameraCore = "1.5.3"
-uiToolingPreviewAndroid = "1.10.3"
+uiToolingPreviewAndroid = "1.10.4"
 roomKtx = "2.8.4"
 
 nav3Core = "1.0.1"
 lifecycleViewmodelNav3 = "2.10.0"
 kotlinSerialization = "2.2.21"
 kotlinxSerializationCore = "1.10.0"
-material3AdaptiveNav3 = "1.3.0-alpha08"
+material3AdaptiveNav3 = "1.3.0-alpha09"
 playServicesAdsApi = "25.0.0"
 firebaseFirestoreKtxVersion = "26.1.0"
 

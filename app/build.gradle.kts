@@ -37,6 +37,12 @@ android {
 
 }
 
+baselineProfile {
+    warnings {
+        maxAgpVersion = false
+    }
+}
+
 dependencies {
 
     rootProject.subprojects.filterProject {

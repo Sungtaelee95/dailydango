@@ -5,6 +5,7 @@ import com.bhst.dailydango.app.configureKotlinAndroid
 import com.bhst.dailydango.app.configureMedia3ExoPlayer
 import com.bhst.dailydango.app.configureRoborazzi
 
+
 plugins {
     id("com.android.application")
 }

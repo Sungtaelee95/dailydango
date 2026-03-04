@@ -4,6 +4,7 @@ import com.bhst.dailydango.app.configureKotest
 import com.bhst.dailydango.app.configureKotlinAndroid
 import com.bhst.dailydango.app.configureMedia3ExoPlayer
 import com.bhst.dailydango.app.configureMock
+import com.bhst.dailydango.app.configureRoomAndroid
 
 plugins {
     id("com.android.library")
@@ -16,3 +17,4 @@ configureMock()
 configureCoroutineAndroid()
 configureHiltAndroid()
 configureMedia3ExoPlayer()
+configureRoomAndroid()

@@ -1,6 +1,8 @@
+import com.android.build.api.dsl.LibraryExtension
 import com.bhst.dailydango.app.configureHiltAndroid
 import com.bhst.dailydango.app.configureRoborazzi
 import com.bhst.dailydango.app.findLibrary
+import gradle.kotlin.dsl.accessors._3dfc63a612bb7993dc38df28b51798c6.implementation
 
 plugins {
     id("bhst.dailydango.android.library")
@@ -8,7 +10,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
-android {
+extensions.configure<LibraryExtension> {
     packaging {
         resources {
             excludes.add("META-INF/**")
