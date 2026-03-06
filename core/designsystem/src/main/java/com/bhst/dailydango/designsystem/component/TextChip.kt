@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,8 @@ fun TextChip(
     labelColor: Color,
     modifier: Modifier = Modifier,
     border: BorderStroke? = null,
+    style: TextStyle = MaterialTheme.typography.bodyLarge
+
 ) {
     Surface(
         shape = DailyDangoTheme.shape.chip,
@@ -42,7 +45,7 @@ fun TextChip(
         ) {
             Text(
                 text = text,
-                style = DailyDangoTheme.typography.bold20,
+                style = style,
                 textAlign = TextAlign.Center,
             )
         }
@@ -58,7 +61,7 @@ private fun TextChipPreview() {
                 "카테고리",
                 containerColor = Color.Transparent,
                 labelColor = DailyDangoColor.Black,
-                border = BorderStroke(1.dp, DailyDangoColor.BackLight),
+                border = BorderStroke(1.dp, DailyDangoColor.Black),
             )
             TextChip(
                 "Track 01",
@@ -68,7 +71,7 @@ private fun TextChipPreview() {
             TextChip(
                 "16:45 발표",
                 containerColor = DailyDangoColor.Black,
-                labelColor = DailyDangoColor.BackLight,
+                labelColor = DailyDangoColor.Black,
             )
         }
     }

@@ -52,8 +52,8 @@ fun SentenceStudyContent(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(12.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+            .padding(start = 28.dp, end = 28.dp, top = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         itemsIndexed(contents, key = { _, content -> content.japaneseTitle }) { index, content ->
             if (index == 0) Spacer(modifier = Modifier.height(4.dp))

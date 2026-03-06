@@ -3,7 +3,6 @@ package com.bhst.dailydango.entry
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
-import androidx.window.core.layout.WindowWidthSizeClass
 import com.bhst.dailydango.home.HomeScreen
 import com.bhst.dailydango.home.HomeTabScreen
 import com.bhst.dailydango.home_api.HomeRoute

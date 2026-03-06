@@ -1,8 +1,10 @@
 package com.bhst.dailydango.designsystem.component
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -34,12 +36,12 @@ fun NotOutLineSearchField(
         OutlinedTextField(
             value = searchText,
             onValueChange = onValueChange,
-            modifier = Modifier.fillMaxWidth(),
-            textStyle = DailyDangoTheme.typography.light20,
+            modifier = Modifier.fillMaxWidth().height(48.dp),
+            textStyle = DailyDangoTheme.typography.light16,
             enabled = enabled,
 
             // 1. 둥근 모서리 설정 (Pill shape)
-            shape = RoundedCornerShape(16.dp),
+            shape = RoundedCornerShape(24.dp),
 
             // 2. 돋보기 아이콘
             leadingIcon = {
@@ -54,24 +56,24 @@ fun NotOutLineSearchField(
             placeholder = {
                 Text(
                     text = stringResource(hint),
-                    color = MaterialTheme.colorScheme.onBackground, // 텍스트 회색
-                    style = DailyDangoTheme.typography.light20
+                    color = MaterialTheme.colorScheme.onSurface, // 텍스트 회색
+                    style = DailyDangoTheme.typography.light16
                 )
             },
 
             // 4. 색상 커스텀 (테두리, 배경, 커서 등)
             colors = OutlinedTextFieldDefaults.colors(
                 // 배경색을 흰색으로 고정
-                focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                disabledContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                focusedContainerColor = MaterialTheme.colorScheme.surface,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                disabledContainerColor = MaterialTheme.colorScheme.surface,
 
                 // 테두리 색상 (포커스 여부 상관없이 연한 회색 유지)
                 focusedBorderColor = Color.Transparent,
                 unfocusedBorderColor = Color.Transparent,
 
                 // 커서 색상
-                cursorColor = MaterialTheme.colorScheme.onBackground
+                cursorColor = MaterialTheme.colorScheme.onSurface
             ),
             singleLine = true
         )
@@ -95,7 +97,7 @@ fun ManufacturerSearchField(
             modifier = Modifier.fillMaxWidth(),
 
             // 1. 둥근 모서리 설정 (Pill shape)
-            shape = RoundedCornerShape(16.dp),
+            shape = RoundedCornerShape(24.dp),
 
             // 2. 돋보기 아이콘
             leadingIcon = {
@@ -117,16 +119,15 @@ fun ManufacturerSearchField(
             // 4. 색상 커스텀 (테두리, 배경, 커서 등)
             colors = OutlinedTextFieldDefaults.colors(
                 // 배경색을 흰색으로 고정
-                focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                disabledContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                focusedContainerColor = MaterialTheme.colorScheme.surface,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                disabledContainerColor = MaterialTheme.colorScheme.surface,
 
                 // 테두리 색상 (포커스 여부 상관없이 연한 회색 유지)
-                focusedBorderColor = MaterialTheme.colorScheme.primaryContainer,
-                unfocusedBorderColor = MaterialTheme.colorScheme.primaryContainer,
-
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
                 // 커서 색상
-                cursorColor = MaterialTheme.colorScheme.onBackground
+                cursorColor = MaterialTheme.colorScheme.onSurface
             ),
             singleLine = true
         )
@@ -137,7 +138,7 @@ fun ManufacturerSearchField(
 @Composable
 fun ManufacturerSearchFieldPreview() {
     DailyDangoTheme {
-        ManufacturerSearchField()
+        NotOutLineSearchField()
     }
 
 }

@@ -1,5 +1,7 @@
 package com.bhst.dailydango.designsystem.component
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -24,87 +28,131 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
+import com.bhst.dailydango.model.chapter.Chapter
 
 @Composable
 fun ChapterCard(
-    chapter: String,
-    imgUrl: String,
-    subTitle: String,
-    onClick: () -> Unit,
+    chapter: Chapter = Chapter(),
+    onClick: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
-    Row(
+    Surface(
         modifier = modifier
             .fillMaxWidth()
             .padding(12.dp)
             .clickable { onClick() },
-        verticalAlignment = Alignment.CenterVertically
+        shadowElevation = 4.dp,
+        shape = RoundedCornerShape(20.dp)
     ) {
-        Surface(
-            shape = CircleShape,
-            color = MaterialTheme.colorScheme.primary,
-            shadowElevation = 4.dp,
+        Row(
             modifier = Modifier
-                .width(88.dp)
-                .height(100.dp)
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(color = MaterialTheme.colorScheme.surface)
+                .padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
         ) {
-            AsyncImage(
-                model = imgUrl,
-                contentDescription = "Chapter_Avatar",
-                contentScale = ContentScale.Fit,
+            Surface(
+                shape = CircleShape,
+                color = MaterialTheme.colorScheme.surfaceTint,
+                shadowElevation = 4.dp,
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(4.dp)
+                    .width(80.dp)
+                    .height(80.dp)
+            ) {
+                AsyncImage(
+                    model = chapter.imgUrl,
+                    contentDescription = "Chapter_Avatar",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(4.dp)
 
-            )
-        }
-        Spacer(modifier = Modifier.width(12.dp))
+                )
+            }
+            Spacer(modifier = Modifier.width(12.dp))
 
-        Surface(
-            shape = RoundedCornerShape(16.dp),
-            color = MaterialTheme.colorScheme.primary,
-            shadowElevation = 3.dp,
-            modifier = Modifier
-                .weight(1f)
-                .height(100.dp)
-        ) {
             Row(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp),
+                    .fillMaxWidth()
+                    .padding(horizontal = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // 중앙 텍스트 (수직 정렬을 위해 Column 사용)
                 Column(
                     modifier = Modifier.weight(1f),
                     horizontalAlignment = Alignment.Start,
-                    verticalArrangement = Arrangement.Center
                 ) {
-                    Text(
-                        text = chapter + stringResource(R.string.chapter),
-                        style = DailyDangoTheme.typography.bold24,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(
-                        text = subTitle,
-                        style = DailyDangoTheme.typography.bold20,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = chapter.title + stringResource(R.string.chapter),
+                            style = DailyDangoTheme.typography.bold20,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
+                        TextChip(
+                            text = chapter.tag,
+                            labelColor = MaterialTheme.colorScheme.surface,
+                            containerColor = MaterialTheme.colorScheme.secondary,
+                            style = DailyDangoTheme.typography.bold12,
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            horizontalAlignment = Alignment.Start,
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Text(
+                                text = chapter.subTitle,
+                                style = DailyDangoTheme.typography.medium18,
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
+                            Text(
+                                text = chapter.subTitleForKorean,
+                                style = DailyDangoTheme.typography.medium16,
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
+                        }
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                            contentDescription = "Go to chapter",
+                            modifier = Modifier.size(36.dp),
+                            tint = MaterialTheme.colorScheme.onBackground
+                        )
+                    }
 
-                // 오른쪽 화살표 아이콘
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                    contentDescription = "Go to chapter",
-                    modifier = Modifier.size(28.dp),
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer
-                )
+                }
             }
         }
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun ChapterCardPreview() {
+    DailyDangoTheme {
+        ChapterCard(
+            chapter = Chapter(
+                title = "1",
+                subTitle = "おはようございます",
+                subTitleForKorean = "안녕하세요",
+                tag = "초급"
+            )
+        )
     }
 }

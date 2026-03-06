@@ -58,7 +58,7 @@ fun DailyDangoTopAppBar(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight() // 높이 명시적 지정 권장 (디자인에 맞춰 조절)
+                .wrapContentHeight()
                 .background(containerColor)
                 .then(modifier)
         ) {
@@ -79,8 +79,7 @@ fun DailyDangoTopAppBar(
                 // Home 타입일 때는 왼쪽에 로고+타이틀 배치
                 Row(
                     modifier = Modifier
-                        .align(Alignment.CenterStart)
-                        .padding(start = 16.dp),
+                        .align(Alignment.Center),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     DailyDangoTitleContent(logoRes, titleRes, contentColor)
@@ -90,7 +89,7 @@ fun DailyDangoTopAppBar(
             if (navigationType == TopAppBarNavigationType.None) {
                 Row(
                     modifier = Modifier
-                        .align(Alignment.CenterStart),
+                        .align(Alignment.Center),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     DailyDangoTitleContent(logoRes, titleRes, contentColor)
@@ -101,8 +100,7 @@ fun DailyDangoTopAppBar(
             if (navigationType == TopAppBarNavigationType.Back) {
                 Row(
                     modifier = Modifier
-                        .align(Alignment.CenterStart)
-                        .padding(start = 40.dp),
+                        .align(Alignment.Center),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     DailyDangoTitleContent(logoRes, titleRes, contentColor)
@@ -147,7 +145,7 @@ private fun DailyDangoTitleContent(
     Column {
         Text(
             text = stringResource(id = titleRes),
-            style = DailyDangoTheme.typography.bold36,
+            style = DailyDangoTheme.typography.bold24,
             color = contentColor
         )
         Spacer(
@@ -155,7 +153,7 @@ private fun DailyDangoTitleContent(
         )
         Text(
             text = stringResource(id = R.string.daily_litle_japenes),
-            style = DailyDangoTheme.typography.light20
+            style = DailyDangoTheme.typography.light16
         )
     }
 

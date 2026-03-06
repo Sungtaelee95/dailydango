@@ -16,7 +16,7 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 @Composable
 fun BottomLogo(
     modifier: Modifier = Modifier,
-    color: Color = DailyDangoColor.BackDark,
+    color: Color = DailyDangoColor.LightBlack,
 ) {
     Box(
         modifier = modifier

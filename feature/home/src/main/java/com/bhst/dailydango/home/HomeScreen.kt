@@ -1,6 +1,8 @@
 package com.bhst.dailydango.home
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,21 +10,28 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.bhst.dailydango.app.feature.home.R
+import com.bhst.dailydango.designsystem.component.DailyDangoElevationBrushCard
 import com.bhst.dailydango.designsystem.component.DailyDangoElevationCard
 import com.bhst.dailydango.designsystem.component.ImageCard
 import com.bhst.dailydango.designsystem.component.NotOutLineSearchField
@@ -57,20 +66,18 @@ fun HomeContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(12.dp)
+            .background(color = MaterialTheme.colorScheme.background)
+            .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
             .verticalScroll(scrollState),
     ) {
-        DailyGoalContent(
-            goalDays = 3
-        )
         Spacer(
-            modifier = Modifier.height(20.dp)
+            modifier = Modifier.height(12.dp)
         )
         SearchContent(
             onClick = navigateToSearch
         )
         Spacer(
-            modifier = Modifier.height(40.dp)
+            modifier = Modifier.height(32.dp)
         )
         Column(
             modifier = Modifier
@@ -87,55 +94,33 @@ fun HomeContent(
                     style = DailyDangoTheme.typography.medium16
                 )
             }
-            Row(
+            JapaneseStudyContent(
                 modifier = Modifier
-                    .height(180.dp)
                     .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                JapaneseStudyContent(
-                    modifier = Modifier
-                        .weight(1f),
-                    onClick = navigateToHiraganaStudy,
-                    title = stringResource(R.string.hiragana),
-                    content = stringResource(R.string.for_study)
-                )
-                Spacer(modifier = Modifier.width(20.dp))
-                JapaneseStudyContent(
-                    modifier = Modifier
-                        .weight(1f),
-                    onClick = navigateToKatakanaStudy,
-                    title = stringResource(R.string.katakana),
-                    content = stringResource(R.string.for_study),
-                    painter = painterResource(R.drawable.gatakana_study_img)
-                )
-            }
-            Row(
+                title = stringResource(R.string.hiragana_katakana_study),
+                subtitle = stringResource(R.string.strong_foundation),
+                painter = painterResource(R.drawable.hiragana_katakana_study)
+            )
+
+            JapaneseStudyContent(
                 modifier = Modifier
-                    .height(180.dp)
                     .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                JapaneseStudyContent(
-                    modifier = Modifier
-                        .weight(1f),
-                    onClick = navigateToGrammarStudy,
-                    title = stringResource(R.string.basic_expressions),
-                    content = stringResource(R.string.for_study),
-                    painter = painterResource(R.drawable.basic_expressions_img)
-                )
-                Spacer(modifier = Modifier.width(20.dp))
-                JapaneseStudyContent(
-                    modifier = Modifier
-                        .weight(1f),
-                    onClick = navigateToGrammarTest,
-                    title = stringResource(R.string.level),
-                    content = stringResource(R.string.for_test),
-                    painter = painterResource(R.drawable.level_test_img)
-                )
-            }
+                title = stringResource(R.string.learn_basic_expressions),
+                subtitle = stringResource(R.string.with_conversation),
+                leftColor = MaterialTheme.colorScheme.secondary,
+                rightColor = MaterialTheme.colorScheme.onSecondary,
+                onClick = navigateToGrammarStudy,
+                painter = painterResource(R.drawable.basic_expressions_img)
+            )
+
+            JapaneseStudyContent(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                title = stringResource(R.string.take_skill_test),
+                leftColor = MaterialTheme.colorScheme.tertiary,
+                rightColor = MaterialTheme.colorScheme.onTertiary,
+                painter = painterResource(R.drawable.level_test_img)
+            )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -167,42 +152,89 @@ fun JapaneseStudyContent(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     title: String,
-    content: String,
+    subtitle: String = "",
+    leftColor: Color = MaterialTheme.colorScheme.primary,
+    rightColor: Color = MaterialTheme.colorScheme.onPrimary,
     painter: Painter = painterResource(R.drawable.hiragana_study_img)
 ) {
-    DailyDangoElevationCard(
+    DailyDangoElevationBrushCard(
         modifier = modifier
-            .fillMaxSize(),
+            .fillMaxWidth()
+            .height(140.dp),
         shape = 20.dp,
-        color = MaterialTheme.colorScheme.primary,
+        leftColor = leftColor,
+        rightColor = rightColor,
         elevation = 8.dp,
         onClick = onClick
     ) {
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 12.dp, start = 8.dp, end = 8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .padding(end = 12.dp)
         ) {
-            Text(
-                text = title,
-                style = DailyDangoTheme.typography.bold24,
-                color = MaterialTheme.colorScheme.onBackground
-            )
-            Text(
-                text = content,
-                style = DailyDangoTheme.typography.medium24,
-                color = MaterialTheme.colorScheme.onBackground
-            )
-            ImageCard(
-                modifier = Modifier.weight(1f),
-                painter = painter,
-                contentDescription = "",
-                onClick = onClick
-            )
-        }
 
+            // 3. 이미지 영역
+            ImageCard(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .size(112.dp),
+                painter = painter,
+                contentDescription = "학습 캐릭터 이미지",
+                onClick = onClick,
+                contentScale = ContentScale.Fit
+            )
+
+            Column(
+                modifier = Modifier
+                    .align(Alignment.TopStart)
+                    .padding(
+                        top = 20.dp,
+                        bottom = 20.dp,
+                    ),
+                verticalArrangement = Arrangement.Top
+            ) {
+                // 타이틀 영역 (padding start 유지)
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth() // 너비 꽉 채우기
+                        .padding(start = 20.dp)
+                ) {
+                    Text(
+                        text = title,
+                        style = DailyDangoTheme.typography.bold24,
+                        color = MaterialTheme.colorScheme.surface,
+                        lineHeight = 32.sp
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                // 2. 부제목 영역 (오른쪽만 라디우스 적용)
+                if (subtitle.isNotEmpty()) {
+                    Box(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .background(
+                                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.2f),
+                                shape = RoundedCornerShape(
+                                    topStart = 0.dp,
+                                    bottomStart = 0.dp,
+                                    topEnd = 20.dp,
+                                    bottomEnd = 20.dp
+                                )
+                            )
+                            .padding(start = 16.dp, end = 12.dp, top = 4.dp, bottom = 4.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = subtitle,
+                            style = DailyDangoTheme.typography.light16,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -213,7 +245,7 @@ fun SearchContent(
     DailyDangoElevationCard(
         modifier = Modifier
             .fillMaxWidth(),
-        shape = 20.dp,
+        shape = 24.dp,
         elevation = 8.dp,
         onClick = onClick
     ) {
@@ -221,56 +253,6 @@ fun SearchContent(
             hint = R.string.hint_search_word_or_grammar,
             enabled = false
         )
-    }
-
-}
-
-@Composable
-fun DailyGoalContent(
-    goalDays: Int = 3
-) {
-    DailyDangoElevationCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(64.dp)
-            .padding(top = 8.dp),
-        shape = 20.dp,
-        color = MaterialTheme.colorScheme.primary,
-        elevation = 8.dp
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(4.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            ImageCard(
-                modifier = Modifier
-                    .width(48.dp)
-                    .height(48.dp),
-                painter = painterResource(R.drawable.fire_img),
-                contentDescription = ""
-            )
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(R.string.text_daily_goal_achieved),
-                    textAlign = TextAlign.Center,
-                    style = DailyDangoTheme.typography.bold24,
-                    color = MaterialTheme.colorScheme.onBackground
-                )
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "${goalDays}일 연속",
-                    textAlign = TextAlign.Center,
-                    style = DailyDangoTheme.typography.medium20
-                )
-            }
-
-        }
     }
 }
 

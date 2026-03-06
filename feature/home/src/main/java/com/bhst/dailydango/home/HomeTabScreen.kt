@@ -87,9 +87,6 @@ fun HomeTabContent(
             .padding(top = 20.dp, start = 40.dp, end = 40.dp, bottom = 20.dp)
             .verticalScroll(scrollState),
     ) {
-        DailyGoalContent(
-            goalDays = 3
-        )
         Spacer(
             modifier = Modifier.height(20.dp)
         )
@@ -127,7 +124,7 @@ fun HomeTabContent(
                         .height(160.dp),
                     onClick = navigateToHiraganaStudy,
                     title = stringResource(R.string.hiragana),
-                    content = stringResource(R.string.for_study)
+                    subtitle = stringResource(R.string.for_study)
                 )
                 JapaneseStudyContent(
                     modifier = Modifier
@@ -135,7 +132,7 @@ fun HomeTabContent(
                         .height(160.dp),
                     onClick = navigateToKatakanaStudy,
                     title = stringResource(R.string.katakana),
-                    content = stringResource(R.string.for_study),
+                    subtitle = stringResource(R.string.for_study),
                     painter = painterResource(R.drawable.gatakana_study_img)
                 )
             }
@@ -152,7 +149,7 @@ fun HomeTabContent(
                         .height(160.dp),
                     onClick = navigateToGrammarStudy,
                     title = stringResource(R.string.basic_expressions),
-                    content = stringResource(R.string.for_study),
+                    subtitle = stringResource(R.string.for_study),
                     painter = painterResource(R.drawable.basic_expressions_img)
                 )
                 JapaneseStudyContent(
@@ -161,7 +158,7 @@ fun HomeTabContent(
                         .height(160.dp),
                     onClick = navigateToGrammarTest,
                     title = stringResource(R.string.level),
-                    content = stringResource(R.string.for_test),
+                    subtitle = stringResource(R.string.for_test),
                     painter = painterResource(R.drawable.level_test_img)
                 )
             }

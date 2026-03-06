@@ -42,9 +42,7 @@ fun BasicExpressionsContent(
     ) {
         items(chapters) { chapter ->
             ChapterCard(
-                chapter = chapter.title,
-                imgUrl = chapter.imgUrl,
-                subTitle = chapter.subTitle,
+                chapter = chapter,
                 onClick = {
                     navigateToChapter(chapter.title.toInt())
                 }

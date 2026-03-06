@@ -13,5 +13,11 @@
     <string name="for_me">자신의 </string>
     <string name="level_up"> 실력을 향상</string>
     <string name="do_it"> 시켜 보세요.</string>
+    <string name="hiragana_katakana_study">히라가나 · 가타카나\n학습하기</string>
+    <string name="strong_foundation">기초부터 차근차근</string>
+    <string name="learn_basic_expressions">기초표현\n익히기</string>
+    <string name="take_skill_test">실력\n테스트하기</string>
+    <string name="with_conversation">회화도 같이!</string>
+
 
 </resources>

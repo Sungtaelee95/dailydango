@@ -43,7 +43,7 @@ fun ContentCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    color = MaterialTheme.colorScheme.primaryContainer
+                    color = MaterialTheme.colorScheme.surface
                 ),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
@@ -74,43 +74,49 @@ fun ContentCardBottom(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = MaterialTheme.colorScheme.primary)
+            .background(color = MaterialTheme.colorScheme.surfaceVariant)
             .padding(20.dp)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            TextChip(
-                text = contentState.partOfSpeech,
-                containerColor = MaterialTheme.colorScheme.primary,
-                labelColor = MaterialTheme.colorScheme.onPrimary,
-                border = BorderStroke(
-                    width = 1.dp,
-                    color = MaterialTheme.colorScheme.onPrimary,
-                ),
-                modifier = Modifier.width(84.dp)
-            )
-            Spacer(modifier = Modifier.width(12.dp))
-            Text(
-                text = contentState.titleToKorean,
-                modifier = Modifier
-                    .weight(1f),
-                textAlign = TextAlign.Start,
-                style = DailyDangoTheme.typography.light20
-            )
+        if (contentState.partOfSpeech.isNotEmpty()) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextChip(
+                    text = contentState.partOfSpeech,
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    labelColor = MaterialTheme.colorScheme.secondary,
+                    border = BorderStroke(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.secondary,
+                    ),
+                    modifier = Modifier.width(84.dp).height(28.dp),
+                    style = DailyDangoTheme.typography.medium16
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(
+                    text = contentState.titleToKorean,
+                    modifier = Modifier
+                        .weight(1f),
+                    textAlign = TextAlign.Start,
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            }
         }
         if (contentState.tip.isNotEmpty()) {
             Spacer(modifier = Modifier.height(12.dp))
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.Top
             ) {
                 TextChip(
                     text = "TIP",
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    labelColor = MaterialTheme.colorScheme.onPrimary,
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    labelColor = MaterialTheme.colorScheme.secondary,
                     border = BorderStroke(
                         width = 1.dp,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.secondary,
                     ),
                     modifier = Modifier.width(84.dp)
                 )
@@ -120,7 +126,8 @@ fun ContentCardBottom(
                     modifier = Modifier
                         .weight(1f),
                     textAlign = TextAlign.Start,
-                    style = DailyDangoTheme.typography.light20
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
         }
@@ -132,7 +139,9 @@ fun ContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = if (contentState.contentUri.explanationSoundUri1 == null) painterResource(R.drawable.volume_off_24px) else {
+                    painter = if (contentState.contentUri.explanationSoundUri1 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
                         painterResource(R.drawable.speaker_24px)
                     },
                     contentDescription = "Speaker",
@@ -148,18 +157,18 @@ fun ContentCardBottom(
                 ) {
                     Text(
                         text = contentState.exampleForJapanese1,
-                        style = DailyDangoTheme.typography.light20,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKoreanSound1,
-                        style = DailyDangoTheme.typography.light20,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKorean1,
-                        style = DailyDangoTheme.typography.light20,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                 }
             }
@@ -172,7 +181,9 @@ fun ContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = if (contentState.contentUri.explanationSoundUri2 == null) painterResource(R.drawable.volume_off_24px) else {
+                    painter = if (contentState.contentUri.explanationSoundUri2 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
                         painterResource(R.drawable.speaker_24px)
                     },
                     contentDescription = "Speaker",
@@ -188,18 +199,18 @@ fun ContentCardBottom(
                 ) {
                     Text(
                         text = contentState.exampleForJapanese2,
-                        style = DailyDangoTheme.typography.light20,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKoreanSound2,
-                        style = DailyDangoTheme.typography.light20,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKorean2,
-                        style = DailyDangoTheme.typography.light20,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                 }
             }
@@ -262,18 +273,18 @@ fun ContentCardTop(
             ) {
                 Text(
                     text = contentState.titleHanja,
-                    style = DailyDangoTheme.typography.bold24,
-                    color = MaterialTheme.colorScheme.onPrimary
+                    style = DailyDangoTheme.typography.bold20,
+                    color = MaterialTheme.colorScheme.secondary
                 )
                 Text(
                     text = contentState.japaneseTitle,
-                    style = DailyDangoTheme.typography.light24,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
-                    style = DailyDangoTheme.typography.light24,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
             ImageCard(
@@ -312,13 +323,13 @@ fun ContentCardTop(
             ) {
                 Text(
                     text = contentState.japaneseTitle,
-                    style = DailyDangoTheme.typography.bold24,
-                    color = MaterialTheme.colorScheme.onPrimary
+                    style = DailyDangoTheme.typography.bold20,
+                    color = MaterialTheme.colorScheme.secondary
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
-                    style = DailyDangoTheme.typography.light24,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
             ImageCard(
@@ -341,7 +352,11 @@ fun ContentCardTop(
 fun ContentCardPreview() {
     DailyDangoTheme {
         ContentCard(
-            contentState = ContentState()
+            contentState = ContentState(
+                isOpen = true,
+                titleToKorean = "또 보자",
+                partOfSpeech = "인사어"
+            )
         )
     }
 }

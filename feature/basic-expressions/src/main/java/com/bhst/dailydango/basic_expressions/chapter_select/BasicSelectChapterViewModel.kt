@@ -21,7 +21,7 @@ class BasicSelectChapterViewModel @Inject constructor(
     private val chapterUseCase: ChapterUseCase,
     private val loadingDialogManager: LoadingDialogManager,
     private val messageManager: MessageManager,
-    @ApplicationContext private val context: Context
+    @param: ApplicationContext private val context: Context
 ): ViewModel() {
     private val _uiState = MutableStateFlow<List<Chapter>>(emptyList())
     val uiState: StateFlow<List<Chapter>> = _uiState

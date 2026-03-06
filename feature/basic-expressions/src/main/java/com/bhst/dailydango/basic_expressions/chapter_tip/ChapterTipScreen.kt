@@ -1,6 +1,7 @@
 package com.bhst.dailydango.basic_expressions.chapter_tip
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -60,41 +61,42 @@ fun ChapterTipContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(12.dp)
+            .padding(start = 16.dp, end = 16.dp, top = 12.dp)
     ) {
         LazyColumn(
             modifier = Modifier
-                .weight(1f)
+                .weight(1f),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             items(tips) { tip ->
-                Spacer(modifier = Modifier.height(8.dp))
                 DailyDangoElevationCard(
                     modifier = Modifier
                         .fillMaxWidth(),
                     shape = 20.dp,
                     elevation = 4.dp,
-                    contentColor = MaterialTheme.colorScheme.primaryContainer
+                    contentColor = MaterialTheme.colorScheme.surface
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.primaryContainer)
-                            .padding(start = 8.dp, end = 8.dp, top = 8.dp, bottom = 20.dp),
+                            .background(MaterialTheme.colorScheme.surface)
+                            .padding(16.dp),
+                        horizontalAlignment = Alignment.Start,
+                        verticalArrangement = Arrangement.Center
                     ) {
                         Text(
                             text = tip.title,
                             style = DailyDangoTheme.typography.bold20,
-                            color = MaterialTheme.colorScheme.onPrimary
+                            color = MaterialTheme.colorScheme.secondary
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = tip.content,
-                            style = DailyDangoTheme.typography.light20,
+                            style = DailyDangoTheme.typography.medium16,
                             color = MaterialTheme.colorScheme.onBackground
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(8.dp))
             }
         }
         Row(
@@ -110,13 +112,13 @@ fun ChapterTipContent(
                     .weight(1f)
                     .height(48.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary
+                    containerColor = MaterialTheme.colorScheme.surface
                 )
             ) {
                 Text(
                     text = stringResource(R.string.sentence_study),
                     style = DailyDangoTheme.typography.bold24,
-                    color = MaterialTheme.colorScheme.onPrimary
+                    color = MaterialTheme.colorScheme.secondary
                 )
             }
             Spacer(modifier = Modifier.width(12.dp))
@@ -124,7 +126,7 @@ fun ChapterTipContent(
                 onClick = { navigateToWordStudy(chapter) },
                 shape = RoundedCornerShape(30.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.onPrimary
+                    containerColor = MaterialTheme.colorScheme.secondary
                 ),
                 modifier = Modifier
                     .weight(1f)
@@ -133,7 +135,7 @@ fun ChapterTipContent(
                 Text(
                     text = stringResource(R.string.word_study),
                     style = DailyDangoTheme.typography.bold24,
-                    color = MaterialTheme.colorScheme.primaryContainer,
+                    color = MaterialTheme.colorScheme.surface,
                 )
             }
         }

@@ -29,7 +29,7 @@ class WordStudyViewModel @Inject constructor(
     private val messageManager: MessageManager,
     private val soundUriUseCase: SoundUriUseCase,
     private val audioPlayUseCase: AudioPlayUseCase,
-    @ApplicationContext private val context: Context
+    @param: ApplicationContext private val context: Context
 ): ViewModel() {
     private val _uiState = MutableStateFlow<List<ContentState>>(emptyList())
     val uiState = _uiState.asStateFlow()

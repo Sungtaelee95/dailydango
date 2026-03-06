@@ -21,7 +21,7 @@ class ChapterTipViewModel @Inject constructor(
     private val chapterTipUseCase: ChapterTipUseCase,
     private val loadingDialogManager: LoadingDialogManager,
     private val messageManager: MessageManager,
-    @ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<List<Tip>>(emptyList())
     val uiState: StateFlow<List<Tip>> = _uiState
