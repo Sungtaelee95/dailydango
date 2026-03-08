@@ -35,8 +35,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 
 @Composable
 fun HomeTabScreen(
-    navigateToHiraganaStudy: () -> Unit = {},
-    navigateToKatakanaStudy: () -> Unit = {},
+    navigateToHiraganaKatakanaTip: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
     navigateToGrammarTest: () -> Unit = {},
     navigateToSearch: () -> Unit = {}
@@ -53,17 +52,16 @@ fun HomeTabScreen(
         }
     }
     HomeTabContent(
-        navigateToHiraganaStudy = {
+        navigateToHiraganaKatakanaTip = {
             showInterstitialAd(
                 context = context,
                 ad = interstitialAd,
                 onAdDismissed = {
                     interstitialAd = null
-                    navigateToHiraganaStudy()
+                    navigateToHiraganaKatakanaTip()
                 }
             )
         },
-        navigateToKatakanaStudy = navigateToKatakanaStudy,
         navigateToGrammarStudy = navigateToGrammarStudy,
         navigateToGrammarTest = navigateToGrammarTest,
         navigateToSearch = navigateToSearch,
@@ -72,8 +70,7 @@ fun HomeTabScreen(
 
 @Composable
 fun HomeTabContent(
-    navigateToHiraganaStudy: () -> Unit = {},
-    navigateToKatakanaStudy: () -> Unit = {},
+    navigateToHiraganaKatakanaTip: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
     navigateToGrammarTest: () -> Unit = {},
     navigateToSearch: () -> Unit = {},
@@ -122,7 +119,7 @@ fun HomeTabContent(
                     modifier = Modifier
                         .width(300.dp)
                         .height(160.dp),
-                    onClick = navigateToHiraganaStudy,
+                    onClick = navigateToHiraganaKatakanaTip,
                     title = stringResource(R.string.hiragana),
                     subtitle = stringResource(R.string.for_study)
                 )
@@ -130,7 +127,7 @@ fun HomeTabContent(
                     modifier = Modifier
                         .width(300.dp)
                         .height(160.dp),
-                    onClick = navigateToKatakanaStudy,
+                    onClick = navigateToHiraganaKatakanaTip,
                     title = stringResource(R.string.katakana),
                     subtitle = stringResource(R.string.for_study),
                     painter = painterResource(R.drawable.gatakana_study_img)

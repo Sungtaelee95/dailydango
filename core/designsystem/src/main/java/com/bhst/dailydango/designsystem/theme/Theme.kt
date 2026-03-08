@@ -36,6 +36,13 @@ private val LightColorScheme = lightColorScheme(
     onSurface = DailyDangoColor.LightBlack,
     surfaceVariant = DailyDangoColor.LightYellow,
     surfaceTint = DailyDangoColor.LightPink,
+    scrim = DailyDangoColor.LightBlack,
+    surfaceBright = DailyDangoColor.MistyPink,
+    primaryFixed = DailyDangoColor.WildStrawberry,
+    primaryFixedDim = DailyDangoColor.PinkLace,
+    onPrimaryFixed = DailyDangoColor.SalmonPink,
+    secondaryFixed = DailyDangoColor.PearlBush,
+    tertiaryFixed = DailyDangoColor.AshGreen
 )
 
 

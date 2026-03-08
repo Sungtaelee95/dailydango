@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -90,7 +91,9 @@ fun ContentCardBottom(
                         width = 1.dp,
                         color = MaterialTheme.colorScheme.secondary,
                     ),
-                    modifier = Modifier.width(84.dp).height(28.dp),
+                    modifier = Modifier
+                        .width(84.dp)
+                        .height(28.dp),
                     style = DailyDangoTheme.typography.medium16
                 )
                 Spacer(modifier = Modifier.width(12.dp))
@@ -147,7 +150,8 @@ fun ContentCardBottom(
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(28.dp),
-                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) }
+                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) },
+                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(
@@ -189,7 +193,8 @@ fun ContentCardBottom(
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(28.dp),
-                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) }
+                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) },
+                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(
@@ -209,6 +214,93 @@ fun ContentCardBottom(
                     )
                     Text(
                         text = contentState.explanationForKorean2,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            }
+        }
+        if (contentState.exampleForJapanese3.isNotEmpty()) {
+            Spacer(modifier = Modifier.size(12.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.Top
+            ) {
+                ImageCard(
+                    painter = if (contentState.contentUri.explanationSoundUri3 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
+                    contentDescription = "Speaker",
+                    modifier = Modifier
+                        .size(28.dp),
+                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri3) },
+                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Column(
+                    modifier = Modifier
+                        .weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = contentState.exampleForJapanese3,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKoreanSound3,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKorean3,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            }
+        }
+
+        if (contentState.exampleForJapanese4.isNotEmpty()) {
+            Spacer(modifier = Modifier.size(12.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.Top
+            ) {
+                ImageCard(
+                    painter = if (contentState.contentUri.explanationSoundUri4 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
+                    contentDescription = "Speaker",
+                    modifier = Modifier
+                        .size(28.dp),
+                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri4) },
+                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Column(
+                    modifier = Modifier
+                        .weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = contentState.exampleForJapanese4,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKoreanSound4,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKorean4,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground
                     )
@@ -238,7 +330,8 @@ fun ContentCardMid(
             modifier = Modifier
                 .size(28.dp),
             contentDescription = "Arrow",
-            onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) }
+            onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) },
+            filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
         )
     }
 }
@@ -263,7 +356,8 @@ fun ContentCardTop(
                 contentDescription = "Speaker",
                 modifier = Modifier
                     .size(28.dp),
-                onClick = { speakerClick(contentState.contentUri.titleSoundUri) }
+                onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
+                filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
             Column(
                 modifier = Modifier
@@ -296,7 +390,8 @@ fun ContentCardTop(
                 contentDescription = "Speaker",
                 modifier = Modifier
                     .size(28.dp),
-                onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) }
+                onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
+                filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
             )
         }
     } else {
@@ -313,7 +408,8 @@ fun ContentCardTop(
                 contentDescription = "Speaker",
                 modifier = Modifier
                     .size(28.dp),
-                onClick = { speakerClick(contentState.contentUri.titleSoundUri) }
+                onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
+                filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
             Column(
                 modifier = Modifier
@@ -341,7 +437,8 @@ fun ContentCardTop(
                 contentDescription = "Speaker",
                 modifier = Modifier
                     .size(28.dp),
-                onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) }
+                onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
+                filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
             )
         }
     }

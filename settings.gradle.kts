@@ -51,4 +51,5 @@ include(":feature:basic-expressions-api")
 include(":feature:basic-expressions")
 include(":feature:level-test-api")
 include(":feature:level-test")
-
+include(":feature:hiragana-katakana-tip-api")
+include(":feature:hiragana-katakana-tip")

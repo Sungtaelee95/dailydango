@@ -17,10 +17,12 @@ object DailyDangoColor {
     @Stable val PaleBlue = Color(0xFFD0E8FF)
     @Stable val LightBlack = Color(0xFF666666)
     @Stable val White = Color(0xFFFFFFFF)
-    @Stable val LightPink = Color(0xFFFFE0E0)
-
     @Stable val LightYellow = Color(0xFFFFF2E6)
-
-
-
+    @Stable val LightPink = Color(0xFFFFE0E0)
+    @Stable val WildStrawberry = Color(0xFFFF6B81)
+    @Stable val PinkLace = Color(0xFFFFE0E0)
+    @Stable val PearlBush = Color(0xFFE3CDB2)
+    @Stable val AshGreen = Color(0xFFB0C4B1)
+    @Stable val SalmonPink = Color(0xFFFF8B94)
+    @Stable val MistyPink = Color(0xFFFFEBEE)
 }

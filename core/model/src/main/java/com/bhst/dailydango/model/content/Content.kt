@@ -17,5 +17,11 @@ data class Content(
     val exampleForJapanese2: String = "",
     val explanationForKorean2: String = "",
     val explanationForKoreanSound2: String = "",
+    val exampleForJapanese3: String = "",
+    val explanationForKorean3: String = "",
+    val explanationForKoreanSound3: String = "",
+    val exampleForJapanese4: String = "",
+    val explanationForKorean4: String = "",
+    val explanationForKoreanSound4: String = "",
     val order: Int = 1 // 정렬을 위해 사용됩니다.
 )

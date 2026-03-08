@@ -6,6 +6,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bhst.dailydango.app.feature.basic.expressions.R
+import com.bhst.dailydango.domain.usecase.favorite.DeleteFavoritesContentUseCase
+import com.bhst.dailydango.domain.usecase.favorite.FavoritesContentUseCase
+import com.bhst.dailydango.domain.usecase.favorite.SetFavoritesContentUseCase
 import com.bhst.dailydango.domain.usecase.player.AudioPlayUseCase
 import com.bhst.dailydango.domain.usecase.sentence.SentenceUseCase
 import com.bhst.dailydango.domain.usecase.sound_uri.SoundUriUseCase
@@ -29,6 +32,8 @@ class SentenceStudyViewModel @Inject constructor(
     private val messageManager: MessageManager,
     private val soundUriUseCase: SoundUriUseCase,
     private val audioPlayUseCase: AudioPlayUseCase,
+    private val setFavoriteUseCase: SetFavoritesContentUseCase,
+    private val deleteFavoriteUseCase: DeleteFavoritesContentUseCase,
     @param:ApplicationContext private val context: Context
 ) : ViewModel() {
 
@@ -50,7 +55,9 @@ class SentenceStudyViewModel @Inject constructor(
                             val contentUri = ContentUri(
                                 titleSoundUri = soundUriUseCase(content.japaneseTitle),
                                 explanationSoundUri1 = soundUriUseCase(content.exampleForJapanese1),
-                                explanationSoundUri2 = soundUriUseCase(content.exampleForJapanese2)
+                                explanationSoundUri2 = soundUriUseCase(content.exampleForJapanese2),
+                                explanationSoundUri3 = soundUriUseCase(content.exampleForJapanese3),
+                                explanationSoundUri4 = soundUriUseCase(content.exampleForJapanese4),
                             )
                             _uiState.update { currentList ->
                                 currentList.map {
@@ -74,14 +81,23 @@ class SentenceStudyViewModel @Inject constructor(
     }
 
     fun updateSentenceContent(content: ContentState) {
-        _uiState.update { currentList ->
-            currentList.map {
-                if (it.japaneseTitle == content.japaneseTitle) {
-                    content // 누른 아이템만 업데이트된 상태로 교체
-                } else {
-                    it
+        viewModelScope.launch {
+            loadingDialogManager.show()
+            if (content.isBookmark) {
+                setFavoriteUseCase(content)
+            } else {
+                deleteFavoriteUseCase(content.japaneseTitle)
+            }
+            _uiState.update { currentList ->
+                currentList.map {
+                    if (it.japaneseTitle == content.japaneseTitle) {
+                        content // 누른 아이템만 업데이트된 상태로 교체
+                    } else {
+                        it
+                    }
                 }
             }
+            loadingDialogManager.dismiss()
         }
     }
 

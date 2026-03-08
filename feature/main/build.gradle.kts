@@ -30,6 +30,8 @@ dependencies {
     implementation(projects.feature.menu)
     implementation(projects.feature.searchApi)
     implementation(projects.feature.search)
+    implementation(projects.feature.hiraganaKatakanaTipApi)
+    implementation(projects.feature.hiraganaKatakanaTip)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

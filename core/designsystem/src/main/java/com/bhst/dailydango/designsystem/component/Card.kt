@@ -2,6 +2,8 @@ package com.bhst.dailydango.designsystem.component
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -48,9 +51,16 @@ fun DailyDangoElevationCard(
     content: @Composable () -> Unit,
 ) {
     Surface(
-        onClick = onClick,
-        enabled = enabled,
-        modifier = modifier.fillMaxWidth().padding(4.dp),
+        // Surface 자체의 onClick, enabled 속성은 제거하고 Modifier로 넘깁니다.
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(4.dp)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null, // ⭐ 물결 효과 제거 핵심
+                enabled = enabled,
+                onClick = onClick
+            ),
         color = color,
         contentColor = contentColor,
         shape = RoundedCornerShape(shape),
@@ -74,10 +84,15 @@ fun DailyDangoElevationBrushCard(
         colors = listOf(leftColor, rightColor)
     )
     Surface(
-        onClick = onClick,
-        enabled = enabled,
+        // Surface 자체의 onClick, enabled 속성은 제거하고 Modifier로 넘깁니다.
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null, // ⭐ 물결 효과 제거 핵심
+                enabled = enabled,
+                onClick = onClick
+            ),
         shape = RoundedCornerShape(shape),
         shadowElevation = elevation,
     ) {
@@ -117,4 +132,3 @@ private fun DailyDangoElvCardBrushPreview() {
         DailyDangoElevationBrushCard(modifier = Modifier.size(320.dp, 160.dp), content = { })
     }
 }
-

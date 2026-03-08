@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="favorites">즐겨찾기</string>
+    <string name="view_saved_words">저장한 단어 보기</string>
+    <string name="statistics">통계</string>
+    <string name="my_learning_history">나의 학습 기록</string>
+    <string name="theme">테마</string>
+    <string name="change_theme">테마 변경하기</string>
+    <string name="speed_control">속도 조절</string>
+    <string name="custom_speed_control">나한테 맞는 속도 설정</string>
+    <string name="theme_setting">테마 설정</string>
+    <string name="system_mode">시스템 설정</string>
+    <string name="system_mode_description">시스템에 설정된 테마를 사용합니다.</string>
+    <string name="light_mode">라이트 모드</string>
+    <string name="light_mode_description">항상 밝은 테마를 사용합니다.</string>
+    <string name="dark_mode">다크 모드</string>
+    <string name="dark_mode_description">항상 어두운 테마를 사용합니다.</string>
+    <string name="now_speed">현재 배속 :</string>
+    <string name="x">x</string>
+    <string name="test_expression">테스트 예문</string>
+    <string name="test_expression_for_japan">今、日本語を勉強中です。</string>
+    <string name="test_expression_for_korea">지금, 일본어를 공부하는 중 입니다.</string>
+</resources>

@@ -37,6 +37,8 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/basic-expressions" />
             <option value="$PROJECT_DIR$/feature/basic-expressions-api" />
+            <option value="$PROJECT_DIR$/feature/hiragana-katakana-tip" />
+            <option value="$PROJECT_DIR$/feature/hiragana-katakana-tip-api" />
             <option value="$PROJECT_DIR$/feature/hiragana-study" />
             <option value="$PROJECT_DIR$/feature/hiragana-study-api" />
             <option value="$PROJECT_DIR$/feature/home" />

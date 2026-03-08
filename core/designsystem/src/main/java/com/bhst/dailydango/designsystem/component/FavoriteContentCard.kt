@@ -1,0 +1,447 @@
+package com.bhst.dailydango.designsystem.component
+
+import android.net.Uri
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import com.bhst.dailydango.app.core.designsystem.R
+import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
+import com.bhst.dailydango.model.content.ContentState
+
+@Composable
+fun FavoriteContentCard(
+    contentState: ContentState,
+    speakerClick: (Uri?) -> Unit = {},
+    updateSentenceContent: (ContentState) -> Unit = {},
+    deleteFavoriteContent: (ContentState) -> Unit = {},
+) {
+    Surface(
+        shape = RoundedCornerShape(20.dp),
+        modifier = Modifier
+            .fillMaxWidth(),
+        shadowElevation = 4.dp
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    color = MaterialTheme.colorScheme.surface
+                ),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            FavoriteContentCardTop(
+                contentState = contentState,
+                speakerClick = speakerClick,
+                bookmarkClick = deleteFavoriteContent
+            )
+            FavoriteContentCardMid(
+                contentState = contentState,
+                isOpenChanged = updateSentenceContent
+            )
+            if (contentState.isOpen) {
+                FavoriteContentCardBottom(
+                    contentState = contentState,
+                    speakerClick = speakerClick
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun FavoriteContentCardBottom(
+    contentState: ContentState,
+    speakerClick: (Uri?) -> Unit = {}
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = MaterialTheme.colorScheme.primaryFixedDim)
+            .padding(20.dp)
+    ) {
+        if (contentState.partOfSpeech.isNotEmpty()) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextChip(
+                    text = contentState.partOfSpeech,
+                    containerColor = MaterialTheme.colorScheme.primaryFixedDim,
+                    labelColor = MaterialTheme.colorScheme.primaryFixed,
+                    border = BorderStroke(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.primaryFixed,
+                    ),
+                    modifier = Modifier
+                        .width(84.dp)
+                        .height(28.dp),
+                    style = DailyDangoTheme.typography.medium16
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(
+                    text = contentState.titleToKorean,
+                    modifier = Modifier
+                        .weight(1f),
+                    textAlign = TextAlign.Start,
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            }
+        }
+        if (contentState.tip.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.Top
+            ) {
+                TextChip(
+                    text = "TIP",
+                    containerColor = MaterialTheme.colorScheme.primaryFixedDim,
+                    labelColor = MaterialTheme.colorScheme.primaryFixed,
+                    border = BorderStroke(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.primaryFixed,
+                    ),
+                    modifier = Modifier.width(84.dp)
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(
+                    text = contentState.tip,
+                    modifier = Modifier
+                        .weight(1f),
+                    textAlign = TextAlign.Start,
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            }
+        }
+        if (contentState.exampleForJapanese1.isNotEmpty()) {
+            Spacer(modifier = Modifier.size(12.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.Top
+            ) {
+                ImageCard(
+                    painter = if (contentState.contentUri.explanationSoundUri1 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
+                    contentDescription = "Speaker",
+                    modifier = Modifier
+                        .size(28.dp),
+                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) },
+                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Column(
+                    modifier = Modifier
+                        .weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = contentState.exampleForJapanese1,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKoreanSound1,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKorean1,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            }
+        }
+        if (contentState.exampleForJapanese2.isNotEmpty()) {
+            Spacer(modifier = Modifier.size(12.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.Top
+            ) {
+                ImageCard(
+                    painter = if (contentState.contentUri.explanationSoundUri2 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
+                    contentDescription = "Speaker",
+                    modifier = Modifier
+                        .size(28.dp),
+                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) },
+                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Column(
+                    modifier = Modifier
+                        .weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = contentState.exampleForJapanese2,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKoreanSound2,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKorean2,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            }
+        }
+        if (contentState.exampleForJapanese3.isNotEmpty()) {
+            Spacer(modifier = Modifier.size(12.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.Top
+            ) {
+                ImageCard(
+                    painter = if (contentState.contentUri.explanationSoundUri3 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
+                    contentDescription = "Speaker",
+                    modifier = Modifier
+                        .size(28.dp),
+                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri3) },
+                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Column(
+                    modifier = Modifier
+                        .weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = contentState.exampleForJapanese3,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKoreanSound3,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKorean3,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            }
+        }
+
+        if (contentState.exampleForJapanese4.isNotEmpty()) {
+            Spacer(modifier = Modifier.size(12.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.Top
+            ) {
+                ImageCard(
+                    painter = if (contentState.contentUri.explanationSoundUri4 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
+                    contentDescription = "Speaker",
+                    modifier = Modifier
+                        .size(28.dp),
+                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri4) },
+                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Column(
+                    modifier = Modifier
+                        .weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = contentState.exampleForJapanese4,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKoreanSound4,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Text(
+                        text = contentState.explanationForKorean4,
+                        style = DailyDangoTheme.typography.medium16,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun FavoriteContentCardMid(
+    contentState: ContentState,
+    isOpenChanged: (ContentState) -> Unit = {}
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(end = 20.dp),
+        horizontalArrangement = Arrangement.End
+    ) {
+        ImageCard(
+            painter = if (contentState.isOpen) {
+                painterResource(R.drawable.keyboard_arrow_up_24px)
+            } else {
+                painterResource(R.drawable.keyboard_arrow_down_24px)
+            },
+            modifier = Modifier
+                .size(28.dp),
+            contentDescription = "Arrow",
+            onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) },
+            filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+        )
+    }
+}
+
+@Composable
+fun FavoriteContentCardTop(
+    contentState: ContentState,
+    speakerClick: (Uri?) -> Unit = {},
+    bookmarkClick: (ContentState) -> Unit = {}
+) {
+    if (contentState.titleHanja.isNotEmpty()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp, top = 20.dp),
+            verticalAlignment = Alignment.Top
+        ) {
+            ImageCard(
+                painter = if (contentState.contentUri.titleSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
+                    painterResource(R.drawable.speaker_24px)
+                },
+                contentDescription = "Speaker",
+                modifier = Modifier
+                    .size(28.dp),
+                onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
+                filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+            )
+            Column(
+                modifier = Modifier
+                    .weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    text = contentState.titleHanja,
+                    style = DailyDangoTheme.typography.bold20,
+                    color = MaterialTheme.colorScheme.primaryFixed
+                )
+                Text(
+                    text = contentState.japaneseTitle,
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+                Text(
+                    text = contentState.japaneseTitleOfSoundToKorea,
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            }
+            ImageCard(
+                painter = if (contentState.isBookmark) {
+                    painterResource(R.drawable.fill_star_24px)
+                } else {
+                    painterResource(R.drawable.star_24px)
+                },
+                contentDescription = "Speaker",
+                modifier = Modifier
+                    .size(28.dp),
+                onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
+                filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
+            )
+        }
+    } else {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp, top = 20.dp),
+            verticalAlignment = Alignment.Top
+        ) {
+            ImageCard(
+                painter = if (contentState.contentUri.titleSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
+                    painterResource(R.drawable.speaker_24px)
+                },
+                contentDescription = "Speaker",
+                modifier = Modifier
+                    .size(28.dp),
+                onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
+                filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+            )
+            Column(
+                modifier = Modifier
+                    .weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    text = contentState.japaneseTitle,
+                    style = DailyDangoTheme.typography.bold20,
+                    color = MaterialTheme.colorScheme.primaryFixed
+                )
+                Text(
+                    text = contentState.japaneseTitleOfSoundToKorea,
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            }
+            ImageCard(
+                painter = if (contentState.isBookmark) {
+                    painterResource(R.drawable.fill_star_24px)
+                } else {
+                    painterResource(R.drawable.star_24px)
+                },
+                contentDescription = "Speaker",
+                modifier = Modifier
+                    .size(28.dp),
+                onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
+                filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
+            )
+        }
+    }
+}
+
+

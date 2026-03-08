@@ -4,20 +4,27 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.bhst.dailydango.designsystem.component.DailyDangoTopAppBar
 import com.bhst.dailydango.designsystem.component.TopAppBarNavigationType
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
+import com.bhst.dailydango.domain.usecase.theme.ThemeConfigUseCase
 import com.bhst.dailydango.menu_api.MenuRoute
+import com.bhst.dailydango.model.theme.config.ThemeConfig
 import com.bhst.dailydango.ui.GlobalLoadingDialog
 import com.bhst.dailydango.ui.MessageManager
 import com.bhst.dailydango.ui.GlobalMessageToast
@@ -33,13 +40,28 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var messageManager: MessageManager
 
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         enableEdgeToEdge()
 
         setContent {
-            DailyDangoTheme {
+            val themeConfig by viewModel.themeConfig.collectAsStateWithLifecycle(
+                ThemeConfig.SYSTEM,
+                this
+            )
+
+            val isDark = when(themeConfig) {
+                ThemeConfig.SYSTEM -> isSystemInDarkTheme()
+                ThemeConfig.DARK -> true
+                ThemeConfig.LIGHT -> false
+            }
+
+            DailyDangoTheme(
+                darkTheme = isDark
+            ) {
                 val appState = rememberDailyDangoAppState()
                 val entryProvider = remember(appState) {
                     dailyDangoEntryProvider(
