@@ -32,6 +32,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:route-api"))
     implementation(project(":core:ad_mob"))
+    implementation(project(":core:util"))
 
     // --- Navigation 3 Dependencies ---
     // 기존 androidx.compose.navigation 제거 후 교체

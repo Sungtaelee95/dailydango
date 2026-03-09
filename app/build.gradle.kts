@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.ApplicationExtension
 import com.bhst.dailydango.app.filterProject
 
 plugins {
@@ -6,7 +7,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-extensions.configure<com.android.build.api.dsl.ApplicationExtension> {
+extensions.configure<ApplicationExtension> {
     namespace = "com.bhst.dailydango"
     compileSdk = 36
 

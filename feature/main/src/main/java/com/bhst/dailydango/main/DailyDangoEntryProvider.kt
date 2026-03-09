@@ -14,7 +14,9 @@ import com.bhst.dailydango.entry.levelTestEntries
 import com.bhst.dailydango.entry.menuEntries
 import com.bhst.dailydango.hiragana_katakana_tip.entry.hiraganaKatakanaTipEntry
 import com.bhst.dailydango.hiragana_katakana_tip_api.HiraganaKatakanaTipRoute
+import com.bhst.dailydango.hiragana_study_api.HiraganaDetailRoute
 import com.bhst.dailydango.hiragana_study_api.HiraganaStudyRoute
+import com.bhst.dailydango.katakana_study_api.KatakanaDetailRoute
 import com.bhst.dailydango.katakana_study_api.KatakanaStudyRoute
 import com.bhst.dailydango.level_test_api.LevelTestRoute
 import com.bhst.dailydango.menu_api.FavoriteContentsRoute
@@ -40,8 +42,16 @@ fun dailyDangoEntryProvider(
         navigateToPlaySpeed = { navigateTo(PlaySpeedRoute) }
     )
     searchEntries()
-    hiraganaStudyEntries()
-    katakanaStudyEntries()
+    hiraganaStudyEntries(
+        navigateToHiraganaDetail = { wordType, rowHeader ->
+            navigateTo(HiraganaDetailRoute(wordType, rowHeader))
+        }
+    )
+    katakanaStudyEntries(
+        navigateToKatakanaDetail = { wordType, rowHeader ->
+            navigateTo(KatakanaDetailRoute(wordType, rowHeader))
+        }
+    )
     basicExpressionsEntries(
         navigateToChapter = { chapter -> navigateTo(ChapterTipRoute(chapter)) },
         navigateToSentenceStudy = { chapter -> navigateTo(SentenceStudyRoute(chapter)) },

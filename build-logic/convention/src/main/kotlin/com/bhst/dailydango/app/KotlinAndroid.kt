@@ -31,7 +31,7 @@ internal fun Project.configureKotlinAndroid() {
         extensions.configure<ApplicationExtension> {
             compileSdk = 36
             defaultConfig {
-                minSdk = 31
+                minSdk = 29
                 targetSdk = 36
             }
             compileOptions {
@@ -60,7 +60,7 @@ internal fun Project.configureKotlinAndroid() {
         extensions.configure<LibraryExtension> {
             compileSdk = 36
             defaultConfig {
-                minSdk = 31
+                minSdk = 29
             }
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_21
