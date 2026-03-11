@@ -20,11 +20,11 @@ class HanjaRepositoryImpl @Inject constructor(
 
             if (document.exists()) {
                 // 문서가 존재하면 HanjaContent 객체로 변환하여 반환
-                val content = document.toObject(HanjaContent::class.java)
+                val content = document.toObject(HanjaContent::class.java) ?: throw Exception()
                 HanjaResult.Success(content)
             } else {
                 // 문서가 존재하지 않으면 null 반환 (또는 에러 처리 가능)
-                HanjaResult.Success(null)
+                HanjaResult.Error(FbError.ServerError)
             }
         } catch (e: Exception) {
             HanjaResult.Error(FbError.ServerError)

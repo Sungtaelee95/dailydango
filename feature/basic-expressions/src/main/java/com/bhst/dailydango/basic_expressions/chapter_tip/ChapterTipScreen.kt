@@ -87,7 +87,7 @@ fun ChapterTipContent(
                         Text(
                             text = tip.title,
                             style = DailyDangoTheme.typography.bold20,
-                            color = MaterialTheme.colorScheme.secondary
+                            color = MaterialTheme.colorScheme.secondaryFixedDim
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
@@ -118,7 +118,7 @@ fun ChapterTipContent(
                 Text(
                     text = stringResource(R.string.sentence_study),
                     style = DailyDangoTheme.typography.bold24,
-                    color = MaterialTheme.colorScheme.secondary
+                    color = MaterialTheme.colorScheme.secondaryFixedDim
                 )
             }
             Spacer(modifier = Modifier.width(12.dp))
@@ -126,7 +126,7 @@ fun ChapterTipContent(
                 onClick = { navigateToWordStudy(chapter) },
                 shape = RoundedCornerShape(30.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.secondary
+                    containerColor = MaterialTheme.colorScheme.secondaryFixedDim
                 ),
                 modifier = Modifier
                     .weight(1f)

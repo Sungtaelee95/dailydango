@@ -1,5 +1,6 @@
 package com.bhst.dailydango.hiragana_detail
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -18,16 +19,20 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.bhst.dailydango.designsystem.component.WordCard
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
+import com.bhst.dailydango.model.word.WordContentState
 import com.bhst.dailydango.model.word_type.WordType
 import com.bhst.dailydango.util.HiraganaData
 import com.bhst.dailydango.util.KatakanaData
@@ -40,6 +45,7 @@ fun HiraganaDetailScreen(
     viewModel: HiraganaDetailViewModel = hiltViewModel()
 ) {
     val selectedRow by viewModel.selectedRow.collectAsStateWithLifecycle()
+    val wordState by viewModel.wordContentState.collectAsStateWithLifecycle()
     val currentMap = when (wordType) {
         WordType.BASIC -> HiraganaData.basicMap
         WordType.DAKUON -> HiraganaData.dakuonMap
@@ -52,20 +58,34 @@ fun HiraganaDetailScreen(
     LaunchedEffect(Unit) {
         viewModel.updateSelectedRow(rowHeader)
     }
+    LaunchedEffect(currentItems) {
+        if (selectedRow.isNotEmpty()) {
+            viewModel.updateCurrentItems(currentItems)
+        }
+    }
+    DisposableEffect(Unit) {
+        onDispose {
+            viewModel.stopAudio()
+        }
+    }
     HiraganaDetailContent(
         tabList = tabList,
         selectedRow = selectedRow,
-        currentItems = currentItems,
-        onTabSelected = viewModel::updateSelectedRow // 또는 { viewModel.updateSelectedRow(it) }
+        wordState = wordState,
+        onTabSelected = viewModel::updateSelectedRow, // 또는 { viewModel.updateSelectedRow(it) },
+        playAudio = viewModel::playAudio,
+        updateContent = viewModel::updateContent
     )
 }
 
 @Composable
 fun HiraganaDetailContent(
-    tabList: List<String>,
-    selectedRow: String,
-    currentItems: List<String>,
-    onTabSelected: (String) -> Unit
+    tabList: List<String> = emptyList(),
+    selectedRow: String = "",
+    wordState: List<WordContentState> = emptyList(),
+    onTabSelected: (String) -> Unit = {},
+    playAudio: (Uri?) -> Unit = {},
+    updateContent: (WordContentState) -> Unit = {}
 ) {
     val listState = rememberLazyListState()
 
@@ -125,9 +145,21 @@ fun HiraganaDetailContent(
                 .padding(horizontal = 20.dp, vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(currentItems) { char ->
-                Text(text = char)
+            items(wordState) { item ->
+                WordCard(
+                    wordContentState = item,
+                    speakerClick = playAudio,
+                    updateContent = updateContent
+                )
             }
         }
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun HiraganaDetailContentPreview() {
+    DailyDangoTheme {
+        HiraganaDetailContent()
     }
 }

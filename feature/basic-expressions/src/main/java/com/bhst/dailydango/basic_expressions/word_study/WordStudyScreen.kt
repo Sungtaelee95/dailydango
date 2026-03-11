@@ -61,7 +61,7 @@ fun WordStudyContent(
 ) {
     Column {
         ColorBar(
-            color = MaterialTheme.colorScheme.secondary
+            color = MaterialTheme.colorScheme.secondaryFixedDim
         ) {
             Row(
                 modifier = Modifier.fillMaxSize(),
@@ -90,7 +90,7 @@ fun WordStudyContent(
                 if (index == 0) Spacer(modifier = Modifier.height(4.dp))
                 ContentCard(
                     contentState = content,
-                    updateSentenceContent = updateSentenceContent,
+                    updateContent = updateSentenceContent,
                     speakerClick = playAudio
                 )
                 if (index == contents.lastIndex) Spacer(modifier = Modifier.height(8.dp))

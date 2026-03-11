@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,7 +33,7 @@ import com.bhst.dailydango.model.content.ContentState
 fun ContentCard(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
-    updateSentenceContent: (ContentState) -> Unit = {},
+    updateContent: (ContentState) -> Unit = {},
 ) {
     Surface(
         shape = RoundedCornerShape(20.dp),
@@ -51,11 +52,11 @@ fun ContentCard(
             ContentCardTop(
                 contentState = contentState,
                 speakerClick = speakerClick,
-                bookmarkClick = updateSentenceContent
+                bookmarkClick = updateContent
             )
             ContentCardMid(
                 contentState = contentState,
-                isOpenChanged = updateSentenceContent
+                isOpenChanged = updateContent
             )
             if (contentState.isOpen) {
                 ContentCardBottom(
@@ -86,10 +87,10 @@ fun ContentCardBottom(
                 TextChip(
                     text = contentState.partOfSpeech,
                     containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                    labelColor = MaterialTheme.colorScheme.secondary,
+                    labelColor = MaterialTheme.colorScheme.secondaryFixedDim,
                     border = BorderStroke(
                         width = 1.dp,
-                        color = MaterialTheme.colorScheme.secondary,
+                        color = MaterialTheme.colorScheme.secondaryFixedDim,
                     ),
                     modifier = Modifier
                         .width(84.dp)
@@ -114,12 +115,12 @@ fun ContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 TextChip(
-                    text = "TIP",
+                    text = stringResource(R.string.tip),
                     containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                    labelColor = MaterialTheme.colorScheme.secondary,
+                    labelColor = MaterialTheme.colorScheme.secondaryFixedDim,
                     border = BorderStroke(
                         width = 1.dp,
-                        color = MaterialTheme.colorScheme.secondary,
+                        color = MaterialTheme.colorScheme.secondaryFixedDim,
                     ),
                     modifier = Modifier.width(84.dp)
                 )
@@ -368,7 +369,7 @@ fun ContentCardTop(
                 Text(
                     text = contentState.titleHanja,
                     style = DailyDangoTheme.typography.bold20,
-                    color = MaterialTheme.colorScheme.secondary
+                    color = MaterialTheme.colorScheme.secondaryFixedDim
                 )
                 Text(
                     text = contentState.japaneseTitle,
@@ -420,7 +421,7 @@ fun ContentCardTop(
                 Text(
                     text = contentState.japaneseTitle,
                     style = DailyDangoTheme.typography.bold20,
-                    color = MaterialTheme.colorScheme.secondary
+                    color = MaterialTheme.colorScheme.secondaryFixedDim
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,

@@ -2,7 +2,6 @@ package com.bhst.dailydango.basic_expressions.sentnece_study
 
 import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -63,7 +62,7 @@ fun SentenceStudyContent(
 ) {
     Column {
         ColorBar(
-            color = MaterialTheme.colorScheme.secondary
+            color = MaterialTheme.colorScheme.secondaryFixedDim
         ) {
             Row(
                 modifier = Modifier.fillMaxSize(),
@@ -91,7 +90,7 @@ fun SentenceStudyContent(
                 if (index == 0) Spacer(modifier = Modifier.height(4.dp))
                 ContentCard(
                     contentState = content,
-                    updateSentenceContent = updateSentenceContent,
+                    updateContent = updateSentenceContent,
                     speakerClick = playAudio
                 )
                 if (index == contents.lastIndex) Spacer(modifier = Modifier.height(8.dp))

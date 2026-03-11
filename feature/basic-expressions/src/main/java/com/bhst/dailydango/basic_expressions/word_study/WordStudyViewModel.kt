@@ -9,10 +9,9 @@ import com.bhst.dailydango.domain.usecase.favorite.DeleteFavoritesContentUseCase
 import com.bhst.dailydango.domain.usecase.favorite.SetFavoritesContentUseCase
 import com.bhst.dailydango.domain.usecase.player.AudioPlayUseCase
 import com.bhst.dailydango.domain.usecase.sound_uri.SoundUriUseCase
-import com.bhst.dailydango.domain.usecase.word.WordUseCase
+import com.bhst.dailydango.domain.usecase.word_content.WordContentUseCase
 import com.bhst.dailydango.model.content.ContentState
 import com.bhst.dailydango.model.content.ContentUri
-import com.bhst.dailydango.model.result.SentenceContentResult
 import com.bhst.dailydango.model.result.WordContentResult
 import com.bhst.dailydango.ui.LoadingDialogManager
 import com.bhst.dailydango.ui.MessageManager
@@ -26,7 +25,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WordStudyViewModel @Inject constructor(
-    private val wordUseCase: WordUseCase,
+    private val wordContentUseCase: WordContentUseCase,
     private val loadingDialogManager: LoadingDialogManager,
     private val messageManager: MessageManager,
     private val soundUriUseCase: SoundUriUseCase,
@@ -42,7 +41,7 @@ class WordStudyViewModel @Inject constructor(
     fun getWordContent(chapter: Int) {
         viewModelScope.launch {
             loadingDialogManager.show()
-            when (val result = wordUseCase(chapter = chapter)) {
+            when (val result = wordContentUseCase(chapter = chapter)) {
                 is WordContentResult.Success -> {
                     // 1. 텍스트 데이터를 먼저 화면에 보여주기 위해 상태 방출
                     val initialContents = result.contents.map { ContentState.from(content = it) }
