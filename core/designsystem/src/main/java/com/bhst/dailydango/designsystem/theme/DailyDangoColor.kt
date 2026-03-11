@@ -25,4 +25,21 @@ object DailyDangoColor {
     @Stable val AshGreen = Color(0xFFB0C4B1)
     @Stable val SalmonPink = Color(0xFFFF8B94)
     @Stable val MistyPink = Color(0xFFFFEBEE)
+
+    @Stable val Wood = Color(0xFF7A4A4A)
+    @Stable val DarkGray = Color(0xFF2A2A2A)
+    @Stable val LightDarkGray = Color(0xFF4A4A4A)
+    @Stable val BrownGray = Color(0xFF6E5A46)
+    @Stable val DeepGray = Color(0xFF3C3C3C)
+    @Stable val WhiteSmoke = Color(0xFFF5F5F5)
+    @Stable val DarkSageGreen = Color(0xFF5F7361)
+    @Stable val CoralPink = Color(0xFFC45F66)
+    @Stable val VeryDarkGray = Color(0xFF353434)
+    @Stable val MutedRose = Color(0xFF8A5A5A)
+    @Stable val White1 = Color(0xFFFCFAFA)
+    @Stable val NearBlack = Color(0xFF272727)
+    @Stable val Orange = Color(0xFFFF7E38)
+
+    @Stable val LightOrange = Color(0xFFFFA066)
+
 }

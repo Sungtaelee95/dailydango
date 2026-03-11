@@ -26,6 +26,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -86,7 +87,7 @@ fun PlaySpeedContent(
                 Text(
                     text = stringResource(R.string.speed_control),
                     style = DailyDangoTheme.typography.bold20,
-                    color = MaterialTheme.colorScheme.surface,
+                    color = MaterialTheme.colorScheme.inverseSurface,
                     textAlign = TextAlign.Center
                 )
             }
@@ -142,7 +143,8 @@ fun TestExpressionsCard(
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(24.dp),
-                    onClick = { playTestExpression("今、日本語を勉強中です。") }
+                    onClick = { playTestExpression("今、日本語を勉強中です。") },
+                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(

@@ -29,6 +29,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.word_type.WordType
+import com.bhst.dailydango.util.HiraganaData
 import com.bhst.dailydango.util.KatakanaData
 import kotlin.collections.filter
 
@@ -40,10 +41,10 @@ fun HiraganaDetailScreen(
 ) {
     val selectedRow by viewModel.selectedRow.collectAsStateWithLifecycle()
     val currentMap = when (wordType) {
-        WordType.BASIC -> KatakanaData.basicMap
-        WordType.DAKUON -> KatakanaData.dakuonMap
-        WordType.YOON -> KatakanaData.yoonMap
-        WordType.SOKUON -> KatakanaData.sokuonMap
+        WordType.BASIC -> HiraganaData.basicMap
+        WordType.DAKUON -> HiraganaData.dakuonMap
+        WordType.YOON -> HiraganaData.yoonMap
+        WordType.SOKUON -> HiraganaData.sokuonMap
     }
     val tabList = currentMap.keys.filter { it.isNotEmpty() }
     val currentItems = currentMap[selectedRow]?.filter { it.isNotEmpty() } ?: emptyList()
@@ -110,7 +111,7 @@ fun HiraganaDetailContent(
                 ) {
                     Text(
                         text = tabName,
-                        color = if (isSelected) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.primaryFixed,
+                        color = if (isSelected) MaterialTheme.colorScheme.inverseSurface else MaterialTheme.colorScheme.primaryFixed,
                         style = if (isSelected) DailyDangoTheme.typography.bold16 else DailyDangoTheme.typography.medium16
                     )
                 }

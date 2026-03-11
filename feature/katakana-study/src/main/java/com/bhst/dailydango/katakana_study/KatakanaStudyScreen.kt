@@ -174,7 +174,7 @@ fun KataCell(text: String, isHeader: Boolean, modifier: Modifier = Modifier) {
         modifier = modifier
             .height(36.dp)
             .background(
-                color = if (isHeader) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.surfaceTint,
+                color = if (isHeader) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.primaryFixedDim,
                 shape = RoundedCornerShape(10.dp)
             )
             .then(

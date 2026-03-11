@@ -84,11 +84,13 @@ fun HomeContent(
             Row {
                 Text(
                     text = stringResource(R.string.hiragana_katacana),
-                    style = DailyDangoTheme.typography.bold16
+                    style = DailyDangoTheme.typography.bold16,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     text = stringResource(R.string.study_do_it),
-                    style = DailyDangoTheme.typography.medium16
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
             JapaneseStudyContent(
@@ -97,7 +99,7 @@ fun HomeContent(
                 title = stringResource(R.string.hiragana_katakana_study),
                 subtitle = stringResource(R.string.strong_foundation),
                 onClick = navigateToHiraganaKatakanaTip,
-                painter = painterResource(R.drawable.hiragana_katakana_study)
+                painter = painterResource(R.drawable.hiragana_katakana_study),
             )
 
             JapaneseStudyContent(
@@ -200,7 +202,7 @@ fun JapaneseStudyContent(
                     Text(
                         text = title,
                         style = DailyDangoTheme.typography.bold24,
-                        color = MaterialTheme.colorScheme.surface,
+                        color = MaterialTheme.colorScheme.inverseSurface,
                         lineHeight = 32.sp
                     )
                 }

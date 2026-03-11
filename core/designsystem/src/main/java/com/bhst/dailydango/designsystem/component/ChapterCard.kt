@@ -66,7 +66,7 @@ fun ChapterCard(
         ) {
             Surface(
                 shape = CircleShape,
-                color = MaterialTheme.colorScheme.surfaceTint,
+                color = MaterialTheme.colorScheme.primaryFixedDim,
                 shadowElevation = 4.dp,
                 modifier = Modifier
                     .width(80.dp)

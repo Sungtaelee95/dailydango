@@ -71,7 +71,7 @@ fun WordStudyContent(
                 Text(
                     text = "$chapter" + stringResource(R.string.chapter_word_study),
                     style = DailyDangoTheme.typography.bold24,
-                    color = MaterialTheme.colorScheme.surface,
+                    color = MaterialTheme.colorScheme.inverseSurface,
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )

@@ -18,11 +18,29 @@ import androidx.glance.color.colorProviders
 
 // 🔵 다크 테마 컬러셈
 private val DarkColorScheme = darkColorScheme(
-
+    primary = DailyDangoColor.VividPink,
+    onPrimary = DailyDangoColor.RosePink,
+    secondary = DailyDangoColor.VividOrange,
+    onSecondary = DailyDangoColor.Apricot,
+    tertiary = DailyDangoColor.SkyBlue,
+    onTertiary = DailyDangoColor.PaleBlue,
+    background = DailyDangoColor.DarkGray,
+    onBackground = DailyDangoColor.White,
+    surface = DailyDangoColor.LightDarkGray,
+    surfaceVariant = DailyDangoColor.NearBlack,
+    inverseSurface = DailyDangoColor.White1,
+    scrim = DailyDangoColor.WhiteSmoke,
+    surfaceBright = DailyDangoColor.DeepGray,
+    surfaceContainer = DailyDangoColor.MutedRose,
+    primaryFixed = DailyDangoColor.WildStrawberry,
+    primaryFixedDim = DailyDangoColor.VeryDarkGray,
+    onPrimaryFixed = DailyDangoColor.CoralPink,
+    secondaryFixed = DailyDangoColor.BrownGray,
+    secondaryFixedDim= DailyDangoColor.LightOrange,
+    tertiaryFixed = DailyDangoColor.DarkSageGreen
 )
 
-
-// 🔵 라이트 테마 컬러셈
+// 🔵 라이트 테마 컬러 스킴
 private val LightColorScheme = lightColorScheme(
     primary = DailyDangoColor.VividPink,
     onPrimary = DailyDangoColor.RosePink,
@@ -33,18 +51,18 @@ private val LightColorScheme = lightColorScheme(
     background = DailyDangoColor.ShellPink,
     onBackground = DailyDangoColor.Black,
     surface = DailyDangoColor.White,
-    onSurface = DailyDangoColor.LightBlack,
     surfaceVariant = DailyDangoColor.LightYellow,
-    surfaceTint = DailyDangoColor.LightPink,
+    inverseSurface = DailyDangoColor.White1,
     scrim = DailyDangoColor.LightBlack,
     surfaceBright = DailyDangoColor.MistyPink,
+    surfaceContainer = DailyDangoColor.Wood, // 표에 명시된 내용 추가
     primaryFixed = DailyDangoColor.WildStrawberry,
     primaryFixedDim = DailyDangoColor.PinkLace,
     onPrimaryFixed = DailyDangoColor.SalmonPink,
     secondaryFixed = DailyDangoColor.PearlBush,
+    secondaryFixedDim = DailyDangoColor.Orange,
     tertiaryFixed = DailyDangoColor.AshGreen
 )
-
 
 val LocalDarkTheme = compositionLocalOf { true }
 

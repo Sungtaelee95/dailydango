@@ -172,7 +172,7 @@ fun TipsScreen(
             Text(
                 text = stringResource(R.string.study_start),
                 style = DailyDangoTheme.typography.bold32,
-                color = MaterialTheme.colorScheme.surface
+                color = MaterialTheme.colorScheme.inverseSurface
             )
         }
     }

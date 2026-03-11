@@ -83,7 +83,7 @@ fun FavoriteContentContent(
                 Text(
                     text = stringResource(R.string.favorites),
                     style = DailyDangoTheme.typography.bold20,
-                    color = MaterialTheme.colorScheme.surface,
+                    color = MaterialTheme.colorScheme.inverseSurface,
                     textAlign = TextAlign.Center
                 )
             }
