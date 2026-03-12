@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -86,13 +87,13 @@ fun ChapterTipContent(
                     ) {
                         Text(
                             text = tip.title,
-                            style = DailyDangoTheme.typography.bold20,
+                            style = DailyDangoTheme.typography.bold16,
                             color = MaterialTheme.colorScheme.secondaryFixedDim
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = tip.content,
-                            style = DailyDangoTheme.typography.medium16,
+                            style = DailyDangoTheme.typography.medium14,
                             color = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -110,14 +111,14 @@ fun ChapterTipContent(
                 shape = RoundedCornerShape(30.dp),
                 modifier = Modifier
                     .weight(1f)
-                    .height(48.dp),
+                    .wrapContentHeight(),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             ) {
                 Text(
                     text = stringResource(R.string.sentence_study),
-                    style = DailyDangoTheme.typography.bold24,
+                    style = DailyDangoTheme.typography.bold20,
                     color = MaterialTheme.colorScheme.secondaryFixedDim
                 )
             }
@@ -130,11 +131,11 @@ fun ChapterTipContent(
                 ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(48.dp)
+                    .wrapContentHeight()
             ) {
                 Text(
                     text = stringResource(R.string.word_study),
-                    style = DailyDangoTheme.typography.bold24,
+                    style = DailyDangoTheme.typography.bold20,
                     color = MaterialTheme.colorScheme.surface,
                 )
             }

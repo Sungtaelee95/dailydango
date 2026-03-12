@@ -90,14 +90,28 @@ class HiraganaDetailViewModel @Inject constructor(
 
     private fun updateUri() {
         viewModelScope.launch {
-            _wordContentState.value.forEach { content ->
+            // 1. 현재 리스트의 단어(word) 목록만 먼저 가져옵니다.
+            val currentWords = _wordContentState.value.map { it.word }
+
+            currentWords.forEach { wordStr ->
                 launch {
-                    val newContent = content.copy(
-                        wordSoundUri = soundUriUseCase(content.word),
-                        writeGifUri = gifUriUseCase(content.word)
-                    )
-                    _wordContentState.update { wordContents ->
-                        wordContents.map { if (it.word == newContent.word) newContent else it }
+                    // 2. 시간이 걸리는 비동기 작업 수행
+                    val soundUri = soundUriUseCase(wordStr)
+                    val writeGif = gifUriUseCase(wordStr)
+
+                    // 3. update 블록 내부에서 '가장 최신 상태'를 찾아 덮어씁니다.
+                    _wordContentState.update { currentList ->
+                        currentList.map { currentItem ->
+                            if (currentItem.word == wordStr) {
+                                // 사용자가 그 사이 isOpen을 true로 바꿨더라도 currentItem에는 반영되어 있음
+                                currentItem.copy(
+                                    wordSoundUri = soundUri,
+                                    writeGifUri = writeGif
+                                )
+                            } else {
+                                currentItem
+                            }
+                        }
                     }
                 }
             }

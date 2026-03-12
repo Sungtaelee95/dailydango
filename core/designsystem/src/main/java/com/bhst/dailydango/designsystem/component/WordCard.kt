@@ -1,7 +1,9 @@
 package com.bhst.dailydango.designsystem.component
 
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,19 +13,27 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import coil.ImageLoader
+import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
+import coil.decode.ImageDecoderDecoder
+import coil.request.ImageRequest
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.word.WordContentState
@@ -72,9 +82,10 @@ fun WordCardBottom(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = MaterialTheme.colorScheme.surfaceVariant)
+            .background(color = MaterialTheme.colorScheme.primaryFixedDim)
             .padding(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         if (wordContentState.tip.isNotEmpty()) {
             Text(
@@ -87,8 +98,14 @@ fun WordCardBottom(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(1.dp)
+                    .background(MaterialTheme.colorScheme.surfaceContainer)
             )
-            Spacer(modifier = Modifier.height(20.dp))
+            Text(
+                text = wordContentState.tip,
+                style = DailyDangoTheme.typography.medium16,
+                color = MaterialTheme.colorScheme.surfaceContainer,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
         Text(
             text = stringResource(R.string.writing_detail),
@@ -100,21 +117,24 @@ fun WordCardBottom(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(1.dp)
+                .background(MaterialTheme.colorScheme.surfaceContainer)
         )
         SubcomposeAsyncImage(
-            model = wordContentState.wordSoundUri,
+            model = wordContentState.writeGifUri,
             contentDescription = "Image",
-            modifier = Modifier.size(240.dp),
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
             loading = {
-                // 이미지를 로딩하는 동안 보여줄 화면
                 Box(contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
                 }
             },
             error = {
-                // 로딩 실패 또는 model(uri)이 null일 때 보여줄 화면(Fallback 역할 포함)
                 Box(contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
+                    Log.d("lstlst", "gif 오류")
                 }
             }
         )

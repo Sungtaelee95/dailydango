@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
@@ -149,13 +150,13 @@ fun TipsScreen(
                     ) {
                         Text(
                             text = tip.title,
-                            style = DailyDangoTheme.typography.bold20,
+                            style = DailyDangoTheme.typography.bold16,
                             color = MaterialTheme.colorScheme.primaryFixed
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = tip.content,
-                            style = DailyDangoTheme.typography.medium16,
+                            style = DailyDangoTheme.typography.medium14,
                             color = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -166,12 +167,12 @@ fun TipsScreen(
             onClick = navigateTo,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(60.dp),
+                .wrapContentHeight(),
             shape = RoundedCornerShape(30.dp)
         ) {
             Text(
                 text = stringResource(R.string.study_start),
-                style = DailyDangoTheme.typography.bold32,
+                style = DailyDangoTheme.typography.bold24,
                 color = MaterialTheme.colorScheme.inverseSurface
             )
         }

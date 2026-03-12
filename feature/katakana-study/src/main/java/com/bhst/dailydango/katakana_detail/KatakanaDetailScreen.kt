@@ -8,14 +8,19 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -85,6 +90,7 @@ fun KatakanaDetailContent(
     updateContent: (WordContentState) -> Unit = {}
 ) {
     val listState = rememberLazyListState()
+    val scrollState = rememberScrollState()
 
     LaunchedEffect(selectedRow) {
         val index = tabList.indexOf(selectedRow)
@@ -136,18 +142,23 @@ fun KatakanaDetailContent(
         }
 
         // 2. 선택된 행의 글자들을 보여주는 리스트 (LazyColumn)
-        LazyColumn(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 20.dp, vertical = 16.dp),
+                .padding(start = 24.dp, end = 24.dp, top = 12.dp, bottom = 12.dp)
+                .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(wordState) { item ->
+            // itemsIndexed 대신 일반 forEachIndexed 사용
+            wordState.forEachIndexed { index, item ->
                 WordCard(
                     wordContentState = item,
                     speakerClick = playAudio,
                     updateContent = updateContent
                 )
+                if (index == wordState.lastIndex) {
+                    Spacer(modifier = Modifier.height(4.dp))
+                }
             }
         }
     }

@@ -70,4 +70,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit.v115)
     androidTestImplementation(libs.androidx.espresso.core.v351)
     implementation(libs.play.services.ads)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
 }
