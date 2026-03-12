@@ -94,7 +94,7 @@ fun FavoriteContentCardBottom(
                     modifier = Modifier
                         .width(84.dp)
                         .height(28.dp),
-                    style = DailyDangoTheme.typography.medium16
+                    style = DailyDangoTheme.typography.medium14
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
@@ -102,7 +102,7 @@ fun FavoriteContentCardBottom(
                     modifier = Modifier
                         .weight(1f),
                     textAlign = TextAlign.Start,
-                    style = DailyDangoTheme.typography.medium16,
+                    style = DailyDangoTheme.typography.medium14,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -129,7 +129,7 @@ fun FavoriteContentCardBottom(
                     modifier = Modifier
                         .weight(1f),
                     textAlign = TextAlign.Start,
-                    style = DailyDangoTheme.typography.medium16,
+                    style = DailyDangoTheme.typography.medium14,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -161,17 +161,17 @@ fun FavoriteContentCardBottom(
                 ) {
                     Text(
                         text = contentState.exampleForJapanese1,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKoreanSound1,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKorean1,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                 }
@@ -204,17 +204,17 @@ fun FavoriteContentCardBottom(
                 ) {
                     Text(
                         text = contentState.exampleForJapanese2,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKoreanSound2,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKorean2,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                 }
@@ -247,17 +247,17 @@ fun FavoriteContentCardBottom(
                 ) {
                     Text(
                         text = contentState.exampleForJapanese3,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKoreanSound3,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKorean3,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                 }
@@ -291,17 +291,17 @@ fun FavoriteContentCardBottom(
                 ) {
                     Text(
                         text = contentState.exampleForJapanese4,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKoreanSound4,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKorean4,
-                        style = DailyDangoTheme.typography.medium16,
+                        style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                 }
@@ -367,17 +367,17 @@ fun FavoriteContentCardTop(
             ) {
                 Text(
                     text = contentState.titleHanja,
-                    style = DailyDangoTheme.typography.bold20,
+                    style = DailyDangoTheme.typography.bold16,
                     color = MaterialTheme.colorScheme.primaryFixed
                 )
                 Text(
                     text = contentState.japaneseTitle,
-                    style = DailyDangoTheme.typography.medium16,
+                    style = DailyDangoTheme.typography.medium14,
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
-                    style = DailyDangoTheme.typography.medium16,
+                    style = DailyDangoTheme.typography.medium14,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -419,12 +419,12 @@ fun FavoriteContentCardTop(
             ) {
                 Text(
                     text = contentState.japaneseTitle,
-                    style = DailyDangoTheme.typography.bold20,
+                    style = DailyDangoTheme.typography.bold16,
                     color = MaterialTheme.colorScheme.primaryFixed
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
-                    style = DailyDangoTheme.typography.medium16,
+                    style = DailyDangoTheme.typography.medium14,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }

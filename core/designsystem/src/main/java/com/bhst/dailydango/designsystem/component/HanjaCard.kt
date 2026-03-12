@@ -60,7 +60,7 @@ fun HanjaCard(
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "${hanjaContent.koreanMeaning} ${hanjaContent.koreanSound}",
-                    style = DailyDangoTheme.typography.bold20,
+                    style = DailyDangoTheme.typography.bold16,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -140,7 +140,7 @@ fun InfoRow(label: String, value: String) {
         ) {
             Text(
                 text = label,
-                style = DailyDangoTheme.typography.medium16,
+                style = DailyDangoTheme.typography.medium14,
                 color = MaterialTheme.colorScheme.onBackground,
             )
         }
@@ -148,7 +148,7 @@ fun InfoRow(label: String, value: String) {
         // 상세 정보 값
         Text(
             text = value,
-            style = DailyDangoTheme.typography.medium16,
+            style = DailyDangoTheme.typography.medium14,
             color = MaterialTheme.colorScheme.onBackground
         )
     }

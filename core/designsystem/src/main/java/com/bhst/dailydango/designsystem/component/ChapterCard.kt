@@ -102,7 +102,7 @@ fun ChapterCard(
                     ) {
                         Text(
                             text = chapter.title + stringResource(R.string.chapter),
-                            style = DailyDangoTheme.typography.bold20,
+                            style = DailyDangoTheme.typography.bold16,
                             color = MaterialTheme.colorScheme.onBackground
                         )
                         TextChip(
@@ -125,12 +125,12 @@ fun ChapterCard(
                         ) {
                             Text(
                                 text = chapter.subTitle,
-                                style = DailyDangoTheme.typography.medium18,
+                                style = DailyDangoTheme.typography.medium14,
                                 color = MaterialTheme.colorScheme.onBackground
                             )
                             Text(
                                 text = chapter.subTitleForKorean,
-                                style = DailyDangoTheme.typography.medium16,
+                                style = DailyDangoTheme.typography.medium12,
                                 color = MaterialTheme.colorScheme.onBackground
                             )
                         }

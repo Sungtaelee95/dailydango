@@ -91,7 +91,7 @@ fun HiraganaKatakanaTipContent(
                 Spacer(modifier = Modifier.width(20.dp))
                 Text(
                     text = title,
-                    style = if (isSelected) DailyDangoTheme.typography.bold20 else DailyDangoTheme.typography.light20,
+                    style = if (isSelected) DailyDangoTheme.typography.bold16 else DailyDangoTheme.typography.light16,
                     color = if (isSelected) MaterialTheme.colorScheme.primaryFixed else MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.clickable(
                         interactionSource = remember { MutableInteractionSource() },
@@ -172,7 +172,7 @@ fun TipsScreen(
         ) {
             Text(
                 text = stringResource(R.string.study_start),
-                style = DailyDangoTheme.typography.bold24,
+                style = DailyDangoTheme.typography.bold20,
                 color = MaterialTheme.colorScheme.inverseSurface
             )
         }

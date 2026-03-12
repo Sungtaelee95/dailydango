@@ -76,7 +76,7 @@ fun ThemeContent(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp),
+                .padding(start = 28.dp, end = 28.dp),
         ) {
 
             Spacer(modifier = Modifier.height(8.dp))

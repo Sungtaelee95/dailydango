@@ -95,7 +95,7 @@ fun PlaySpeedContent(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(28.dp),
+                .padding(start = 28.dp, end = 28.dp, top = 12.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             SpeedControlCard(

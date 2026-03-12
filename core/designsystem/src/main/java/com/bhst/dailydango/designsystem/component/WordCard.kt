@@ -90,7 +90,7 @@ fun WordCardBottom(
         if (wordContentState.tip.isNotEmpty()) {
             Text(
                 text = stringResource(R.string.tip),
-                style = DailyDangoTheme.typography.bold20,
+                style = DailyDangoTheme.typography.bold16,
                 color = MaterialTheme.colorScheme.surfaceContainer,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -102,14 +102,14 @@ fun WordCardBottom(
             )
             Text(
                 text = wordContentState.tip,
-                style = DailyDangoTheme.typography.medium16,
+                style = DailyDangoTheme.typography.medium14,
                 color = MaterialTheme.colorScheme.surfaceContainer,
                 modifier = Modifier.fillMaxWidth()
             )
         }
         Text(
             text = stringResource(R.string.writing_detail),
-            style = DailyDangoTheme.typography.bold20,
+            style = DailyDangoTheme.typography.bold16,
             color = MaterialTheme.colorScheme.surfaceContainer,
             modifier = Modifier.fillMaxWidth()
         )
@@ -196,12 +196,12 @@ fun WordCardTop(
         ) {
             Text(
                 text = wordContentState.word,
-                style = DailyDangoTheme.typography.bold20,
+                style = DailyDangoTheme.typography.bold16,
                 color = MaterialTheme.colorScheme.primaryFixed
             )
             Text(
                 text = wordContentState.wordSound,
-                style = DailyDangoTheme.typography.medium16,
+                style = DailyDangoTheme.typography.medium14,
                 color = MaterialTheme.colorScheme.onBackground
             )
         }

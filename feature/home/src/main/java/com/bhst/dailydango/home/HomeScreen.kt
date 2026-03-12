@@ -201,7 +201,7 @@ fun JapaneseStudyContent(
                 ) {
                     Text(
                         text = title,
-                        style = DailyDangoTheme.typography.bold24,
+                        style = DailyDangoTheme.typography.bold20,
                         color = MaterialTheme.colorScheme.inverseSurface,
                         lineHeight = 32.sp
                     )

@@ -76,7 +76,7 @@ fun KatakanaStudyContent(
                     Text(
                         text = title,
                         color = if (isSelected) MaterialTheme.colorScheme.primaryFixed else MaterialTheme.colorScheme.onSurface,
-                        style = if (isSelected) DailyDangoTheme.typography.bold20 else DailyDangoTheme.typography.light20,
+                        style = if (isSelected) DailyDangoTheme.typography.bold16 else DailyDangoTheme.typography.light16,
                         modifier = Modifier.clickable(
                             interactionSource = interactionSource,
                             indication = null
