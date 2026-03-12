@@ -32,7 +32,7 @@ class BasicSelectChapterViewModel @Inject constructor(
             when (val result = chapterUseCase()) {
                 is ChapterResult.Success -> {
                     val chapters = result.data
-                    _uiState.emit(chapters.sortedBy { it.title })
+                    _uiState.emit(chapters.sortedBy { it.title.toIntOrNull() })
                 }
                 is ChapterResult.Error -> {
                     messageManager.sendMessage(context.getString(R.string.server_error_message))
