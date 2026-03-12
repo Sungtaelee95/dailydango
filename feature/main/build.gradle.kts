@@ -32,6 +32,11 @@ dependencies {
     implementation(projects.feature.search)
     implementation(projects.feature.hiraganaKatakanaTipApi)
     implementation(projects.feature.hiraganaKatakanaTip)
+    implementation(projects.feature.hanjaDetailApi)
+    implementation(projects.feature.hanjaDetail)
+}
+
+dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

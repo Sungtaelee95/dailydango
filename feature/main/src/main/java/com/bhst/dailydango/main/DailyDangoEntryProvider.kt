@@ -12,6 +12,7 @@ import com.bhst.dailydango.entry.homeEntries
 import com.bhst.dailydango.entry.katakanaStudyEntries
 import com.bhst.dailydango.entry.levelTestEntries
 import com.bhst.dailydango.entry.menuEntries
+import com.bhst.dailydango.hanja_detail.entry.hanjaDetailEntries
 import com.bhst.dailydango.hiragana_katakana_tip.entry.hiraganaKatakanaTipEntry
 import com.bhst.dailydango.hiragana_katakana_tip_api.HiraganaKatakanaTipRoute
 import com.bhst.dailydango.hiragana_study_api.HiraganaDetailRoute
@@ -25,6 +26,7 @@ import com.bhst.dailydango.menu_api.ThemeRoute
 import com.bhst.dailydango.route_api.Route
 import com.bhst.dailydango.search.entry.searchEntries
 import com.bhst.dailydango.search_api.SearchRoute
+import com.bhst.hanja_detail_api.HanjaDetailRoute
 
 fun dailyDangoEntryProvider(
     navigateTo: (Route) -> Unit,
@@ -55,11 +57,13 @@ fun dailyDangoEntryProvider(
     basicExpressionsEntries(
         navigateToChapter = { chapter -> navigateTo(ChapterTipRoute(chapter)) },
         navigateToSentenceStudy = { chapter -> navigateTo(SentenceStudyRoute(chapter)) },
-        navigateToWordStudy = { chapter -> navigateTo(WordStudyRoute(chapter)) }
+        navigateToWordStudy = { chapter -> navigateTo(WordStudyRoute(chapter)) },
+        navigateToHanjaDetail = { hanjas -> navigateTo(HanjaDetailRoute(hanjas)) }
     )
     levelTestEntries()
     hiraganaKatakanaTipEntry(
         navigateToHiraganaStudy = { navigateTo(HiraganaStudyRoute) },
         navigateToKatakanaStudy = { navigateTo(KatakanaStudyRoute) }
     )
+    hanjaDetailEntries()
 }

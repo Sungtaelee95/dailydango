@@ -11,6 +11,7 @@ extensions.configure<com.android.build.api.dsl.LibraryExtension> {
 
 dependencies {
     implementation(projects.core.model)
+    implementation(projects.core.util)
 
     implementation(libs.androidx.appcompat)
 

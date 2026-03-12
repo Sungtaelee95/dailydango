@@ -1,8 +1,10 @@
 package com.bhst.dailydango.designsystem.component
 
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,12 +30,14 @@ import androidx.compose.ui.unit.dp
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.content.ContentState
+import com.bhst.dailydango.util.filterHanja
 
 @Composable
 fun ContentCard(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
     updateContent: (ContentState) -> Unit = {},
+    navigateToHanjaDetail: (List<String>) -> Unit = {}
 ) {
     Surface(
         shape = RoundedCornerShape(20.dp),
@@ -52,7 +56,8 @@ fun ContentCard(
             ContentCardTop(
                 contentState = contentState,
                 speakerClick = speakerClick,
-                bookmarkClick = updateContent
+                bookmarkClick = updateContent,
+                hanjaClick = navigateToHanjaDetail
             )
             ContentCardMid(
                 contentState = contentState,
@@ -61,7 +66,8 @@ fun ContentCard(
             if (contentState.isOpen) {
                 ContentCardBottom(
                     contentState = contentState,
-                    speakerClick = speakerClick
+                    speakerClick = speakerClick,
+                    hanjaClick = navigateToHanjaDetail
                 )
             }
         }
@@ -71,7 +77,8 @@ fun ContentCard(
 @Composable
 fun ContentCardBottom(
     contentState: ContentState,
-    speakerClick: (Uri?) -> Unit = {}
+    speakerClick: (Uri?) -> Unit = {},
+    hanjaClick: (List<String>) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -163,7 +170,14 @@ fun ContentCardBottom(
                     Text(
                         text = contentState.exampleForJapanese1,
                         style = DailyDangoTheme.typography.medium16,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.clickable(
+                            onClick = {
+                                if (contentState.exampleForJapanese1.filterHanja().isNotEmpty()) {
+                                    hanjaClick(contentState.exampleForJapanese1.filterHanja())
+                                }
+                            }
+                        )
                     )
                     Text(
                         text = contentState.explanationForKoreanSound1,
@@ -206,7 +220,14 @@ fun ContentCardBottom(
                     Text(
                         text = contentState.exampleForJapanese2,
                         style = DailyDangoTheme.typography.medium16,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.clickable(
+                            onClick = {
+                                if (contentState.exampleForJapanese2.filterHanja().isNotEmpty()) {
+                                    hanjaClick(contentState.exampleForJapanese2.filterHanja())
+                                }
+                            }
+                        )
                     )
                     Text(
                         text = contentState.explanationForKoreanSound2,
@@ -249,7 +270,14 @@ fun ContentCardBottom(
                     Text(
                         text = contentState.exampleForJapanese3,
                         style = DailyDangoTheme.typography.medium16,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.clickable(
+                            onClick = {
+                                if (contentState.exampleForJapanese3.filterHanja().isNotEmpty()) {
+                                    hanjaClick(contentState.exampleForJapanese3.filterHanja())
+                                }
+                            }
+                        )
                     )
                     Text(
                         text = contentState.explanationForKoreanSound3,
@@ -293,7 +321,14 @@ fun ContentCardBottom(
                     Text(
                         text = contentState.exampleForJapanese4,
                         style = DailyDangoTheme.typography.medium16,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.clickable(
+                            onClick = {
+                                if (contentState.exampleForJapanese4.filterHanja().isNotEmpty()) {
+                                    hanjaClick(contentState.exampleForJapanese4.filterHanja())
+                                }
+                            }
+                        )
                     )
                     Text(
                         text = contentState.explanationForKoreanSound4,
@@ -341,7 +376,8 @@ fun ContentCardMid(
 fun ContentCardTop(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
-    bookmarkClick: (ContentState) -> Unit = {}
+    bookmarkClick: (ContentState) -> Unit = {},
+    hanjaClick: (List<String>) -> Unit = {}
 ) {
     if (contentState.titleHanja.isNotEmpty()) {
         Row(
@@ -369,12 +405,26 @@ fun ContentCardTop(
                 Text(
                     text = contentState.titleHanja,
                     style = DailyDangoTheme.typography.bold20,
-                    color = MaterialTheme.colorScheme.secondaryFixedDim
+                    color = MaterialTheme.colorScheme.secondaryFixedDim,
+                    modifier = Modifier.clickable(
+                        onClick = {
+                            if (contentState.titleHanja.filterHanja().isNotEmpty()) {
+                                hanjaClick(contentState.titleHanja.filterHanja())
+                            }
+                        }
+                    )
                 )
                 Text(
                     text = contentState.japaneseTitle,
                     style = DailyDangoTheme.typography.medium16,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.clickable(
+                        onClick = {
+                            if (contentState.japaneseTitle.filterHanja().isNotEmpty()) {
+                                hanjaClick(contentState.japaneseTitle.filterHanja())
+                            }
+                        }
+                    )
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
@@ -421,7 +471,14 @@ fun ContentCardTop(
                 Text(
                     text = contentState.japaneseTitle,
                     style = DailyDangoTheme.typography.bold20,
-                    color = MaterialTheme.colorScheme.secondaryFixedDim
+                    color = MaterialTheme.colorScheme.secondaryFixedDim,
+                    modifier = Modifier.clickable(
+                        onClick = {
+                            if (contentState.japaneseTitle.filterHanja().isNotEmpty()) {
+                                hanjaClick(contentState.titleHanja.filterHanja())
+                            }
+                        }
+                    )
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,

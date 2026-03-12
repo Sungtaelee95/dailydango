@@ -34,6 +34,7 @@ import com.bhst.dailydango.model.content.ContentState
 @Composable
 fun SentenceStudyScreen(
     chapter: Int,
+    navigateToHanjaDetail: (List<String>) -> Unit = {},
     viewModel: SentenceStudyViewModel = hiltViewModel()
 ) {
     val contents by viewModel.uiState.collectAsStateWithLifecycle()
@@ -49,6 +50,7 @@ fun SentenceStudyScreen(
         contents = contents,
         updateSentenceContent = viewModel::updateSentenceContent,
         playAudio = viewModel::soundPlayForContent,
+        navigateToHanjaDetail = navigateToHanjaDetail,
         chapter = chapter
     )
 }
@@ -58,6 +60,7 @@ fun SentenceStudyContent(
     contents: List<ContentState> = emptyList(),
     updateSentenceContent: (ContentState) -> Unit = {},
     playAudio: (Uri?) -> Unit = {},
+    navigateToHanjaDetail: (List<String>) -> Unit = {},
     chapter: Int = 1
 ) {
     Column {
@@ -91,7 +94,8 @@ fun SentenceStudyContent(
                 ContentCard(
                     contentState = content,
                     updateContent = updateSentenceContent,
-                    speakerClick = playAudio
+                    speakerClick = playAudio,
+                    navigateToHanjaDetail = navigateToHanjaDetail
                 )
                 if (index == contents.lastIndex) Spacer(modifier = Modifier.height(8.dp))
             }

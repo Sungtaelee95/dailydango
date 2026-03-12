@@ -40,7 +40,7 @@ fun TextChip(
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .defaultMinSize(minHeight = 20.dp)
+                .defaultMinSize(minHeight = 16.dp)
                 .padding(horizontal = 12.dp, vertical = 2.dp),
         ) {
             Text(

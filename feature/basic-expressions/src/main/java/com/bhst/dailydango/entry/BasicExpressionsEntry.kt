@@ -16,7 +16,8 @@ import com.bhst.dailydango.route_api.Route
 fun EntryProviderScope<Route>.basicExpressionsEntries(
     navigateToChapter: (Int) -> Unit,
     navigateToSentenceStudy: (Int) -> Unit,
-    navigateToWordStudy: (Int) -> Unit
+    navigateToWordStudy: (Int) -> Unit,
+    navigateToHanjaDetail: (List<String>) -> Unit
 ) {
     entry<BasicExpressionsRoute> {
         val adaptiveInfo = currentWindowAdaptiveInfo()
@@ -34,7 +35,7 @@ fun EntryProviderScope<Route>.basicExpressionsEntries(
             // 3. 그 외 (600dp 미만) -> COMPACT (일반 스마트폰 세로 모드)
             else -> {
                 BasicExpressionsScreen(
-                    navigateToChapter = navigateToChapter
+                    navigateToChapter = navigateToChapter,
                 )
             }
         }
@@ -78,7 +79,10 @@ fun EntryProviderScope<Route>.basicExpressionsEntries(
             }
             // 3. 그 외 (600dp 미만) -> COMPACT (일반 스마트폰 세로 모드)
             else -> {
-                SentenceStudyScreen(chapter = it.chapter)
+                SentenceStudyScreen(
+                    chapter = it.chapter,
+                    navigateToHanjaDetail = navigateToHanjaDetail
+                )
             }
         }
     }
@@ -98,7 +102,10 @@ fun EntryProviderScope<Route>.basicExpressionsEntries(
             }
             // 3. 그 외 (600dp 미만) -> COMPACT (일반 스마트폰 세로 모드)
             else -> {
-                WordStudyScreen(chapter = it.chapter)
+                WordStudyScreen(
+                    chapter = it.chapter,
+                    navigateToHanjaDetail = navigateToHanjaDetail
+                )
             }
         }
     }
