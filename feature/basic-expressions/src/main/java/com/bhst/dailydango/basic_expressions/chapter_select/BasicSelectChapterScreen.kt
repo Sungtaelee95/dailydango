@@ -1,9 +1,12 @@
 package com.bhst.dailydango.basic_expressions.chapter_select
 
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -38,15 +41,17 @@ fun BasicExpressionsContent(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(12.dp)
+            .padding(start = 12.dp, end = 12.dp)
     ) {
-        items(chapters) { chapter ->
+        itemsIndexed(chapters) { index, chapter ->
+            if (index == 0) Spacer(modifier = Modifier.height(4.dp))
             ChapterCard(
                 chapter = chapter,
                 onClick = {
                     navigateToChapter(chapter.title.toInt())
                 }
             )
+            if (index == chapters.lastIndex) Spacer(modifier = Modifier.height(4.dp))
         }
     }
 }

@@ -84,7 +84,7 @@ fun SentenceStudyContent(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = 28.dp, end = 28.dp, top = 12.dp),
+                .padding(start = 28.dp, end = 28.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             itemsIndexed(
