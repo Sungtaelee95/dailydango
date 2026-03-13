@@ -88,7 +88,7 @@ fun SearchContent(
             modifier = Modifier
                 .weight(1f)
                 .padding(top = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             itemsIndexed(filterContents) { index, content ->
                 SearchContentCard(

@@ -87,9 +87,7 @@ fun WordStudyContent(
                 .padding(start = 28.dp, end = 28.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            itemsIndexed(
-                contents,
-                key = { _, content -> content.japaneseTitle }) { index, content ->
+            itemsIndexed(contents) { index, content ->
                 if (index == 0) Spacer(modifier = Modifier.height(4.dp))
                 ContentCard(
                     contentState = content,
