@@ -3,6 +3,8 @@ package com.bhst.dailydango.designsystem.component
 import android.net.Uri
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
@@ -26,13 +29,14 @@ import androidx.compose.ui.unit.dp
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.content.ContentState
+import com.bhst.dailydango.util.filterHanja
 
 @Composable
 fun FavoriteContentCard(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
-    updateSentenceContent: (ContentState) -> Unit = {},
-    deleteFavoriteContent: (ContentState) -> Unit = {},
+    updateContent: (ContentState) -> Unit = {},
+    navigateToHanjaDetail: (List<String>) -> Unit = {}
 ) {
     Surface(
         shape = RoundedCornerShape(20.dp),
@@ -51,16 +55,18 @@ fun FavoriteContentCard(
             FavoriteContentCardTop(
                 contentState = contentState,
                 speakerClick = speakerClick,
-                bookmarkClick = deleteFavoriteContent
+                bookmarkClick = updateContent,
+                navigateToHanjaDetail = navigateToHanjaDetail
             )
             FavoriteContentCardMid(
                 contentState = contentState,
-                isOpenChanged = updateSentenceContent
+                isOpenChanged = updateContent
             )
             if (contentState.isOpen) {
                 FavoriteContentCardBottom(
                     contentState = contentState,
-                    speakerClick = speakerClick
+                    speakerClick = speakerClick,
+                    navigateToHanjaDetail = navigateToHanjaDetail
                 )
             }
         }
@@ -70,7 +76,8 @@ fun FavoriteContentCard(
 @Composable
 fun FavoriteContentCardBottom(
     contentState: ContentState,
-    speakerClick: (Uri?) -> Unit = {}
+    speakerClick: (Uri?) -> Unit = {},
+    navigateToHanjaDetail: (List<String>) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -149,7 +156,7 @@ fun FavoriteContentCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(28.dp),
+                        .size(20.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -162,7 +169,16 @@ fun FavoriteContentCardBottom(
                     Text(
                         text = contentState.exampleForJapanese1,
                         style = DailyDangoTheme.typography.medium14,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                            onClick = {
+                                if (contentState.exampleForJapanese1.filterHanja().isNotEmpty()) {
+                                    navigateToHanjaDetail(contentState.exampleForJapanese1.filterHanja())
+                                }
+                            }
+                        )
                     )
                     Text(
                         text = contentState.explanationForKoreanSound1,
@@ -192,7 +208,7 @@ fun FavoriteContentCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(28.dp),
+                        .size(20.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -205,7 +221,16 @@ fun FavoriteContentCardBottom(
                     Text(
                         text = contentState.exampleForJapanese2,
                         style = DailyDangoTheme.typography.medium14,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                            onClick = {
+                                if (contentState.exampleForJapanese2.filterHanja().isNotEmpty()) {
+                                    navigateToHanjaDetail(contentState.exampleForJapanese2.filterHanja())
+                                }
+                            }
+                        )
                     )
                     Text(
                         text = contentState.explanationForKoreanSound2,
@@ -248,7 +273,16 @@ fun FavoriteContentCardBottom(
                     Text(
                         text = contentState.exampleForJapanese3,
                         style = DailyDangoTheme.typography.medium14,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                            onClick = {
+                                if (contentState.exampleForJapanese3.filterHanja().isNotEmpty()) {
+                                    navigateToHanjaDetail(contentState.exampleForJapanese3.filterHanja())
+                                }
+                            }
+                        )
                     )
                     Text(
                         text = contentState.explanationForKoreanSound3,
@@ -279,7 +313,7 @@ fun FavoriteContentCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(28.dp),
+                        .size(20.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri4) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -292,7 +326,16 @@ fun FavoriteContentCardBottom(
                     Text(
                         text = contentState.exampleForJapanese4,
                         style = DailyDangoTheme.typography.medium14,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                            onClick = {
+                                if (contentState.exampleForJapanese4.filterHanja().isNotEmpty()) {
+                                    navigateToHanjaDetail(contentState.exampleForJapanese4.filterHanja())
+                                }
+                            }
+                        )
                     )
                     Text(
                         text = contentState.explanationForKoreanSound4,
@@ -340,7 +383,8 @@ fun FavoriteContentCardMid(
 fun FavoriteContentCardTop(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
-    bookmarkClick: (ContentState) -> Unit = {}
+    bookmarkClick: (ContentState) -> Unit = {},
+    navigateToHanjaDetail: (List<String>) -> Unit = {}
 ) {
     if (contentState.titleHanja.isNotEmpty()) {
         Row(
@@ -355,7 +399,7 @@ fun FavoriteContentCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(28.dp),
+                    .size(20.dp),
                 onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
                 filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
@@ -368,12 +412,30 @@ fun FavoriteContentCardTop(
                 Text(
                     text = contentState.titleHanja,
                     style = DailyDangoTheme.typography.bold16,
-                    color = MaterialTheme.colorScheme.primaryFixed
+                    color = MaterialTheme.colorScheme.primaryFixed,
+                    modifier = Modifier.clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                        onClick = {
+                            if (contentState.titleHanja.filterHanja().isNotEmpty()) {
+                                navigateToHanjaDetail(contentState.titleHanja.filterHanja())
+                            }
+                        }
+                    )
                 )
                 Text(
                     text = contentState.japaneseTitle,
                     style = DailyDangoTheme.typography.medium14,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                        onClick = {
+                            if (contentState.japaneseTitle.filterHanja().isNotEmpty()) {
+                                navigateToHanjaDetail(contentState.japaneseTitle.filterHanja())
+                            }
+                        }
+                    )
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
@@ -389,7 +451,7 @@ fun FavoriteContentCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(28.dp),
+                    .size(20.dp),
                 onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
                 filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
             )
@@ -407,7 +469,7 @@ fun FavoriteContentCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(28.dp),
+                    .size(20.dp),
                 onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
                 filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
@@ -420,7 +482,16 @@ fun FavoriteContentCardTop(
                 Text(
                     text = contentState.japaneseTitle,
                     style = DailyDangoTheme.typography.bold16,
-                    color = MaterialTheme.colorScheme.primaryFixed
+                    color = MaterialTheme.colorScheme.primaryFixed,
+                    modifier = Modifier.clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                        onClick = {
+                            if (contentState.japaneseTitle.filterHanja().isNotEmpty()) {
+                                navigateToHanjaDetail(contentState.japaneseTitle.filterHanja())
+                            }
+                        }
+                    )
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
@@ -436,7 +507,7 @@ fun FavoriteContentCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(28.dp),
+                    .size(20.dp),
                 onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
                 filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
             )

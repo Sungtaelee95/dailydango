@@ -1,7 +1,6 @@
 package com.bhst.dailydango.designsystem.component
 
 import android.net.Uri
-import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,9 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
@@ -35,7 +32,7 @@ import com.bhst.dailydango.model.content.ContentState
 import com.bhst.dailydango.util.filterHanja
 
 @Composable
-fun ContentCard(
+fun SearchContentCard(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
     updateContent: (ContentState) -> Unit = {},
@@ -55,21 +52,21 @@ fun ContentCard(
                 ),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            ContentCardTop(
+            SearchContentCardTop(
                 contentState = contentState,
                 speakerClick = speakerClick,
                 bookmarkClick = updateContent,
-                hanjaClick = navigateToHanjaDetail
+                navigateToHanjaDetail = navigateToHanjaDetail
             )
-            ContentCardMid(
+            SearchContentCardMid(
                 contentState = contentState,
                 isOpenChanged = updateContent
             )
             if (contentState.isOpen) {
-                ContentCardBottom(
+                SearchContentCardBottom(
                     contentState = contentState,
                     speakerClick = speakerClick,
-                    hanjaClick = navigateToHanjaDetail
+                    navigateToHanjaDetail = navigateToHanjaDetail
                 )
             }
         }
@@ -77,15 +74,15 @@ fun ContentCard(
 }
 
 @Composable
-fun ContentCardBottom(
+fun SearchContentCardBottom(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
-    hanjaClick: (List<String>) -> Unit = {}
+    navigateToHanjaDetail: (List<String>) -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = MaterialTheme.colorScheme.surfaceVariant)
+            .background(color = MaterialTheme.colorScheme.primaryFixedDim)
             .padding(20.dp)
     ) {
         if (contentState.partOfSpeech.isNotEmpty()) {
@@ -95,11 +92,11 @@ fun ContentCardBottom(
             ) {
                 TextChip(
                     text = contentState.partOfSpeech,
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                    labelColor = MaterialTheme.colorScheme.secondaryFixedDim,
+                    containerColor = MaterialTheme.colorScheme.primaryFixedDim,
+                    labelColor = MaterialTheme.colorScheme.primaryFixed,
                     border = BorderStroke(
                         width = 1.dp,
-                        color = MaterialTheme.colorScheme.secondaryFixedDim,
+                        color = MaterialTheme.colorScheme.primaryFixed,
                     ),
                     modifier = Modifier
                         .width(84.dp)
@@ -124,12 +121,12 @@ fun ContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 TextChip(
-                    text = stringResource(R.string.tip),
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                    labelColor = MaterialTheme.colorScheme.secondaryFixedDim,
+                    text = "TIP",
+                    containerColor = MaterialTheme.colorScheme.primaryFixedDim,
+                    labelColor = MaterialTheme.colorScheme.primaryFixed,
                     border = BorderStroke(
                         width = 1.dp,
-                        color = MaterialTheme.colorScheme.secondaryFixedDim,
+                        color = MaterialTheme.colorScheme.primaryFixed,
                     ),
                     modifier = Modifier.width(84.dp)
                 )
@@ -152,11 +149,7 @@ fun ContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = if (contentState.contentUri.explanationSoundUri1 == null) painterResource(
-                        R.drawable.volume_off_24px
-                    ) else {
-                        painterResource(R.drawable.speaker_24px)
-                    },
+                    painter = painterResource(R.drawable.speaker_24px),
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(20.dp),
@@ -178,7 +171,7 @@ fun ContentCardBottom(
                             indication = null,
                             onClick = {
                                 if (contentState.exampleForJapanese1.filterHanja().isNotEmpty()) {
-                                    hanjaClick(contentState.exampleForJapanese1.filterHanja())
+                                    navigateToHanjaDetail(contentState.exampleForJapanese1.filterHanja())
                                 }
                             }
                         )
@@ -204,11 +197,7 @@ fun ContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = if (contentState.contentUri.explanationSoundUri2 == null) painterResource(
-                        R.drawable.volume_off_24px
-                    ) else {
-                        painterResource(R.drawable.speaker_24px)
-                    },
+                    painter = painterResource(R.drawable.speaker_24px),
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(20.dp),
@@ -230,7 +219,7 @@ fun ContentCardBottom(
                             indication = null,
                             onClick = {
                                 if (contentState.exampleForJapanese2.filterHanja().isNotEmpty()) {
-                                    hanjaClick(contentState.exampleForJapanese2.filterHanja())
+                                    navigateToHanjaDetail(contentState.exampleForJapanese2.filterHanja())
                                 }
                             }
                         )
@@ -256,14 +245,10 @@ fun ContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = if (contentState.contentUri.explanationSoundUri3 == null) painterResource(
-                        R.drawable.volume_off_24px
-                    ) else {
-                        painterResource(R.drawable.speaker_24px)
-                    },
+                    painter = painterResource(R.drawable.speaker_24px),
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(20.dp),
+                        .size(28.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri3) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -282,7 +267,7 @@ fun ContentCardBottom(
                             indication = null,
                             onClick = {
                                 if (contentState.exampleForJapanese3.filterHanja().isNotEmpty()) {
-                                    hanjaClick(contentState.exampleForJapanese3.filterHanja())
+                                    navigateToHanjaDetail(contentState.exampleForJapanese3.filterHanja())
                                 }
                             }
                         )
@@ -309,11 +294,7 @@ fun ContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = if (contentState.contentUri.explanationSoundUri4 == null) painterResource(
-                        R.drawable.volume_off_24px
-                    ) else {
-                        painterResource(R.drawable.speaker_24px)
-                    },
+                    painter = painterResource(R.drawable.speaker_24px),
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(20.dp),
@@ -335,7 +316,7 @@ fun ContentCardBottom(
                             indication = null,
                             onClick = {
                                 if (contentState.exampleForJapanese4.filterHanja().isNotEmpty()) {
-                                    hanjaClick(contentState.exampleForJapanese4.filterHanja())
+                                    navigateToHanjaDetail(contentState.exampleForJapanese4.filterHanja())
                                 }
                             }
                         )
@@ -357,7 +338,7 @@ fun ContentCardBottom(
 }
 
 @Composable
-fun ContentCardMid(
+fun SearchContentCardMid(
     contentState: ContentState,
     isOpenChanged: (ContentState) -> Unit = {}
 ) {
@@ -374,7 +355,7 @@ fun ContentCardMid(
                 painterResource(R.drawable.keyboard_arrow_down_24px)
             },
             modifier = Modifier
-                .size(20.dp),
+                .size(28.dp),
             contentDescription = "Arrow",
             onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) },
             filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
@@ -383,11 +364,11 @@ fun ContentCardMid(
 }
 
 @Composable
-fun ContentCardTop(
+fun SearchContentCardTop(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
     bookmarkClick: (ContentState) -> Unit = {},
-    hanjaClick: (List<String>) -> Unit = {}
+    navigateToHanjaDetail: (List<String>) -> Unit = {}
 ) {
     if (contentState.titleHanja.isNotEmpty()) {
         Row(
@@ -397,9 +378,7 @@ fun ContentCardTop(
             verticalAlignment = Alignment.Top
         ) {
             ImageCard(
-                painter = if (contentState.contentUri.titleSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
-                    painterResource(R.drawable.speaker_24px)
-                },
+                painter = painterResource(R.drawable.speaker_24px),
                 contentDescription = "Speaker",
                 modifier = Modifier
                     .size(20.dp),
@@ -415,13 +394,13 @@ fun ContentCardTop(
                 Text(
                     text = contentState.titleHanja,
                     style = DailyDangoTheme.typography.bold16,
-                    color = MaterialTheme.colorScheme.secondaryFixedDim,
+                    color = MaterialTheme.colorScheme.primaryFixed,
                     modifier = Modifier.clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null,
                         onClick = {
                             if (contentState.titleHanja.filterHanja().isNotEmpty()) {
-                                hanjaClick(contentState.titleHanja.filterHanja())
+                                navigateToHanjaDetail(contentState.titleHanja.filterHanja())
                             }
                         }
                     )
@@ -435,7 +414,7 @@ fun ContentCardTop(
                         indication = null,
                         onClick = {
                             if (contentState.japaneseTitle.filterHanja().isNotEmpty()) {
-                                hanjaClick(contentState.japaneseTitle.filterHanja())
+                                navigateToHanjaDetail(contentState.japaneseTitle.filterHanja())
                             }
                         }
                     )
@@ -467,9 +446,7 @@ fun ContentCardTop(
             verticalAlignment = Alignment.Top
         ) {
             ImageCard(
-                painter = if (contentState.contentUri.titleSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
-                    painterResource(R.drawable.speaker_24px)
-                },
+                painter = painterResource(R.drawable.speaker_24px),
                 contentDescription = "Speaker",
                 modifier = Modifier
                     .size(20.dp),
@@ -485,13 +462,13 @@ fun ContentCardTop(
                 Text(
                     text = contentState.japaneseTitle,
                     style = DailyDangoTheme.typography.bold16,
-                    color = MaterialTheme.colorScheme.secondaryFixedDim,
+                    color = MaterialTheme.colorScheme.primaryFixed,
                     modifier = Modifier.clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null,
                         onClick = {
                             if (contentState.japaneseTitle.filterHanja().isNotEmpty()) {
-                                hanjaClick(contentState.titleHanja.filterHanja())
+                                navigateToHanjaDetail(contentState.japaneseTitle.filterHanja())
                             }
                         }
                     )
@@ -518,16 +495,4 @@ fun ContentCardTop(
     }
 }
 
-@Composable
-@Preview(showBackground = true)
-fun ContentCardPreview() {
-    DailyDangoTheme {
-        ContentCard(
-            contentState = ContentState(
-                isOpen = true,
-                titleToKorean = "또 보자",
-                partOfSpeech = "인사어"
-            )
-        )
-    }
-}
+

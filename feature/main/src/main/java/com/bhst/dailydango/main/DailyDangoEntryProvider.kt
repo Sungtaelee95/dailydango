@@ -41,7 +41,8 @@ fun dailyDangoEntryProvider(
     menuEntries(
         navigateToFavorite = { navigateTo(FavoriteContentsRoute) },
         navigateToTheme = { navigateTo(ThemeRoute) },
-        navigateToPlaySpeed = { navigateTo(PlaySpeedRoute) }
+        navigateToPlaySpeed = { navigateTo(PlaySpeedRoute) },
+        navigateToHanjaDetail = { hanjas -> navigateTo(HanjaDetailRoute(hanjas)) }
     )
     searchEntries()
     hiraganaStudyEntries(

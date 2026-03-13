@@ -16,7 +16,8 @@ import com.bhst.dailydango.theme.ThemeScreen
 fun EntryProviderScope<Route>.menuEntries(
     navigateToFavorite: () -> Unit,
     navigateToTheme: () -> Unit,
-    navigateToPlaySpeed: () -> Unit
+    navigateToPlaySpeed: () -> Unit,
+    navigateToHanjaDetail: (List<String>) -> Unit,
 ) {
     entry<MenuRoute> {
         val adaptiveInfo = currentWindowAdaptiveInfo()
@@ -38,7 +39,6 @@ fun EntryProviderScope<Route>.menuEntries(
                 )
             }
         }
-
     }
     entry<FavoriteContentsRoute> {
         val adaptiveInfo = currentWindowAdaptiveInfo()
@@ -53,7 +53,9 @@ fun EntryProviderScope<Route>.menuEntries(
             }
             // 3. 그 외 (600dp 미만) -> COMPACT (일반 스마트폰 세로 모드)
             else -> {
-                FavoriteContentScreen()
+                FavoriteContentScreen(
+                    navigateToHanjaDetail = navigateToHanjaDetail
+                )
             }
         }
 

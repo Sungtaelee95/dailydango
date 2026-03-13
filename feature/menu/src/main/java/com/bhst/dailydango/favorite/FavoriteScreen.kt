@@ -36,6 +36,7 @@ import com.bhst.dailydango.model.content.ContentState
 
 @Composable
 fun FavoriteContentScreen(
+    navigateToHanjaDetail: (List<String>) -> Unit = {},
     viewModel: FavoriteViewModel = hiltViewModel()
 ) {
     val contents by viewModel.uiState.collectAsStateWithLifecycle()
@@ -51,8 +52,8 @@ fun FavoriteContentScreen(
     FavoriteContentContent(
         contents = contents,
         updateFavoriteContent = viewModel::updateFavoriteContent,
-        deleteFavoriteContent = viewModel::deleteFavoriteContent,
-        playAudio = viewModel::soundPlayForContent
+        playAudio = viewModel::soundPlayForContent,
+        navigateToHanjaDetail = navigateToHanjaDetail
     )
 }
 
@@ -60,8 +61,8 @@ fun FavoriteContentScreen(
 fun FavoriteContentContent(
     contents: List<ContentState> = emptyList(),
     updateFavoriteContent: (ContentState) -> Unit = {},
-    deleteFavoriteContent: (ContentState) -> Unit = {},
     playAudio: (Uri?) -> Unit = {},
+    navigateToHanjaDetail: (List<String>) -> Unit = {}
 ) {
     Column {
         ColorBar(
@@ -100,9 +101,9 @@ fun FavoriteContentContent(
                 if (index == 0) Spacer(modifier = Modifier.height(4.dp))
                 FavoriteContentCard(
                     contentState = content,
-                    updateSentenceContent = updateFavoriteContent,
-                    deleteFavoriteContent = deleteFavoriteContent,
-                    speakerClick = playAudio
+                    updateContent = updateFavoriteContent,
+                    speakerClick = playAudio,
+                    navigateToHanjaDetail = navigateToHanjaDetail
                 )
                 if (index == contents.lastIndex) Spacer(modifier = Modifier.height(8.dp))
             }
