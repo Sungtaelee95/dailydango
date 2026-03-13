@@ -3,8 +3,10 @@ package com.bhst.dailydango.search.screen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -91,12 +93,14 @@ fun SearchContent(
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             itemsIndexed(filterContents) { index, content ->
+                if (index == 0) Spacer(modifier = Modifier.height(4.dp))
                 SearchContentCard(
                     contentState = content,
                     updateContent = updateContent,
                     speakerClick = { playSoundFor(content.titleHanja.ifEmpty { content.japaneseTitle }) },
                     navigateToHanjaDetail = navigateToHanjaDetail
                 )
+                if (index == filterContents.lastIndex) Spacer(modifier = Modifier.height(4.dp))
             }
         }
     }
