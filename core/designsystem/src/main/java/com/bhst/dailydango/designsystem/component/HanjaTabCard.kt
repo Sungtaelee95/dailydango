@@ -27,14 +27,15 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.hanja.HanjaContent
 
 @Composable
-fun HanjaCard(
-    hanjaContent: HanjaContent
+fun HanjaTabCard(
+    hanjaContent: HanjaContent,
+    modifier: Modifier = Modifier
 ) {
     Surface(
         shape = RoundedCornerShape(20.dp),
         color = MaterialTheme.colorScheme.surface,
         shadowElevation = 4.dp,
-        modifier = Modifier
+        modifier = modifier
             .wrapContentSize()
             .padding(16.dp)
     ) {
@@ -56,7 +57,7 @@ fun HanjaCard(
             ) {
                 Text(
                     text = hanjaContent.hanja,
-                    style = DailyDangoTheme.typography.bold60,
+                    style = DailyDangoTheme.typography.bold80,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -105,7 +106,7 @@ fun HanjaCard(
                             modifier = Modifier.fillMaxWidth(),
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
-                            InfoRow(
+                            InfoTabRow(
                                 label = "의미",
                                 value = "${hanjaContent.koreanMeaning} ${hanjaContent.koreanSound}" +
                                         if (hanjaContent.koreanMeaning2.isNotEmpty()) {
@@ -132,7 +133,7 @@ fun HanjaCard(
                                         MaterialTheme.colorScheme.outline
                                     )
                             )
-                            InfoRow(label = "음독", value = hanjaContent.onyomi)
+                            InfoTabRow(label = "음독", value = hanjaContent.onyomi)
                             Spacer(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -141,7 +142,7 @@ fun HanjaCard(
                                         MaterialTheme.colorScheme.outline
                                     )
                             )
-                            InfoRow(label = "훈독", value = hanjaContent.kunyomi)
+                            InfoTabRow(label = "훈독", value = hanjaContent.kunyomi)
                             Spacer(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -150,7 +151,7 @@ fun HanjaCard(
                                         MaterialTheme.colorScheme.outline
                                     )
                             )
-                            InfoRow(label = "부수", value = hanjaContent.radical)
+                            InfoTabRow(label = "부수", value = hanjaContent.radical)
                             Spacer(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -159,7 +160,7 @@ fun HanjaCard(
                                         MaterialTheme.colorScheme.outline
                                     )
                             )
-                            InfoRow(label = "획수", value = "${hanjaContent.strokeCount}획")
+                            InfoTabRow(label = "획수", value = "${hanjaContent.strokeCount}획")
                         }
                     }
                 }
@@ -169,7 +170,7 @@ fun HanjaCard(
 }
 
 @Composable
-fun InfoRow(label: String, value: String) {
+fun InfoTabRow(label: String, value: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -187,7 +188,7 @@ fun InfoRow(label: String, value: String) {
         ) {
             Text(
                 text = label,
-                style = DailyDangoTheme.typography.medium14,
+                style = DailyDangoTheme.typography.medium16,
                 color = MaterialTheme.colorScheme.onBackground,
             )
         }
@@ -195,7 +196,7 @@ fun InfoRow(label: String, value: String) {
         // 상세 정보 값
         Text(
             text = value,
-            style = DailyDangoTheme.typography.medium14,
+            style = DailyDangoTheme.typography.medium16,
             color = MaterialTheme.colorScheme.onBackground
         )
     }
@@ -203,9 +204,9 @@ fun InfoRow(label: String, value: String) {
 
 @Composable
 @Preview(showBackground = true)
-fun HanjaCardPreview() {
+fun HanjaTabCardPreview() {
     DailyDangoTheme {
-        HanjaCard(
+        HanjaTabCard(
             hanjaContent = HanjaContent(
                 hanja = "先",
                 koreanMeaning = "한국어",

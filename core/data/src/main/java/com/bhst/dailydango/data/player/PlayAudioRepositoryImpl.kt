@@ -8,7 +8,6 @@ import androidx.media3.exoplayer.ExoPlayer
 import com.bhst.dailydango.data_source.room.dao.PlaySpeedDao
 import com.bhst.dailydango.domain.repository.player.PlayAudioRepository
 import com.bhst.dailydango.model.play_speed.PlaySpeedEntity
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -41,7 +40,9 @@ class PlayAudioRepositoryImpl @Inject constructor(
     }
 
     override suspend fun setPlaySpeed(speed: Float) {
-        playSpeedDao.updatePlaySpeed(PlaySpeedEntity(speed = speed))
+        withContext(IO) {
+            playSpeedDao.updatePlaySpeed(PlaySpeedEntity(speed = speed))
+        }
     }
 
     override fun getPlaySpeed(): Flow<Float> {
@@ -52,5 +53,6 @@ class PlayAudioRepositoryImpl @Inject constructor(
     override suspend fun release() {
         exoPlayer.stop()
         exoPlayer.clearMediaItems()
+
     }
 }

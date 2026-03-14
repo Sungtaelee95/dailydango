@@ -99,8 +99,7 @@ fun FavoriteContentCardBottom(
                         color = MaterialTheme.colorScheme.primaryFixed,
                     ),
                     modifier = Modifier
-                        .width(84.dp)
-                        .height(28.dp),
+                        .width(72.dp),
                     style = DailyDangoTheme.typography.medium14
                 )
                 Spacer(modifier = Modifier.width(12.dp))
@@ -128,7 +127,8 @@ fun FavoriteContentCardBottom(
                         width = 1.dp,
                         color = MaterialTheme.colorScheme.primaryFixed,
                     ),
-                    modifier = Modifier.width(84.dp)
+                    modifier = Modifier.width(72.dp),
+                    style = DailyDangoTheme.typography.medium14
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(

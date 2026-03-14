@@ -13,13 +13,15 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ColorBar(
     color: Color,
+    modifier: Modifier = Modifier,
+    height: Int = 40,
     content: @Composable () -> Unit,
 ) {
     Surface(
         color = color,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .height(40.dp),
+            .height(height.dp),
         shadowElevation = 4.dp
 
     ) {

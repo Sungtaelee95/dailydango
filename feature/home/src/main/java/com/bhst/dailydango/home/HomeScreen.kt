@@ -240,10 +240,11 @@ fun JapaneseStudyContent(
 
 @Composable
 fun SearchContent(
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    modifier: Modifier = Modifier
 ) {
     DailyDangoElevationCard(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         shape = 24.dp,
         elevation = 8.dp,

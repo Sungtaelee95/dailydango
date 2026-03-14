@@ -9,26 +9,31 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.bhst.dailydango.ad_mob.loadInterstitialAd
+import com.bhst.dailydango.ad_mob.showInterstitialAd
 import com.bhst.dailydango.designsystem.component.DailyDangoTopAppBar
 import com.bhst.dailydango.designsystem.component.TopAppBarNavigationType
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
-import com.bhst.dailydango.domain.usecase.theme.ThemeConfigUseCase
 import com.bhst.dailydango.menu_api.MenuRoute
 import com.bhst.dailydango.model.theme.config.ThemeConfig
 import com.bhst.dailydango.ui.GlobalLoadingDialog
-import com.bhst.dailydango.ui.MessageManager
 import com.bhst.dailydango.ui.GlobalMessageToast
 import com.bhst.dailydango.ui.LoadingDialogManager
+import com.bhst.dailydango.ui.MessageManager
+import com.google.android.gms.ads.interstitial.InterstitialAd
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -52,8 +57,17 @@ class MainActivity : ComponentActivity() {
                 ThemeConfig.SYSTEM,
                 this
             )
+            var interstitialAd by remember { mutableStateOf<InterstitialAd?>(null) }
+            val context = LocalContext.current
 
-            val isDark = when(themeConfig) {
+            // 화면이 켜지자마자 백그라운드에서 조용히 광고를 불러옵니다.
+            LaunchedEffect(Unit) {
+                loadInterstitialAd(context) { loadedAd ->
+                    interstitialAd = loadedAd
+                }
+            }
+
+            val isDark = when (themeConfig) {
                 ThemeConfig.SYSTEM -> isSystemInDarkTheme()
                 ThemeConfig.DARK -> true
                 ThemeConfig.LIGHT -> false
@@ -71,6 +85,9 @@ class MainActivity : ComponentActivity() {
                 }
                 val lastBackStack = appState.backStack.lastOrNull()
                 Scaffold(
+                    bottomBar = {
+                        AdmobBanner()
+                    },
                     topBar = {
                         val type = lastBackStack?.getTopBar() ?: TopAppBarNavigationType.None
                         DailyDangoTopAppBar(
@@ -86,7 +103,18 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(innerPadding),
                         backStack = appState.backStack,
-                        onBack = { appState.onBack() },
+                        onBack = {
+                            appState.onBack()
+                            if (appState.backStack.size == 2) {
+                                showInterstitialAd(
+                                    context = context,
+                                    ad = interstitialAd,
+                                    onAdDismissed = {
+                                        interstitialAd = null
+                                    }
+                                )
+                            }
+                        },
                         entryProvider = entryProvider,
                         entryDecorators = listOf(
                             rememberSaveableStateHolderNavEntryDecorator(),

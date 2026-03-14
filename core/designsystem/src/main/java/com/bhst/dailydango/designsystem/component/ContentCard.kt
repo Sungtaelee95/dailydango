@@ -1,7 +1,6 @@
 package com.bhst.dailydango.designsystem.component
 
 import android.net.Uri
-import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -102,8 +101,7 @@ fun ContentCardBottom(
                         color = MaterialTheme.colorScheme.secondaryFixedDim,
                     ),
                     modifier = Modifier
-                        .width(84.dp)
-                        .height(28.dp),
+                        .width(72.dp),
                     style = DailyDangoTheme.typography.medium14
                 )
                 Spacer(modifier = Modifier.width(12.dp))
@@ -131,7 +129,9 @@ fun ContentCardBottom(
                         width = 1.dp,
                         color = MaterialTheme.colorScheme.secondaryFixedDim,
                     ),
-                    modifier = Modifier.width(84.dp)
+                    modifier = Modifier
+                        .width(72.dp),
+                    style = DailyDangoTheme.typography.medium14
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(

@@ -24,6 +24,7 @@ class HanjaDetailViewModel @Inject constructor(
     fun getHanjaContents(hanjas: List<String>) {
         viewModelScope.launch {
             loadingDialogManager.show()
+            _hanjaContents.update { emptyList() }
             hanjas.forEach { hanja ->
                 when (val result = hanjaUseCase(hanja)) {
                     is HanjaResult.Success -> {

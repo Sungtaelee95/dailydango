@@ -19,6 +19,7 @@ import com.bhst.dailydango.ui.LoadingDialogManager
 import com.bhst.dailydango.ui.MessageManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -33,12 +34,20 @@ class SentenceStudyViewModel @Inject constructor(
     private val soundUriUseCase: SoundUriUseCase,
     private val audioPlayUseCase: AudioPlayUseCase,
     private val setFavoriteUseCase: SetFavoritesContentUseCase,
+    private val favoriteContentsUseCase: FavoritesContentUseCase,
     private val deleteFavoriteUseCase: DeleteFavoritesContentUseCase,
     @param:ApplicationContext private val context: Context
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<List<ContentState>>(emptyList())
     val uiState = _uiState.asStateFlow()
+
+    private var favoriteJob: Job? = null
+
+    override fun onCleared() {
+        super.onCleared()
+        favoriteJob = null
+    }
 
     fun getSentenceContent(chapter: Int) {
         viewModelScope.launch {
@@ -114,6 +123,29 @@ class SentenceStudyViewModel @Inject constructor(
     fun soundPlayRelease() {
         viewModelScope.launch {
             audioPlayUseCase.release()
+        }
+    }
+
+    private fun getFavoriteContents() {
+        favoriteJob?.cancel()
+        favoriteJob = viewModelScope.launch {
+            favoriteContentsUseCase().collect { favoriteList ->
+                // 1. 즐겨찾기 목록을 Set으로 변환하여 O(1) 검색 속도 확보
+                val favoriteTitles = favoriteList.map { it.japaneseTitle }.toSet()
+
+                // 2. 루프 밖에서 update를 한 번만 호출하여 UI 리렌더링 최소화
+                _uiState.update { currentList ->
+                    currentList.map { item ->
+                        val isBookmark = favoriteTitles.contains(item.japaneseTitle)
+                        // 상태가 변경되었을 때만 새 객체를 생성(copy)하여 메모리 낭비 방지
+                        if (item.isBookmark != isBookmark) {
+                            item.copy(isBookmark = isBookmark)
+                        } else {
+                            item
+                        }
+                    }
+                }
+            }
         }
     }
 }

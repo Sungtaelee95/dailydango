@@ -1,6 +1,6 @@
 package com.bhst.dailydango.home
 
-import android.content.Context
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -40,27 +41,9 @@ fun HomeTabScreen(
     navigateToGrammarTest: () -> Unit = {},
     navigateToSearch: () -> Unit = {}
 ) {
-    val context = LocalContext.current
-
-    // 로드된 전면 광고 객체를 담아둘 상태 변수
-    var interstitialAd by remember { mutableStateOf<InterstitialAd?>(null) }
-
-    // 화면이 켜지자마자 백그라운드에서 조용히 광고를 불러옵니다.
-    LaunchedEffect(Unit) {
-        loadInterstitialAd(context) { loadedAd ->
-            interstitialAd = loadedAd
-        }
-    }
     HomeTabContent(
         navigateToHiraganaKatakanaTip = {
-            showInterstitialAd(
-                context = context,
-                ad = interstitialAd,
-                onAdDismissed = {
-                    interstitialAd = null
-                    navigateToHiraganaKatakanaTip()
-                }
-            )
+            navigateToHiraganaKatakanaTip()
         },
         navigateToGrammarStudy = navigateToGrammarStudy,
         navigateToGrammarTest = navigateToGrammarTest,
@@ -76,89 +59,69 @@ fun HomeTabContent(
     navigateToSearch: () -> Unit = {},
 ) {
     val scrollState = rememberScrollState()
-
-
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 20.dp, start = 40.dp, end = 40.dp, bottom = 20.dp)
+            .background(color = MaterialTheme.colorScheme.background)
+            .padding(start = 20.dp, end = 20.dp, bottom = 20.dp, top = 20.dp)
             .verticalScroll(scrollState),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(
-            modifier = Modifier.height(20.dp)
+            modifier = Modifier.height(12.dp)
         )
         SearchContent(
-            onClick = navigateToSearch
+            onClick = navigateToSearch,
+            modifier = Modifier.width(480.dp)
         )
         Spacer(
-            modifier = Modifier.height(40.dp)
+            modifier = Modifier.height(32.dp)
         )
         Column(
             modifier = Modifier
-                .fillMaxWidth(),
+                .width(480.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             Row {
                 Text(
                     text = stringResource(R.string.hiragana_katacana),
-                    style = DailyDangoTheme.typography.bold16
+                    style = DailyDangoTheme.typography.bold16,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     text = stringResource(R.string.study_do_it),
-                    style = DailyDangoTheme.typography.medium16
+                    style = DailyDangoTheme.typography.medium16,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
-            Row(
+            JapaneseStudyContent(
                 modifier = Modifier
-                    .height(160.dp)
                     .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                JapaneseStudyContent(
-                    modifier = Modifier
-                        .width(300.dp)
-                        .height(160.dp),
-                    onClick = navigateToHiraganaKatakanaTip,
-                    title = stringResource(R.string.hiragana),
-                    subtitle = stringResource(R.string.for_study)
-                )
-                JapaneseStudyContent(
-                    modifier = Modifier
-                        .width(300.dp)
-                        .height(160.dp),
-                    onClick = navigateToHiraganaKatakanaTip,
-                    title = stringResource(R.string.katakana),
-                    subtitle = stringResource(R.string.for_study),
-                    painter = painterResource(R.drawable.gatakana_study_img)
-                )
-            }
-            Row(
+                title = stringResource(R.string.hiragana_katakana_study),
+                subtitle = stringResource(R.string.strong_foundation),
+                onClick = navigateToHiraganaKatakanaTip,
+                painter = painterResource(R.drawable.hiragana_katakana_study),
+            )
+
+            JapaneseStudyContent(
                 modifier = Modifier
-                    .height(160.dp)
                     .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                JapaneseStudyContent(
-                    modifier = Modifier
-                        .width(300.dp)
-                        .height(160.dp),
-                    onClick = navigateToGrammarStudy,
-                    title = stringResource(R.string.basic_expressions),
-                    subtitle = stringResource(R.string.for_study),
-                    painter = painterResource(R.drawable.basic_expressions_img)
-                )
-                JapaneseStudyContent(
-                    modifier = Modifier
-                        .width(300.dp)
-                        .height(160.dp),
-                    onClick = navigateToGrammarTest,
-                    title = stringResource(R.string.level),
-                    subtitle = stringResource(R.string.for_test),
-                    painter = painterResource(R.drawable.level_test_img)
-                )
-            }
+                title = stringResource(R.string.learn_basic_expressions),
+                subtitle = stringResource(R.string.with_conversation),
+                leftColor = MaterialTheme.colorScheme.secondary,
+                rightColor = MaterialTheme.colorScheme.onSecondary,
+                onClick = navigateToGrammarStudy,
+                painter = painterResource(R.drawable.basic_expressions_img)
+            )
+
+            JapaneseStudyContent(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                title = stringResource(R.string.take_skill_test),
+                leftColor = MaterialTheme.colorScheme.tertiary,
+                rightColor = MaterialTheme.colorScheme.onTertiary,
+                painter = painterResource(R.drawable.level_test_img)
+            )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

@@ -5,7 +5,9 @@ import com.bhst.dailydango.model.chapter.Chapter
 import com.bhst.dailydango.model.error.FbError
 import com.bhst.dailydango.model.result.ChapterResult
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ChapterRepositoryImpl @Inject constructor(
@@ -13,12 +15,14 @@ class ChapterRepositoryImpl @Inject constructor(
 ) : ChapterRepository {
 
     override suspend fun getChapters(): ChapterResult {
-        return try {
-            val snapshot = fb.collection(COLLECTION_CHAPTERS).get().await()
-            val chapters = snapshot.documents.mapNotNull { it.toObject(Chapter::class.java) }
-            ChapterResult.Success(chapters)
-        } catch (e: Exception) {
-            ChapterResult.Error(FbError.ServerError)
+        return withContext(IO) {
+            try {
+                val snapshot = fb.collection(COLLECTION_CHAPTERS).get().await()
+                val chapters = snapshot.documents.mapNotNull { it.toObject(Chapter::class.java) }
+                ChapterResult.Success(chapters)
+            } catch (e: Exception) {
+                ChapterResult.Error(FbError.ServerError)
+            }
         }
     }
 

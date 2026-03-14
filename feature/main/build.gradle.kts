@@ -3,6 +3,7 @@
 import com.bhst.dailydango.app.setNamespace
 
 plugins {
+    alias(libs.plugins.dailydango.android.library)
     alias(libs.plugins.dailydango.android.feature)
 }
 

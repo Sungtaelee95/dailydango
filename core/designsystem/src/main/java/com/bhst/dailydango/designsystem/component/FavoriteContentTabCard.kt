@@ -32,15 +32,16 @@ import com.bhst.dailydango.model.content.ContentState
 import com.bhst.dailydango.util.filterHanja
 
 @Composable
-fun SearchContentCard(
+fun FavoriteContentTabCard(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
     updateContent: (ContentState) -> Unit = {},
-    navigateToHanjaDetail: (List<String>) -> Unit = {}
+    navigateToHanjaDetail: (List<String>) -> Unit = {},
+    modifier: Modifier = Modifier
 ) {
     Surface(
         shape = RoundedCornerShape(20.dp),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         shadowElevation = 4.dp
     ) {
@@ -52,18 +53,18 @@ fun SearchContentCard(
                 ),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            SearchContentCardTop(
+            FavoriteContentTabCardTop(
                 contentState = contentState,
                 speakerClick = speakerClick,
                 bookmarkClick = updateContent,
                 navigateToHanjaDetail = navigateToHanjaDetail
             )
-            SearchContentCardMid(
+            FavoriteContentTabCardMid(
                 contentState = contentState,
                 isOpenChanged = updateContent
             )
             if (contentState.isOpen) {
-                SearchContentCardBottom(
+                FavoriteContentTabCardBottom(
                     contentState = contentState,
                     speakerClick = speakerClick,
                     navigateToHanjaDetail = navigateToHanjaDetail
@@ -74,7 +75,7 @@ fun SearchContentCard(
 }
 
 @Composable
-fun SearchContentCardBottom(
+fun FavoriteContentTabCardBottom(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
     navigateToHanjaDetail: (List<String>) -> Unit
@@ -99,8 +100,8 @@ fun SearchContentCardBottom(
                         color = MaterialTheme.colorScheme.primaryFixed,
                     ),
                     modifier = Modifier
-                        .width(72.dp),
-                    style = DailyDangoTheme.typography.medium14
+                        .width(80.dp),
+                    style = DailyDangoTheme.typography.medium16
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
@@ -108,7 +109,7 @@ fun SearchContentCardBottom(
                     modifier = Modifier
                         .weight(1f),
                     textAlign = TextAlign.Start,
-                    style = DailyDangoTheme.typography.medium14,
+                    style = DailyDangoTheme.typography.medium16,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -127,8 +128,9 @@ fun SearchContentCardBottom(
                         width = 1.dp,
                         color = MaterialTheme.colorScheme.primaryFixed,
                     ),
-                    modifier = Modifier.width(72.dp),
-                    style = DailyDangoTheme.typography.medium14
+                    modifier = Modifier
+                        .width(80.dp),
+                    style = DailyDangoTheme.typography.medium16
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
@@ -136,7 +138,7 @@ fun SearchContentCardBottom(
                     modifier = Modifier
                         .weight(1f),
                     textAlign = TextAlign.Start,
-                    style = DailyDangoTheme.typography.medium14,
+                    style = DailyDangoTheme.typography.medium16,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -149,10 +151,14 @@ fun SearchContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = painterResource(R.drawable.speaker_24px),
+                    painter = if (contentState.contentUri.explanationSoundUri1 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(20.dp),
+                        .size(24.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -164,7 +170,7 @@ fun SearchContentCardBottom(
                 ) {
                     Text(
                         text = contentState.exampleForJapanese1,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
                             interactionSource = remember { MutableInteractionSource() },
@@ -178,12 +184,12 @@ fun SearchContentCardBottom(
                     )
                     Text(
                         text = contentState.explanationForKoreanSound1,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKorean1,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                 }
@@ -197,10 +203,14 @@ fun SearchContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = painterResource(R.drawable.speaker_24px),
+                    painter = if (contentState.contentUri.explanationSoundUri2 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(20.dp),
+                        .size(24.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -212,7 +222,7 @@ fun SearchContentCardBottom(
                 ) {
                     Text(
                         text = contentState.exampleForJapanese2,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
                             interactionSource = remember { MutableInteractionSource() },
@@ -231,7 +241,7 @@ fun SearchContentCardBottom(
                     )
                     Text(
                         text = contentState.explanationForKorean2,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                 }
@@ -245,10 +255,14 @@ fun SearchContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = painterResource(R.drawable.speaker_24px),
+                    painter = if (contentState.contentUri.explanationSoundUri3 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(28.dp),
+                        .size(24.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri3) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -260,7 +274,7 @@ fun SearchContentCardBottom(
                 ) {
                     Text(
                         text = contentState.exampleForJapanese3,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
                             interactionSource = remember { MutableInteractionSource() },
@@ -274,12 +288,12 @@ fun SearchContentCardBottom(
                     )
                     Text(
                         text = contentState.explanationForKoreanSound3,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKorean3,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                 }
@@ -294,10 +308,14 @@ fun SearchContentCardBottom(
                 verticalAlignment = Alignment.Top
             ) {
                 ImageCard(
-                    painter = painterResource(R.drawable.speaker_24px),
+                    painter = if (contentState.contentUri.explanationSoundUri4 == null) painterResource(
+                        R.drawable.volume_off_24px
+                    ) else {
+                        painterResource(R.drawable.speaker_24px)
+                    },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(20.dp),
+                        .size(24.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri4) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -309,7 +327,7 @@ fun SearchContentCardBottom(
                 ) {
                     Text(
                         text = contentState.exampleForJapanese4,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
                             interactionSource = remember { MutableInteractionSource() },
@@ -323,12 +341,12 @@ fun SearchContentCardBottom(
                     )
                     Text(
                         text = contentState.explanationForKoreanSound4,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
                         text = contentState.explanationForKorean4,
-                        style = DailyDangoTheme.typography.medium14,
+                        style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                 }
@@ -338,7 +356,7 @@ fun SearchContentCardBottom(
 }
 
 @Composable
-fun SearchContentCardMid(
+fun FavoriteContentTabCardMid(
     contentState: ContentState,
     isOpenChanged: (ContentState) -> Unit = {}
 ) {
@@ -364,7 +382,7 @@ fun SearchContentCardMid(
 }
 
 @Composable
-fun SearchContentCardTop(
+fun FavoriteContentTabCardTop(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
     bookmarkClick: (ContentState) -> Unit = {},
@@ -378,10 +396,12 @@ fun SearchContentCardTop(
             verticalAlignment = Alignment.Top
         ) {
             ImageCard(
-                painter = painterResource(R.drawable.speaker_24px),
+                painter = if (contentState.contentUri.titleSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
+                    painterResource(R.drawable.speaker_24px)
+                },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(20.dp),
+                    .size(24.dp),
                 onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
                 filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
@@ -393,7 +413,7 @@ fun SearchContentCardTop(
             ) {
                 Text(
                     text = contentState.titleHanja,
-                    style = DailyDangoTheme.typography.bold16,
+                    style = DailyDangoTheme.typography.bold20,
                     color = MaterialTheme.colorScheme.primaryFixed,
                     modifier = Modifier.clickable(
                         interactionSource = remember { MutableInteractionSource() },
@@ -407,7 +427,7 @@ fun SearchContentCardTop(
                 )
                 Text(
                     text = contentState.japaneseTitle,
-                    style = DailyDangoTheme.typography.medium14,
+                    style = DailyDangoTheme.typography.medium16,
                     color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.clickable(
                         interactionSource = remember { MutableInteractionSource() },
@@ -421,7 +441,7 @@ fun SearchContentCardTop(
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
-                    style = DailyDangoTheme.typography.medium14,
+                    style = DailyDangoTheme.typography.medium16,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -433,7 +453,7 @@ fun SearchContentCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(20.dp),
+                    .size(24.dp),
                 onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
                 filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
             )
@@ -446,10 +466,12 @@ fun SearchContentCardTop(
             verticalAlignment = Alignment.Top
         ) {
             ImageCard(
-                painter = painterResource(R.drawable.speaker_24px),
+                painter = if (contentState.contentUri.titleSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
+                    painterResource(R.drawable.speaker_24px)
+                },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(20.dp),
+                    .size(24.dp),
                 onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
                 filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
@@ -461,7 +483,7 @@ fun SearchContentCardTop(
             ) {
                 Text(
                     text = contentState.japaneseTitle,
-                    style = DailyDangoTheme.typography.bold16,
+                    style = DailyDangoTheme.typography.bold20,
                     color = MaterialTheme.colorScheme.primaryFixed,
                     modifier = Modifier.clickable(
                         interactionSource = remember { MutableInteractionSource() },
@@ -475,7 +497,7 @@ fun SearchContentCardTop(
                 )
                 Text(
                     text = contentState.japaneseTitleOfSoundToKorea,
-                    style = DailyDangoTheme.typography.medium14,
+                    style = DailyDangoTheme.typography.medium16,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -487,7 +509,7 @@ fun SearchContentCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(20.dp),
+                    .size(24.dp),
                 onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
                 filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
             )

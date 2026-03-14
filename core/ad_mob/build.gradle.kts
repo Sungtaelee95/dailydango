@@ -24,6 +24,9 @@ extensions.configure<com.android.build.api.dsl.LibraryExtension> {
     defaultConfig {
         val interstitialId = properties.getProperty("ADMOB_INTERSTITIAL_ID") ?: "\"ca-app-pub-3940256099942544/1033173712\""
         buildConfigField("String", "ADMOB_INTERSTITIAL_ID", interstitialId)
+
+        val bannerlId = properties.getProperty("ADMOB_BANNER_ID") ?: ""
+        buildConfigField("String", "ADMOB_BANNER_ID", bannerlId)
     }
 }
 

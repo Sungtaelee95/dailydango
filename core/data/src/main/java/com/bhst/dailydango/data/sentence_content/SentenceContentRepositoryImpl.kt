@@ -5,26 +5,30 @@ import com.bhst.dailydango.model.content.Content
 import com.bhst.dailydango.model.error.FbError
 import com.bhst.dailydango.model.result.SentenceContentResult
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class SentenceContentRepositoryImpl @Inject constructor(
     private val fb: FirebaseFirestore
 ) : SentenceContentRepository {
     override suspend fun getSentenceContent(chapter: Int): SentenceContentResult {
-        return try {
-            val snapshot = fb.collection(COLLECTION_CONTENT_SENTENCE)
-                .document(chapter.toString())
-                .collection(SUB_COLLECTION_CONTENT_SENTENCE)
-                .get()
-                .await()
+        return withContext(IO) {
+            try {
+                val snapshot = fb.collection(COLLECTION_CONTENT_SENTENCE)
+                    .document(chapter.toString())
+                    .collection(SUB_COLLECTION_CONTENT_SENTENCE)
+                    .get()
+                    .await()
 
-            // 스냅샷 결과를 Content 객체 리스트로 매핑
-            val contents = snapshot.documents.mapNotNull { it.toObject(Content::class.java) }
+                // 스냅샷 결과를 Content 객체 리스트로 매핑
+                val contents = snapshot.documents.mapNotNull { it.toObject(Content::class.java) }
 
-            SentenceContentResult.Success(contents.sortedBy { it.order })
-        } catch (e: Exception) {
-            SentenceContentResult.Error(FbError.ServerError)
+                SentenceContentResult.Success(contents.sortedBy { it.order })
+            } catch (e: Exception) {
+                SentenceContentResult.Error(FbError.ServerError)
+            }
         }
     }
 
