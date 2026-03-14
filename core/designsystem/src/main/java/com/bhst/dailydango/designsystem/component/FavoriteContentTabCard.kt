@@ -158,7 +158,7 @@ fun FavoriteContentTabCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(24.dp),
+                        .size(28.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -210,7 +210,7 @@ fun FavoriteContentTabCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(24.dp),
+                        .size(28.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -262,7 +262,7 @@ fun FavoriteContentTabCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(24.dp),
+                        .size(28.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri3) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -315,7 +315,7 @@ fun FavoriteContentTabCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(24.dp),
+                        .size(28.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri4) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -401,7 +401,7 @@ fun FavoriteContentTabCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp),
+                    .size(28.dp),
                 onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
                 filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
@@ -453,7 +453,7 @@ fun FavoriteContentTabCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp),
+                    .size(28.dp),
                 onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
                 filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
             )
@@ -471,7 +471,7 @@ fun FavoriteContentTabCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp),
+                    .size(28.dp),
                 onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
                 filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
@@ -509,7 +509,7 @@ fun FavoriteContentTabCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp),
+                    .size(28.dp),
                 onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
                 filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
             )

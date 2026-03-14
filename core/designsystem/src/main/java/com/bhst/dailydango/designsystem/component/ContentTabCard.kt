@@ -161,7 +161,7 @@ fun ContentTabCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(24.dp),
+                        .size(28.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -213,7 +213,7 @@ fun ContentTabCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(24.dp),
+                        .size(28.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -265,7 +265,7 @@ fun ContentTabCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(24.dp),
+                        .size(28.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri3) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -318,7 +318,7 @@ fun ContentTabCardBottom(
                     },
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(24.dp),
+                        .size(28.dp),
                     onClick = { speakerClick(contentState.contentUri.explanationSoundUri4) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
@@ -376,7 +376,7 @@ fun ContentTabCardMid(
                 painterResource(R.drawable.keyboard_arrow_down_24px)
             },
             modifier = Modifier
-                .size(24.dp),
+                .size(28.dp),
             contentDescription = "Arrow",
             onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) },
             filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
@@ -404,7 +404,7 @@ fun ContentTabCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp),
+                    .size(28.dp),
                 onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
                 filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
@@ -456,7 +456,7 @@ fun ContentTabCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp),
+                    .size(28.dp),
                 onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
                 filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
             )
@@ -474,7 +474,7 @@ fun ContentTabCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp),
+                    .size(28.dp),
                 onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
                 filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
@@ -512,7 +512,7 @@ fun ContentTabCardTop(
                 },
                 contentDescription = "Speaker",
                 modifier = Modifier
-                    .size(24.dp),
+                    .size(28.dp),
                 onClick = { bookmarkClick(contentState.copy(isBookmark = !contentState.isBookmark)) },
                 filter = if (!contentState.isBookmark) ColorFilter.tint(MaterialTheme.colorScheme.onBackground) else null
             )

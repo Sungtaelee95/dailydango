@@ -153,6 +153,9 @@ fun HiraganaDetailContent(
         ) {
             // itemsIndexed 대신 일반 forEachIndexed 사용
             wordState.forEachIndexed { index, item ->
+                if (index == 0) {
+                    Spacer(modifier = Modifier.height(4.dp))
+                }
                 WordCard(
                     wordContentState = item,
                     speakerClick = playAudio,

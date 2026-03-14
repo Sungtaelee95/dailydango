@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
@@ -49,6 +51,7 @@ fun ThemeTabContent(
     selectedTheme: ThemeConfig,
     updateTheme: (ThemeConfig) -> Unit = {}
 ) {
+    val scrollState = rememberScrollState()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -81,7 +84,8 @@ fun ThemeTabContent(
             modifier = Modifier
                 .fillMaxHeight()
                 .width(480.dp)
-                .padding(start = 28.dp, end = 28.dp),
+                .padding(start = 28.dp, end = 28.dp)
+                .verticalScroll(scrollState),
         ) {
 
             Spacer(modifier = Modifier.height(8.dp))
