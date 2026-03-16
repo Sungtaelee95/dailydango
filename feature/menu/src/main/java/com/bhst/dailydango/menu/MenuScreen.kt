@@ -45,12 +45,12 @@ fun MenuContent(
             onClick = navigateToFavorite
         )
 
-        MenuCard(
-            title = stringResource(R.string.statistics),
-            subTitle = stringResource(R.string.my_learning_history),
-            img = R.drawable.statistics_img,
-            onClick = {}
-        )
+//        MenuCard(
+//            title = stringResource(R.string.statistics),
+//            subTitle = stringResource(R.string.my_learning_history),
+//            img = R.drawable.statistics_img,
+//            onClick = {}
+//        )
 
         MenuCard(
             title = stringResource(R.string.theme),

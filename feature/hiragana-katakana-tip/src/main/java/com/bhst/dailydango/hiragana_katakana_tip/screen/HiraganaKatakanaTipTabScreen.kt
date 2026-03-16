@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -136,7 +137,8 @@ fun TipsTabScreen(
         LazyColumn(
             modifier = Modifier
                 .weight(1f),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            verticalArrangement = Arrangement.spacedBy(20.dp),
+            contentPadding = PaddingValues(top = 20.dp, bottom = 20.dp)
         ) {
             items(tips) { tip ->
                 DailyDangoElevationCard(

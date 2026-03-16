@@ -112,15 +112,15 @@ fun HomeContent(
                 onClick = navigateToGrammarStudy,
                 painter = painterResource(R.drawable.basic_expressions_img)
             )
-
-            JapaneseStudyContent(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                title = stringResource(R.string.take_skill_test),
-                leftColor = MaterialTheme.colorScheme.tertiary,
-                rightColor = MaterialTheme.colorScheme.onTertiary,
-                painter = painterResource(R.drawable.level_test_img)
-            )
+//
+//            JapaneseStudyContent(
+//                modifier = Modifier
+//                    .fillMaxWidth(),
+//                title = stringResource(R.string.take_skill_test),
+//                leftColor = MaterialTheme.colorScheme.tertiary,
+//                rightColor = MaterialTheme.colorScheme.onTertiary,
+//                painter = painterResource(R.drawable.level_test_img)
+//            )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

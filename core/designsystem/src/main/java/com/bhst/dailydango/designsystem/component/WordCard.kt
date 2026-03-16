@@ -159,7 +159,7 @@ fun WordCardMid(
                 painterResource(R.drawable.keyboard_arrow_down_24px)
             },
             modifier = Modifier
-                .size(28.dp),
+                .size(24.dp),
             contentDescription = "Arrow",
             onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) },
             filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
@@ -184,7 +184,7 @@ fun WordCardTop(
             },
             contentDescription = "Speaker",
             modifier = Modifier
-                .size(28.dp),
+                .size(24.dp),
             onClick = { speakerClick(wordContentState.wordSoundUri) },
             filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
         )

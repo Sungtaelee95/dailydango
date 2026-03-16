@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +17,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -25,6 +27,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices.TABLET
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,6 +36,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bhst.dailydango.app.feature.search.R
 import com.bhst.dailydango.designsystem.component.DailyDangoElevationCard
+import com.bhst.dailydango.designsystem.component.ImageCard
 import com.bhst.dailydango.designsystem.component.NotOutLineSearchField
 import com.bhst.dailydango.designsystem.component.SearchContentCard
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
@@ -95,23 +100,44 @@ fun SearchTabContent(
             )
         }
 
-        // LazyColumn 대신 LazyVerticalGrid 사용
-        LazyColumn(
-            modifier = Modifier
-                .weight(1f)
-                .width(480.dp),
-            contentPadding = PaddingValues(vertical = 12.dp, horizontal = 12.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
-        ) {
-            itemsIndexed(filterContents) { index, content ->
-                SearchContentCard(
-                    contentState = content,
-                    updateContent = updateContent,
-                    speakerClick = { playSoundFor(content.titleHanja.ifEmpty { content.japaneseTitle }) },
-                    navigateToHanjaDetail = navigateToHanjaDetail
+        if (filterContents.isEmpty()) {
+            Column (
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                ImageCard(
+                    modifier = Modifier
+                        .width(240.dp)
+                        .height(240.dp),
+                    painter = painterResource(R.drawable.not_search_img),
+                    contentDescription = "not search"
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+                Text(
+                    text = stringResource(R.string.not_search_result),
+                    style = DailyDangoTheme.typography.light24
                 )
             }
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .weight(1f)
+                    .width(480.dp),
+                contentPadding = PaddingValues(vertical = 12.dp, horizontal = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+                itemsIndexed(filterContents) { index, content ->
+                    SearchContentCard(
+                        contentState = content,
+                        updateContent = updateContent,
+                        speakerClick = { playSoundFor(content.titleHanja.ifEmpty { content.japaneseTitle }) },
+                        navigateToHanjaDetail = navigateToHanjaDetail
+                    )
+                }
+            }
         }
+
     }
 }
 
