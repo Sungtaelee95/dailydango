@@ -46,10 +46,7 @@ class SentenceStudyViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         favoriteJob = null
-
-        viewModelScope.launch {
-            loadingDialogManager.dismiss()
-        }
+        loadingDialogManager.dismiss()
     }
 
     fun getSentenceContent(chapter: Int) {

@@ -30,9 +30,7 @@ class FavoriteViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        viewModelScope.launch {
-            loadingDialogManager.dismiss()
-        }
+        loadingDialogManager.dismiss()
     }
 
     fun getFavoriteContents() {

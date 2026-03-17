@@ -30,7 +30,6 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bhst.dailydango.app.feature.search.R
 import com.bhst.dailydango.designsystem.component.DailyDangoElevationCard
-import com.bhst.dailydango.designsystem.component.FavoriteContentCard
 import com.bhst.dailydango.designsystem.component.ImageCard
 import com.bhst.dailydango.designsystem.component.NotOutLineSearchField
 import com.bhst.dailydango.designsystem.component.SearchContentCard
@@ -52,7 +51,7 @@ fun SearchScreen(
     }
     SearchContent(
         contents = contents,
-        updateContent = viewModel::updateSentenceContent,
+        updateContent = viewModel::updateSearchContent,
         playSoundFor = viewModel::playSoundFor
     )
 }

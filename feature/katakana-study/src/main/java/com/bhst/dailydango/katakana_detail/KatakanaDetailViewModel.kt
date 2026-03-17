@@ -41,9 +41,7 @@ class KatakanaDetailViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        viewModelScope.launch {
-            loadingDialogManager.dismiss()
-        }
+        loadingDialogManager.dismiss()
     }
 
     fun updateSelectedRow(row: String) {

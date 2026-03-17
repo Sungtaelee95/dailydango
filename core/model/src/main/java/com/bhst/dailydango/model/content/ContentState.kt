@@ -2,9 +2,12 @@ package com.bhst.dailydango.model.content
 
 import android.net.Uri
 import com.bhst.dailydango.model.room.entity.FavoriteContentEntity
+import java.util.UUID
+import kotlin.uuid.Uuid
 
 data class ContentState(
     val id: String = "", // 문서 ID 자동 매핑
+    val uuid: String = UUID.randomUUID().toString(),
     val titleHanja: String = "",
     val japaneseTitle: String = "",
     val japaneseTitleOfSoundToKorea: String = "",

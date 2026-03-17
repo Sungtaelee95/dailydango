@@ -1,10 +1,8 @@
 package com.bhst.dailydango.search.screen
 
 import android.content.Context
-import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bhst.dailydango.app.feature.search.R
 import com.bhst.dailydango.domain.usecase.favorite.DeleteFavoritesContentUseCase
 import com.bhst.dailydango.domain.usecase.favorite.SetFavoritesContentUseCase
 import com.bhst.dailydango.domain.usecase.player.AudioPlayUseCase
@@ -12,7 +10,6 @@ import com.bhst.dailydango.domain.usecase.sentence.SentenceUseCase
 import com.bhst.dailydango.domain.usecase.sound_uri.SoundUriUseCase
 import com.bhst.dailydango.domain.usecase.word_content.WordContentUseCase
 import com.bhst.dailydango.model.content.ContentState
-import com.bhst.dailydango.model.content.ContentUri
 import com.bhst.dailydango.model.result.SentenceContentResult
 import com.bhst.dailydango.model.result.WordContentResult
 import com.bhst.dailydango.ui.LoadingDialogManager
@@ -42,13 +39,12 @@ class SearchViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        viewModelScope.launch {
-            loadingDialogManager.dismiss()
-        }
+        loadingDialogManager.dismiss()
     }
 
     fun getAllContent() {
         viewModelScope.launch {
+
             loadingDialogManager.show()
 
             val accumulatedList = mutableListOf<ContentState>()
@@ -58,6 +54,7 @@ class SearchViewModel @Inject constructor(
                     is WordContentResult.Success -> {
                         accumulatedList.addAll(result.contents.map { ContentState.from(content = it) })
                     }
+
                     is WordContentResult.Error -> messageManager.sendMessage("서버 에러 발생")
                 }
 
@@ -65,6 +62,7 @@ class SearchViewModel @Inject constructor(
                     is SentenceContentResult.Success -> {
                         accumulatedList.addAll(result.contents.map { ContentState.from(content = it) })
                     }
+
                     is SentenceContentResult.Error -> messageManager.sendMessage("서버 에러 발생")
                 }
 
@@ -73,9 +71,9 @@ class SearchViewModel @Inject constructor(
                     _uiState.update { accumulatedList.toList() }
                 }
             }
-            // 🚨 URI 미리 불러오기(Eager Loading) 로직은 삭제했습니다. (성능 병목의 주원인)
             loadingDialogManager.dismiss()
         }
+
     }
 
     // 🚨 오디오 URI는 클릭 시점에만 가져오도록 최적화 (Lazy Loading)
@@ -94,7 +92,7 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun updateSentenceContent(content: ContentState) {
+    fun updateSearchContent(content: ContentState) {
         viewModelScope.launch {
             loadingDialogManager.show()
             if (content.isBookmark) {
@@ -104,7 +102,7 @@ class SearchViewModel @Inject constructor(
             }
             _uiState.update { currentList ->
                 currentList.map {
-                    if (it.japaneseTitle == content.japaneseTitle) {
+                    if (it.uuid == content.uuid) {
                         content // 누른 아이템만 업데이트된 상태로 교체
                     } else {
                         it
