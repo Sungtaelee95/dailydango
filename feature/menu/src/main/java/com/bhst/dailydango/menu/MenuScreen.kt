@@ -1,42 +1,50 @@
 package com.bhst.dailydango.menu
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bhst.dailydango.app.feature.menu.R
 import com.bhst.dailydango.designsystem.component.MenuCard
+import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 
 @Composable
 fun MenuScreen(
     navigateToFavorite: () -> Unit,
     navigateToTheme: () -> Unit,
-    navigateToPlaySpeed: () -> Unit
+    navigateToPlaySpeed: () -> Unit,
+    navigateToOss: () -> Unit
 ) {
     MenuContent(
         navigateToFavorite = navigateToFavorite,
         navigateToTheme = navigateToTheme,
-        navigateToPlaySpeed= navigateToPlaySpeed
+        navigateToPlaySpeed = navigateToPlaySpeed,
+        navigateToOss = navigateToOss
     )
 }
 
 @Composable
 fun MenuContent(
-    navigateToFavorite: () -> Unit,
-    navigateToTheme: () -> Unit,
-    navigateToPlaySpeed: () -> Unit
+    navigateToFavorite: () -> Unit = {},
+    navigateToTheme: () -> Unit = {},
+    navigateToPlaySpeed: () -> Unit = {},
+    navigateToOss: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 28.dp, end = 28.dp, top = 12.dp),
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         MenuCard(
             title = stringResource(R.string.favorites),
@@ -66,6 +74,22 @@ fun MenuContent(
             onClick = navigateToPlaySpeed
         )
 
+        Text(
+            text = stringResource(R.string.oss_license),
+            style = DailyDangoTheme.typography.medium16,
+            modifier = Modifier
+                .clickable(
+                    onClick = navigateToOss
+                )
+        )
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun MenuContentPreview() {
+    DailyDangoTheme {
+        MenuContent()
     }
 }
 

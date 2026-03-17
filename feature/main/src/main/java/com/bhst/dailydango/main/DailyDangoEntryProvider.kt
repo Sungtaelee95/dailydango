@@ -21,6 +21,7 @@ import com.bhst.dailydango.katakana_study_api.KatakanaDetailRoute
 import com.bhst.dailydango.katakana_study_api.KatakanaStudyRoute
 import com.bhst.dailydango.level_test_api.LevelTestRoute
 import com.bhst.dailydango.menu_api.FavoriteContentsRoute
+import com.bhst.dailydango.menu_api.OssRoute
 import com.bhst.dailydango.menu_api.PlaySpeedRoute
 import com.bhst.dailydango.menu_api.ThemeRoute
 import com.bhst.dailydango.route_api.Route
@@ -42,7 +43,8 @@ fun dailyDangoEntryProvider(
         navigateToFavorite = { navigateTo(FavoriteContentsRoute) },
         navigateToTheme = { navigateTo(ThemeRoute) },
         navigateToPlaySpeed = { navigateTo(PlaySpeedRoute) },
-        navigateToHanjaDetail = { hanjas -> navigateTo(HanjaDetailRoute(hanjas)) }
+        navigateToHanjaDetail = { hanjas -> navigateTo(HanjaDetailRoute(hanjas)) },
+        navigateToOss = { navigateTo(OssRoute) }
     )
     searchEntries()
     hiraganaStudyEntries(
