@@ -45,6 +45,9 @@ class WordStudyViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         favoriteJob = null
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
     }
     fun getWordContent(chapter: Int) {
         viewModelScope.launch {

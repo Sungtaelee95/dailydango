@@ -39,12 +39,18 @@ class HiraganaDetailViewModel @Inject constructor(
     private val _wordContentState = MutableStateFlow<List<WordContentState>>(emptyList())
     val wordContentState = _wordContentState.asStateFlow()
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
+    }
+
     fun updateSelectedRow(row: String) {
         _selectedRow.update { row }
     }
 
     fun updateCurrentItems(items: List<String>) {
-        Log.d("lstlst" ,"items: $items")
         if (items.isEmpty()) return
         viewModelScope.launch {
             loadingDialogManager.show()
@@ -56,7 +62,6 @@ class HiraganaDetailViewModel @Inject constructor(
                     }
 
                     is WordResult.Error -> {
-                        Log.d("lstlst","에러발생")
                         messageManager.sendMessage(context.getString(R.string.error_message))
                     }
                 }

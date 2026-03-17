@@ -39,6 +39,13 @@ class KatakanaDetailViewModel @Inject constructor(
     private val _wordContentState = MutableStateFlow<List<WordContentState>>(emptyList())
     val wordContentState = _wordContentState.asStateFlow()
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
+    }
+
     fun updateSelectedRow(row: String) {
         _selectedRow.update { row }
     }

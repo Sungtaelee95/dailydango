@@ -2,7 +2,6 @@ package com.bhst.dailydango.basic_expressions.sentnece_study
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bhst.dailydango.app.feature.basic.expressions.R
@@ -47,6 +46,10 @@ class SentenceStudyViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         favoriteJob = null
+
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
     }
 
     fun getSentenceContent(chapter: Int) {

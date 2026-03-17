@@ -26,6 +26,13 @@ class BasicSelectChapterViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<List<Chapter>>(emptyList())
     val uiState: StateFlow<List<Chapter>> = _uiState
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
+    }
+
     fun getChapters() {
         viewModelScope.launch {
             loadingDialogManager.show()

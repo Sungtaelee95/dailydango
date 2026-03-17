@@ -26,6 +26,13 @@ class ChapterTipViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<List<Tip>>(emptyList())
     val uiState: StateFlow<List<Tip>> = _uiState
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
+    }
+
     fun getChapterTip(chapter: Int) {
         viewModelScope.launch {
             loadingDialogManager.show()

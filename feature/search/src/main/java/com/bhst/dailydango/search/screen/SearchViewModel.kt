@@ -40,6 +40,13 @@ class SearchViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<List<ContentState>>(emptyList())
     val uiState = _uiState.asStateFlow()
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
+    }
+
     fun getAllContent() {
         viewModelScope.launch {
             loadingDialogManager.show()

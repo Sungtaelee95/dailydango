@@ -79,25 +79,29 @@ fun HanjaTabCard(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.Start
                         ) {
-                            TextChip(
-                                text = hanjaContent.jlptLevel,
-                                containerColor = MaterialTheme.colorScheme.surface,
-                                labelColor = MaterialTheme.colorScheme.primaryFixed,
-                                border = BorderStroke(
-                                    1.dp, MaterialTheme.colorScheme.primaryFixed,
-                                ),
-                                modifier = Modifier.wrapContentWidth()
-                            )
+                            if (hanjaContent.jlptLevel.isNotEmpty()){
+                                TextChip(
+                                    text = hanjaContent.jlptLevel,
+                                    containerColor = MaterialTheme.colorScheme.surface,
+                                    labelColor = MaterialTheme.colorScheme.primaryFixed,
+                                    border = BorderStroke(
+                                        1.dp, MaterialTheme.colorScheme.primaryFixed,
+                                    ),
+                                    modifier = Modifier.wrapContentWidth()
+                                )
+                            }
                             Spacer(modifier = Modifier.width(16.dp))
-                            TextChip(
-                                text = hanjaContent.grade,
-                                containerColor = MaterialTheme.colorScheme.surface,
-                                labelColor = MaterialTheme.colorScheme.primaryFixed,
-                                border = BorderStroke(
-                                    1.dp, MaterialTheme.colorScheme.primaryFixed,
-                                ),
-                                modifier = Modifier.wrapContentWidth()
-                            )
+                            if (hanjaContent.grade.isNotEmpty()) {
+                                TextChip(
+                                    text = hanjaContent.grade,
+                                    containerColor = MaterialTheme.colorScheme.surface,
+                                    labelColor = MaterialTheme.colorScheme.primaryFixed,
+                                    border = BorderStroke(
+                                        1.dp, MaterialTheme.colorScheme.primaryFixed,
+                                    ),
+                                    modifier = Modifier.wrapContentWidth()
+                                )
+                            }
                         }
                         Spacer(modifier = Modifier.height(8.dp))
 

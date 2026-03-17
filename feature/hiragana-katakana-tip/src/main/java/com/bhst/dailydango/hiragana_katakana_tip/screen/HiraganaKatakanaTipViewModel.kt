@@ -32,6 +32,12 @@ class HiraganaKatakanaTipViewModel @Inject constructor(
     private val _katakanaTips = MutableStateFlow<List<Tip>>(emptyList())
     val katakanaTips: StateFlow<List<Tip>> = _katakanaTips.asStateFlow()
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
+    }
     fun getTips() {
         viewModelScope.launch {
             loadingDialogManager.show()

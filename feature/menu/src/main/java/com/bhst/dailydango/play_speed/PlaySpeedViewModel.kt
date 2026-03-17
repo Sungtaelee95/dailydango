@@ -25,6 +25,13 @@ class PlaySpeedViewModel @Inject constructor(
     private val _playSpeed = MutableStateFlow(1.0f)
     val playSpeed: StateFlow<Float> = _playSpeed
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
+    }
+
     fun getPlaySpeed() {
         viewModelScope.launch {
             audioSpeedUseCase().collect { speed ->

@@ -28,6 +28,13 @@ class FavoriteViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<List<ContentState>>(emptyList())
     val uiState = _uiState.asStateFlow()
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
+    }
+
     fun getFavoriteContents() {
         viewModelScope.launch {
             favoriteUseCase().collect { favoriteContents ->
@@ -60,22 +67,22 @@ class FavoriteViewModel @Inject constructor(
 
     fun updateFavoriteContent(contentState: ContentState) {
         viewModelScope.launch {
-            _uiState.update { currentList ->
-                currentList.map {
-                    if (it.japaneseTitle == contentState.japaneseTitle) {
-                        contentState // 누른 아이템만 업데이트된 상태로 교체
-                    } else {
-                        it
+            loadingDialogManager.show()
+            if (!contentState.isBookmark) {
+                deleteFavoriteUseCase(contentState.japaneseTitle)
+            } else {
+                _uiState.update { currentList ->
+                    currentList.map {
+                        if (it.japaneseTitle == contentState.japaneseTitle) {
+                            contentState // 누른 아이템만 업데이트된 상태로 교체
+                        } else {
+                            it
+                        }
                     }
                 }
             }
+            loadingDialogManager.dismiss()
         }
-    }
-
-    fun deleteFavoriteContent(content: ContentState) {
-//        viewModelScope.launch {
-//            deleteFavoriteUseCase(content.japaneseTitle)
-//        }
     }
 
     fun soundPlayForContent(uri: Uri?) {

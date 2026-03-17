@@ -17,6 +17,7 @@ class ThemeViewModel @Inject constructor(
 
     val themeConfig = themeConfigUseCase()
 
+
     fun updateThemeConfig(themeConfig: ThemeConfig){
         viewModelScope.launch {
             setThemeConfigUseCase(themeConfig)

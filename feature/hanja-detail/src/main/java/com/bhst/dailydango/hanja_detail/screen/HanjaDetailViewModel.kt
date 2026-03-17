@@ -21,6 +21,13 @@ class HanjaDetailViewModel @Inject constructor(
     private val _hanjaContents = MutableStateFlow<List<HanjaContent>>(emptyList())
     val hanjaContents = _hanjaContents.asStateFlow()
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.launch {
+            loadingDialogManager.dismiss()
+        }
+    }
+
     fun getHanjaContents(hanjas: List<String>) {
         viewModelScope.launch {
             loadingDialogManager.show()
