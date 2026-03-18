@@ -3,6 +3,7 @@ package com.bhst.dailydango.search.screen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,11 +39,12 @@ import com.bhst.dailydango.model.content.ContentState
 
 @Composable
 fun SearchScreen(
-    viewModel: SearchViewModel = hiltViewModel()
+    content: List<ContentState> = emptyList(),
+    viewModel: SearchViewModel = hiltViewModel(),
 ) {
     val contents by viewModel.uiState.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) {
-        viewModel.getAllContent()
+        viewModel.setSearchContent(content)
     }
     DisposableEffect(Unit) {
         onDispose {
@@ -91,7 +93,7 @@ fun SearchContent(
             )
         }
         if (filterContents.isEmpty()) {
-            Column (
+            Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -114,17 +116,16 @@ fun SearchContent(
                 modifier = Modifier
                     .weight(1f)
                     .padding(top = 20.dp),
-                verticalArrangement = Arrangement.spacedBy(20.dp)
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+                contentPadding = PaddingValues(top = 4.dp, bottom = 4.dp)
             ) {
                 itemsIndexed(filterContents) { index, content ->
-                    if (index == 0) Spacer(modifier = Modifier.height(4.dp))
                     SearchContentCard(
                         contentState = content,
                         updateContent = updateContent,
                         speakerClick = { playSoundFor(content.titleHanja.ifEmpty { content.japaneseTitle }) },
                         navigateToHanjaDetail = navigateToHanjaDetail
                     )
-                    if (index == filterContents.lastIndex) Spacer(modifier = Modifier.height(4.dp))
                 }
             }
         }

@@ -40,11 +40,12 @@ import kotlin.text.ifEmpty
 
 @Composable
 fun SearchTabScreen(
-    viewModel: SearchViewModel = hiltViewModel()
+    content: List<ContentState> = emptyList(),
+    viewModel: SearchViewModel = hiltViewModel(),
 ) {
     val contents by viewModel.uiState.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) {
-        viewModel.getAllContent()
+        viewModel.setSearchContent(content)
     }
     DisposableEffect(Unit) {
         onDispose {

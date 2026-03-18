@@ -7,7 +7,6 @@ import kotlin.uuid.Uuid
 
 data class ContentState(
     val id: String = "", // 문서 ID 자동 매핑
-    val uuid: String = UUID.randomUUID().toString(),
     val titleHanja: String = "",
     val japaneseTitle: String = "",
     val japaneseTitleOfSoundToKorea: String = "",

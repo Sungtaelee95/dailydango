@@ -42,38 +42,8 @@ class SearchViewModel @Inject constructor(
         loadingDialogManager.dismiss()
     }
 
-    fun getAllContent() {
-        viewModelScope.launch {
-
-            loadingDialogManager.show()
-
-            val accumulatedList = mutableListOf<ContentState>()
-
-            for (chapter in 1..99) {
-                when (val result = wordContentUseCase(chapter = chapter)) {
-                    is WordContentResult.Success -> {
-                        accumulatedList.addAll(result.contents.map { ContentState.from(content = it) })
-                    }
-
-                    is WordContentResult.Error -> messageManager.sendMessage("서버 에러 발생")
-                }
-
-                when (val result = sentenceUseCase(chapter = chapter)) {
-                    is SentenceContentResult.Success -> {
-                        accumulatedList.addAll(result.contents.map { ContentState.from(content = it) })
-                    }
-
-                    is SentenceContentResult.Error -> messageManager.sendMessage("서버 에러 발생")
-                }
-
-                // 챕터 10개마다 한 번씩 UI 업데이트 (UX 개선 및 오버헤드 감소)
-                if (chapter % 10 == 0 || chapter == 99) {
-                    _uiState.update { accumulatedList.toList() }
-                }
-            }
-            loadingDialogManager.dismiss()
-        }
-
+    fun setSearchContent(contents: List<ContentState>) {
+        _uiState.value = contents
     }
 
     // 🚨 오디오 URI는 클릭 시점에만 가져오도록 최적화 (Lazy Loading)
@@ -102,7 +72,7 @@ class SearchViewModel @Inject constructor(
             }
             _uiState.update { currentList ->
                 currentList.map {
-                    if (it.uuid == content.uuid) {
+                    if (it.japaneseTitle == content.japaneseTitle) {
                         content // 누른 아이템만 업데이트된 상태로 교체
                     } else {
                         it

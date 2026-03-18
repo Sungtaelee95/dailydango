@@ -24,6 +24,7 @@ import com.bhst.dailydango.menu_api.FavoriteContentsRoute
 import com.bhst.dailydango.menu_api.OssRoute
 import com.bhst.dailydango.menu_api.PlaySpeedRoute
 import com.bhst.dailydango.menu_api.ThemeRoute
+import com.bhst.dailydango.model.content.ContentState
 import com.bhst.dailydango.route_api.Route
 import com.bhst.dailydango.search.entry.searchEntries
 import com.bhst.dailydango.search_api.SearchRoute
@@ -31,7 +32,8 @@ import com.bhst.hanja_detail_api.HanjaDetailRoute
 
 fun dailyDangoEntryProvider(
     navigateTo: (Route) -> Unit,
-    back: () -> Unit
+    back: () -> Unit,
+    contents: List<ContentState> = emptyList()
 ): (Route) -> NavEntry<Route> = entryProvider {
     homeEntries(
         navigateToHiraganaKatakanaTip = { navigateTo(HiraganaKatakanaTipRoute) },
@@ -46,7 +48,9 @@ fun dailyDangoEntryProvider(
         navigateToHanjaDetail = { hanjas -> navigateTo(HanjaDetailRoute(hanjas)) },
         navigateToOss = { navigateTo(OssRoute) }
     )
-    searchEntries()
+    searchEntries(
+        contents = contents
+    )
     hiraganaStudyEntries(
         navigateToHiraganaDetail = { wordType, rowHeader ->
             navigateTo(HiraganaDetailRoute(wordType, rowHeader))

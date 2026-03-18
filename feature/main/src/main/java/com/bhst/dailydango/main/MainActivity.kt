@@ -48,11 +48,14 @@ class MainActivity : ComponentActivity() {
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-        installSplashScreen()
         enableEdgeToEdge()
 
         setContent {
+            val contents by viewModel.allContents.collectAsStateWithLifecycle(emptyList())
+            val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
+            val progress by viewModel.loadingProgress.collectAsStateWithLifecycle()
             val themeConfig by viewModel.themeConfig.collectAsStateWithLifecycle(
                 ThemeConfig.SYSTEM,
                 this
@@ -76,53 +79,58 @@ class MainActivity : ComponentActivity() {
             DailyDangoTheme(
                 darkTheme = isDark
             ) {
-                val appState = rememberDailyDangoAppState()
-                val entryProvider = remember(appState) {
-                    dailyDangoEntryProvider(
-                        navigateTo = appState::navigationTo, // 함수 참조
-                        back = appState::onBack        // 함수 참조
-                    )
-                }
-                val lastBackStack = appState.backStack.lastOrNull()
-                Scaffold(
-                    bottomBar = {
-                        AdmobBanner()
-                    },
-                    topBar = {
-                        val type = lastBackStack?.getTopBar() ?: TopAppBarNavigationType.None
-                        DailyDangoTopAppBar(
-                            modifier = Modifier.padding(top = 28.dp),
-                            navigationType = type,
-                            onNavigationClick = appState::onBack,
-                            onActionClick = { appState.navigationTo(MenuRoute) }
+                if (isLoading) {
+                    CustomSplashLoadingScreen(progress = progress)
+                } else {
+                    val appState = rememberDailyDangoAppState()
+                    val entryProvider = remember(appState, contents) {
+                        dailyDangoEntryProvider(
+                            navigateTo = appState::navigationTo, // 함수 참조
+                            back = appState::onBack,       // 함수 참조,
+                            contents = contents,
                         )
                     }
-                ) { innerPadding ->
-                    NavDisplay(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding),
-                        backStack = appState.backStack,
-                        onBack = {
-                            appState.onBack()
-                            if (appState.backStack.size == 2) {
-                                showInterstitialAd(
-                                    context = context,
-                                    ad = interstitialAd,
-                                    onAdDismissed = {
-                                        interstitialAd = null
-                                    }
-                                )
-                            }
+                    val lastBackStack = appState.backStack.lastOrNull()
+                    Scaffold(
+                        bottomBar = {
+                            AdmobBanner()
                         },
-                        entryProvider = entryProvider,
-                        entryDecorators = listOf(
-                            rememberSaveableStateHolderNavEntryDecorator(),
-                            rememberViewModelStoreNavEntryDecorator()
+                        topBar = {
+                            val type = lastBackStack?.getTopBar() ?: TopAppBarNavigationType.None
+                            DailyDangoTopAppBar(
+                                modifier = Modifier.padding(top = 28.dp),
+                                navigationType = type,
+                                onNavigationClick = appState::onBack,
+                                onActionClick = { appState.navigationTo(MenuRoute) }
+                            )
+                        }
+                    ) { innerPadding ->
+                        NavDisplay(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(innerPadding),
+                            backStack = appState.backStack,
+                            onBack = {
+                                appState.onBack()
+                                if (appState.backStack.size == 2) {
+                                    showInterstitialAd(
+                                        context = context,
+                                        ad = interstitialAd,
+                                        onAdDismissed = {
+                                            interstitialAd = null
+                                        }
+                                    )
+                                }
+                            },
+                            entryProvider = entryProvider,
+                            entryDecorators = listOf(
+                                rememberSaveableStateHolderNavEntryDecorator(),
+                                rememberViewModelStoreNavEntryDecorator()
+                            )
                         )
-                    )
-                    GlobalLoadingDialog(loadingDialogManager = loadingDialogManager)
-                    GlobalMessageToast(messageManager = messageManager)
+                        GlobalLoadingDialog(loadingDialogManager = loadingDialogManager)
+                        GlobalMessageToast(messageManager = messageManager)
+                    }
                 }
             }
         }
