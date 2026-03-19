@@ -36,6 +36,7 @@ fun SearchContentCard(
     contentState: ContentState,
     speakerClick: (Uri?) -> Unit = {},
     updateContent: (ContentState) -> Unit = {},
+    favoriteClick: (ContentState) -> Unit = {},
     navigateToHanjaDetail: (List<String>) -> Unit = {}
 ) {
     Surface(
@@ -55,7 +56,7 @@ fun SearchContentCard(
             SearchContentCardTop(
                 contentState = contentState,
                 speakerClick = speakerClick,
-                bookmarkClick = updateContent,
+                bookmarkClick = favoriteClick,
                 navigateToHanjaDetail = navigateToHanjaDetail
             )
             SearchContentCardMid(

@@ -24,7 +24,9 @@ class WordContentRepositoryImpl @Inject constructor(
                     .await()
 
                 // 스냅샷 결과를 Content 객체 리스트로 매핑
-                val contents = snapshot.documents.mapNotNull { it.toObject(Content::class.java) }
+                val contents = snapshot.documents.mapNotNull { document ->
+                    document.toObject(Content::class.java)?.copy(id = document.id)
+                }
 
                 WordContentResult.Success(contents.sortedBy { it.order })
             } catch (e: Exception) {

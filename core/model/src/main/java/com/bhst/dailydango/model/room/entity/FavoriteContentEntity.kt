@@ -7,9 +7,9 @@ import com.bhst.dailydango.model.content.ContentState
 
 @Entity(tableName = "favorite_content")
 data class FavoriteContentEntity(
+    @PrimaryKey
     val id: String = "", // 문서 ID 자동 매핑
     val titleHanja: String = "",
-    @PrimaryKey
     val japaneseTitle: String = "",
     val japaneseTitleOfSoundToKorea: String = "",
     val partOfSpeech: String = "",

@@ -2,6 +2,8 @@ package com.bhst.dailydango.data_source.room.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.bhst.dailydango.data_source.room.dao.FavoriteContentDao
 import com.bhst.dailydango.data_source.room.dao.PlaySpeedDao
 import com.bhst.dailydango.data_source.room.dao.ThemeConfigDao
@@ -16,7 +18,47 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 object RoomModule {
+    val MIGRATION_3_4 = object : Migration(3, 4) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            // 1. 새로운 구조의 임시 테이블 생성 (id를 PK로 지정)
+            database.execSQL(
+                "CREATE TABLE favorite_content_new (" +
+                        "id TEXT NOT NULL PRIMARY KEY, " +
+                        "titleHanja TEXT NOT NULL, " +
+                        "japaneseTitle TEXT NOT NULL, " +
+                        "japaneseTitleOfSoundToKorea TEXT NOT NULL, " +
+                        "partOfSpeech TEXT NOT NULL, " +
+                        "titleToKorean TEXT NOT NULL, " +
+                        "tip TEXT NOT NULL, " +
+                        "exampleForJapanese1 TEXT NOT NULL, " +
+                        "explanationForKorean1 TEXT NOT NULL, " +
+                        "explanationForKoreanSound1 TEXT NOT NULL, " +
+                        "exampleForJapanese2 TEXT NOT NULL, " +
+                        "explanationForKorean2 TEXT NOT NULL, " +
+                        "explanationForKoreanSound2 TEXT NOT NULL, " +
+                        "exampleForJapanese3 TEXT NOT NULL, " +
+                        "explanationForKorean3 TEXT NOT NULL, " +
+                        "explanationForKoreanSound3 TEXT NOT NULL, " +
+                        "exampleForJapanese4 TEXT NOT NULL, " +
+                        "explanationForKorean4 TEXT NOT NULL, " +
+                        "explanationForKoreanSound4 TEXT NOT NULL, " +
+                        "`order` INTEGER NOT NULL)"
+            )
 
+            // 2. 기존 데이터를 새 테이블로 복사
+            // (주의: 기존 데이터에 고유한 id가 채워져 있어야만 안전하게 넘어갑니다)
+            database.execSQL(
+                "INSERT INTO favorite_content_new (id, titleHanja, japaneseTitle, japaneseTitleOfSoundToKorea, partOfSpeech, titleToKorean, tip, exampleForJapanese1, explanationForKorean1, explanationForKoreanSound1, exampleForJapanese2, explanationForKorean2, explanationForKoreanSound2, exampleForJapanese3, explanationForKorean3, explanationForKoreanSound3, exampleForJapanese4, explanationForKorean4, explanationForKoreanSound4, `order`) " +
+                        "SELECT id, titleHanja, japaneseTitle, japaneseTitleOfSoundToKorea, partOfSpeech, titleToKorean, tip, exampleForJapanese1, explanationForKorean1, explanationForKoreanSound1, exampleForJapanese2, explanationForKorean2, explanationForKoreanSound2, exampleForJapanese3, explanationForKorean3, explanationForKoreanSound3, exampleForJapanese4, explanationForKorean4, explanationForKoreanSound4, `order` FROM favorite_content"
+            )
+
+            // 3. 기존 테이블 삭제
+            database.execSQL("DROP TABLE favorite_content")
+
+            // 4. 임시 테이블의 이름을 원래 이름으로 변경
+            database.execSQL("ALTER TABLE favorite_content_new RENAME TO favorite_content")
+        }
+    }
     @Provides
     @Singleton
     fun providesDailyDangoDB(
@@ -27,7 +69,7 @@ object RoomModule {
             DailyDangoDB::class.java,
             "daily_dango_db"
         )
-            .fallbackToDestructiveMigration(false)
+            .addMigrations(MIGRATION_3_4)
             .build()
     }
 

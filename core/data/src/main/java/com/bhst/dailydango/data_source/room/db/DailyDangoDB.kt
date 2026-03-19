@@ -18,7 +18,7 @@ import com.bhst.dailydango.model.theme.entity.ThemeEntity
         ThemeEntity::class,
         PlaySpeedEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(ThemeConverter::class)

@@ -3,6 +3,7 @@ package com.bhst.dailydango.favorite
 import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -93,19 +94,18 @@ fun FavoriteContentContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(start = 28.dp, end = 28.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            verticalArrangement = Arrangement.spacedBy(20.dp),
+            contentPadding = PaddingValues(top = 8.dp, bottom = 8.dp)
         ) {
             itemsIndexed(
                 contents,
-                key = { _, content -> content.japaneseTitle }) { index, content ->
-                if (index == 0) Spacer(modifier = Modifier.height(4.dp))
+                key = { _, content -> content.id }) { index, content ->
                 FavoriteContentCard(
                     contentState = content,
                     updateContent = updateFavoriteContent,
                     speakerClick = playAudio,
                     navigateToHanjaDetail = navigateToHanjaDetail
                 )
-                if (index == contents.lastIndex) Spacer(modifier = Modifier.height(8.dp))
             }
         }
     }

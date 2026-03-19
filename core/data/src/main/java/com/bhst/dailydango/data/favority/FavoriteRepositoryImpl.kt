@@ -15,9 +15,9 @@ class FavoriteRepositoryImpl @Inject constructor(
         return favoriteContentDao.getAllFavoriteContents()
     }
 
-    override suspend fun deleteFavoriteContent(japaneseTitle: String) {
+    override suspend fun deleteFavoriteContent(id: String) {
         withContext(IO) {
-            favoriteContentDao.deleteFavoriteContent(japaneseTitle)
+            favoriteContentDao.deleteFavoriteContent(id)
         }
     }
 

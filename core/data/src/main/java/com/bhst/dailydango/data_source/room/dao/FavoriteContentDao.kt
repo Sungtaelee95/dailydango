@@ -12,8 +12,8 @@ interface FavoriteContentDao {
     @Query("SELECT * FROM favorite_content")
     fun getAllFavoriteContents(): Flow<List<FavoriteContentEntity>>
 
-    @Query("DELETE FROM favorite_content WHERE japaneseTitle = :japaneseTitle")
-    suspend fun deleteFavoriteContent(japaneseTitle: String)
+    @Query("DELETE FROM favorite_content WHERE id = :id")
+    suspend fun deleteFavoriteContent(id: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavoriteContent(favoriteContent: FavoriteContentEntity)

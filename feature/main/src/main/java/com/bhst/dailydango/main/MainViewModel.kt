@@ -50,7 +50,7 @@ class MainViewModel @Inject constructor(
             _isLoading.value = true
             val accumulatedList = mutableListOf<ContentState>()
 
-            for (chapter in 1..99) {
+            for (chapter in 1..MAX_CHAPTER) {
                 when (val result = wordContentUseCase(chapter = chapter)) {
                     is WordContentResult.Success -> {
                         accumulatedList.addAll(result.contents.map { ContentState.from(content = it) })
@@ -67,16 +67,19 @@ class MainViewModel @Inject constructor(
                     is SentenceContentResult.Error -> messageManager.sendMessage("서버 에러 발생")
                 }
 
-                _loadingProgress.value = chapter.toFloat() / 99.toFloat()
+                _loadingProgress.value = chapter.toFloat() / MAX_CHAPTER.toFloat()
 
                 // 챕터 10개마다 한 번씩 UI 업데이트 (UX 개선 및 오버헤드 감소)
-                if (chapter == 99) {
+                if (chapter == MAX_CHAPTER) {
                     _allContents.update { accumulatedList.toList() }
                     _isLoading.value = false
                 }
             }
         }
+    }
 
+    companion object {
+        private const val MAX_CHAPTER = 20
     }
 
 }

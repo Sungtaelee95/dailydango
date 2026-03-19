@@ -67,11 +67,11 @@ class FavoriteViewModel @Inject constructor(
         viewModelScope.launch {
             loadingDialogManager.show()
             if (!contentState.isBookmark) {
-                deleteFavoriteUseCase(contentState.japaneseTitle)
+                deleteFavoriteUseCase(contentState.id)
             } else {
                 _uiState.update { currentList ->
                     currentList.map {
-                        if (it.japaneseTitle == contentState.japaneseTitle) {
+                        if (it.id == contentState.id) {
                             contentState // 누른 아이템만 업데이트된 상태로 교체
                         } else {
                             it

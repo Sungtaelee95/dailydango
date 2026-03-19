@@ -54,6 +54,7 @@ fun SearchScreen(
     SearchContent(
         contents = contents,
         updateContent = viewModel::updateSearchContent,
+        favoriteClick = viewModel::updateSearchFavorite,
         playSoundFor = viewModel::playSoundFor
     )
 }
@@ -62,6 +63,7 @@ fun SearchScreen(
 fun SearchContent(
     contents: List<ContentState> = emptyList(),
     updateContent: (ContentState) -> Unit = {},
+    favoriteClick: (ContentState) -> Unit = {},
     playSoundFor: (String) -> Unit = {},
     navigateToHanjaDetail: (List<String>) -> Unit = {}
 ) {
@@ -119,10 +121,14 @@ fun SearchContent(
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 contentPadding = PaddingValues(top = 4.dp, bottom = 4.dp)
             ) {
-                itemsIndexed(filterContents) { index, content ->
+                itemsIndexed(
+                    items = filterContents,
+                    key = { _, content -> content.id }
+                ) { index, content ->
                     SearchContentCard(
                         contentState = content,
                         updateContent = updateContent,
+                        favoriteClick = favoriteClick,
                         speakerClick = { playSoundFor(content.titleHanja.ifEmpty { content.japaneseTitle }) },
                         navigateToHanjaDetail = navigateToHanjaDetail
                     )
