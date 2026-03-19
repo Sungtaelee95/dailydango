@@ -41,6 +41,7 @@ import kotlin.text.ifEmpty
 @Composable
 fun SearchTabScreen(
     content: List<ContentState> = emptyList(),
+    navigateToHanjaDetail: (List<String>) -> Unit = {},
     viewModel: SearchViewModel = hiltViewModel(),
 ) {
     val contents by viewModel.uiState.collectAsStateWithLifecycle()
@@ -55,6 +56,7 @@ fun SearchTabScreen(
     SearchTabContent(
         contents = contents,
         updateContent = viewModel::updateSearchContent,
+        navigateToHanjaDetail = navigateToHanjaDetail,
         favoriteClick = viewModel::updateSearchFavorite,
         playSoundFor = viewModel::playSoundFor
     )

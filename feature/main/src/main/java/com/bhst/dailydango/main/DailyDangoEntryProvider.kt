@@ -49,7 +49,8 @@ fun dailyDangoEntryProvider(
         navigateToOss = { navigateTo(OssRoute) }
     )
     searchEntries(
-        contents = contents
+        contents = contents,
+        navigateToHanjaDetail = { hanjas -> navigateTo(HanjaDetailRoute(hanjas)) }
     )
     hiraganaStudyEntries(
         navigateToHiraganaDetail = { wordType, rowHeader ->

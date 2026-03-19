@@ -40,6 +40,7 @@ import com.bhst.dailydango.model.content.ContentState
 @Composable
 fun SearchScreen(
     content: List<ContentState> = emptyList(),
+    navigateToHanjaDetail: (List<String>) -> Unit = {},
     viewModel: SearchViewModel = hiltViewModel(),
 ) {
     val contents by viewModel.uiState.collectAsStateWithLifecycle()
@@ -55,6 +56,7 @@ fun SearchScreen(
         contents = contents,
         updateContent = viewModel::updateSearchContent,
         favoriteClick = viewModel::updateSearchFavorite,
+        navigateToHanjaDetail = navigateToHanjaDetail,
         playSoundFor = viewModel::playSoundFor
     )
 }
