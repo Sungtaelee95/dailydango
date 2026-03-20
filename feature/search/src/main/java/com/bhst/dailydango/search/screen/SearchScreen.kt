@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -104,8 +105,7 @@ fun SearchContent(
             ) {
                 ImageCard(
                     modifier = Modifier
-                        .width(160.dp)
-                        .height(160.dp),
+                        .size(240.dp),
                     painter = painterResource(R.drawable.not_search_img),
                     contentDescription = "not search"
                 )
