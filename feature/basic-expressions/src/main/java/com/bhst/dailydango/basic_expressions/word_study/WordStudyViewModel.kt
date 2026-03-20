@@ -68,7 +68,7 @@ class WordStudyViewModel @Inject constructor(
                             )
                             _uiState.update { currentList ->
                                 currentList.map {
-                                    if (it.japaneseTitle == content.japaneseTitle) {
+                                    if (it.id == content.id) {
                                         it.copy(contentUri = contentUri)
                                     } else {
                                         it
@@ -93,11 +93,11 @@ class WordStudyViewModel @Inject constructor(
             if (content.isBookmark) {
                 setFavoriteUseCase(content)
             } else {
-                deleteFavoriteUseCase(content.japaneseTitle)
+                deleteFavoriteUseCase(content.id)
             }
             _uiState.update { currentList ->
                 currentList.map {
-                    if (it.japaneseTitle == content.japaneseTitle) {
+                    if (it.id == content.id) {
                         content // 누른 아이템만 업데이트된 상태로 교체
                     } else {
                         it

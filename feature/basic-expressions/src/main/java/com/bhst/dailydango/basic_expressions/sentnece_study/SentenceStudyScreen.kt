@@ -87,7 +87,10 @@ fun SentenceStudyContent(
                 .padding(start = 28.dp, end = 28.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            itemsIndexed(contents) { index, content ->
+            itemsIndexed(
+                items = contents,
+                key = { _, content -> content.id }
+            ) { index, content ->
                 if (index == 0) Spacer(modifier = Modifier.height(4.dp))
                 ContentCard(
                     contentState = content,

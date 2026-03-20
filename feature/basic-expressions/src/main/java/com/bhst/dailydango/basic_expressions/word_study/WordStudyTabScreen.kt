@@ -98,7 +98,10 @@ fun WordStudyTabContent(
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            itemsIndexed(contents) { index, content ->
+            itemsIndexed(
+                items = contents,
+                key = {_, content -> content.id}
+            ) { index, content ->
                 ContentTabCard(
                     contentState = content,
                     updateContent = updateSentenceContent,

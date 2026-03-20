@@ -57,7 +57,7 @@ class SentenceStudyViewModel @Inject constructor(
                     // 1. 텍스트 데이터를 먼저 화면에 보여주기 위해 상태 방출
                     val initialContents = result.contents.map { ContentState.from(content = it) }
                     _uiState.emit(initialContents)
-
+                    getFavoriteContents()
                     // 2. 이후 백그라운드에서 개별 항목의 오디오 URI를 가져와 업데이트
                     initialContents.forEach { content ->
                         launch {
@@ -70,7 +70,7 @@ class SentenceStudyViewModel @Inject constructor(
                             )
                             _uiState.update { currentList ->
                                 currentList.map {
-                                    if (it.japaneseTitle == content.japaneseTitle) {
+                                    if (it.id == content.id) {
                                         it.copy(contentUri = contentUri)
                                     } else {
                                         it
@@ -95,11 +95,11 @@ class SentenceStudyViewModel @Inject constructor(
             if (content.isBookmark) {
                 setFavoriteUseCase(content)
             } else {
-                deleteFavoriteUseCase(content.japaneseTitle)
+                deleteFavoriteUseCase(content.id)
             }
             _uiState.update { currentList ->
                 currentList.map {
-                    if (it.japaneseTitle == content.japaneseTitle) {
+                    if (it.id == content.id) {
                         content // 누른 아이템만 업데이트된 상태로 교체
                     } else {
                         it
