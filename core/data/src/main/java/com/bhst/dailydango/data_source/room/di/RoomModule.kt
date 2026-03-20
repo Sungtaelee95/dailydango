@@ -45,10 +45,10 @@ object RoomModule {
                         "`order` INTEGER NOT NULL)"
             )
 
-            // 2. 기존 데이터를 새 테이블로 복사
-            // (주의: 기존 데이터에 고유한 id가 채워져 있어야만 안전하게 넘어갑니다)
+            // 2. 기존 데이터를 새 테이블로 복사 (수정된 부분: INSERT OR REPLACE INTO 적용)
+            // 중복된 id가 발생할 경우 기존 데이터를 무시하고 덮어씁니다.
             database.execSQL(
-                "INSERT INTO favorite_content_new (id, titleHanja, japaneseTitle, japaneseTitleOfSoundToKorea, partOfSpeech, titleToKorean, tip, exampleForJapanese1, explanationForKorean1, explanationForKoreanSound1, exampleForJapanese2, explanationForKorean2, explanationForKoreanSound2, exampleForJapanese3, explanationForKorean3, explanationForKoreanSound3, exampleForJapanese4, explanationForKorean4, explanationForKoreanSound4, `order`) " +
+                "INSERT OR REPLACE INTO favorite_content_new (id, titleHanja, japaneseTitle, japaneseTitleOfSoundToKorea, partOfSpeech, titleToKorean, tip, exampleForJapanese1, explanationForKorean1, explanationForKoreanSound1, exampleForJapanese2, explanationForKorean2, explanationForKoreanSound2, exampleForJapanese3, explanationForKorean3, explanationForKoreanSound3, exampleForJapanese4, explanationForKorean4, explanationForKoreanSound4, `order`) " +
                         "SELECT id, titleHanja, japaneseTitle, japaneseTitleOfSoundToKorea, partOfSpeech, titleToKorean, tip, exampleForJapanese1, explanationForKorean1, explanationForKoreanSound1, exampleForJapanese2, explanationForKorean2, explanationForKoreanSound2, exampleForJapanese3, explanationForKorean3, explanationForKoreanSound3, exampleForJapanese4, explanationForKorean4, explanationForKoreanSound4, `order` FROM favorite_content"
             )
 
@@ -59,6 +59,7 @@ object RoomModule {
             database.execSQL("ALTER TABLE favorite_content_new RENAME TO favorite_content")
         }
     }
+
     @Provides
     @Singleton
     fun providesDailyDangoDB(
