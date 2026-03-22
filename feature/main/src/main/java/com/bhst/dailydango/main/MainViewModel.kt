@@ -69,7 +69,6 @@ class MainViewModel @Inject constructor(
 
                 _loadingProgress.value = chapter.toFloat() / MAX_CHAPTER.toFloat()
 
-                // 챕터 10개마다 한 번씩 UI 업데이트 (UX 개선 및 오버헤드 감소)
                 if (chapter == MAX_CHAPTER) {
                     _allContents.update { accumulatedList.toList() }
                     _isLoading.value = false

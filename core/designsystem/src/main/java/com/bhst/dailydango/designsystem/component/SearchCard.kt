@@ -1,6 +1,5 @@
 package com.bhst.dailydango.designsystem.component
 
-import android.net.Uri
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,7 +33,7 @@ import com.bhst.dailydango.util.filterHanja
 @Composable
 fun SearchContentCard(
     contentState: ContentState,
-    speakerClick: (Uri?) -> Unit = {},
+    speakerClick: (String?) -> Unit = {},
     updateContent: (ContentState) -> Unit = {},
     favoriteClick: (ContentState) -> Unit = {},
     navigateToHanjaDetail: (List<String>) -> Unit = {}
@@ -77,7 +76,7 @@ fun SearchContentCard(
 @Composable
 fun SearchContentCardBottom(
     contentState: ContentState,
-    speakerClick: (Uri?) -> Unit = {},
+    speakerClick: (String?) -> Unit = {},
     navigateToHanjaDetail: (List<String>) -> Unit
 ) {
     Column(
@@ -154,7 +153,7 @@ fun SearchContentCardBottom(
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(20.dp),
-                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) },
+                    onClick = { speakerClick(contentState.exampleForJapanese1) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
                 Spacer(modifier = Modifier.width(20.dp))
@@ -202,7 +201,7 @@ fun SearchContentCardBottom(
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(20.dp),
-                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) },
+                    onClick = { speakerClick(contentState.exampleForJapanese2) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
                 Spacer(modifier = Modifier.width(20.dp))
@@ -250,7 +249,7 @@ fun SearchContentCardBottom(
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(28.dp),
-                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri3) },
+                    onClick = { speakerClick(contentState.exampleForJapanese3) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
                 Spacer(modifier = Modifier.width(20.dp))
@@ -299,7 +298,7 @@ fun SearchContentCardBottom(
                     contentDescription = "Speaker",
                     modifier = Modifier
                         .size(20.dp),
-                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri4) },
+                    onClick = { speakerClick(contentState.exampleForJapanese4) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
                 Spacer(modifier = Modifier.width(20.dp))
@@ -367,7 +366,7 @@ fun SearchContentCardMid(
 @Composable
 fun SearchContentCardTop(
     contentState: ContentState,
-    speakerClick: (Uri?) -> Unit = {},
+    speakerClick: (String?) -> Unit = {},
     bookmarkClick: (ContentState) -> Unit = {},
     navigateToHanjaDetail: (List<String>) -> Unit = {}
 ) {
@@ -383,7 +382,7 @@ fun SearchContentCardTop(
                 contentDescription = "Speaker",
                 modifier = Modifier
                     .size(20.dp),
-                onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
+                onClick = { speakerClick(contentState.japaneseTitle) },
                 filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
             Column(
@@ -451,7 +450,7 @@ fun SearchContentCardTop(
                 contentDescription = "Speaker",
                 modifier = Modifier
                     .size(20.dp),
-                onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
+                onClick = { speakerClick(contentState.japaneseTitle) },
                 filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
             )
             Column(

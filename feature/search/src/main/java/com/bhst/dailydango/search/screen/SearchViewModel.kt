@@ -14,7 +14,6 @@ import com.bhst.dailydango.ui.LoadingDialogManager
 import com.bhst.dailydango.ui.MessageManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -46,13 +45,16 @@ class SearchViewModel @Inject constructor(
     }
 
     // 🚨 오디오 URI는 클릭 시점에만 가져오도록 최적화 (Lazy Loading)
-    fun playSoundFor(japaneseText: String) {
+    fun playSoundFor(japaneseText: String?) {
+        if (japaneseText == null) return
         viewModelScope.launch {
             loadingDialogManager.show()
             try {
                 // 클릭한 항목의 텍스트로 URI를 실시간으로 가져옴
                 val uri = soundUriUseCase(japaneseText)
-                uri?.let { audioPlayUseCase.playAudio(uri = it) }
+                uri?.let { audioPlayUseCase.playAudio(uri = it) } ?: run {
+                    messageManager.sendMessage(context.getString(R.string.not_load_audio))
+                }
             } catch (e: Exception) {
                 messageManager.sendMessage(context.getString(R.string.not_load_audio))
             } finally {

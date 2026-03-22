@@ -18,8 +18,8 @@ extensions.configure<ApplicationExtension> {
 
     defaultConfig {
         applicationId = "com.bhst.dailydango"
-        versionCode = 14
-        versionName = "1.0.14"
+        versionCode = 15
+        versionName = "1.0.15"
     }
 
     buildTypes {

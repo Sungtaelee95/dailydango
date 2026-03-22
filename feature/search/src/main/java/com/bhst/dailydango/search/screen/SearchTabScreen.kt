@@ -1,5 +1,6 @@
 package com.bhst.dailydango.search.screen
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -68,7 +69,7 @@ fun SearchTabContent(
     contents: List<ContentState> = emptyList(),
     updateContent: (ContentState) -> Unit = {},
     favoriteClick: (ContentState) -> Unit = {},
-    playSoundFor: (String) -> Unit = {},
+    playSoundFor: (String?) -> Unit = {},
     navigateToHanjaDetail: (List<String>) -> Unit = {}
 ) {
     var searchText by remember { mutableStateOf("") }
@@ -135,7 +136,7 @@ fun SearchTabContent(
                         contentState = content,
                         updateContent = updateContent,
                         favoriteClick = favoriteClick,
-                        speakerClick = { playSoundFor(content.titleHanja.ifEmpty { content.japaneseTitle }) },
+                        speakerClick = { name -> playSoundFor(name) },
                         navigateToHanjaDetail = navigateToHanjaDetail
                     )
                 }
