@@ -248,7 +248,7 @@ fun SearchContentCardBottom(
                     painter = painterResource(R.drawable.speaker_24px),
                     contentDescription = "Speaker",
                     modifier = Modifier
-                        .size(28.dp),
+                        .size(20.dp),
                     onClick = { speakerClick(contentState.exampleForJapanese3) },
                     filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
