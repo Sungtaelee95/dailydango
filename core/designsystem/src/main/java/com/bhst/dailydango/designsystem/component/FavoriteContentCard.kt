@@ -1,11 +1,15 @@
 package com.bhst.dailydango.designsystem.component
 
 import android.net.Uri
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -148,18 +152,15 @@ fun FavoriteContentCardBottom(
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.Top
             ) {
-                ImageCard(
-                    painter = if (contentState.contentUri.explanationSoundUri1 == null) painterResource(
-                        R.drawable.volume_off_24px
-                    ) else {
-                        painterResource(R.drawable.speaker_24px)
-                    },
-                    contentDescription = "Speaker",
-                    modifier = Modifier
-                        .size(20.dp),
-                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) },
-                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
-                )
+                Box(
+                    modifier = Modifier.size(24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    SpeakerAnimatedIcon(
+                        visible = contentState.contentUri.explanationSoundUri1 != null,
+                        onClick = { speakerClick(contentState.contentUri.explanationSoundUri1) },
+                    )
+                }
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(
                     modifier = Modifier
@@ -200,18 +201,15 @@ fun FavoriteContentCardBottom(
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.Top
             ) {
-                ImageCard(
-                    painter = if (contentState.contentUri.explanationSoundUri2 == null) painterResource(
-                        R.drawable.volume_off_24px
-                    ) else {
-                        painterResource(R.drawable.speaker_24px)
-                    },
-                    contentDescription = "Speaker",
-                    modifier = Modifier
-                        .size(20.dp),
-                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) },
-                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
-                )
+                Box(
+                    modifier = Modifier.size(24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    SpeakerAnimatedIcon(
+                        visible = contentState.contentUri.explanationSoundUri2 != null,
+                        onClick = { speakerClick(contentState.contentUri.explanationSoundUri2) },
+                    )
+                }
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(
                     modifier = Modifier
@@ -252,18 +250,15 @@ fun FavoriteContentCardBottom(
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.Top
             ) {
-                ImageCard(
-                    painter = if (contentState.contentUri.explanationSoundUri3 == null) painterResource(
-                        R.drawable.volume_off_24px
-                    ) else {
-                        painterResource(R.drawable.speaker_24px)
-                    },
-                    contentDescription = "Speaker",
-                    modifier = Modifier
-                        .size(28.dp),
-                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri3) },
-                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
-                )
+                Box(
+                    modifier = Modifier.size(24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    SpeakerAnimatedIcon(
+                        visible = contentState.contentUri.explanationSoundUri3 != null,
+                        onClick = { speakerClick(contentState.contentUri.explanationSoundUri3) },
+                    )
+                }
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(
                     modifier = Modifier
@@ -305,18 +300,15 @@ fun FavoriteContentCardBottom(
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.Top
             ) {
-                ImageCard(
-                    painter = if (contentState.contentUri.explanationSoundUri4 == null) painterResource(
-                        R.drawable.volume_off_24px
-                    ) else {
-                        painterResource(R.drawable.speaker_24px)
-                    },
-                    contentDescription = "Speaker",
-                    modifier = Modifier
-                        .size(20.dp),
-                    onClick = { speakerClick(contentState.contentUri.explanationSoundUri4) },
-                    filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
-                )
+                Box(
+                    modifier = Modifier.size(24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    SpeakerAnimatedIcon(
+                        visible = contentState.contentUri.explanationSoundUri4 != null,
+                        onClick = { speakerClick(contentState.contentUri.explanationSoundUri4) },
+                    )
+                }
                 Spacer(modifier = Modifier.width(20.dp))
                 Column(
                     modifier = Modifier
@@ -393,16 +385,15 @@ fun FavoriteContentCardTop(
                 .padding(start = 20.dp, end = 20.dp, top = 20.dp),
             verticalAlignment = Alignment.Top
         ) {
-            ImageCard(
-                painter = if (contentState.contentUri.titleSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
-                    painterResource(R.drawable.speaker_24px)
-                },
-                contentDescription = "Speaker",
-                modifier = Modifier
-                    .size(20.dp),
-                onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
-                filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
-            )
+            Box(
+                modifier = Modifier.size(24.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                SpeakerAnimatedIcon(
+                    visible = contentState.contentUri.titleSoundUri != null,
+                    onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
+                )
+            }
             Column(
                 modifier = Modifier
                     .weight(1f),
@@ -463,16 +454,15 @@ fun FavoriteContentCardTop(
                 .padding(start = 20.dp, end = 20.dp, top = 20.dp),
             verticalAlignment = Alignment.Top
         ) {
-            ImageCard(
-                painter = if (contentState.contentUri.titleSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
-                    painterResource(R.drawable.speaker_24px)
-                },
-                contentDescription = "Speaker",
-                modifier = Modifier
-                    .size(20.dp),
-                onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
-                filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
-            )
+            Box(
+                modifier = Modifier.size(24.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                SpeakerAnimatedIcon(
+                    visible = contentState.contentUri.titleSoundUri != null,
+                    onClick = { speakerClick(contentState.contentUri.titleSoundUri) },
+                )
+            }
             Column(
                 modifier = Modifier
                     .weight(1f),

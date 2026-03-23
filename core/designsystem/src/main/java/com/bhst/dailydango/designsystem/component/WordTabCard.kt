@@ -2,6 +2,9 @@ package com.bhst.dailydango.designsystem.component
 
 import android.net.Uri
 import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -178,16 +181,16 @@ fun WordTabCardTop(
             .padding(start = 20.dp, end = 20.dp, top = 20.dp),
         verticalAlignment = Alignment.Top
     ) {
-        ImageCard(
-            painter = if (wordContentState.wordSoundUri == null) painterResource(R.drawable.volume_off_24px) else {
-                painterResource(R.drawable.speaker_24px)
-            },
-            contentDescription = "Speaker",
-            modifier = Modifier
-                .size(28.dp),
-            onClick = { speakerClick(wordContentState.wordSoundUri) },
-            filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
-        )
+        Box(
+            modifier = Modifier.size(28.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            SpeakerAnimatedIcon(
+                visible = wordContentState.wordSoundUri != null,
+                onClick = { speakerClick(wordContentState.wordSoundUri) },
+                size = 28
+            )
+        }
         Column(
             modifier = Modifier
                 .weight(1f),
