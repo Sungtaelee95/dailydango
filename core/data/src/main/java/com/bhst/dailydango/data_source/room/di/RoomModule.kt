@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.bhst.dailydango.data_source.room.dao.FavoriteContentDao
+import com.bhst.dailydango.data_source.room.dao.PlayRepeatDao
 import com.bhst.dailydango.data_source.room.dao.PlaySpeedDao
 import com.bhst.dailydango.data_source.room.dao.ThemeConfigDao
 import com.bhst.dailydango.data_source.room.db.DailyDangoDB
@@ -60,6 +61,21 @@ object RoomModule {
         }
     }
 
+    val MIGRATION_4_5 = object : Migration(4, 5) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            // play_repeat 테이블 생성 쿼리
+            db.execSQL(
+                """
+            CREATE TABLE IF NOT EXISTS `play_repeat` (
+                `id` INTEGER NOT NULL, 
+                `repeat` INTEGER NOT NULL, 
+                PRIMARY KEY(`id`)
+            )
+            """.trimIndent()
+            )
+        }
+    }
+
     @Provides
     @Singleton
     fun providesDailyDangoDB(
@@ -71,6 +87,7 @@ object RoomModule {
             "daily_dango_db"
         )
             .addMigrations(MIGRATION_3_4)
+            .addMigrations(MIGRATION_4_5)
             .build()
     }
 
@@ -96,5 +113,13 @@ object RoomModule {
         dailyDangoDB: DailyDangoDB
     ): PlaySpeedDao {
         return dailyDangoDB.playSpeedDao()
+    }
+
+    @Provides
+    @Singleton
+    fun providesPlayRepeatDao(
+        dailyDangoDB: DailyDangoDB
+    ): PlayRepeatDao {
+        return dailyDangoDB.playRepeatDao()
     }
 }

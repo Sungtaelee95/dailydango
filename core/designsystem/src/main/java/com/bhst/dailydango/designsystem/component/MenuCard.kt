@@ -47,7 +47,7 @@ fun MenuCard(
             ImageCard(
                 painter = painterResource(id = img),
                 contentDescription = "menu_img",
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier.size(80.dp)
             )
             Spacer(
                 modifier = Modifier.width(12.dp)

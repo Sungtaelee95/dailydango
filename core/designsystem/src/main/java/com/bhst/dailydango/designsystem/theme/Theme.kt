@@ -37,7 +37,8 @@ private val DarkColorScheme = darkColorScheme(
     onPrimaryFixed = DailyDangoColor.CoralPink,
     secondaryFixed = DailyDangoColor.BrownGray,
     secondaryFixedDim= DailyDangoColor.LightOrange,
-    tertiaryFixed = DailyDangoColor.DarkSageGreen
+    tertiaryFixed = DailyDangoColor.DarkSageGreen,
+    tertiaryFixedDim = DailyDangoColor.DeepMint,
 )
 
 // 🔵 라이트 테마 컬러 스킴
@@ -61,7 +62,8 @@ private val LightColorScheme = lightColorScheme(
     onPrimaryFixed = DailyDangoColor.SalmonPink,
     secondaryFixed = DailyDangoColor.PearlBush,
     secondaryFixedDim = DailyDangoColor.Orange,
-    tertiaryFixed = DailyDangoColor.AshGreen
+    tertiaryFixed = DailyDangoColor.AshGreen,
+    tertiaryFixedDim = DailyDangoColor.MintGreen
 )
 
 val LocalDarkTheme = compositionLocalOf { true }

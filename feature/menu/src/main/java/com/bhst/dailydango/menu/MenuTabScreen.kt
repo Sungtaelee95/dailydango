@@ -25,12 +25,14 @@ fun MenuTabScreen(
     navigateToFavorite: () -> Unit,
     navigateToTheme: () -> Unit,
     navigateToPlaySpeed: () -> Unit,
+    navigateToPlayRepeat: () -> Unit,
     navigateToOss: () -> Unit
 ) {
     MenuTabContent(
         navigateToFavorite = navigateToFavorite,
         navigateToTheme = navigateToTheme,
         navigateToPlaySpeed = navigateToPlaySpeed,
+        navigateToPlayRepeat = navigateToPlayRepeat,
         navigateToOss = navigateToOss
     )
 }
@@ -40,6 +42,7 @@ fun MenuTabContent(
     navigateToFavorite: () -> Unit = {},
     navigateToTheme: () -> Unit = {},
     navigateToPlaySpeed: () -> Unit = {},
+    navigateToPlayRepeat: () -> Unit = {},
     navigateToOss: () -> Unit = {}
 ) {
     Column(
@@ -52,7 +55,7 @@ fun MenuTabContent(
                 .fillMaxHeight()
                 .width(480.dp)
                 .verticalScroll(scrollState),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             MenuCard(
@@ -81,6 +84,13 @@ fun MenuTabContent(
                 subTitle = stringResource(R.string.custom_speed_control),
                 img = R.drawable.speed_img,
                 onClick = navigateToPlaySpeed
+            )
+
+            MenuCard(
+                title = stringResource(R.string.repeat_control),
+                subTitle = stringResource(R.string.custom_repeat_control),
+                img = R.drawable.play_repeate_img,
+                onClick = navigateToPlayRepeat
             )
 
             Text(

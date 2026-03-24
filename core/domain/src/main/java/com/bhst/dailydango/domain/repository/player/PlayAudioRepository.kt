@@ -8,6 +8,10 @@ interface PlayAudioRepository {
 
     suspend fun setPlaySpeed(speed: Float)
 
+    suspend fun setPlayRepeat(repeat: Int)
+
+    fun getPlayRepeat(): Flow<Int>
+
     fun getPlaySpeed(): Flow<Float>
 
     suspend fun release()

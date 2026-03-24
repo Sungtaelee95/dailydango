@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,12 +24,14 @@ fun MenuScreen(
     navigateToFavorite: () -> Unit,
     navigateToTheme: () -> Unit,
     navigateToPlaySpeed: () -> Unit,
+    navigateToPlayRepeat: () -> Unit,
     navigateToOss: () -> Unit
 ) {
     MenuContent(
         navigateToFavorite = navigateToFavorite,
         navigateToTheme = navigateToTheme,
         navigateToPlaySpeed = navigateToPlaySpeed,
+        navigateToPlayRepeat = navigateToPlayRepeat,
         navigateToOss = navigateToOss
     )
 }
@@ -37,13 +41,16 @@ fun MenuContent(
     navigateToFavorite: () -> Unit = {},
     navigateToTheme: () -> Unit = {},
     navigateToPlaySpeed: () -> Unit = {},
+    navigateToPlayRepeat: () -> Unit = {},
     navigateToOss: () -> Unit = {}
 ) {
+    val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 28.dp, end = 28.dp, top = 12.dp),
-        verticalArrangement = Arrangement.spacedBy(20.dp),
+            .padding(start = 28.dp, end = 28.dp, top = 12.dp)
+            .verticalScroll(scrollState),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         MenuCard(
@@ -72,6 +79,13 @@ fun MenuContent(
             subTitle = stringResource(R.string.custom_speed_control),
             img = R.drawable.speed_img,
             onClick = navigateToPlaySpeed
+        )
+
+        MenuCard(
+            title = stringResource(R.string.repeat_control),
+            subTitle = stringResource(R.string.custom_repeat_control),
+            img = R.drawable.play_repeate_img,
+            onClick = navigateToPlayRepeat
         )
 
         Text(
