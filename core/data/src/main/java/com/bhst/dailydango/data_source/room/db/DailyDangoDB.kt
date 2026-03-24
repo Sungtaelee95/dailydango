@@ -1,9 +1,7 @@
 package com.bhst.dailydango.data_source.room.db
 
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.bhst.dailydango.data_source.room.dao.FavoriteContentDao
 import com.bhst.dailydango.data_source.room.dao.PlayRepeatDao
