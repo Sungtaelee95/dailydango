@@ -3,11 +3,11 @@ package com.bhst.dailydango.designsystem.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.bhst.dailydango.app.core.designsystem.R
 
@@ -19,6 +19,7 @@ private val GmarketSansKr = FontFamily(
 
 private val DailyDangoStyle = TextStyle(
     fontFamily = GmarketSansKr,
+    lineHeight = 1.4.em
 )
 
 internal val Typography = DailyDangoTypography(

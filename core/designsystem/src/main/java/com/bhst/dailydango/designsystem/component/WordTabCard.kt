@@ -110,37 +110,39 @@ fun WordTabCardBottom(
                 modifier = Modifier.fillMaxWidth()
             )
         }
-        Text(
-            text = stringResource(R.string.writing_detail),
-            style = DailyDangoTheme.typography.bold20,
-            color = MaterialTheme.colorScheme.surfaceContainer,
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(1.dp)
-                .background(MaterialTheme.colorScheme.surfaceContainer)
-        )
-        SubcomposeAsyncImage(
-            model = wordContentState.writeGifUri,
-            contentDescription = "Image",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            loading = {
-                Box(contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator()
+        if (wordContentState.writeGifUri != null) {
+            Text(
+                text = stringResource(R.string.writing_detail),
+                style = DailyDangoTheme.typography.bold20,
+                color = MaterialTheme.colorScheme.surfaceContainer,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(1.dp)
+                    .background(MaterialTheme.colorScheme.surfaceContainer)
+            )
+            SubcomposeAsyncImage(
+                model = wordContentState.writeGifUri,
+                contentDescription = "Image",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                loading = {
+                    Box(contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
+                },
+                error = {
+                    Box(contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                        Log.d("lstlst", "gif 오류")
+                    }
                 }
-            },
-            error = {
-                Box(contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator()
-                    Log.d("lstlst", "gif 오류")
-                }
-            }
-        )
+            )
+        }
     }
 }
 
