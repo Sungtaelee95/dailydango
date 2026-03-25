@@ -35,6 +35,8 @@ dependencies {
     implementation(projects.feature.hiraganaKatakanaTip)
     implementation(projects.feature.hanjaDetailApi)
     implementation(projects.feature.hanjaDetail)
+    implementation(projects.feature.suggestionApi)
+    implementation(projects.feature.suggestion)
 }
 
 dependencies {

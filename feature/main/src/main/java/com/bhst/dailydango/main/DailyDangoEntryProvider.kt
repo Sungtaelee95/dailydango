@@ -12,6 +12,7 @@ import com.bhst.dailydango.entry.homeEntries
 import com.bhst.dailydango.entry.katakanaStudyEntries
 import com.bhst.dailydango.entry.levelTestEntries
 import com.bhst.dailydango.entry.menuEntries
+import com.bhst.dailydango.entry.suggestionEntry
 import com.bhst.dailydango.hanja_detail.entry.hanjaDetailEntries
 import com.bhst.dailydango.hiragana_katakana_tip.entry.hiraganaKatakanaTipEntry
 import com.bhst.dailydango.hiragana_katakana_tip_api.HiraganaKatakanaTipRoute
@@ -76,4 +77,7 @@ fun dailyDangoEntryProvider(
         navigateToKatakanaStudy = { navigateTo(KatakanaStudyRoute) }
     )
     hanjaDetailEntries()
+    suggestionEntry(
+        onBack = back
+    )
 }

@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.filled.Close
@@ -52,7 +54,8 @@ fun DailyDangoTopAppBar(
     contentColor: Color = MaterialTheme.colorScheme.onBackground,
     containerColor: Color = MaterialTheme.colorScheme.background,
     onNavigationClick: () -> Unit = {},
-    onActionClick: () -> Unit = {}, // 우측 아이콘 클릭 동작
+    onActionClick: () -> Unit = {}, // 우측 아이콘 클릭 동작,
+    onSuggestionClick: () -> Unit = {}
 ) {
     CompositionLocalProvider(LocalContentColor provides contentColor) {
         Box(
@@ -109,17 +112,32 @@ fun DailyDangoTopAppBar(
 
             // 3. 우측 요소 (Home 타입일 때 메뉴 아이콘)
             if (navigationType == TopAppBarNavigationType.Home) {
-                IconButton(
-                    onClick = onActionClick,
+                Row(
                     modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .padding(end = 8.dp)
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.End
                 ) {
-                    Icon(
-                        imageVector = Icons.Filled.Menu, // 햄버거 메뉴 아이콘
-                        contentDescription = "Menu",
-                        tint = contentColor
-                    )
+                    IconButton(
+                        onClick = onSuggestionClick,
+                        modifier = Modifier.wrapContentSize()
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.notifications_active_24px),
+                            contentDescription = "Menu",
+                            tint = contentColor
+                        )
+                    }
+                    IconButton(
+                        onClick = onActionClick,
+                        modifier = Modifier.wrapContentSize()
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Menu, // 햄버거 메뉴 아이콘
+                            contentDescription = "Menu",
+                            tint = contentColor
+                        )
+                    }
                 }
             }
         }
@@ -164,7 +182,7 @@ private fun DailyDangoTitleContent(
 @Preview(showBackground = true)
 @Composable
 private fun DailyDangoTopAppBarNonePreview() {
-    DailyDangoTheme{
+    DailyDangoTheme {
         DailyDangoTopAppBar(
             navigationType = TopAppBarNavigationType.None,
             titleRes = R.string.dailydango,
@@ -177,7 +195,7 @@ private fun DailyDangoTopAppBarNonePreview() {
 @Preview(showBackground = true)
 @Composable
 private fun DailyDangoTopAppBarHomePreview() {
-    DailyDangoTheme{
+    DailyDangoTheme {
         DailyDangoTopAppBar(
             navigationType = TopAppBarNavigationType.Home,
             titleRes = R.string.dailydango,
@@ -189,7 +207,7 @@ private fun DailyDangoTopAppBarHomePreview() {
 @Preview(showBackground = true)
 @Composable
 private fun DailyDangoTopAppBarBackPreview() {
-    DailyDangoTheme{
+    DailyDangoTheme {
         DailyDangoTopAppBar(
             navigationType = TopAppBarNavigationType.Back,
             navigationIconContentDescription = "Back",

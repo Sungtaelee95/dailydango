@@ -162,13 +162,3 @@ private val WidgetColorProviers = colorProviders(
         DarkColorScheme.onSurfaceVariant
     )
 )
-
-@Composable
-fun KnightsGlanceTheme(
-    content: @Composable () -> Unit,
-) {
-    GlanceTheme(
-        colors = WidgetColorProviers,
-        content = content
-    )
-}

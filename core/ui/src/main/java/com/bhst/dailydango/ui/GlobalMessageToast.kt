@@ -19,7 +19,7 @@ fun GlobalMessageToast(
         messageManager.message.collect {
             keyboardController?.hide()
             focusManager.clearFocus()
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         }
     }
 }

@@ -162,6 +162,8 @@ playServicesAdsApi = "25.0.0"
 firebaseFirestoreKtxVersion = "26.1.0"
 
 media3 = "1.9.2"
+googleFirebaseFirestoreKtx = "26.1.2"
+foundationLayout = "1.10.5"
 
 [libraries]
 
@@ -325,6 +327,8 @@ androidx-compose-ui-tooling-preview-android = { group = "androidx.compose.ui", n
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 play-services-ads-api = { group = "com.google.android.gms", name = "play-services-ads-api", version.ref = "playServicesAdsApi" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtxVersion" }
+google-firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "googleFirebaseFirestoreKtx" }
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
 
 
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="server_error_msg">서버와 통신 중 예러가 발생하였습니다.\n잠시후 다시 시도해주세요.</string>
+    <string name="suggestion_header_msg">데일리 당고에 바라시는 점을\n말씀해주세요.</string>
+    <string name="suggestion_type">문의 유형</string>
+
+    <string name="suggestion_type_content_error">콘텐츠 내용 오류</string>
+    <string name="suggestion_type_inquiry_and_suggestion">문의 및 제안</string>
+
+    <string name="suggestion_name_required">이름(필수)</string>
+    <string name="suggestion_email_required">답변 받을 이메일(필수)</string>
+    <string name="suggestion_content_required">문의 내용(필수)</string>
+
+    <string name="suggestion_attach_photo">사진 첨부</string>
+    <string name="suggestion_privacy_consent_required">개인정보 수집 및 이용에 동의합니다. (필수)</string>
+    <string name="suggestion_submit">제출하기</string>
+    <string name="suggestion_privacy_policy_title">개인정보 수집 및 이용 동의</string>
+    <string name="suggestion_privacy_policy_content">1. 수집 및 이용 목적\n- 사용자 문의 접수, 요청사항 확인 및 답변 전달\n- 서비스 이용 중 발생하는 오류 및 버그 확인\n\n2. 수집하는 개인정보 항목\n- 필수 항목: 이름, 이메일, 문의 내용\n- 선택 항목: 첨부 파일(기기 환경 정보 및 캡처 이미지 등)\n\n3. 개인정보의 보유 및 이용 기간\n- 문의 처리 완료 후 3년간 보관 후 지체 없이 파기 (※ 전자상거래 등에서의 소비자보호에 관한 법률에 따른 소비자의 불만 또는 분쟁처리에 관한 기록 보존 기준)\n\n4. 동의를 거부할 권리 및 불이익\n- 귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 단, 필수 항목 수집에 동의하지 않으실 경우 문의 접수 및 답변 서비스 이용이 제한됩니다.</string>
+    <string name="suggestion_privacy_policy_detail">[자세히 보기]</string>
+    <string name="check">확인</string>
+</resources>

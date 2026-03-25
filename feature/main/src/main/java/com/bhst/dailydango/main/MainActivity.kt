@@ -29,6 +29,7 @@ import com.bhst.dailydango.designsystem.component.TopAppBarNavigationType
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.menu_api.MenuRoute
 import com.bhst.dailydango.model.theme.config.ThemeConfig
+import com.bhst.dailydango.suggestion_api.SuggestionRoute
 import com.bhst.dailydango.ui.GlobalLoadingDialog
 import com.bhst.dailydango.ui.GlobalMessageToast
 import com.bhst.dailydango.ui.LoadingDialogManager
@@ -48,7 +49,7 @@ class MainActivity : ComponentActivity() {
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
@@ -63,11 +64,15 @@ class MainActivity : ComponentActivity() {
             var interstitialAd by remember { mutableStateOf<InterstitialAd?>(null) }
             val context = LocalContext.current
 
-            // 화면이 켜지자마자 백그라운드에서 조용히 광고를 불러옵니다.
-            LaunchedEffect(Unit) {
+            val loadAd: () -> Unit = {
                 loadInterstitialAd(context) { loadedAd ->
                     interstitialAd = loadedAd
                 }
+            }
+
+            // 화면이 켜지자마자 백그라운드에서 조용히 광고를 불러옵니다.
+            LaunchedEffect(Unit) {
+                loadAd()
             }
 
             val isDark = when (themeConfig) {
@@ -101,7 +106,8 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier.padding(top = 28.dp),
                                 navigationType = type,
                                 onNavigationClick = appState::onBack,
-                                onActionClick = { appState.navigationTo(MenuRoute) }
+                                onActionClick = { appState.navigationTo(MenuRoute) },
+                                onSuggestionClick = { appState.navigationTo(SuggestionRoute) }
                             )
                         }
                     ) { innerPadding ->
@@ -118,6 +124,7 @@ class MainActivity : ComponentActivity() {
                                         ad = interstitialAd,
                                         onAdDismissed = {
                                             interstitialAd = null
+                                            loadAd()
                                         }
                                     )
                                 }

@@ -1,4 +1,5 @@
 import com.bhst.dailydango.app.configureCoroutineAndroid
+import com.bhst.dailydango.app.configureFirebase
 import com.bhst.dailydango.app.configureHiltAndroid
 import com.bhst.dailydango.app.configureKotest
 import com.bhst.dailydango.app.configureKotlinAndroid
@@ -18,3 +19,4 @@ configureCoroutineAndroid()
 configureHiltAndroid()
 configureMedia3ExoPlayer()
 configureRoomAndroid()
+configureFirebase()
