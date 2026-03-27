@@ -157,18 +157,24 @@ fun WordTabCardMid(
             .padding(end = 20.dp),
         horizontalArrangement = Arrangement.End
     ) {
-        ImageCard(
-            painter = if (contentState.isOpen) {
-                painterResource(R.drawable.keyboard_arrow_up_24px)
-            } else {
-                painterResource(R.drawable.keyboard_arrow_down_24px)
-            },
-            modifier = Modifier
-                .size(28.dp),
-            contentDescription = "Arrow",
-            onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) },
-            filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
-        )
+        if (contentState.tip.isNotEmpty() && contentState.writeGifUri != null) {
+            ImageCard(
+                painter = if (contentState.isOpen) {
+                    painterResource(R.drawable.keyboard_arrow_up_24px)
+                } else {
+                    painterResource(R.drawable.keyboard_arrow_down_24px)
+                },
+                modifier = Modifier
+                    .size(28.dp),
+                contentDescription = "Arrow",
+                onClick = { isOpenChanged(contentState.copy(isOpen = !contentState.isOpen)) },
+                filter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+            )
+        } else {
+            Box(
+                modifier = Modifier.size(28.dp)
+            )
+        }
     }
 }
 
