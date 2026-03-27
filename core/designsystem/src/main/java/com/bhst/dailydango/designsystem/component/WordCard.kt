@@ -157,7 +157,7 @@ fun WordCardMid(
             .padding(end = 20.dp),
         horizontalArrangement = Arrangement.End
     ) {
-        if (contentState.tip.isNotEmpty() && contentState.writeGifUri != null) {
+        if (contentState.tip.isNotEmpty() || contentState.writeGifUri != null) {
             ImageCard(
                 painter = if (contentState.isOpen) {
                     painterResource(R.drawable.keyboard_arrow_up_24px)
