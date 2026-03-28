@@ -5,26 +5,38 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import coil.compose.AsyncImage
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.content.ContentState
@@ -79,6 +91,7 @@ fun SearchContentCardBottom(
     speakerClick: (String?) -> Unit = {},
     navigateToHanjaDetail: (List<String>) -> Unit
 ) {
+    var selectedImageUrl by remember { mutableStateOf<String?>(null) }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -111,6 +124,27 @@ fun SearchContentCardBottom(
                     style = DailyDangoTheme.typography.medium14,
                     color = MaterialTheme.colorScheme.onBackground
                 )
+            }
+        }
+        if (contentState.tipImages.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(12.dp))
+            LazyRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(contentState.tipImages) { imageUrl ->
+                    AsyncImage(
+                        model = imageUrl,
+                        contentDescription = "Tip Image",
+                        modifier = Modifier
+                            .fillParentMaxSize()
+                            .clickable {
+                                // 이미지 클릭 시 다이얼로그를 띄우기 위해 url 저장
+                                selectedImageUrl = imageUrl
+                            },
+                        contentScale = ContentScale.Fit
+                    )
+                }
             }
         }
         if (contentState.tip.isNotEmpty()) {
@@ -330,6 +364,35 @@ fun SearchContentCardBottom(
                         text = contentState.explanationForKorean4,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            }
+        }
+        if (selectedImageUrl != null) {
+            Dialog(
+                onDismissRequest = { selectedImageUrl = null },
+                properties = DialogProperties(
+                    usePlatformDefaultWidth = false, // 화면 꽉 채우기 위해 설정
+                    dismissOnBackPress = true,
+                    dismissOnClickOutside = true
+                )
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.9f)) // 어두운 배경 반투명
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                            onClick = { selectedImageUrl = null } // 화면 아무데나 누르면 닫힘
+                        ),
+                    contentAlignment = Alignment.Center
+                ) {
+                    AsyncImage(
+                        model = selectedImageUrl,
+                        contentDescription = "Full Screen Tip Image",
+                        modifier = Modifier.fillMaxWidth(), // 가로 길이에 맞추고 비율 유지
+                        contentScale = ContentScale.Fit // 잘리지 않고 전체가 다 보이게
                     )
                 }
             }
