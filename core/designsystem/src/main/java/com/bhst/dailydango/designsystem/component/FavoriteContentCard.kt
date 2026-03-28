@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -41,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.content.ContentState
@@ -136,7 +138,7 @@ fun FavoriteContentCardBottom(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(contentState.tipImages) { imageUrl ->
-                    AsyncImage(
+                    SubcomposeAsyncImage( // 💡 변경된 부분
                         model = imageUrl,
                         contentDescription = "Tip Image",
                         modifier = Modifier
@@ -145,7 +147,15 @@ fun FavoriteContentCardBottom(
                                 // 이미지 클릭 시 다이얼로그를 띄우기 위해 url 저장
                                 selectedImageUrl = imageUrl
                             },
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.Fit,
+                        loading = { // 💡 로딩 상태일 때 보여줄 UI
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                CircularProgressIndicator()
+                            }
+                        }
                     )
                 }
             }
