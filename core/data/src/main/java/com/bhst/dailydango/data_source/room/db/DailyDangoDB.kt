@@ -3,6 +3,7 @@ package com.bhst.dailydango.data_source.room.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.bhst.dailydango.model.room.converter.StringListConverter
 import com.bhst.dailydango.data_source.room.dao.FavoriteContentDao
 import com.bhst.dailydango.data_source.room.dao.PlayRepeatDao
 import com.bhst.dailydango.data_source.room.dao.PlaySpeedDao
@@ -20,9 +21,9 @@ import com.bhst.dailydango.model.theme.entity.ThemeEntity
         PlaySpeedEntity::class,
         PlayRepeatEntity::class
     ],
-    version = 5,
+    version = 6,
 )
-@TypeConverters(ThemeConverter::class)
+@TypeConverters(ThemeConverter::class, StringListConverter::class)
 abstract class DailyDangoDB : RoomDatabase() {
     abstract fun favoriteContentDao(): FavoriteContentDao
     abstract fun themeConfigDao(): ThemeConfigDao

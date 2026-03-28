@@ -21,7 +21,7 @@ import javax.inject.Singleton
 object RoomModule {
     val MIGRATION_3_4 = object : Migration(3, 4) {
         override fun migrate(database: SupportSQLiteDatabase) {
-            // 1. 새로운 구조의 임시 테이블 생성 (id를 PK로 지정)
+            // (기존 코드 동일...)
             database.execSQL(
                 "CREATE TABLE favorite_content_new (" +
                         "id TEXT NOT NULL PRIMARY KEY, " +
@@ -45,25 +45,17 @@ object RoomModule {
                         "explanationForKoreanSound4 TEXT NOT NULL, " +
                         "`order` INTEGER NOT NULL)"
             )
-
-            // 2. 기존 데이터를 새 테이블로 복사 (수정된 부분: INSERT OR REPLACE INTO 적용)
-            // 중복된 id가 발생할 경우 기존 데이터를 무시하고 덮어씁니다.
             database.execSQL(
                 "INSERT OR REPLACE INTO favorite_content_new (id, titleHanja, japaneseTitle, japaneseTitleOfSoundToKorea, partOfSpeech, titleToKorean, tip, exampleForJapanese1, explanationForKorean1, explanationForKoreanSound1, exampleForJapanese2, explanationForKorean2, explanationForKoreanSound2, exampleForJapanese3, explanationForKorean3, explanationForKoreanSound3, exampleForJapanese4, explanationForKorean4, explanationForKoreanSound4, `order`) " +
                         "SELECT id, titleHanja, japaneseTitle, japaneseTitleOfSoundToKorea, partOfSpeech, titleToKorean, tip, exampleForJapanese1, explanationForKorean1, explanationForKoreanSound1, exampleForJapanese2, explanationForKorean2, explanationForKoreanSound2, exampleForJapanese3, explanationForKorean3, explanationForKoreanSound3, exampleForJapanese4, explanationForKorean4, explanationForKoreanSound4, `order` FROM favorite_content"
             )
-
-            // 3. 기존 테이블 삭제
             database.execSQL("DROP TABLE favorite_content")
-
-            // 4. 임시 테이블의 이름을 원래 이름으로 변경
             database.execSQL("ALTER TABLE favorite_content_new RENAME TO favorite_content")
         }
     }
 
     val MIGRATION_4_5 = object : Migration(4, 5) {
         override fun migrate(db: SupportSQLiteDatabase) {
-            // play_repeat 테이블 생성 쿼리
             db.execSQL(
                 """
             CREATE TABLE IF NOT EXISTS `play_repeat` (
@@ -73,6 +65,14 @@ object RoomModule {
             )
             """.trimIndent()
             )
+        }
+    }
+
+    // 💡 새로운 마이그레이션 5 -> 6 (tipImages 컬럼 추가)
+    val MIGRATION_5_6 = object : Migration(5, 6) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            // 빈 리스트가 Gson으로 직렬화되면 "[]" 이므로 기본값을 "[]"로 설정
+            db.execSQL("ALTER TABLE `favorite_content` ADD COLUMN `tipImages` TEXT NOT NULL DEFAULT '[]'")
         }
     }
 
@@ -88,6 +88,7 @@ object RoomModule {
         )
             .addMigrations(MIGRATION_3_4)
             .addMigrations(MIGRATION_4_5)
+            .addMigrations(MIGRATION_5_6) // 💡 5 -> 6 마이그레이션 추가
             .build()
     }
 

@@ -11,6 +11,7 @@ data class Content(
     val partOfSpeech: String = "",
     val titleToKorean: String = "",
     val tip: String = "",
+    val tipImages: List<String> = emptyList(),
     val exampleForJapanese1: String = "",
     val explanationForKorean1: String = "",
     val explanationForKoreanSound1: String = "",

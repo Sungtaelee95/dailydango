@@ -17,7 +17,7 @@ class UploadSuggestionImageRepositoryImpl @Inject constructor(
     override suspend fun uploadImage(uri: Uri): ImageResult {
         return withContext(IO) {
             try {
-                val fileName = UUID.randomUUID().toString() + ".jpg"
+                val fileName = UUID.randomUUID().toString() + ".png"
                 val storageRef = storage.reference.child("image/suggestion/$fileName")
                 storageRef.putFile(uri).await()
                 val imageUrl = storageRef.downloadUrl.await().toString()

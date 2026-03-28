@@ -118,7 +118,7 @@ class MainActivity : ComponentActivity() {
                             backStack = appState.backStack,
                             onBack = {
                                 appState.onBack()
-                                if (appState.backStack.size == 2) {
+                                if (appState.backStack.size == 3) {
                                     showInterstitialAd(
                                         context = context,
                                         ad = interstitialAd,
