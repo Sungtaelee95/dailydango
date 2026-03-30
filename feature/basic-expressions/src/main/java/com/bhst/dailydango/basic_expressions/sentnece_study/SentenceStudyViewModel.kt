@@ -41,7 +41,14 @@ class SentenceStudyViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<List<ContentState>>(emptyList())
     val uiState = _uiState.asStateFlow()
 
+    private val _isStateAllOpen = MutableStateFlow(false)
+    val isStateAllOpen = _isStateAllOpen.asStateFlow()
+
     private var favoriteJob: Job? = null
+
+    init {
+        collectOpenState()
+    }
 
     override fun onCleared() {
         super.onCleared()
@@ -126,6 +133,10 @@ class SentenceStudyViewModel @Inject constructor(
         }
     }
 
+    fun changeOpenState() {
+        _isStateAllOpen.update { !it }
+    }
+
     private fun getFavoriteContents() {
         favoriteJob?.cancel()
         favoriteJob = viewModelScope.launch {
@@ -143,6 +154,18 @@ class SentenceStudyViewModel @Inject constructor(
                         } else {
                             item
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun collectOpenState() {
+        viewModelScope.launch {
+            isStateAllOpen.collect { state ->
+                _uiState.update { currentList ->
+                    currentList.map {
+                        it.copy(isOpen = state)
                     }
                 }
             }

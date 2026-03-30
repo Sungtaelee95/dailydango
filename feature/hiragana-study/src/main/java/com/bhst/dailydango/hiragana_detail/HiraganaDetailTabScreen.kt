@@ -7,6 +7,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -35,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.bhst.dailydango.designsystem.component.CardOpenStateChangeTextIcon
 import com.bhst.dailydango.designsystem.component.WordTabCard
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.word.WordContentState
@@ -49,6 +52,7 @@ fun HiraganaDetailTabScreen(
 ) {
     val selectedRow by viewModel.selectedRow.collectAsStateWithLifecycle()
     val wordState by viewModel.wordContentState.collectAsStateWithLifecycle()
+    val isStateAllOpen by viewModel.isStateAllOpen.collectAsStateWithLifecycle()
     val currentMap = when (wordType) {
         WordType.BASIC -> HiraganaData.basicMap
         WordType.DAKUON -> HiraganaData.dakuonMap
@@ -77,6 +81,8 @@ fun HiraganaDetailTabScreen(
         wordState = wordState,
         onTabSelected = viewModel::updateSelectedRow, // 또는 { viewModel.updateSelectedRow(it) },
         playAudio = viewModel::playAudio,
+        allOpenState = isStateAllOpen,
+        changeOpenState = viewModel::changeOpenState,
         updateContent = viewModel::updateContent
     )
 }
@@ -88,10 +94,11 @@ fun HiraganaDetailTabContent(
     wordState: List<WordContentState> = emptyList(),
     onTabSelected: (String) -> Unit = {},
     playAudio: (Uri?) -> Unit = {},
+    allOpenState: Boolean = false,
+    changeOpenState: () -> Unit = {},
     updateContent: (WordContentState) -> Unit = {}
 ) {
     val listState = rememberLazyListState()
-    val scrollState = rememberScrollState()
 
     LaunchedEffect(selectedRow) {
         val index = tabList.indexOf(selectedRow)
@@ -143,27 +150,22 @@ fun HiraganaDetailTabContent(
         }
 
         // 2. 선택된 행의 글자들을 보여주는 리스트 (LazyColumn)
-        Column(
+        LazyColumn (
             modifier = Modifier
                 .fillMaxHeight()
                 .width(480.dp)
-                .padding(start = 24.dp, end = 24.dp, top = 12.dp, bottom = 12.dp)
-                .verticalScroll(scrollState),
+                .padding(start = 24.dp, end = 24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
+            contentPadding = PaddingValues(top = 8.dp, bottom = 8.dp)
         ) {
-            // itemsIndexed 대신 일반 forEachIndexed 사용
-            wordState.forEachIndexed { index, item ->
-                if (index == 0) {
-                    Spacer(modifier = Modifier.height(4.dp))
-                }
+            items(
+                items = wordState
+            ) {
                 WordTabCard(
-                    wordContentState = item,
+                    wordContentState = it,
                     speakerClick = playAudio,
                     updateContent = updateContent
                 )
-                if (index == wordState.lastIndex) {
-                    Spacer(modifier = Modifier.height(4.dp))
-                }
             }
         }
     }

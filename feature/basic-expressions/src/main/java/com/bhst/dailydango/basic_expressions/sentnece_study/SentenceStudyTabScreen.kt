@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bhst.dailydango.app.feature.basic.expressions.R
+import com.bhst.dailydango.designsystem.component.CardOpenStateChangeTextIcon
 import com.bhst.dailydango.designsystem.component.ColorBar
 import com.bhst.dailydango.designsystem.component.ContentTabCard
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
@@ -41,6 +42,7 @@ fun SentenceStudyTabScreen(
     viewModel: SentenceStudyViewModel = hiltViewModel()
 ) {
     val contents by viewModel.uiState.collectAsStateWithLifecycle()
+    val isStateAllOpen by viewModel.isStateAllOpen.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) {
         viewModel.getSentenceContent(chapter)
     }
@@ -54,6 +56,8 @@ fun SentenceStudyTabScreen(
         updateSentenceContent = viewModel::updateSentenceContent,
         playAudio = viewModel::soundPlayForContent,
         navigateToHanjaDetail = navigateToHanjaDetail,
+        allOpenState = isStateAllOpen,
+        changeOpenState = viewModel::changeOpenState,
         chapter = chapter
     )
 }
@@ -63,6 +67,8 @@ fun SentenceStudyTabContent(
     contents: List<ContentState> = emptyList(),
     updateSentenceContent: (ContentState) -> Unit = {},
     playAudio: (Uri?) -> Unit = {},
+    allOpenState: Boolean = false,
+    changeOpenState: () -> Unit = {},
     navigateToHanjaDetail: (List<String>) -> Unit = {},
     chapter: Int = 1
 ) {
@@ -86,6 +92,12 @@ fun SentenceStudyTabContent(
                 )
             }
         }
+
+        CardOpenStateChangeTextIcon(
+            openState = allOpenState,
+            onOpenStateChange = changeOpenState
+        )
+
         LazyVerticalGrid(
             columns = GridCells.Fixed(count = 2),
             modifier = Modifier

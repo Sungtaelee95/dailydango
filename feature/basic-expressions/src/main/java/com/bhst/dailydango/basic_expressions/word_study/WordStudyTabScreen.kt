@@ -30,6 +30,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bhst.dailydango.app.feature.basic.expressions.R
 import com.bhst.dailydango.basic_expressions.sentnece_study.SentenceStudyTabContent
+import com.bhst.dailydango.designsystem.component.CardOpenStateChangeTextIcon
 import com.bhst.dailydango.designsystem.component.ColorBar
 import com.bhst.dailydango.designsystem.component.ContentTabCard
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
@@ -42,6 +43,7 @@ fun WordStudyTabScreen(
     viewModel: WordStudyViewModel = hiltViewModel()
 ) {
     val contents by viewModel.uiState.collectAsStateWithLifecycle()
+    val isStateAllOpen by viewModel.isStateAllOpen.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) {
         viewModel.getWordContent(chapter)
     }
@@ -55,6 +57,8 @@ fun WordStudyTabScreen(
         navigateToHanjaDetail = navigateToHanjaDetail,
         updateSentenceContent = viewModel::updateSentenceContent,
         playAudio = viewModel::soundPlayForContent,
+        allOpenState = isStateAllOpen,
+        changeOpenState = viewModel::changeOpenState,
         chapter = chapter
     )
 }
@@ -65,6 +69,8 @@ fun WordStudyTabContent(
     updateSentenceContent: (ContentState) -> Unit = {},
     navigateToHanjaDetail: (List<String>) -> Unit = {},
     playAudio: (Uri?) -> Unit = {},
+    allOpenState: Boolean = false,
+    changeOpenState: () -> Unit = {},
     chapter: Int = 1
 ) {
     Column(
@@ -87,6 +93,11 @@ fun WordStudyTabContent(
                 )
             }
         }
+
+        CardOpenStateChangeTextIcon(
+            openState = allOpenState,
+            onOpenStateChange = changeOpenState
+        )
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(count = 2),

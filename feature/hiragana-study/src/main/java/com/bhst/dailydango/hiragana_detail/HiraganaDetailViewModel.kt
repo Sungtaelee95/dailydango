@@ -39,6 +39,13 @@ class HiraganaDetailViewModel @Inject constructor(
     private val _wordContentState = MutableStateFlow<List<WordContentState>>(emptyList())
     val wordContentState = _wordContentState.asStateFlow()
 
+    private val _isStateAllOpen = MutableStateFlow(false)
+    val isStateAllOpen = _isStateAllOpen.asStateFlow()
+
+    init {
+        collectOpenState()
+    }
+
     override fun onCleared() {
         super.onCleared()
         loadingDialogManager.dismiss()
@@ -91,6 +98,10 @@ class HiraganaDetailViewModel @Inject constructor(
         }
     }
 
+    fun changeOpenState() {
+        _isStateAllOpen.update { !it }
+    }
+
     private fun updateUri() {
         viewModelScope.launch {
             // 1. 현재 리스트의 단어(word) 목록만 먼저 가져옵니다.
@@ -115,6 +126,18 @@ class HiraganaDetailViewModel @Inject constructor(
                                 currentItem
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun collectOpenState() {
+        viewModelScope.launch {
+            isStateAllOpen.collect { state ->
+                _wordContentState.update { currentList ->
+                    currentList.map {
+                        it.copy(isOpen = state)
                     }
                 }
             }

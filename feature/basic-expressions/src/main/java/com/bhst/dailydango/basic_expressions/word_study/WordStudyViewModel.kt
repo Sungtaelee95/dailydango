@@ -40,12 +40,20 @@ class WordStudyViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<List<ContentState>>(emptyList())
     val uiState = _uiState.asStateFlow()
 
+    private val _isStateAllOpen = MutableStateFlow(false)
+    val isStateAllOpen = _isStateAllOpen.asStateFlow()
+
+
     private var favoriteJob: Job? = null
 
     override fun onCleared() {
         super.onCleared()
         favoriteJob = null
         loadingDialogManager.dismiss()
+    }
+
+    init {
+        collectOpenState()
     }
     fun getWordContent(chapter: Int) {
         viewModelScope.launch {
@@ -108,6 +116,10 @@ class WordStudyViewModel @Inject constructor(
         }
     }
 
+    fun changeOpenState() {
+        _isStateAllOpen.update { !it }
+    }
+
     fun soundPlayForContent(uri: Uri?) {
         viewModelScope.launch {
             loadingDialogManager.show()
@@ -141,6 +153,18 @@ class WordStudyViewModel @Inject constructor(
                         } else {
                             item
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun collectOpenState() {
+        viewModelScope.launch {
+            isStateAllOpen.collect { state ->
+                _uiState.update { currentList ->
+                    currentList.map {
+                        it.copy(isOpen = state)
                     }
                 }
             }

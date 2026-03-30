@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -32,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.bhst.dailydango.designsystem.component.CardOpenStateChangeTextIcon
 import com.bhst.dailydango.designsystem.component.WordCard
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.word.WordContentState
@@ -46,6 +48,7 @@ fun KatakanaDetailScreen(
 ) {
     val selectedRow by viewModel.selectedRow.collectAsStateWithLifecycle()
     val wordState by viewModel.wordContentState.collectAsStateWithLifecycle()
+    val isStateAllOpen by viewModel.isStateAllOpen.collectAsStateWithLifecycle()
     val currentMap = when (wordType) {
         WordType.BASIC -> KatakanaData.basicMap
         WordType.DAKUON -> KatakanaData.dakuonMap
@@ -74,6 +77,8 @@ fun KatakanaDetailScreen(
         wordState = wordState,
         onTabSelected = viewModel::updateSelectedRow, // 또는 { viewModel.updateSelectedRow(it) },
         playAudio = viewModel::playAudio,
+        allOpenState = isStateAllOpen,
+        changeOpenState = viewModel::changeOpenState,
         updateContent = viewModel::updateContent
     )
 }
@@ -85,10 +90,11 @@ fun KatakanaDetailContent(
     wordState: List<WordContentState> = emptyList(),
     onTabSelected: (String) -> Unit = {},
     playAudio: (Uri?) -> Unit = {},
+    allOpenState: Boolean = false,
+    changeOpenState: () -> Unit = {},
     updateContent: (WordContentState) -> Unit = {}
 ) {
     val listState = rememberLazyListState()
-    val scrollState = rememberScrollState()
 
     LaunchedEffect(selectedRow) {
         val index = tabList.indexOf(selectedRow)
@@ -139,27 +145,21 @@ fun KatakanaDetailContent(
             }
         }
 
-        // 2. 선택된 행의 글자들을 보여주는 리스트 (LazyColumn)
-        Column(
+        LazyColumn (
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = 24.dp, end = 24.dp, top = 12.dp, bottom = 12.dp)
-                .verticalScroll(scrollState),
+                .padding(start = 24.dp, end = 24.dp,),
             verticalArrangement = Arrangement.spacedBy(16.dp),
+            contentPadding = PaddingValues(top = 8.dp, bottom = 8.dp)
         ) {
-            // itemsIndexed 대신 일반 forEachIndexed 사용
-            wordState.forEachIndexed { index, item ->
-                if (index == 0) {
-                    Spacer(modifier = Modifier.height(4.dp))
-                }
+            items(
+                items = wordState
+            ) {
                 WordCard(
-                    wordContentState = item,
+                    wordContentState = it,
                     speakerClick = playAudio,
                     updateContent = updateContent
                 )
-                if (index == wordState.lastIndex) {
-                    Spacer(modifier = Modifier.height(4.dp))
-                }
             }
         }
     }
