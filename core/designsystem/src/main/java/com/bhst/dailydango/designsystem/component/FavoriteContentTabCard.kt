@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,13 +29,17 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -47,6 +52,8 @@ import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.content.ContentState
 import com.bhst.dailydango.util.filterHanja
+import com.google.common.math.Quantiles.scale
+import java.time.temporal.TemporalQueries.offset
 
 @Composable
 fun FavoriteContentTabCard(
@@ -134,6 +141,8 @@ fun FavoriteContentTabCardBottom(
         }
         if (contentState.tipImages.isNotEmpty()) {
             Spacer(modifier = Modifier.height(12.dp))
+            var scale by remember { mutableFloatStateOf(1f) }
+            var offset by remember { mutableStateOf(Offset.Zero) }
             LazyRow(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -147,6 +156,25 @@ fun FavoriteContentTabCardBottom(
                             .clickable {
                                 // 이미지 클릭 시 다이얼로그를 띄우기 위해 url 저장
                                 selectedImageUrl = imageUrl
+                            }.pointerInput(Unit) {
+                                detectTransformGestures { _, pan, zoom, _ ->
+                                    // 확대 비율 제한 (1배 ~ 5배)
+                                    scale = (scale * zoom).coerceIn(1f, 5f)
+
+                                    // 1배보다 클 때만 패닝(이동) 허용, 1배일 때는 원래 위치로
+                                    if (scale > 1f) {
+                                        offset += pan
+                                    } else {
+                                        offset = Offset.Zero
+                                    }
+                                }
+                            }
+                            // 2. 그래픽 레이어에 상태 적용
+                            .graphicsLayer {
+                                scaleX = scale
+                                scaleY = scale
+                                translationX = offset.x
+                                translationY = offset.y
                             },
                         contentScale = ContentScale.Fit,
                         loading = { // 💡 로딩 상태일 때 보여줄 UI
