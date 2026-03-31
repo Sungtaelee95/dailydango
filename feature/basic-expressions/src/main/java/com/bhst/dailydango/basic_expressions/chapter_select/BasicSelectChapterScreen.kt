@@ -1,35 +1,44 @@
 package com.bhst.dailydango.basic_expressions.chapter_select
 
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bhst.dailydango.designsystem.component.ChapterCard
+import com.bhst.dailydango.designsystem.component.PaginationControls
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.chapter.Chapter
+import kotlinx.coroutines.launch
+import kotlin.math.ceil
 
 @Composable
 fun BasicExpressionsScreen(
     navigateToChapter: (Int) -> Unit = {},
     viewModel: BasicSelectChapterViewModel = hiltViewModel()
 ) {
-    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     LaunchedEffect(Unit) {
         viewModel.getChapters()
     }
+
     BasicExpressionsContent(
         navigateToChapter = navigateToChapter,
-        chapters = uiState.value
+        chapters = uiState
     )
 }
 
@@ -38,28 +47,76 @@ fun BasicExpressionsContent(
     navigateToChapter: (Int) -> Unit = {},
     chapters: List<Chapter> = emptyList()
 ) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(start = 12.dp, end = 12.dp)
-    ) {
-        itemsIndexed(chapters) { index, chapter ->
-            if (index == 0) Spacer(modifier = Modifier.height(4.dp))
-            ChapterCard(
-                chapter = chapter,
-                onClick = {
-                    navigateToChapter(chapter.title.toInt())
+    // 💡 한 페이지당 보여줄 아이템 개수
+    val itemsPerPage = 5
+
+    // 💡 총 페이지 수 계산
+    val totalPages = maxOf(1, ceil(chapters.size.toDouble() / itemsPerPage).toInt())
+
+    // 💡 Pager 상태 관리 (페이지는 0부터 시작)
+    val pagerState = rememberPagerState(pageCount = { totalPages })
+
+    // 코루틴 스코프 (하단 버튼 클릭 시 Pager 스크롤 애니메이션을 위해 필요)
+    val coroutineScope = rememberCoroutineScope()
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        // 💡 좌우 스와이프가 가능한 Pager 영역
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.weight(1f)
+        ) { page ->
+            // 각 페이지(0-indexed)에 해당하는 데이터 잘라내기
+            val startIndex = page * itemsPerPage
+            val endIndex = minOf(startIndex + itemsPerPage, chapters.size)
+            val currentChapters = if (chapters.isNotEmpty()) {
+                chapters.subList(startIndex, endIndex)
+            } else {
+                emptyList()
+            }
+
+            // 챕터 리스트 영역 (현재 페이지 데이터만 렌더링)
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 12.dp),
+                contentPadding = PaddingValues(top = 4.dp, bottom = 4.dp)
+            ) {
+                items(currentChapters) { chapter ->
+                    ChapterCard(
+                        chapter = chapter,
+                        onClick = {
+                            navigateToChapter(chapter.title.toInt())
+                        }
+                    )
                 }
+            }
+        }
+
+        // 페이지네이션 컨트롤 영역 (데이터가 있을 때만 표시)
+        if (totalPages > 1) {
+            PaginationControls(
+                // Pager는 0부터 시작하므로 +1을 해서 UI(1, 2, 3...)에 맞춤
+                currentPage = pagerState.currentPage + 1,
+                totalPages = totalPages,
+                onPageSelected = { selectedPage ->
+                    // 버튼을 누르면 해당 페이지로 스크롤 이동 (ui는 1부터 시작하므로 -1 적용)
+                    coroutineScope.launch {
+                        pagerState.animateScrollToPage(selectedPage - 1)
+                    }
+                },
             )
-            if (index == chapters.lastIndex) Spacer(modifier = Modifier.height(4.dp))
         }
     }
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 fun BasicExpressionsContentPreview() {
     DailyDangoTheme {
-        BasicExpressionsContent()
+        // 가짜 데이터 120개를 넣어서 테스트
+        val fakeChapters = List(120) { index ->
+            Chapter(title = (index + 1).toString() /* 나머지 파라미터 빈 값 처리 필요 */)
+        }
+        BasicExpressionsContent(chapters = fakeChapters)
     }
 }

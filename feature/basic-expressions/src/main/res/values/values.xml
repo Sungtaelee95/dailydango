@@ -5,5 +5,5 @@
     <string name="word_study">단어 학습</string>
     <string name="chapter_word_study">강 단어 익히기</string>
     <string name="chapter_sentence_study">강 표현 익히기</string>
-"
+    <string name="info_before_study_chapter">강 학습 가이드</string>
 </resources>
