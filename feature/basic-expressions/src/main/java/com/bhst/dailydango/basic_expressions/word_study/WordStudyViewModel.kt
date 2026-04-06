@@ -35,8 +35,8 @@ class WordStudyViewModel @Inject constructor(
     private val setFavoriteUseCase: SetFavoritesContentUseCase,
     private val favoriteContentsUseCase: FavoritesContentUseCase,
     private val deleteFavoriteUseCase: DeleteFavoritesContentUseCase,
-    @param: ApplicationContext private val context: Context
-): ViewModel() {
+    @param:ApplicationContext private val context: Context
+) : ViewModel() {
     private val _uiState = MutableStateFlow<List<ContentState>>(emptyList())
     val uiState = _uiState.asStateFlow()
 
@@ -55,7 +55,9 @@ class WordStudyViewModel @Inject constructor(
     init {
         collectOpenState()
     }
+
     fun getWordContent(chapter: Int) {
+        if (_uiState.value.isNotEmpty()) return
         viewModelScope.launch {
             loadingDialogManager.show()
             when (val result = wordContentUseCase(chapter = chapter)) {

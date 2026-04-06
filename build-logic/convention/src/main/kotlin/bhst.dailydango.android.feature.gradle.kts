@@ -1,6 +1,5 @@
 import com.android.build.api.dsl.LibraryExtension
 import com.bhst.dailydango.app.configureHiltAndroid
-import com.bhst.dailydango.app.configureRoborazzi
 import com.bhst.dailydango.app.findLibrary
 import gradle.kotlin.dsl.accessors._3dfc63a612bb7993dc38df28b51798c6.implementation
 
@@ -22,7 +21,6 @@ extensions.configure<LibraryExtension> {
 }
 
 configureHiltAndroid()
-configureRoborazzi()
 
 dependencies {
     implementation(project(":core:designsystem"))

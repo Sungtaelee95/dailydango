@@ -57,6 +57,7 @@ class SentenceStudyViewModel @Inject constructor(
     }
 
     fun getSentenceContent(chapter: Int) {
+        if (_uiState.value.isNotEmpty()) return
         viewModelScope.launch {
             loadingDialogManager.show()
             when (val result = sentenceUseCase(chapter = chapter)) {
