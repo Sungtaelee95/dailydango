@@ -1,6 +1,8 @@
 package com.bhst.dailydango.data.chapter.di
 
+import com.bhst.dailydango.data.chapter.ChapterLimitRepositoryImpl
 import com.bhst.dailydango.data.chapter.ChapterRepositoryImpl
+import com.bhst.dailydango.domain.repository.chapter.ChapterLimitRepository
 import com.bhst.dailydango.domain.repository.chapter.ChapterRepository
 import dagger.Binds
 import dagger.Module
@@ -17,4 +19,10 @@ internal abstract class ChapterRepositoryModule {
     abstract fun provideChapterRepository(
         chapterRepositoryImpl: ChapterRepositoryImpl
     ): ChapterRepository
+
+    @Binds
+    @Singleton
+    abstract fun provideChapterLimitRepository(
+        chapterLimitRepositoryImpl: ChapterLimitRepositoryImpl
+    ): ChapterLimitRepository
 }
