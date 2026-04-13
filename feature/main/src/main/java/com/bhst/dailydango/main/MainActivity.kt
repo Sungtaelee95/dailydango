@@ -58,6 +58,7 @@ class MainActivity : ComponentActivity() {
             val contents by viewModel.allContents.collectAsStateWithLifecycle(emptyList())
             val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
             val progress by viewModel.loadingProgress.collectAsStateWithLifecycle()
+            val isClosed by viewModel.isClosed.collectAsStateWithLifecycle()
             val themeConfig by viewModel.themeConfig.collectAsStateWithLifecycle(
                 ThemeConfig.SYSTEM,
                 this
@@ -68,6 +69,12 @@ class MainActivity : ComponentActivity() {
             val loadAd: () -> Unit = {
                 loadInterstitialAd(context) { loadedAd ->
                     interstitialAd = loadedAd
+                }
+            }
+
+            LaunchedEffect(isClosed) {
+                if (isClosed) {
+                    finish()
                 }
             }
 
