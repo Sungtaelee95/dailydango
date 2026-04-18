@@ -1,17 +1,10 @@
 package com.bhst.dailydango.conversation.chapter
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -19,15 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Devices.TABLET
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bhst.dailydango.designsystem.component.ChapterCard
-import com.bhst.dailydango.designsystem.component.ChapterTabCard
 import com.bhst.dailydango.designsystem.component.PaginationControls
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.chapter.Chapter
@@ -83,30 +73,19 @@ fun ConversationChapterContent(
             }
 
             // 챕터 리스트 영역 (현재 페이지 데이터만 렌더링)
-            Box(
+            LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
+                    .fillMaxSize()
+                    .padding(horizontal = 12.dp),
+                contentPadding = PaddingValues(top = 4.dp, bottom = 4.dp)
             ) {
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(2), // 2열 고정
-                    modifier = Modifier
-                        .width(960.dp)
-                        .padding(horizontal = 12.dp),
-                    contentPadding = PaddingValues(top = 8.dp, bottom = 8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp), // 열 사이 간격
-                    verticalArrangement = Arrangement.spacedBy(16.dp)    // 행 사이 간격
-                ) {
-                    items(currentChapters) { chapter ->
-                        ChapterTabCard(
-                            chapter = chapter,
-                            onClick = {
-                                navigateToChapter(chapter.title.toInt())
-                            },
-                            // 그리드 셀에 맞게 꽉 차도록 fillMaxWidth 사용 (기존 480.dp 대신 유동적 대응)
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                    }
+                items(currentChapters) { chapter ->
+                    ChapterCard(
+                        chapter = chapter,
+                        onClick = {
+                            navigateToChapter(chapter.title.toInt())
+                        }
+                    )
                 }
             }
         }
