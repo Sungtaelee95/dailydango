@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="server_error_message">일시적으로 서버에서 데이터를 불러 올 수 없습니다.</string>
+    <string name="conversation_study">회화 학습 하기</string>
+    <string name="conversation_study_tip">회화 학습 가이드</string>
+    <string name="chapter_conversation_study">강 회화 익히기</string>"
+</resources>

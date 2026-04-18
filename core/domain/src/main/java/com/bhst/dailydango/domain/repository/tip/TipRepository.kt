@@ -7,4 +7,6 @@ interface TipRepository {
     suspend fun getChapterTips(chapter: Int): TipResult
     suspend fun getHiraganaTips(): TipResult
     suspend fun getKatakanaTips(): TipResult
+
+    suspend fun getConversationTips(): TipResult
 }

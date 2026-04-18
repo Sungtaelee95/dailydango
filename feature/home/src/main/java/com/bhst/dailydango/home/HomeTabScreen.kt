@@ -30,7 +30,8 @@ fun HomeTabScreen(
     navigateToHiraganaKatakanaTip: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
     navigateToGrammarTest: () -> Unit = {},
-    navigateToSearch: () -> Unit = {}
+    navigateToSearch: () -> Unit = {},
+    navigateToConversation: () -> Unit = {}
 ) {
     HomeTabContent(
         navigateToHiraganaKatakanaTip = {
@@ -39,6 +40,7 @@ fun HomeTabScreen(
         navigateToGrammarStudy = navigateToGrammarStudy,
         navigateToGrammarTest = navigateToGrammarTest,
         navigateToSearch = navigateToSearch,
+        navigateToConversation= navigateToConversation
     )
 }
 
@@ -48,6 +50,7 @@ fun HomeTabContent(
     navigateToGrammarStudy: () -> Unit = {},
     navigateToGrammarTest: () -> Unit = {},
     navigateToSearch: () -> Unit = {},
+    navigateToConversation: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
     Column(
@@ -105,14 +108,15 @@ fun HomeTabContent(
                 painter = painterResource(R.drawable.basic_expressions_img)
             )
 
-//            JapaneseStudyContent(
-//                modifier = Modifier
-//                    .fillMaxWidth(),
-//                title = stringResource(R.string.take_skill_test),
-//                leftColor = MaterialTheme.colorScheme.tertiary,
-//                rightColor = MaterialTheme.colorScheme.onTertiary,
-//                painter = painterResource(R.drawable.level_test_img)
-//            )
+            JapaneseStudyContent(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                title = stringResource(R.string.conversation_skill_up),
+                leftColor = MaterialTheme.colorScheme.tertiary,
+                rightColor = MaterialTheme.colorScheme.onTertiary,
+                painter = painterResource(R.drawable.conversation_level_up_img),
+                onClick = navigateToConversation
+            )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

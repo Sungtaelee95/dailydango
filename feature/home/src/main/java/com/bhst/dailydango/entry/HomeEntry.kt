@@ -12,7 +12,8 @@ fun EntryProviderScope<Route>.homeEntries(
     navigateToHiraganaKatakanaTip: () -> Unit,
     navigateToGrammarStudy: () -> Unit,
     navigateToGrammarTest: () -> Unit,
-    navigateToSearch: () -> Unit
+    navigateToSearch: () -> Unit,
+    navigateToConversation: () -> Unit,
 ) {
     entry<HomeRoute> {
         val adaptiveInfo = currentWindowAdaptiveInfo()
@@ -26,7 +27,8 @@ fun EntryProviderScope<Route>.homeEntries(
                     navigateToHiraganaKatakanaTip = navigateToHiraganaKatakanaTip,
                     navigateToGrammarStudy = navigateToGrammarStudy,
                     navigateToGrammarTest = navigateToGrammarTest,
-                    navigateToSearch = navigateToSearch
+                    navigateToSearch = navigateToSearch,
+                    navigateToConversation = navigateToConversation
                 )
             }
             // 2. 가로 너비가 MEDIUM(보통 600dp) 이상일 때 -> 기기 가로 모드 / 폴더블폰
@@ -35,7 +37,8 @@ fun EntryProviderScope<Route>.homeEntries(
                     navigateToHiraganaKatakanaTip = navigateToHiraganaKatakanaTip,
                     navigateToGrammarStudy = navigateToGrammarStudy,
                     navigateToGrammarTest = navigateToGrammarTest,
-                    navigateToSearch = navigateToSearch
+                    navigateToSearch = navigateToSearch,
+                    navigateToConversation = navigateToConversation
                 )
             }
             // 3. 그 외 (600dp 미만) -> COMPACT (일반 스마트폰 세로 모드)
@@ -44,7 +47,8 @@ fun EntryProviderScope<Route>.homeEntries(
                     navigateToHiraganaKatakanaTip = navigateToHiraganaKatakanaTip,
                     navigateToGrammarStudy = navigateToGrammarStudy,
                     navigateToGrammarTest = navigateToGrammarTest,
-                    navigateToSearch = navigateToSearch
+                    navigateToSearch = navigateToSearch,
+                    navigateToConversation = navigateToConversation
                 )
             }
         }

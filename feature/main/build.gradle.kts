@@ -37,6 +37,8 @@ dependencies {
     implementation(projects.feature.hanjaDetail)
     implementation(projects.feature.suggestionApi)
     implementation(projects.feature.suggestion)
+    implementation(projects.feature.conversationApi)
+    implementation(projects.feature.conversation)
 }
 
 dependencies {

@@ -44,4 +44,10 @@ object DailyDangoColor {
     @Stable val MintGreen = Color(0xFF7DCFB6)
     @Stable val DeepMint = Color(0xFF4FAF96)
 
+    @Stable val VividBlue = Color(0xFF429BFF)
+    @Stable val SoftBlue = Color(0xFF71A3FA)
+    @Stable val SlateBlue = Color(0xFF3F6BC0)
+    @Stable val PaleGray = Color(0xFFF2F5F9)
+    @Stable val Charcoal = Color(0xFF232323)
+
 }

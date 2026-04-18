@@ -49,4 +49,17 @@ class TipRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun getConversationTips(): TipResult {
+        return withContext(IO) {
+            try {
+                val snapshot = fb.collection("tips").document("Conversation_Tips").get().await()
+                val tips = snapshot.toObject(TipDocument::class.java)?.tipList ?: emptyList()
+                TipResult.Success(tips.sortedBy { it.order })
+            } catch (e: Exception) {
+                TipResult.Error(FbError.ServerError)
+            }
+        }
+
+    }
 }

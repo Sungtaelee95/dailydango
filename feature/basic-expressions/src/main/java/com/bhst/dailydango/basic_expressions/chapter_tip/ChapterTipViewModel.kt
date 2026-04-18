@@ -32,6 +32,7 @@ class ChapterTipViewModel @Inject constructor(
     }
 
     fun getChapterTip(chapter: Int) {
+        if (_uiState.value.isNotEmpty()) return
         viewModelScope.launch {
             loadingDialogManager.show()
             when (val result = chapterTipUseCase(chapter = chapter)) {

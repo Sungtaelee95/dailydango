@@ -11,4 +11,6 @@
     <string name="writing_detail">쓰는 법</string>
     <string name="all_open">전체 펼치기</string>
     <string name="all_close">전체 접기</string>
+    <string name="conversation_history">대화 내용</string>
+    <string name="conversation_word">단어</string>
 </resources>

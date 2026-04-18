@@ -35,6 +35,7 @@ class BasicSelectChapterViewModel @Inject constructor(
     }
 
     fun getChapters() {
+        if (_uiState.value.isNotEmpty()) return
         viewModelScope.launch {
             loadingDialogManager.show()
             var limit: Int

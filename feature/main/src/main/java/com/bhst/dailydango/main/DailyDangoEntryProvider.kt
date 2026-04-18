@@ -6,6 +6,10 @@ import com.bhst.dailydango.basic_expressions_api.BasicExpressionsRoute
 import com.bhst.dailydango.basic_expressions_api.ChapterTipRoute
 import com.bhst.dailydango.basic_expressions_api.SentenceStudyRoute
 import com.bhst.dailydango.basic_expressions_api.WordStudyRoute
+import com.bhst.dailydango.conversation.entry.conversationEntry
+import com.bhst.dailydango.conversation_api.ConversationChapterRoute
+import com.bhst.dailydango.conversation_api.ConversationRoute
+import com.bhst.dailydango.conversation_api.ConversationTipRoute
 import com.bhst.dailydango.entry.basicExpressionsEntries
 import com.bhst.dailydango.entry.hiraganaStudyEntries
 import com.bhst.dailydango.entry.homeEntries
@@ -41,13 +45,14 @@ fun dailyDangoEntryProvider(
         navigateToHiraganaKatakanaTip = { navigateTo(HiraganaKatakanaTipRoute) },
         navigateToGrammarStudy = { navigateTo(BasicExpressionsRoute) },
         navigateToGrammarTest = { navigateTo(LevelTestRoute) },
-        navigateToSearch = { navigateTo(SearchRoute) }
+        navigateToSearch = { navigateTo(SearchRoute) },
+        navigateToConversation = { navigateTo(ConversationTipRoute) }
     )
     menuEntries(
         navigateToFavorite = { navigateTo(FavoriteContentsRoute) },
         navigateToTheme = { navigateTo(ThemeRoute) },
         navigateToPlaySpeed = { navigateTo(PlaySpeedRoute) },
-        navigateToPlayRepeat = {navigateTo(PlayRepeatRoute)},
+        navigateToPlayRepeat = { navigateTo(PlayRepeatRoute) },
         navigateToHanjaDetail = { hanjas -> navigateTo(HanjaDetailRoute(hanjas)) },
         navigateToOss = { navigateTo(OssRoute) }
     )
@@ -79,5 +84,10 @@ fun dailyDangoEntryProvider(
     hanjaDetailEntries()
     suggestionEntry(
         onBack = back
+    )
+    conversationEntry(
+        navigateToConversationChapter = { navigateTo(ConversationChapterRoute) },
+        navigateToChapter = { chapter -> navigateTo(ConversationRoute(chapter))},
+        navigateToHanjaDetail = { hanjas -> navigateTo(HanjaDetailRoute(hanjas)) }
     )
 }
