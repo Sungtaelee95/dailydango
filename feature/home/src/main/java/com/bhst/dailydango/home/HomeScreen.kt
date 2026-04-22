@@ -159,7 +159,7 @@ fun JapaneseStudyContent(
     subtitle: String = "",
     leftColor: Color = MaterialTheme.colorScheme.primary,
     rightColor: Color = MaterialTheme.colorScheme.onPrimary,
-    painter: Painter = painterResource(R.drawable.hiragana_study_img)
+    painter: Painter = painterResource(R.drawable.hiragana_katakana_study)
 ) {
     DailyDangoElevationBrushCard(
         modifier = modifier
