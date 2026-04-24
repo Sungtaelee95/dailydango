@@ -56,7 +56,7 @@ fun ThemeTabContent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ColorBar(
-            color = MaterialTheme.colorScheme.tertiaryFixed,
+            color = MaterialTheme.colorScheme.onPrimaryFixed,
             height = 60
         ) {
             Row(

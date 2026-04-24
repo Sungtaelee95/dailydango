@@ -80,7 +80,7 @@ fun PlayRepeatTabContent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ColorBar(
-            color = MaterialTheme.colorScheme.tertiaryFixedDim,
+            color = MaterialTheme.colorScheme.onPrimaryFixed,
             height = 60
         ) {
             Row(

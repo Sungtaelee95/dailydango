@@ -50,7 +50,7 @@ fun ThemeContent(
 ) {
     Column {
         ColorBar(
-            color = MaterialTheme.colorScheme.tertiaryFixed
+            color = MaterialTheme.colorScheme.onPrimaryFixed
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),

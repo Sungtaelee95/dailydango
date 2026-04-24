@@ -69,7 +69,7 @@ fun PlaySpeedContent(
 ) {
     Column {
         ColorBar(
-            color = MaterialTheme.colorScheme.secondaryFixed
+            color = MaterialTheme.colorScheme.onPrimaryFixed
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),

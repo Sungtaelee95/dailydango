@@ -76,7 +76,7 @@ fun PlaySpeedTabContent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ColorBar(
-            color = MaterialTheme.colorScheme.secondaryFixed,
+            color = MaterialTheme.colorScheme.onPrimaryFixed,
             height = 60
         ) {
             Row(

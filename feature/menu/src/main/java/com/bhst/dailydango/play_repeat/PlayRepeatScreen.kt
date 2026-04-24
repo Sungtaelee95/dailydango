@@ -76,7 +76,7 @@ fun PlayRepeatContent(
     Column {
 
         ColorBar(
-            color = MaterialTheme.colorScheme.tertiaryFixedDim
+            color = MaterialTheme.colorScheme.onPrimaryFixed
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),

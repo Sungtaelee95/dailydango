@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,6 +40,8 @@ import com.bhst.dailydango.model.chapter.Chapter
 fun ChapterCard(
     chapter: Chapter = Chapter(),
     onClick: () -> Unit = {},
+    circleColor: Color = MaterialTheme.colorScheme.primaryFixedDim,
+    tagContainerColor: Color = MaterialTheme.colorScheme.secondary,
     modifier: Modifier = Modifier,
 ) {
     Surface(
@@ -64,7 +67,7 @@ fun ChapterCard(
         ) {
             Surface(
                 shape = CircleShape,
-                color = MaterialTheme.colorScheme.primaryFixedDim,
+                color = circleColor,
                 shadowElevation = 4.dp,
                 modifier = Modifier
                     .width(80.dp)
@@ -106,7 +109,7 @@ fun ChapterCard(
                         TextChip(
                             text = chapter.tag,
                             labelColor = MaterialTheme.colorScheme.surface,
-                            containerColor = MaterialTheme.colorScheme.secondary,
+                            containerColor = tagContainerColor,
                             style = DailyDangoTheme.typography.bold12,
                         )
                     }
