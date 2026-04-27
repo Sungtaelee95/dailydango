@@ -1,6 +1,6 @@
 [versions]
 ## Android gradle plugin
-androidGradlePlugin = "9.1.1"
+androidGradlePlugin = "9.2.0"
 
 # https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md
 androidDesugarJdkLibs = "2.1.5"
@@ -19,7 +19,7 @@ androidxDatastore = "1.2.1"
 # https://developer.android.com/jetpack/androidx/releases/glance
 androidxGlance = "1.1.1"
 coilCompose = "2.7.0"
-credentials = "1.6.0-rc02"
+credentials = "1.6.0"
 desugar_jdk_libs = "2.1.5"
 espressoCore = "3.7.0"
 glanceExperimentalTools = "0.2.2"
@@ -29,7 +29,7 @@ junit = "1.3.0"
 materialIconsExtended = "1.7.8"
 oauth = "5.11.2"
 paymentSdkAndroid = "0.1.15"
-playServicesAds = "25.1.0"
+playServicesAds = "25.2.0"
 playServicesAuth = "21.5.1"
 profileinstaller = "1.4.1"
 # https://developer.android.com/jetpack/androidx/releases/benchmark
@@ -37,16 +37,16 @@ baselineprofile = "1.4.1"
 
 ## Compose
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
-androidxComposeBom = "2026.03.01"
+androidxComposeBom = "2026.04.01"
 # https://developer.android.com/jetpack/androidx/releases/navigation
-androidxComposeNavigation = "2.9.7"
+androidxComposeNavigation = "2.9.8"
 # https://developer.android.com/jetpack/androidx/releases/compose-material3
 androidxComposeMaterial3 = "1.4.0"
 
 # https://github.com/skydoves/landscapist
-landscapist = "2.9.6"
+landscapist = "2.9.7"
 # https://github.com/valentinilk/compose-shimmer
-composeShimmer = "1.3.3"
+composeShimmer = "1.4.0"
 
 ## Kotlin Symbol Processing
 # https://github.com/google/ksp/
@@ -68,9 +68,9 @@ retrofit = "3.0.0"
 
 ## Kotlin
 # https://github.com/JetBrains/kotlin
-kotlin = "2.3.20"
+kotlin = "2.3.21"
 # https://github.com/Kotlin/kotlinx.serialization
-kotlinxSerializationJson = "1.10.0"
+kotlinxSerializationJson = "1.11.0"
 # https://github.com/Kotlin/kotlinx-datetime/releases
 kotlinxDatetime = "0.7.1"
 # https://github.com/Kotlin/kotlinx.collections.immutable
@@ -85,7 +85,7 @@ coroutine = "1.10.2"
 
 ## license
 # https://developers.google.com/android/guides/opensource
-ossLicenses = "17.4.0"
+ossLicenses = "17.5.1"
 ossLicensesPlugin = "0.11.0"
 
 ## Test
@@ -107,7 +107,7 @@ roborazzi = "1.59.0"
 # https://github.com/robolectric/robolectric/releases
 robolectric = "4.16.1"
 # https://kotest.io/
-kotest = "6.1.10"
+kotest = "6.1.11"
 # https://github.com/detekt/detekt
 detekt = "1.23.8"
 # https://github.com/twitter/compose-rules
@@ -127,13 +127,13 @@ lifecycleRuntimeKtx = "2.10.0"
 datastoreCore = "1.2.1"
 identityAndroidLegacy = "202411.1"
 v2All = "2.22.0"
-ui = "1.10.6"
-foundation = "1.10.6"
+ui = "1.11.0"
+foundation = "1.11.0"
 firebaseFirestoreKtx = "26.0.2"
 firebaseAuthKtx = "24.0.1"
 
 googleServices = "4.4.4"
-firebaseBom = "34.11.0"
+firebaseBom = "34.12.0"
 
 androidx-core-splashscreen = "1.2.0"
 
@@ -145,25 +145,25 @@ workRuntimeKtx = "2.11.2"
 lifecycleService = "2.10.0"
 lifecycleProcess = "2.10.0"
 lifecycleViewmodelKtx = "2.10.0"
-foundationVersion = "1.10.6"
-runtimeAnnotation = "1.10.6"
-androidxFoundation = "1.10.6"
-androidxFoundationVersion = "1.10.6"
+foundationVersion = "1.11.0"
+runtimeAnnotation = "1.11.0"
+androidxFoundation = "1.11.0"
+androidxFoundationVersion = "1.11.0"
 cameraCore = "1.6.0"
-uiToolingPreviewAndroid = "1.10.6"
+uiToolingPreviewAndroid = "1.11.0"
 roomKtx = "2.8.4"
 
-nav3Core = "1.0.1"
+nav3Core = "1.1.1"
 lifecycleViewmodelNav3 = "2.10.0"
 kotlinSerialization = "2.2.21"
-kotlinxSerializationCore = "1.10.0"
-material3AdaptiveNav3 = "1.3.0-alpha09"
-playServicesAdsApi = "25.1.0"
+kotlinxSerializationCore = "1.11.0"
+material3AdaptiveNav3 = "1.3.0-alpha10"
+playServicesAdsApi = "25.2.0"
 firebaseFirestoreKtxVersion = "26.1.0"
 
 media3 = "1.10.0"
 googleFirebaseFirestoreKtx = "26.1.2"
-foundationLayout = "1.10.6"
+foundationLayout = "1.11.0"
 
 [libraries]
 
