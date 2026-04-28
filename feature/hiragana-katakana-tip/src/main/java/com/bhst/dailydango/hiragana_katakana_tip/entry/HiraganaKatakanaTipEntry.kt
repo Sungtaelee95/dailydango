@@ -1,6 +1,7 @@
 package com.bhst.dailydango.hiragana_katakana_tip.entry
 
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
 import com.bhst.dailydango.hiragana_katakana_tip.screen.HiraganaKatakanaTipScreen
@@ -13,7 +14,7 @@ fun EntryProviderScope<Route>.hiraganaKatakanaTipEntry(
     navigateToKatakanaStudy: () -> Unit = {}
 ) {
     entry<HiraganaKatakanaTipRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
 
         // 🚀 최신 권장 방식: isWidthAtLeastBreakpoint() 사용
