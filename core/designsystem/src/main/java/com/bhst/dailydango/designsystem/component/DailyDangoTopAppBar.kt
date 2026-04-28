@@ -123,7 +123,7 @@ fun DailyDangoTopAppBar(
                         modifier = Modifier.wrapContentSize()
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.notifications_active_24px),
+                            painter = painterResource(R.drawable.campaign_24px),
                             contentDescription = "Menu",
                             tint = contentColor
                         )
