@@ -9,7 +9,7 @@ plugins {
 
 extensions.configure<ApplicationExtension> {
     namespace = "com.bhst.dailydango"
-    compileSdk = 36
+    compileSdk = 37
 
     buildFeatures {
         compose = true

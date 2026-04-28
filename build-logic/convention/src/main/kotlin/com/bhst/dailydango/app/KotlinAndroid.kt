@@ -29,10 +29,10 @@ internal fun Project.configureKotlinAndroid() {
     // 앱 설정
     pluginManager.withPlugin("com.android.application") {
         extensions.configure<ApplicationExtension> {
-            compileSdk = 36
+            compileSdk = 37
             defaultConfig {
                 minSdk = 29
-                targetSdk = 36
+                targetSdk = 37
             }
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_21
@@ -58,7 +58,7 @@ internal fun Project.configureKotlinAndroid() {
     // 라이브러리 설정
     pluginManager.withPlugin("com.android.library") {
         extensions.configure<LibraryExtension> {
-            compileSdk = 36
+            compileSdk = 37
             defaultConfig {
                 minSdk = 29
             }
