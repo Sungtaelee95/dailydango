@@ -1,6 +1,7 @@
 package com.bhst.dailydango.entry
 
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
 import com.bhst.dailydango.basic_expressions.chapter_select.BasicExpressionsScreen
@@ -24,7 +25,7 @@ fun EntryProviderScope<Route>.basicExpressionsEntries(
     navigateToHanjaDetail: (List<String>) -> Unit
 ) {
     entry<BasicExpressionsRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
 
         // 🚀 최신 권장 방식: isWidthAtLeastBreakpoint() 사용
@@ -50,7 +51,7 @@ fun EntryProviderScope<Route>.basicExpressionsEntries(
         }
     }
     entry<ChapterTipRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
 
         // 🚀 최신 권장 방식: isWidthAtLeastBreakpoint() 사용
@@ -83,7 +84,7 @@ fun EntryProviderScope<Route>.basicExpressionsEntries(
     }
 
     entry<SentenceStudyRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
 
         // 🚀 최신 권장 방식: isWidthAtLeastBreakpoint() 사용
@@ -113,7 +114,7 @@ fun EntryProviderScope<Route>.basicExpressionsEntries(
     }
 
     entry<WordStudyRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
 
         // 🚀 최신 권장 방식: isWidthAtLeastBreakpoint() 사용

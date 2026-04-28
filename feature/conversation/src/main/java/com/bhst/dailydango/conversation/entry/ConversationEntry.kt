@@ -1,6 +1,7 @@
 package com.bhst.dailydango.conversation.entry
 
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
 import com.bhst.dailydango.conversation.chapter.ConversationChapterScreen
@@ -20,7 +21,7 @@ fun EntryProviderScope<Route>.conversationEntry(
     navigateToHanjaDetail: (List<String>) -> Unit
 ){
     entry<ConversationTipRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
 
         // 🚀 최신 권장 방식: isWidthAtLeastBreakpoint() 사용
@@ -47,7 +48,7 @@ fun EntryProviderScope<Route>.conversationEntry(
     }
 
     entry<ConversationChapterRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
         when {
             // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드
@@ -72,7 +73,7 @@ fun EntryProviderScope<Route>.conversationEntry(
     }
 
     entry<ConversationRoute> { entry ->
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
         when {
             // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드

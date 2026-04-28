@@ -1,6 +1,7 @@
 package com.bhst.dailydango.entry
 
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
 import com.bhst.dailydango.favorite.FavoriteContentScreen
@@ -31,7 +32,7 @@ fun EntryProviderScope<Route>.menuEntries(
     navigateToHanjaDetail: (List<String>) -> Unit,
 ) {
     entry<MenuRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
         when {
             // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드
@@ -67,7 +68,7 @@ fun EntryProviderScope<Route>.menuEntries(
         }
     }
     entry<FavoriteContentsRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
         when {
             // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드
@@ -92,7 +93,7 @@ fun EntryProviderScope<Route>.menuEntries(
 
     }
     entry<ThemeRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
         when {
             // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드
@@ -110,7 +111,7 @@ fun EntryProviderScope<Route>.menuEntries(
         }
     }
     entry<PlaySpeedRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
         when {
             // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드
@@ -129,7 +130,7 @@ fun EntryProviderScope<Route>.menuEntries(
     }
 
     entry<PlayRepeatRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
         when {
             // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드

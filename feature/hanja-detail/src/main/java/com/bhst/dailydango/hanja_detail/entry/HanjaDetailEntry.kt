@@ -1,6 +1,7 @@
 package com.bhst.dailydango.hanja_detail.entry
 
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
 import com.bhst.dailydango.hanja_detail.screen.HanjaDetailScreen
@@ -10,7 +11,7 @@ import com.bhst.hanja_detail_api.HanjaDetailRoute
 
 fun EntryProviderScope<Route>.hanjaDetailEntries() {
     entry<HanjaDetailRoute> { data ->
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
 
         // 🚀 최신 권장 방식: isWidthAtLeastBreakpoint() 사용

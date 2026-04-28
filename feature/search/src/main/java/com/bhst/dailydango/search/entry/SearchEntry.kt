@@ -1,6 +1,7 @@
 package com.bhst.dailydango.search.entry
 
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
 import com.bhst.dailydango.model.content.ContentState
@@ -14,7 +15,7 @@ fun EntryProviderScope<Route>.searchEntries(
     navigateToHanjaDetail: (List<String>) -> Unit = {},
 ) {
     entry<SearchRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
         when {
             // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드

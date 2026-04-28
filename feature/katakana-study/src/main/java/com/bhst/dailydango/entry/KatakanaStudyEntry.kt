@@ -2,6 +2,7 @@ package com.bhst.dailydango.entry
 
 
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
 import com.bhst.dailydango.katakana_detail.KatakanaDetailScreen
@@ -17,7 +18,7 @@ fun EntryProviderScope<Route>.katakanaStudyEntries(
     navigateToKatakanaDetail: (WordType, String) -> Unit,
 ) {
     entry<KatakanaStudyRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
 
         // 🚀 최신 권장 방식: isWidthAtLeastBreakpoint() 사용
@@ -43,7 +44,7 @@ fun EntryProviderScope<Route>.katakanaStudyEntries(
         }
     }
     entry<KatakanaDetailRoute> { entry ->
-        val adaptiveInfo = currentWindowAdaptiveInfo()
+        val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
 
         // 🚀 최신 권장 방식: isWidthAtLeastBreakpoint() 사용
