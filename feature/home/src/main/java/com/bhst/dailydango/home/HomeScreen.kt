@@ -41,14 +41,14 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 fun HomeScreen(
     navigateToHiraganaKatakanaTip: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
-    navigateToGrammarTest: () -> Unit = {},
+    navigateToQuiz: () -> Unit = {},
     navigateToSearch: () -> Unit = {},
     navigateToConversation: () -> Unit
 ) {
     HomeContent(
         navigateToHiraganaKatakanaTip = navigateToHiraganaKatakanaTip,
         navigateToGrammarStudy = navigateToGrammarStudy,
-        navigateToGrammarTest = navigateToGrammarTest,
+        navigateToQuiz = navigateToQuiz,
         navigateToSearch = navigateToSearch,
         navigateToConversation = navigateToConversation
     )
@@ -58,7 +58,7 @@ fun HomeScreen(
 fun HomeContent(
     navigateToHiraganaKatakanaTip: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
-    navigateToGrammarTest: () -> Unit = {},
+    navigateToQuiz: () -> Unit = {},
     navigateToSearch: () -> Unit = {},
     navigateToConversation: () -> Unit = {}
 ) {
@@ -124,6 +124,16 @@ fun HomeContent(
                 rightColor = MaterialTheme.colorScheme.onTertiary,
                 painter = painterResource(R.drawable.conversation_level_up_img),
                 onClick = navigateToConversation
+            )
+
+            JapaneseStudyContent(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                title = stringResource(R.string.lever_test_quiz),
+                leftColor = MaterialTheme.colorScheme.secondaryContainer,
+                rightColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                painter = painterResource(R.drawable.level_test_quiz_img),
+                onClick = navigateToQuiz
             )
             Row(
                 modifier = Modifier

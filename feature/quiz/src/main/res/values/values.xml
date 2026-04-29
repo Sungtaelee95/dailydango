@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="server_error_message">일시적으로 서버에서 데이터를 불러 올 수 없습니다.</string>
+    <string name="quiz_start">시험 시작</string>
+    <string name="quiz_guide">시험 가이드</string>
+</resources>

@@ -29,18 +29,16 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 fun HomeTabScreen(
     navigateToHiraganaKatakanaTip: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
-    navigateToGrammarTest: () -> Unit = {},
+    navigateToQuiz: () -> Unit = {},
     navigateToSearch: () -> Unit = {},
-    navigateToConversation: () -> Unit = {}
+    navigateToConversation: () -> Unit
 ) {
     HomeTabContent(
-        navigateToHiraganaKatakanaTip = {
-            navigateToHiraganaKatakanaTip()
-        },
+        navigateToHiraganaKatakanaTip = navigateToHiraganaKatakanaTip,
         navigateToGrammarStudy = navigateToGrammarStudy,
-        navigateToGrammarTest = navigateToGrammarTest,
+        navigateToQuiz = navigateToQuiz,
         navigateToSearch = navigateToSearch,
-        navigateToConversation= navigateToConversation
+        navigateToConversation = navigateToConversation
     )
 }
 
@@ -48,7 +46,7 @@ fun HomeTabScreen(
 fun HomeTabContent(
     navigateToHiraganaKatakanaTip: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
-    navigateToGrammarTest: () -> Unit = {},
+    navigateToQuiz: () -> Unit = {},
     navigateToSearch: () -> Unit = {},
     navigateToConversation: () -> Unit = {}
 ) {
@@ -116,6 +114,16 @@ fun HomeTabContent(
                 rightColor = MaterialTheme.colorScheme.onTertiary,
                 painter = painterResource(R.drawable.conversation_level_up_img),
                 onClick = navigateToConversation
+            )
+
+            JapaneseStudyContent(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                title = stringResource(R.string.lever_test_quiz),
+                leftColor = MaterialTheme.colorScheme.secondaryContainer,
+                rightColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                painter = painterResource(R.drawable.level_test_quiz_img),
+                onClick = navigateToQuiz
             )
             Row(
                 modifier = Modifier

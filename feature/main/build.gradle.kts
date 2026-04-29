@@ -27,6 +27,8 @@ dependencies {
     implementation(projects.feature.basicExpressions)
     implementation(projects.feature.levelTestApi)
     implementation(projects.feature.levelTest)
+    implementation(projects.feature.quizApi)
+    implementation(projects.feature.quiz)
     implementation(projects.feature.menuApi)
     implementation(projects.feature.menu)
     implementation(projects.feature.searchApi)

@@ -9,4 +9,6 @@ interface TipRepository {
     suspend fun getKatakanaTips(): TipResult
 
     suspend fun getConversationTips(): TipResult
+
+    suspend fun getQuizTips(): TipResult
 }

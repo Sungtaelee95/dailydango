@@ -24,13 +24,15 @@ import com.bhst.dailydango.hiragana_study_api.HiraganaDetailRoute
 import com.bhst.dailydango.hiragana_study_api.HiraganaStudyRoute
 import com.bhst.dailydango.katakana_study_api.KatakanaDetailRoute
 import com.bhst.dailydango.katakana_study_api.KatakanaStudyRoute
-import com.bhst.dailydango.level_test_api.LevelTestRoute
 import com.bhst.dailydango.menu_api.FavoriteContentsRoute
 import com.bhst.dailydango.menu_api.OssRoute
 import com.bhst.dailydango.menu_api.PlayRepeatRoute
 import com.bhst.dailydango.menu_api.PlaySpeedRoute
 import com.bhst.dailydango.menu_api.ThemeRoute
 import com.bhst.dailydango.model.content.ContentState
+import com.bhst.dailydango.quiz.entry.quizEntry
+import com.bhst.dailydango.quiz_api.QuizChapterRoute
+import com.bhst.dailydango.quiz_api.QuizTipRoute
 import com.bhst.dailydango.route_api.Route
 import com.bhst.dailydango.search.entry.searchEntries
 import com.bhst.dailydango.search_api.SearchRoute
@@ -44,7 +46,7 @@ fun dailyDangoEntryProvider(
     homeEntries(
         navigateToHiraganaKatakanaTip = { navigateTo(HiraganaKatakanaTipRoute) },
         navigateToGrammarStudy = { navigateTo(BasicExpressionsRoute) },
-        navigateToGrammarTest = { navigateTo(LevelTestRoute) },
+        navigateToQuiz = { navigateTo(QuizTipRoute) },
         navigateToSearch = { navigateTo(SearchRoute) },
         navigateToConversation = { navigateTo(ConversationTipRoute) }
     )
@@ -87,7 +89,10 @@ fun dailyDangoEntryProvider(
     )
     conversationEntry(
         navigateToConversationChapter = { navigateTo(ConversationChapterRoute) },
-        navigateToChapter = { chapter -> navigateTo(ConversationRoute(chapter))},
+        navigateToChapter = { chapter -> navigateTo(ConversationRoute(chapter)) },
         navigateToHanjaDetail = { hanjas -> navigateTo(HanjaDetailRoute(hanjas)) }
+    )
+    quizEntry(
+        navigateToQuizChapter = { navigateTo(QuizChapterRoute) }
     )
 }

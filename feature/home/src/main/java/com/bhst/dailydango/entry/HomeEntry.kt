@@ -1,6 +1,5 @@
 package com.bhst.dailydango.entry
 
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
@@ -12,7 +11,7 @@ import com.bhst.dailydango.route_api.Route
 fun EntryProviderScope<Route>.homeEntries(
     navigateToHiraganaKatakanaTip: () -> Unit,
     navigateToGrammarStudy: () -> Unit,
-    navigateToGrammarTest: () -> Unit,
+    navigateToQuiz: () -> Unit,
     navigateToSearch: () -> Unit,
     navigateToConversation: () -> Unit,
 ) {
@@ -27,7 +26,7 @@ fun EntryProviderScope<Route>.homeEntries(
                 HomeTabScreen(
                     navigateToHiraganaKatakanaTip = navigateToHiraganaKatakanaTip,
                     navigateToGrammarStudy = navigateToGrammarStudy,
-                    navigateToGrammarTest = navigateToGrammarTest,
+                    navigateToQuiz = navigateToQuiz,
                     navigateToSearch = navigateToSearch,
                     navigateToConversation = navigateToConversation
                 )
@@ -37,7 +36,7 @@ fun EntryProviderScope<Route>.homeEntries(
                 HomeTabScreen(
                     navigateToHiraganaKatakanaTip = navigateToHiraganaKatakanaTip,
                     navigateToGrammarStudy = navigateToGrammarStudy,
-                    navigateToGrammarTest = navigateToGrammarTest,
+                    navigateToQuiz = navigateToQuiz,
                     navigateToSearch = navigateToSearch,
                     navigateToConversation = navigateToConversation
                 )
@@ -47,7 +46,7 @@ fun EntryProviderScope<Route>.homeEntries(
                 HomeScreen(
                     navigateToHiraganaKatakanaTip = navigateToHiraganaKatakanaTip,
                     navigateToGrammarStudy = navigateToGrammarStudy,
-                    navigateToGrammarTest = navigateToGrammarTest,
+                    navigateToQuiz = navigateToQuiz,
                     navigateToSearch = navigateToSearch,
                     navigateToConversation = navigateToConversation
                 )
