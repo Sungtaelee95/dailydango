@@ -625,7 +625,16 @@ fun ConversationContentTabCardBottom(
                 Text(
                     text = contentState.wordTips,
                     style = DailyDangoTheme.typography.medium16,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                        onClick = {
+                            if (contentState.wordTips.filterHanja().isNotEmpty()) {
+                                hanjaClick(contentState.wordTips.filterHanja())
+                            }
+                        }
+                    )
                 )
             }
         }
