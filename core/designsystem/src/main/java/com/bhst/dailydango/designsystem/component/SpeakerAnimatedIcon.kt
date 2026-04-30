@@ -17,7 +17,7 @@ import com.bhst.dailydango.app.core.designsystem.R
 
 @Composable
 fun SpeakerAnimatedIcon(
-    visible: Boolean,
+    visible: Boolean = true,
     onClick: () -> Unit,
     size: Int = 24
 ) {
