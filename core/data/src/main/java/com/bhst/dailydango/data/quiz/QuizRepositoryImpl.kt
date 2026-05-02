@@ -1,5 +1,6 @@
 package com.bhst.dailydango.data.quiz
 
+import android.util.Log
 import com.bhst.dailydango.domain.repository.quiz.QuizRepository
 import com.bhst.dailydango.model.error.FbError
 import com.bhst.dailydango.model.quiz.QuizContent
@@ -30,6 +31,7 @@ class QuizRepositoryImpl @Inject constructor(
 
                 QuizResult.Success(contents.sortedBy { it.order })
             } catch (e: Exception) {
+                Log.d("lstlst", "excption: $e")
                 QuizResult.Error(FbError.ServerError)
             }
         }

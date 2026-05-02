@@ -32,6 +32,7 @@ import com.bhst.dailydango.menu_api.ThemeRoute
 import com.bhst.dailydango.model.content.ContentState
 import com.bhst.dailydango.quiz.entry.quizEntry
 import com.bhst.dailydango.quiz_api.QuizChapterRoute
+import com.bhst.dailydango.quiz_api.QuizRoute
 import com.bhst.dailydango.quiz_api.QuizTipRoute
 import com.bhst.dailydango.route_api.Route
 import com.bhst.dailydango.search.entry.searchEntries
@@ -93,6 +94,8 @@ fun dailyDangoEntryProvider(
         navigateToHanjaDetail = { hanjas -> navigateTo(HanjaDetailRoute(hanjas)) }
     )
     quizEntry(
-        navigateToQuizChapter = { navigateTo(QuizChapterRoute) }
+        navigateToQuizChapter = { navigateTo(QuizChapterRoute) },
+        navigateToChapter = { chapter -> navigateTo(QuizRoute(chapter = chapter)) },
+        back = back
     )
 }

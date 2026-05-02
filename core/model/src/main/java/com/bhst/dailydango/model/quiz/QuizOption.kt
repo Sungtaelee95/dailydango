@@ -4,10 +4,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class QuizOption(
-    val number: Int,
-    val label: String,
-    val correct: Boolean,
-    val explanation: String
+    val number: Int = 1,
+    val label: String = "",
+    val correct: Boolean = false,
+    val explanation: String = ""
 ) {
     fun toDomain(): QuizOptionState {
         return QuizOptionState(

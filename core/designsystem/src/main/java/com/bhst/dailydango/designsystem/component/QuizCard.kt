@@ -18,8 +18,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.quiz.QuizContentState
 import com.bhst.dailydango.model.quiz.QuizOptionState
@@ -27,8 +30,7 @@ import com.bhst.dailydango.model.quiz.QuizOptionState
 @Composable
 fun QuizCard(
     quizState: QuizContentState,
-    optionClick: (Int) -> Unit = {},
-    speakerSize: Int = 24,
+    optionClick: (QuizContentState) -> Unit = {},
     speakerClick: (Uri?) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
@@ -39,7 +41,7 @@ fun QuizCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .padding(8.dp),
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
@@ -51,6 +53,7 @@ fun QuizCard(
             ) {
                 if (quizState.soundUri != null) {
                     SpeakerAnimatedIcon(
+                        size = 24,
                         onClick = { speakerClick(quizState.soundUri) }
                     )
                 }
@@ -60,7 +63,6 @@ fun QuizCard(
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
-
             if (quizState.subTitle.isNotEmpty()) {
                 Spacer(
                     modifier = Modifier.height(20.dp)
@@ -70,23 +72,23 @@ fun QuizCard(
                     style = DailyDangoTheme.typography.medium16,
                     color = MaterialTheme.colorScheme.onBackground
                 )
-                Spacer(
-                    modifier = Modifier.height(20.dp)
-                )
-                LazyColumn(
-                    modifier = Modifier
-                        .wrapContentSize(),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                ) {
-                    items(
-                        items = quizState.options,
-                        key = { it.number }
-                    ) {
-                        QuizOptionCard(
-                            option = it,
-                            optionClick = optionClick
-                        )
-                    }
+            }
+            Spacer(
+                modifier = Modifier.height(20.dp)
+            )
+            LazyColumn(
+                modifier = Modifier
+                    .wrapContentSize(),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+            ) {
+                items(
+                    items = quizState.options,
+                ) { option ->
+                    QuizOptionCard(
+                        quizState = quizState,
+                        option = option,
+                        optionClick = optionClick
+                    )
                 }
             }
         }
@@ -95,22 +97,93 @@ fun QuizCard(
 
 @Composable
 fun QuizOptionCard(
+    quizState: QuizContentState,
     option: QuizOptionState,
-    optionClick: (Int) -> Unit = {},
+    optionClick: (QuizContentState) -> Unit = {},
 ) {
     when {
-        option.correct && option.isOpen -> { // 정답이 열려있을 때
-
-        }
-
-        !option.correct && option.isOpen -> { // 오답이 열려있을 때
-
+        option.isOpen -> { // 열려있을 때
+            if (option.correct) { // 정답인 경우
+                DailyDangoOutLineCard(
+                    borderColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
+                    color = MaterialTheme.colorScheme.onSecondaryFixed,
+                    onClick ={
+                        val newOptions = quizState.options.map { if (it == option) it.copy(isOpen = !it.isOpen) else it }
+                        optionClick(quizState.copy(options = newOptions))
+                    }
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.Start,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    ) {
+                        Text(
+                            text = option.label,
+                            style = DailyDangoTheme.typography.bold16,
+                            color = MaterialTheme.colorScheme.onSecondaryFixedVariant,
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center
+                        )
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            text = stringResource(R.string.answer),
+                            style = DailyDangoTheme.typography.bold16,
+                            color = MaterialTheme.colorScheme.onSecondaryFixedVariant
+                        )
+                        if (option.explanation.isNotEmpty()) {
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = option.explanation,
+                                style = DailyDangoTheme.typography.medium16,
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
+                        }
+                    }
+                }
+            } else { // 오답인 경우
+                DailyDangoOutLineCard(
+                    borderColor = MaterialTheme.colorScheme.primaryFixed,
+                    onClick ={
+                        val newOptions = quizState.options.map { if (it == option) it.copy(isOpen = !it.isOpen) else it }
+                        optionClick(quizState.copy(options = newOptions))
+                    }
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.Start,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    ) {
+                        Text(
+                            text = option.label,
+                            style = DailyDangoTheme.typography.bold16,
+                            color = MaterialTheme.colorScheme.primaryFixed,
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center
+                        )
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            text = stringResource(R.string.not_answer),
+                            style = DailyDangoTheme.typography.bold16,
+                            color = MaterialTheme.colorScheme.primaryFixed
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = option.explanation,
+                            style = DailyDangoTheme.typography.medium16,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
+                    }
+                }
+            }
         }
 
         else -> { // 열려 있지 않을 때
             DailyDangoOutLineCard(
                 onClick ={
-                    optionClick(option.number)
+                    val newOptions = quizState.options.map { if (it == option) it.copy(isOpen = !it.isOpen) else it }
+                    optionClick(quizState.copy(options = newOptions))
                 }
             ) {
                 Column(
@@ -149,7 +222,7 @@ fun QuizCardPreview() {
                         label = "사과",
                         correct = false,
                         explanation = "사과는 올바르지 않습니다.",
-                        isOpen = false
+                        isOpen = true
                     ),
                     QuizOptionState(
                         number = 2,

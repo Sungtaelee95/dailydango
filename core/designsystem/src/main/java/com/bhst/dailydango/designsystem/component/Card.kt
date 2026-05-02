@@ -87,7 +87,7 @@ fun DailyDangoOutLineCard(
         modifier = modifier
             .fillMaxWidth()
             .border(
-                width = 2.dp,
+                width = 1.dp,
                 shape = RoundedCornerShape(shape),
                 color = borderColor
             )

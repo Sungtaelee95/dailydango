@@ -13,4 +13,6 @@
     <string name="all_close">전체 접기</string>
     <string name="conversation_history">대화 내용</string>
     <string name="conversation_word">단어</string>
+    <string name="answer">정답</string>
+    <string name="not_answer">오답</string>
 </resources>

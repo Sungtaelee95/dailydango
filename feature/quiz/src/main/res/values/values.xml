@@ -5,4 +5,8 @@
     <string name="quiz_guide">시험 가이드</string>
     <string name="answer">정답</string>
     <string name="not_answer">오답</string>
+    <string name="chapter_of_quiz">강 시험</string>
+    <string name="quiz_end">시험 끝</string>
+    <string name="quiz_end_message">고생하셨습니다! 시험을 완료했습니다.</string>
+    <string name="back">돌아가기</string>
 </resources>
