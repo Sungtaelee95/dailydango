@@ -4,7 +4,9 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.window.core.layout.WindowSizeClass
 import com.bhst.dailydango.quiz.chapter.QuizChapterScreen
+import com.bhst.dailydango.quiz.chapter.QuizChapterTabScreen
 import com.bhst.dailydango.quiz.quiz.QuizScreen
+import com.bhst.dailydango.quiz.quiz.QuizTabScreen
 import com.bhst.dailydango.quiz.tip.QuizTipScreen
 import com.bhst.dailydango.quiz.tip.QuizTipTabScreen
 import com.bhst.dailydango.quiz_api.QuizChapterRoute
@@ -53,13 +55,13 @@ fun EntryProviderScope<Route>.quizEntry(
         when {
             // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드
             windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND) -> {
-                QuizChapterScreen(
+                QuizChapterTabScreen(
                     navigateToChapter = navigateToChapter
                 )
             }
             // 2. 가로 너비가 MEDIUM(보통 600dp) 이상일 때 -> 기기 가로 모드 / 폴더블폰
             windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND) -> {
-                QuizChapterScreen(
+                QuizChapterTabScreen(
                     navigateToChapter = navigateToChapter
                 )
             }
@@ -81,14 +83,14 @@ fun EntryProviderScope<Route>.quizEntry(
         when {
             // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드
             windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND) -> {
-                QuizScreen(
+                QuizTabScreen(
                     back = back,
                     chapter = chapter
                 )
             }
             // 2. 가로 너비가 MEDIUM(보통 600dp) 이상일 때 -> 기기 가로 모드 / 폴더블폰
             windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND) -> {
-                QuizScreen(
+                QuizTabScreen(
                     back = back,
                     chapter = chapter
                 )
