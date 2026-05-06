@@ -3,9 +3,9 @@ package com.bhst.dailydango.designsystem.component
 import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -192,7 +192,9 @@ fun QuizOptionTabCard(
             ) {
                 Column(
                     modifier = Modifier
-                        .height(40.dp)
+                        .wrapContentHeight()
+                        .defaultMinSize(minHeight = 40.dp)
+                        .padding(8.dp)
                         .fillMaxWidth(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally

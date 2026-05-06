@@ -8,13 +8,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -26,7 +25,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bhst.dailydango.designsystem.component.ChapterCard
 import com.bhst.dailydango.designsystem.component.ChapterTabCard
 import com.bhst.dailydango.designsystem.component.PaginationControls
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
@@ -103,7 +101,9 @@ fun ConversationChapterTabContent(
                                 navigateToChapter(chapter.title.toInt())
                             },
                             // 그리드 셀에 맞게 꽉 차도록 fillMaxWidth 사용 (기존 480.dp 대신 유동적 대응)
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
+                            circleColor = MaterialTheme.colorScheme.surfaceTint,
+                            tagContainerColor = MaterialTheme.colorScheme.onPrimaryFixedVariant
                         )
                     }
                 }
