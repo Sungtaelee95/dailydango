@@ -1,6 +1,6 @@
 [versions]
 ## Android gradle plugin
-androidGradlePlugin = "9.2.0"
+androidGradlePlugin = "9.2.1"
 
 # https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md
 androidDesugarJdkLibs = "2.1.5"
@@ -164,6 +164,8 @@ firebaseFirestoreKtxVersion = "26.1.0"
 media3 = "1.10.0"
 googleFirebaseFirestoreKtx = "26.1.2"
 foundationLayout = "1.11.0"
+
+furiganable = "0.2.3"
 
 [libraries]
 
@@ -329,8 +331,7 @@ play-services-ads-api = { group = "com.google.android.gms", name = "play-service
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtxVersion" }
 google-firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "googleFirebaseFirestoreKtx" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
-
-
+compose-furiganable = { group = "com.turtlekazu.furiganable", name = "compose-m3", version.ref = "furiganable" }
 
 [bundles]
 

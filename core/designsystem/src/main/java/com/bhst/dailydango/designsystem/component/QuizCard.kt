@@ -27,6 +27,7 @@ import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.quiz.QuizContentState
 import com.bhst.dailydango.model.quiz.QuizOptionState
+import com.turtlekazu.furiganable.compose.m3.TextWithReading
 
 @Composable
 fun QuizCard(
@@ -122,8 +123,8 @@ fun QuizOptionCard(
                         modifier = Modifier
                             .padding(20.dp)
                     ) {
-                        Text(
-                            text = option.label,
+                        TextWithReading(
+                            formattedText = option.label,
                             style = DailyDangoTheme.typography.bold16,
                             color = MaterialTheme.colorScheme.onSecondaryFixedVariant,
                             modifier = Modifier.fillMaxWidth(),
@@ -159,8 +160,8 @@ fun QuizOptionCard(
                         modifier = Modifier
                             .padding(20.dp)
                     ) {
-                        Text(
-                            text = option.label,
+                        TextWithReading(
+                            formattedText = option.label,
                             style = DailyDangoTheme.typography.bold16,
                             color = MaterialTheme.colorScheme.primaryFixed,
                             modifier = Modifier.fillMaxWidth(),
@@ -199,8 +200,13 @@ fun QuizOptionCard(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = option.label,
+//                    Text(
+//                        text = option.label,
+//                        style = DailyDangoTheme.typography.medium16,
+//                        color = MaterialTheme.colorScheme.onBackground
+//                    )
+                    TextWithReading(
+                        formattedText = option.label,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground
                     )

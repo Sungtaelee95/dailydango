@@ -17,6 +17,7 @@ internal fun Project.configureComposeAndroid() {
         add("implementation", findLibrary("androidx.compose.material3"))
         add("implementation", findLibrary("androidx.compose.ui"))
         add("implementation", findLibrary("androidx.compose.ui.tooling.preview"))
+        add("implementation", findLibrary("compose.furiganable"))
         add("androidTestImplementation", findLibrary("androidx.test.ext"))
         add("androidTestImplementation", findLibrary("androidx.test.espresso.core"))
         add("androidTestImplementation", findLibrary("androidx.compose.ui.test"))

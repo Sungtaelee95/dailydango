@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
@@ -32,13 +31,14 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.conversation.ConversationContentState
 import com.bhst.dailydango.util.filterHanja
+import com.turtlekazu.furiganable.compose.m3.TextWithReading
 
 @Composable
 fun ConversationContentCard(
@@ -174,8 +174,8 @@ fun ConversationContentCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese2,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese2,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
