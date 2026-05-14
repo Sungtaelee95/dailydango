@@ -27,6 +27,7 @@ import com.bhst.dailydango.ad_mob.showInterstitialAd
 import com.bhst.dailydango.designsystem.component.DailyDangoTopAppBar
 import com.bhst.dailydango.designsystem.component.TopAppBarNavigationType
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
+import com.bhst.dailydango.main.lock.LockScreen
 import com.bhst.dailydango.menu_api.MenuRoute
 import com.bhst.dailydango.model.theme.config.ThemeConfig
 import com.bhst.dailydango.suggestion_api.SuggestionRoute
@@ -58,6 +59,7 @@ class MainActivity : ComponentActivity() {
             val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
             val progress by viewModel.loadingProgress.collectAsStateWithLifecycle()
             val isClosed by viewModel.isClosed.collectAsStateWithLifecycle()
+            val isLock by viewModel.isLock.collectAsStateWithLifecycle()
             val themeConfig by viewModel.themeConfig.collectAsStateWithLifecycle(
                 ThemeConfig.SYSTEM,
                 this
@@ -91,7 +93,11 @@ class MainActivity : ComponentActivity() {
             DailyDangoTheme(
                 darkTheme = isDark
             ) {
-                if (isLoading) {
+                if (isLock.option) {
+                    LockScreen(
+                        message = isLock.message
+                    )
+                } else if (isLoading) {
                     CustomSplashLoadingScreen(progress = progress)
                 } else {
                     val appState = rememberDailyDangoAppState()

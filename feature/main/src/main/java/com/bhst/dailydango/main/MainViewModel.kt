@@ -5,13 +5,16 @@ import androidx.lifecycle.viewModelScope
 import com.bhst.dailydango.domain.usecase.chapter.ChapterLimitUseCase
 import com.bhst.dailydango.domain.usecase.favorite.DeleteFavoritesContentUseCase
 import com.bhst.dailydango.domain.usecase.favorite.SetFavoritesContentUseCase
+import com.bhst.dailydango.domain.usecase.lock.LockUseCase
 import com.bhst.dailydango.domain.usecase.player.AudioPlayUseCase
 import com.bhst.dailydango.domain.usecase.sentence.SentenceUseCase
 import com.bhst.dailydango.domain.usecase.sound_uri.SoundUriUseCase
 import com.bhst.dailydango.domain.usecase.theme.ThemeConfigUseCase
 import com.bhst.dailydango.domain.usecase.word_content.WordContentUseCase
 import com.bhst.dailydango.model.content.ContentState
+import com.bhst.dailydango.model.lock.Lock
 import com.bhst.dailydango.model.result.ChapterLimitResult
+import com.bhst.dailydango.model.result.LockResult
 import com.bhst.dailydango.model.result.SentenceContentResult
 import com.bhst.dailydango.model.result.WordContentResult
 import com.bhst.dailydango.ui.LoadingDialogManager
@@ -29,6 +32,7 @@ class MainViewModel @Inject constructor(
     private val sentenceUseCase: SentenceUseCase,
     private val wordContentUseCase: WordContentUseCase,
     private val chapterLimitUseCase: ChapterLimitUseCase,
+    private val lockUseCase: LockUseCase,
     private val messageManager: MessageManager,
 ) : ViewModel() {
 
@@ -45,6 +49,9 @@ class MainViewModel @Inject constructor(
     private val _loadingProgress = MutableStateFlow(0f)
     val loadingProgress = _loadingProgress.asStateFlow()
 
+    private val _isLock = MutableStateFlow<Lock>(Lock())
+    val isLock = _isLock.asStateFlow()
+
     init {
         // 2️⃣ 뷰모델 생성 시 바로 데이터 로딩 시작
         getAllContent()
@@ -54,6 +61,23 @@ class MainViewModel @Inject constructor(
     private fun getAllContent() {
         viewModelScope.launch {
             _isLoading.value = true
+
+            when(val result = lockUseCase()) {
+                is LockResult.Success -> {
+                    val data = result.data
+                    if (data.option) {
+                        _isLock.update { data }
+                        return@launch
+                    }
+                }
+
+                is LockResult.Error -> {
+                    messageManager.sendMessage("서버와 통신 중 문제가 발생했습니다.")
+                    _isClosed.value = true
+                    return@launch
+                }
+            }
+
             val accumulatedList = mutableListOf<ContentState>()
 
             var chapterLimit: Int
