@@ -40,6 +40,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.glance.layout.Column
@@ -215,6 +216,7 @@ fun SearchContentCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese1,
+                        furiganaFontSize = 9.sp,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -263,6 +265,7 @@ fun SearchContentCardBottom(
                 ) {
                     TextWithReading(
                         formattedText =contentState.exampleForJapanese2,
+                        furiganaFontSize = 9.sp,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -311,6 +314,7 @@ fun SearchContentCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese3,
+                        furiganaFontSize = 9.sp,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -360,6 +364,7 @@ fun SearchContentCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese4,
+                        furiganaFontSize = 9.sp,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -506,8 +511,9 @@ fun SearchContentCardTop(
                         }
                     )
                 )
-                Text(
-                    text = contentState.japaneseTitle,
+                TextWithReading(
+                    formattedText = contentState.japaneseTitle,
+                    furiganaFontSize = 9.sp,
                     style = DailyDangoTheme.typography.medium14,
                     color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.clickable(
@@ -560,8 +566,9 @@ fun SearchContentCardTop(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Text(
-                    text = contentState.japaneseTitle,
+                TextWithReading(
+                    formattedText = contentState.japaneseTitle,
+                    furiganaFontSize = 10.sp,
                     style = DailyDangoTheme.typography.bold16,
                     color = MaterialTheme.colorScheme.primaryFixed,
                     modifier = Modifier.clickable(

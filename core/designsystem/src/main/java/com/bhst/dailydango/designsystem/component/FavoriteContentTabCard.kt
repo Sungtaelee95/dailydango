@@ -44,6 +44,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
@@ -223,6 +224,7 @@ fun FavoriteContentTabCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese1,
+                        furiganaFontSize = 10.sp,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -273,6 +275,7 @@ fun FavoriteContentTabCardBottom(
                 ) {
                     TextWithReading(
                         formattedText =contentState.exampleForJapanese2,
+                        furiganaFontSize = 10.sp,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -323,6 +326,7 @@ fun FavoriteContentTabCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese3,
+                        furiganaFontSize = 10.sp,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -374,6 +378,7 @@ fun FavoriteContentTabCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese4,
+                        furiganaFontSize = 10.sp,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(

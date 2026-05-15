@@ -20,7 +20,6 @@ private val GmarketSansKr = FontFamily(
 
 private val DailyDangoStyle = TextStyle(
     fontFamily = GmarketSansKr,
-    lineHeight = 1.4.em
 )
 
 internal val Typography = DailyDangoTypography(
@@ -29,157 +28,188 @@ internal val Typography = DailyDangoTypography(
         fontWeight = FontWeight.Bold,
         fontSize = 12.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 15.sp
     ),
     bold14 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 14.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 17.sp
     ),
     bold16 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 16.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 19.sp
     ),
     bold20 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 23.sp
     ),
     bold22 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 22.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 25.sp
     ),
     bold24= DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 27.sp
     ),
     bold28= DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 28.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 31.sp
     ),
     bold32= DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 32.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 35.sp
     ),
     bold36 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 36.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 39.sp
     ),
     bold40 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 40.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 43.sp
     ),
     bold60 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 60.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 63.sp
     ),
     bold80 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 80.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 83.sp
     ),
     medium10 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 10.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 13.sp
     ),
     medium11 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 11.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 14.sp
     ),
     medium12 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 12.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 15.sp
     ),
     medium13 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 13.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 16.sp
     ),
     medium14 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.s
+        lineHeight = 17.sp
     ),
     medium16 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 19.sp
     ),
     medium18 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 18.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 21.sp
     ),
     medium20 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 20.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 23.sp
     ),
     medium22 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 22.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 25.sp
     ),
     medium24 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 24.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 27.sp
     ),
     medium30 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 30.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 33.sp
     ),
 
     light9 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Light,
         fontSize = 9.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 12.sp
     ),
     light10 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Light,
         fontSize = 10.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 13.sp
     ),
     light12 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Light,
         fontSize = 12.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 15.sp
     ),
     light15 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Light,
         fontSize = 15.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 18.sp
     ),
     light16 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Light,
         fontSize = 16.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 19.sp
     ),
     light20 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Light,
         fontSize = 20.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 23.sp
     ),
     light23 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Light,
         fontSize = 23.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 27.sp
     ),
     light24 = DailyDangoStyle.copy(
         fontWeight = FontWeight.Light,
         fontSize = 24.sp,
         letterSpacing = TextUnit.Unspecified, // 또는 0.sp
+        lineHeight = 27.sp
     ),
 )
 

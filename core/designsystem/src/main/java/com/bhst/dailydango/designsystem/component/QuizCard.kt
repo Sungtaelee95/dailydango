@@ -23,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.quiz.QuizContentState
@@ -72,8 +73,9 @@ fun QuizCard(
                 Spacer(
                     modifier = Modifier.height(20.dp)
                 )
-                Text(
-                    text = quizState.subTitle,
+                TextWithReading(
+                    formattedText = quizState.subTitle,
+                    furiganaFontSize = 10.sp,
                     style = DailyDangoTheme.typography.medium16,
                     color = MaterialTheme.colorScheme.onBackground
                 )
@@ -125,6 +127,7 @@ fun QuizOptionCard(
                     ) {
                         TextWithReading(
                             formattedText = option.label,
+                            furiganaFontSize = 10.sp,
                             style = DailyDangoTheme.typography.bold16,
                             color = MaterialTheme.colorScheme.onSecondaryFixedVariant,
                             modifier = Modifier.fillMaxWidth(),
@@ -162,6 +165,7 @@ fun QuizOptionCard(
                     ) {
                         TextWithReading(
                             formattedText = option.label,
+                            furiganaFontSize = 10.sp,
                             style = DailyDangoTheme.typography.bold16,
                             color = MaterialTheme.colorScheme.primaryFixed,
                             modifier = Modifier.fillMaxWidth(),
@@ -207,6 +211,7 @@ fun QuizOptionCard(
 //                    )
                     TextWithReading(
                         formattedText = option.label,
+                        furiganaFontSize = 10.sp,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground
                     )

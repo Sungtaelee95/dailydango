@@ -23,10 +23,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.quiz.QuizContentState
 import com.bhst.dailydango.model.quiz.QuizOptionState
+import com.turtlekazu.furiganable.compose.m3.TextWithReading
 
 @Composable
 fun QuizTabCard(
@@ -71,8 +73,9 @@ fun QuizTabCard(
                 Spacer(
                     modifier = Modifier.height(20.dp)
                 )
-                Text(
-                    text = quizState.subTitle,
+                TextWithReading(
+                    formattedText = quizState.subTitle,
+                    furiganaFontSize = 12.sp,
                     style = DailyDangoTheme.typography.medium20,
                     color = MaterialTheme.colorScheme.onBackground
                 )

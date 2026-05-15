@@ -43,6 +43,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
@@ -221,6 +222,7 @@ fun ContentTabCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese1,
+                        furiganaFontSize = 10.sp,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -271,6 +273,7 @@ fun ContentTabCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese2,
+                        furiganaFontSize = 10.sp,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -321,6 +324,7 @@ fun ContentTabCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese3,
+                        furiganaFontSize = 10.sp,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -372,6 +376,7 @@ fun ContentTabCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese4,
+                        furiganaFontSize = 10.sp,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -524,6 +529,7 @@ fun ContentTabCardTop(
                 )
                 TextWithReading(
                     formattedText = contentState.japaneseTitle,
+                    furiganaFontSize = 10.sp,
                     style = DailyDangoTheme.typography.medium16,
                     color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.clickable(
@@ -580,6 +586,7 @@ fun ContentTabCardTop(
             ) {
                 TextWithReading(
                     formattedText = contentState.japaneseTitle,
+                    furiganaFontSize = 12.sp,
                     style = DailyDangoTheme.typography.bold20,
                     color = MaterialTheme.colorScheme.secondaryFixedDim,
                     modifier = Modifier.clickable(

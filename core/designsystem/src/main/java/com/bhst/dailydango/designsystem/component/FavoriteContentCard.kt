@@ -41,6 +41,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
@@ -215,6 +216,7 @@ fun FavoriteContentCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese1,
+                        furiganaFontSize = 9.sp,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -264,6 +266,7 @@ fun FavoriteContentCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese2,
+                        furiganaFontSize = 9.sp,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -313,6 +316,7 @@ fun FavoriteContentCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese3,
+                        furiganaFontSize = 9.sp,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -363,6 +367,7 @@ fun FavoriteContentCardBottom(
                 ) {
                     TextWithReading(
                         formattedText = contentState.exampleForJapanese4,
+                        furiganaFontSize = 9.sp,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
