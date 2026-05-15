@@ -53,6 +53,7 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.content.ContentState
 import com.bhst.dailydango.util.filterHanja
 import com.google.common.math.Quantiles.scale
+import com.turtlekazu.furiganable.compose.m3.TextWithReading
 import java.time.temporal.TemporalQueries.offset
 
 @Composable
@@ -220,8 +221,8 @@ fun FavoriteContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese1,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese1,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -270,8 +271,8 @@ fun FavoriteContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese2,
+                    TextWithReading(
+                        formattedText =contentState.exampleForJapanese2,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -320,8 +321,8 @@ fun FavoriteContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese3,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese3,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -371,8 +372,8 @@ fun FavoriteContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese4,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese4,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(

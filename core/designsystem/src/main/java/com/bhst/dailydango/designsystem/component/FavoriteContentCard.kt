@@ -49,6 +49,7 @@ import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.content.ContentState
 import com.bhst.dailydango.util.filterHanja
+import com.turtlekazu.furiganable.compose.m3.TextWithReading
 
 @Composable
 fun FavoriteContentCard(
@@ -212,8 +213,8 @@ fun FavoriteContentCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese1,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese1,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -261,8 +262,8 @@ fun FavoriteContentCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese2,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese2,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -310,8 +311,8 @@ fun FavoriteContentCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese3,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese3,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -360,8 +361,8 @@ fun FavoriteContentCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese4,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese4,
                         style = DailyDangoTheme.typography.medium14,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(

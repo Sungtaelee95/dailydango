@@ -51,6 +51,7 @@ import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.content.ContentState
 import com.bhst.dailydango.util.filterHanja
+import com.turtlekazu.furiganable.compose.m3.TextWithReading
 
 @Composable
 fun ContentTabCard(
@@ -218,8 +219,8 @@ fun ContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese1,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese1,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -268,8 +269,8 @@ fun ContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese2,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese2,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -318,8 +319,8 @@ fun ContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese3,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese3,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -369,8 +370,8 @@ fun ContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese4,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese4,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -521,8 +522,8 @@ fun ContentTabCardTop(
                         }
                     )
                 )
-                Text(
-                    text = contentState.japaneseTitle,
+                TextWithReading(
+                    formattedText = contentState.japaneseTitle,
                     style = DailyDangoTheme.typography.medium16,
                     color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.clickable(
@@ -577,8 +578,8 @@ fun ContentTabCardTop(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Text(
-                    text = contentState.japaneseTitle,
+                TextWithReading(
+                    formattedText = contentState.japaneseTitle,
                     style = DailyDangoTheme.typography.bold20,
                     color = MaterialTheme.colorScheme.secondaryFixedDim,
                     modifier = Modifier.clickable(

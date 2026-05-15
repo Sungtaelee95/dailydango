@@ -35,6 +35,7 @@ import coil.compose.AsyncImage
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.chapter.Chapter
+import com.turtlekazu.furiganable.compose.m3.TextWithReading
 
 @Composable
 fun ChapterCard(
@@ -124,8 +125,8 @@ fun ChapterCard(
                             horizontalAlignment = Alignment.Start,
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            Text(
-                                text = chapter.subTitle,
+                            TextWithReading(
+                                formattedText = chapter.subTitle,
                                 style = DailyDangoTheme.typography.medium14,
                                 color = MaterialTheme.colorScheme.onBackground
                             )

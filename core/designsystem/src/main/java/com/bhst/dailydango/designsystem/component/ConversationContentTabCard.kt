@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
@@ -33,12 +32,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import com.bhst.dailydango.app.core.designsystem.R
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.model.conversation.ConversationContentState
 import com.bhst.dailydango.util.filterHanja
+import com.turtlekazu.furiganable.compose.m3.TextWithReading
 
 @Composable
 fun ConversationContentTabCard(
@@ -125,8 +124,8 @@ fun ConversationContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese1,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese1,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -174,8 +173,8 @@ fun ConversationContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese2,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese2,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -223,8 +222,8 @@ fun ConversationContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese3,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese3,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -273,8 +272,8 @@ fun ConversationContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese4,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese4,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -323,8 +322,8 @@ fun ConversationContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese5,
+                    TextWithReading(
+                        formattedText =contentState.exampleForJapanese5,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -373,8 +372,8 @@ fun ConversationContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese6,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese6,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -423,8 +422,8 @@ fun ConversationContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese7,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese7,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -473,8 +472,8 @@ fun ConversationContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese8,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese8,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -523,8 +522,8 @@ fun ConversationContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese9,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese9,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -573,8 +572,8 @@ fun ConversationContentTabCardBottom(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = contentState.exampleForJapanese10,
+                    TextWithReading(
+                        formattedText = contentState.exampleForJapanese10,
                         style = DailyDangoTheme.typography.medium16,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.clickable(
@@ -622,8 +621,8 @@ fun ConversationContentTabCardBottom(
                     style = DailyDangoTheme.typography.medium16
                 )
                 Spacer(modifier = Modifier.width(12.dp))
-                Text(
-                    text = contentState.wordTips,
+                TextWithReading(
+                    formattedText = contentState.wordTips,
                     style = DailyDangoTheme.typography.medium16,
                     color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.clickable(
