@@ -140,8 +140,8 @@ fun QuizOptionTabCard(
                         )
                         if (option.explanation.isNotEmpty()) {
                             Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = option.explanation,
+                            TextWithReading(
+                                formattedText = option.explanation,
                                 style = DailyDangoTheme.typography.medium20,
                                 color = MaterialTheme.colorScheme.onBackground
                             )
@@ -176,8 +176,8 @@ fun QuizOptionTabCard(
                             color = MaterialTheme.colorScheme.primaryFixed
                         )
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = option.explanation,
+                        TextWithReading(
+                            formattedText = option.explanation,
                             style = DailyDangoTheme.typography.medium20,
                             color = MaterialTheme.colorScheme.onBackground
                         )
@@ -197,7 +197,7 @@ fun QuizOptionTabCard(
                     modifier = Modifier
                         .wrapContentHeight()
                         .defaultMinSize(minHeight = 40.dp)
-                        .padding(8.dp)
+                        .padding(16.dp)
                         .fillMaxWidth(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally

@@ -141,8 +141,8 @@ fun QuizOptionCard(
                         )
                         if (option.explanation.isNotEmpty()) {
                             Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = option.explanation,
+                            TextWithReading(
+                                formattedText = option.explanation,
                                 style = DailyDangoTheme.typography.medium16,
                                 color = MaterialTheme.colorScheme.onBackground
                             )
@@ -178,8 +178,8 @@ fun QuizOptionCard(
                             color = MaterialTheme.colorScheme.primaryFixed
                         )
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = option.explanation,
+                        TextWithReading(
+                            formattedText = option.explanation,
                             style = DailyDangoTheme.typography.medium16,
                             color = MaterialTheme.colorScheme.onBackground
                         )
@@ -204,11 +204,6 @@ fun QuizOptionCard(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-//                    Text(
-//                        text = option.label,
-//                        style = DailyDangoTheme.typography.medium16,
-//                        color = MaterialTheme.colorScheme.onBackground
-//                    )
                     TextWithReading(
                         formattedText = option.label,
                         furiganaFontSize = 10.sp,

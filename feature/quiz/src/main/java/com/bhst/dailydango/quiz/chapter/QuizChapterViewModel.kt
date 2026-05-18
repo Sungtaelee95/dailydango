@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bhst.dailydango.app.feature.quiz.R
-import com.bhst.dailydango.domain.usecase.conversation.ConversationChapterLimitUseCase
-import com.bhst.dailydango.domain.usecase.conversation.ConversationChapterUseCase
 import com.bhst.dailydango.domain.usecase.quiz.QuizChapterLimitUseCase
 import com.bhst.dailydango.domain.usecase.quiz.QuizChapterUseCase
 import com.bhst.dailydango.model.chapter.Chapter
