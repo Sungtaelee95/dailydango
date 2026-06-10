@@ -4,7 +4,7 @@ import com.bhst.dailydango.app.filterProject
 plugins {
     alias(libs.plugins.dailydango.android.application)
     alias(libs.plugins.baselineprofile)
-    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.dailydango.android.compose)
 }
 
 extensions.configure<ApplicationExtension> {
@@ -18,8 +18,9 @@ extensions.configure<ApplicationExtension> {
 
     defaultConfig {
         applicationId = "com.bhst.dailydango"
-        versionCode = 36
-        versionName = "1.0.36"
+        targetSdk = 37
+        versionCode = 38
+        versionName = "1.0.38"
     }
 
     buildTypes {

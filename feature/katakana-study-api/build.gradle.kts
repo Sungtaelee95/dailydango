@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.LibraryExtension
 import com.bhst.dailydango.app.setNamespace
 
 plugins {
@@ -5,6 +6,6 @@ plugins {
     alias(libs.plugins.dailydango.kotlin.library.serialization)
 }
 
-extensions.configure<com.android.build.api.dsl.LibraryExtension> {
+extensions.configure<LibraryExtension> {
     setNamespace("feature.gatakana.study.api")
 }

@@ -197,7 +197,7 @@ fun QuizOptionTabCard(
                     modifier = Modifier
                         .wrapContentHeight()
                         .defaultMinSize(minHeight = 40.dp)
-                        .padding(16.dp)
+                        .padding(top = 16.dp, bottom = 16.dp, start = 8.dp, end = 8.dp)
                         .fillMaxWidth(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally

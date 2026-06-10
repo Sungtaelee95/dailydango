@@ -76,8 +76,6 @@ class PlayAudioRepositoryImpl @Inject constructor(
             val totalItems = repeatCount * uris.size
             var currentCount = 0
 
-            // 배속이 적용되어도 '실제 시간'으로 0.4초를 보장하기 위해 배속만큼 묵음 길이를 늘려줍니다.
-            // (단위: 마이크로초, 0.4초 = 400,000L)
             val silenceDurationUs = (400_000L * savedSpeed).toLong()
 
             repeat(repeatCount) {
@@ -95,7 +93,6 @@ class PlayAudioRepositoryImpl @Inject constructor(
                 }
             }
 
-            // setMediaItems 대신 setMediaSources 사용
             exoPlayer.setMediaSources(mediaSources)
 
             // ExoPlayer에 속도 적용하기

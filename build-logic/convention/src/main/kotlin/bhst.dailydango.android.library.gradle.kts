@@ -9,7 +9,6 @@ import com.bhst.dailydango.app.configureRoomAndroid
 
 plugins {
     id("com.android.library")
-    id("bhst.dailydango.verify.detekt")
 }
 
 configureKotlinAndroid()
