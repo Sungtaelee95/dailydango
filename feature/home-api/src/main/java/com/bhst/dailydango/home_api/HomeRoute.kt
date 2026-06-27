@@ -16,7 +16,7 @@ data object HomeRoute: Route {
         get() = true
 
     override fun getTopBar(): TopAppBarNavigationType {
-        return TopAppBarNavigationType.Home
+        return TopAppBarNavigationType.None
     }
 
     @Composable

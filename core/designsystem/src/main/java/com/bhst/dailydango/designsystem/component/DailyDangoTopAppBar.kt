@@ -28,7 +28,6 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 // 네비게이션 타입 정의 확장
 enum class TopAppBarNavigationType {
     Back,
-    Home,
     None,
 }
 
@@ -37,8 +36,8 @@ fun DailyDangoTopAppBar(
     title: String = stringResource(R.string.dailydango),
     navigationIconContentDescription: String? = null,
     modifier: Modifier = Modifier,
-    navigationType: TopAppBarNavigationType = TopAppBarNavigationType.Home, // 기본값 변경
-    contentColor: Color = MaterialTheme.colorScheme.onBackground,
+    navigationType: TopAppBarNavigationType = TopAppBarNavigationType.None, // 기본값 변경
+    contentColor: Color = MaterialTheme.colorScheme.primary,
     containerColor: Color = MaterialTheme.colorScheme.background,
     onNavigationClick: () -> Unit = {},
 ) {
@@ -82,8 +81,6 @@ fun DailyDangoTopAppBar(
                         DailyDangoTitleContent(title, contentColor)
                     }
                 }
-
-                else -> {}
             }
         }
     }
