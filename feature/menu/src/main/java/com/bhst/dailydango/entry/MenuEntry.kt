@@ -10,8 +10,7 @@ import com.bhst.dailydango.menu.MenuTabScreen
 import com.bhst.dailydango.menu_api.FavoriteContentsRoute
 import com.bhst.dailydango.menu_api.MenuRoute
 import com.bhst.dailydango.menu_api.OssRoute
-import com.bhst.dailydango.menu_api.PlayRepeatRoute
-import com.bhst.dailydango.menu_api.PlaySpeedRoute
+import com.bhst.dailydango.menu_api.PlayOptionRoute
 import com.bhst.dailydango.menu_api.ThemeRoute
 import com.bhst.dailydango.oss.CreditScreen
 import com.bhst.dailydango.play_repeat.PlayRepeatScreen
@@ -25,8 +24,7 @@ import com.bhst.dailydango.theme.ThemeTabScreen
 fun EntryProviderScope<Route>.menuEntries(
     navigateToFavorite: () -> Unit,
     navigateToTheme: () -> Unit,
-    navigateToPlaySpeed: () -> Unit,
-    navigateToPlayRepeat: () -> Unit,
+    navigateToPlayOption: () -> Unit,
     navigateToOss: () -> Unit,
     navigateToHanjaDetail: (List<String>) -> Unit,
 ) {
@@ -39,8 +37,7 @@ fun EntryProviderScope<Route>.menuEntries(
                 MenuTabScreen(
                     navigateToFavorite = navigateToFavorite,
                     navigateToTheme = navigateToTheme,
-                    navigateToPlaySpeed = navigateToPlaySpeed,
-                    navigateToPlayRepeat = navigateToPlayRepeat,
+                    navigateToPlayOption= navigateToPlayOption,
                     navigateToOss = navigateToOss
                 )
             }
@@ -49,8 +46,7 @@ fun EntryProviderScope<Route>.menuEntries(
                 MenuTabScreen(
                     navigateToFavorite = navigateToFavorite,
                     navigateToTheme = navigateToTheme,
-                    navigateToPlaySpeed = navigateToPlaySpeed,
-                    navigateToPlayRepeat = navigateToPlayRepeat,
+                    navigateToPlayOption= navigateToPlayOption,
                     navigateToOss = navigateToOss
                 )
             }
@@ -59,8 +55,7 @@ fun EntryProviderScope<Route>.menuEntries(
                 MenuScreen(
                     navigateToFavorite = navigateToFavorite,
                     navigateToTheme = navigateToTheme,
-                    navigateToPlaySpeed = navigateToPlaySpeed,
-                    navigateToPlayRepeat = navigateToPlayRepeat,
+                    navigateToPlayOption= navigateToPlayOption,
                     navigateToOss = navigateToOss
                 )
             }
@@ -109,7 +104,8 @@ fun EntryProviderScope<Route>.menuEntries(
             }
         }
     }
-    entry<PlaySpeedRoute> {
+
+    entry<PlayOptionRoute> {
         val adaptiveInfo = currentWindowAdaptiveInfoV2()
         val windowSizeClass = adaptiveInfo.windowSizeClass
         when {
@@ -127,26 +123,6 @@ fun EntryProviderScope<Route>.menuEntries(
             }
         }
     }
-
-    entry<PlayRepeatRoute> {
-        val adaptiveInfo = currentWindowAdaptiveInfoV2()
-        val windowSizeClass = adaptiveInfo.windowSizeClass
-        when {
-            // 1. 가로 너비가 EXPANDED(보통 840dp) 이상일 때 -> 태블릿 / 데스크탑 모드
-            windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND) -> {
-                PlayRepeatTabScreen()
-            }
-            // 2. 가로 너비가 MEDIUM(보통 600dp) 이상일 때 -> 기기 가로 모드 / 폴더블폰
-            windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND) -> {
-                PlayRepeatTabScreen()
-            }
-            // 3. 그 외 (600dp 미만) -> COMPACT (일반 스마트폰 세로 모드)
-            else -> {
-                PlayRepeatScreen()
-            }
-        }
-    }
-
     entry<OssRoute> {
         CreditScreen()
     }

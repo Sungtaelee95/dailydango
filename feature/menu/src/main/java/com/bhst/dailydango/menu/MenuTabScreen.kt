@@ -24,15 +24,13 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 fun MenuTabScreen(
     navigateToFavorite: () -> Unit,
     navigateToTheme: () -> Unit,
-    navigateToPlaySpeed: () -> Unit,
-    navigateToPlayRepeat: () -> Unit,
+    navigateToPlayOption: () -> Unit,
     navigateToOss: () -> Unit
 ) {
     MenuTabContent(
         navigateToFavorite = navigateToFavorite,
         navigateToTheme = navigateToTheme,
-        navigateToPlaySpeed = navigateToPlaySpeed,
-        navigateToPlayRepeat = navigateToPlayRepeat,
+        navigateToPlayOption = navigateToPlayOption,
         navigateToOss = navigateToOss
     )
 }
@@ -41,8 +39,7 @@ fun MenuTabScreen(
 fun MenuTabContent(
     navigateToFavorite: () -> Unit = {},
     navigateToTheme: () -> Unit = {},
-    navigateToPlaySpeed: () -> Unit = {},
-    navigateToPlayRepeat: () -> Unit = {},
+    navigateToPlayOption: () -> Unit = {},
     navigateToOss: () -> Unit = {}
 ) {
     Column(
@@ -83,15 +80,9 @@ fun MenuTabContent(
                 title = stringResource(R.string.speed_control),
                 subTitle = stringResource(R.string.custom_speed_control),
                 img = R.drawable.speed_img,
-                onClick = navigateToPlaySpeed
+                onClick = navigateToPlayOption
             )
 
-            MenuCard(
-                title = stringResource(R.string.repeat_control),
-                subTitle = stringResource(R.string.custom_repeat_control),
-                img = R.drawable.play_repeate_img,
-                onClick = navigateToPlayRepeat
-            )
 
             Text(
                 text = stringResource(R.string.oss_license),

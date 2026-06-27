@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -25,12 +26,9 @@ import androidx.navigation3.ui.NavDisplay
 import com.bhst.dailydango.ad_mob.loadInterstitialAd
 import com.bhst.dailydango.ad_mob.showInterstitialAd
 import com.bhst.dailydango.designsystem.component.DailyDangoTopAppBar
-import com.bhst.dailydango.designsystem.component.TopAppBarNavigationType
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 import com.bhst.dailydango.main.lock.LockScreen
-import com.bhst.dailydango.menu_api.MenuRoute
 import com.bhst.dailydango.model.theme.config.ThemeConfig
-import com.bhst.dailydango.suggestion_api.SuggestionRoute
 import com.bhst.dailydango.ui.GlobalLoadingDialog
 import com.bhst.dailydango.ui.GlobalMessageToast
 import com.bhst.dailydango.ui.LoadingDialogManager
@@ -108,19 +106,20 @@ class MainActivity : ComponentActivity() {
                             contents = contents,
                         )
                     }
-                    val lastBackStack = appState.backStack.lastOrNull()
+                    val lastBackStack = appState.backStack.last()
                     Scaffold(
                         bottomBar = {
-                            AdmobBanner()
+                            Column {
+                                AdmobBanner()
+                            }
                         },
                         topBar = {
-                            val type = lastBackStack?.getTopBar() ?: TopAppBarNavigationType.None
+                            val type = lastBackStack.getTopBar()
                             DailyDangoTopAppBar(
                                 modifier = Modifier.padding(top = 28.dp),
                                 navigationType = type,
                                 onNavigationClick = appState::onBack,
-                                onActionClick = { appState.navigationTo(MenuRoute) },
-                                onSuggestionClick = { appState.navigationTo(SuggestionRoute) }
+                                title =  lastBackStack.getTopBarTitle()
                             )
                         }
                     ) { innerPadding ->

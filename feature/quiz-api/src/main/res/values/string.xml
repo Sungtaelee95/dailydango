@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chapter">강</string>
+    <string name="test">시험</string>
+    <string name="question">문제</string>
+    <string name="word">단어</string>
+</resources>

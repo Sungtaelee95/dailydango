@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="word_and_grammar_study">단어 &amp; 문법</string>
+    <string name="chapter">강</string>
+    <string name="grammar">문법</string>
+</resources>

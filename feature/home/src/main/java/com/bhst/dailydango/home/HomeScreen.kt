@@ -39,14 +39,12 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 
 @Composable
 fun HomeScreen(
-    navigateToHiraganaKatakanaTip: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
     navigateToQuiz: () -> Unit = {},
     navigateToSearch: () -> Unit = {},
     navigateToConversation: () -> Unit
 ) {
     HomeContent(
-        navigateToHiraganaKatakanaTip = navigateToHiraganaKatakanaTip,
         navigateToGrammarStudy = navigateToGrammarStudy,
         navigateToQuiz = navigateToQuiz,
         navigateToSearch = navigateToSearch,
@@ -56,7 +54,6 @@ fun HomeScreen(
 
 @Composable
 fun HomeContent(
-    navigateToHiraganaKatakanaTip: () -> Unit = {},
     navigateToGrammarStudy: () -> Unit = {},
     navigateToQuiz: () -> Unit = {},
     navigateToSearch: () -> Unit = {},
@@ -96,14 +93,6 @@ fun HomeContent(
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
-            JapaneseStudyContent(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                title = stringResource(R.string.hiragana_katakana_study),
-                subtitle = stringResource(R.string.strong_foundation),
-                onClick = navigateToHiraganaKatakanaTip,
-                painter = painterResource(R.drawable.hiragana_katakana_study),
-            )
 
             JapaneseStudyContent(
                 modifier = Modifier

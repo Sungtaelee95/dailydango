@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sentence_and_word_study">표현 &amp; 학습</string>
+    <string name="sentence">표현</string>
+    <string name="chapter">강</string>
+    <string name="word">단어</string>
+</resources>

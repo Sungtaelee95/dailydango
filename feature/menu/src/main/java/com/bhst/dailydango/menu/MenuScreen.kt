@@ -22,15 +22,13 @@ import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
 fun MenuScreen(
     navigateToFavorite: () -> Unit,
     navigateToTheme: () -> Unit,
-    navigateToPlaySpeed: () -> Unit,
-    navigateToPlayRepeat: () -> Unit,
+    navigateToPlayOption: () -> Unit,
     navigateToOss: () -> Unit
 ) {
     MenuContent(
         navigateToFavorite = navigateToFavorite,
         navigateToTheme = navigateToTheme,
-        navigateToPlaySpeed = navigateToPlaySpeed,
-        navigateToPlayRepeat = navigateToPlayRepeat,
+        navigateToPlayOption = navigateToPlayOption,
         navigateToOss = navigateToOss
     )
 }
@@ -39,8 +37,7 @@ fun MenuScreen(
 fun MenuContent(
     navigateToFavorite: () -> Unit = {},
     navigateToTheme: () -> Unit = {},
-    navigateToPlaySpeed: () -> Unit = {},
-    navigateToPlayRepeat: () -> Unit = {},
+    navigateToPlayOption: () -> Unit = {},
     navigateToOss: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
@@ -77,14 +74,7 @@ fun MenuContent(
             title = stringResource(R.string.speed_control),
             subTitle = stringResource(R.string.custom_speed_control),
             img = R.drawable.speed_img,
-            onClick = navigateToPlaySpeed
-        )
-
-        MenuCard(
-            title = stringResource(R.string.repeat_control),
-            subTitle = stringResource(R.string.custom_repeat_control),
-            img = R.drawable.play_repeate_img,
-            onClick = navigateToPlayRepeat
+            onClick = navigateToPlayOption
         )
 
         Text(

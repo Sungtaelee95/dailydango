@@ -3,6 +3,7 @@ import com.bhst.dailydango.app.filterProject
 
 plugins {
     alias(libs.plugins.dailydango.android.application)
+    alias(libs.plugins.android.test) apply false
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.dailydango.android.compose)
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="favorite">즐겨찾기</string>
+    <string name="option">설정</string>
+    <string name="license">라이센스</string>
+    <string name="sound_option">사운드 옵션</string>
+    <string name="theme_option">테마 설정</string>
+</resources>

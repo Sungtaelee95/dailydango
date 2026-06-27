@@ -40,12 +40,17 @@ import com.bhst.dailydango.designsystem.component.ColorBar
 import com.bhst.dailydango.designsystem.component.DailyDangoElevationCard
 import com.bhst.dailydango.designsystem.component.ImageCard
 import com.bhst.dailydango.designsystem.theme.DailyDangoTheme
+import com.bhst.dailydango.play_repeat.PlayRepeatTabContent
+import com.bhst.dailydango.play_repeat.RepeatControlCard
+import com.bhst.dailydango.play_repeat.TestExpressionsCard
 
 @Composable
 fun PlaySpeedScreen(
     viewModel: PlaySpeedViewModel = hiltViewModel()
 ) {
     val speed by viewModel.playSpeed.collectAsStateWithLifecycle()
+    val repeat by viewModel.playRepeat.collectAsStateWithLifecycle()
+
     LaunchedEffect(Unit) {
         viewModel.getPlaySpeed()
     }
@@ -54,11 +59,18 @@ fun PlaySpeedScreen(
             viewModel.soundPlayRelease()
         }
     }
-    PlaySpeedContent(
-        speed = speed,
-        onSpeedChange = viewModel::setPlaySpeed,
-        playTestExpression = viewModel::playTestExpression
-    )
+    Column {
+        PlaySpeedContent(
+            speed = speed,
+            onSpeedChange = viewModel::setPlaySpeed,
+            playTestExpression = viewModel::playTestExpression
+        )
+        PlayRepeatTabContent(
+            repeat = repeat,
+            onRepeatChange = { viewModel.setPlayRepeat(it) },
+            playTestExpression = { viewModel.playTestExpression(it) }
+        )
+    }
 }
 
 @Composable
@@ -102,6 +114,57 @@ fun PlaySpeedContent(
                 speed = speed,
                 onSpeedChange = onSpeedChange
             )
+            TestExpressionsCard(
+                playTestExpression = playTestExpression
+            )
+        }
+    }
+}
+
+@Composable
+fun PlayRepeatContent(
+    repeat: Int = 1,
+    onRepeatChange: (Int) -> Unit = {},
+    playTestExpression: (String) -> Unit = {}
+) {
+    // 2. 화면 전체를 덮는 Column을 만들고 카드들을 배치합니다.
+    Column {
+
+        ColorBar(
+            color = MaterialTheme.colorScheme.onPrimaryFixed
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Spacer(modifier = Modifier.width(20.dp))
+                ImageCard(
+                    painter = painterResource(R.drawable.play_repeate_img),
+                    contentDescription = "Speed",
+                    modifier = Modifier
+                        .size(40.dp)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Text(
+                    text = stringResource(R.string.repeat_control),
+                    style = DailyDangoTheme.typography.bold20,
+                    color = MaterialTheme.colorScheme.inverseSurface,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 28.dp, end = 28.dp, top = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+            RepeatControlCard(
+                repeat = repeat,
+                onRepeatChange = onRepeatChange
+            )
+
             TestExpressionsCard(
                 playTestExpression = playTestExpression
             )
