@@ -7,56 +7,35 @@ import androidx.compose.ui.graphics.Color
 object DailyDangoColor {
 
     // 기본 화이트/블랙/그레이 계열
-    @Stable val ShellPink = Color(0xFFFFF3F3)
-    @Stable val Black = Color(0xFF000000)
-    @Stable val VividPink = Color(0xFFF86187)
-    @Stable val RosePink = Color(0xFFFFC1C1)
-    @Stable val VividOrange = Color(0xFFFF7A31)
-    @Stable val Apricot = Color(0xFFFFD3B4)
-    @Stable val SkyBlue = Color(0xFF429BFF)
-    @Stable val PaleBlue = Color(0xFFD0E8FF)
-    @Stable val LightBlack = Color(0xFF666666)
-    @Stable val White = Color(0xFFFFFFFF)
-    @Stable val LightYellow = Color(0xFFFFF2E6)
-    @Stable val LightPink = Color(0xFFFFE0E0)
-    @Stable val WildStrawberry = Color(0xFFFF6B81)
-    @Stable val PinkLace = Color(0xFFFFE0E0)
-    @Stable val PearlBush = Color(0xFFE3CDB2)
-    @Stable val AshGreen = Color(0xFFB0C4B1)
-    @Stable val SalmonPink = Color(0xFFFF8B94)
-    @Stable val MistyPink = Color(0xFFFFEBEE)
-
-    @Stable val Wood = Color(0xFF7A4A4A)
-    @Stable val DarkGray = Color(0xFF2A2A2A)
-    @Stable val LightDarkGray = Color(0xFF4A4A4A)
-    @Stable val BrownGray = Color(0xFF6E5A46)
-    @Stable val DeepGray = Color(0xFF3C3C3C)
-    @Stable val WhiteSmoke = Color(0xFFF5F5F5)
-    @Stable val DarkSageGreen = Color(0xFF5F7361)
-    @Stable val CoralPink = Color(0xFFC45F66)
-    @Stable val VeryDarkGray = Color(0xFF353434)
-    @Stable val MutedRose = Color(0xFF8A5A5A)
-    @Stable val White1 = Color(0xFFFCFAFA)
-    @Stable val NearBlack = Color(0xFF272727)
-    @Stable val Orange = Color(0xFFFF7E38)
-
-    @Stable val LightOrange = Color(0xFFFFA066)
-    @Stable val MintGreen = Color(0xFF7DCFB6)
-    @Stable val DeepMint = Color(0xFF4FAF96)
-
-    @Stable val VividBlue = Color(0xFF429BFF)
-    @Stable val SoftBlue = Color(0xFF71A3FA)
-    @Stable val SlateBlue = Color(0xFF3F6BC0)
-    @Stable val PaleGray = Color(0xFFF2F5F9)
-    @Stable val Charcoal = Color(0xFF232323)
-
-    @Stable val ForestGreen = Color(0xFF01AB26)
-    @Stable val MintWhite = Color(0xFFCAFFE5)
-    @Stable val LightMint = Color(0xFFCAFFE5)
-    @Stable val MidiumGreen = Color(0xFF269B55)
-    @Stable val CharcoalMint = Color(0xFF2D3A33)
-    @Stable val NeonGreen = Color(0xFF10B981)
-    @Stable val SilverMist = Color(0xFFD9D9D9)
-    @Stable val MutedSand = Color(0xFFD5B8A7)
+    @Stable
+    val WildStrawberry = Color(0xFFFF6B81)
+    @Stable
+    val WhisperWhite = Color(0xFFFDF6F7)
+    @Stable
+    val NearBlack = Color(0xFF181818)
+    @Stable
+    val AppleGreen = Color(0xFF269B55)
+    @Stable
+    val MaterialGreen = Color(0xFFF0FAF1)
+    @Stable
+    val CarrotOrange = Color(0xFFFF7E38)
+    @Stable
+    val IvoryWhite = Color(0xFFFDFDFB)
+    @Stable
+    val DarkCharcoal = Color(0xFF272428)
+    @Stable
+    val SoftBlack = Color(0xFF222222)
+    @Stable
+    val SnowWhite = Color(0xFFFBFBFB)
+    @Stable
+    val White = Color(0xFFFFFFFF)
+    @Stable
+    val Black = Color(0xFF000000)
+    @Stable
+    val PalePink = Color(0xFFFFE0E0)
+    @Stable
+    val MediumGray = Color(0xFF999999)
+    @Stable
+    val DarkGreen = Color(0xFF269B55)
 
 }
